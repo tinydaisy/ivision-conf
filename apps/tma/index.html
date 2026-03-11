@@ -32,7 +32,8 @@
       const query = new URLSearchParams(params).toString();
       const url   = query ? `${LANDING}?${query}` : LANDING;
 
-      tg.openLink(url);
+      // Открываем лендинг прямо внутри WebView мини-апа (не внешний браузер)
+      window.location.href = url;
 
     // ── Режим 2: открыто в браузере (по ссылке из Instagram / рекламы) ───
     // Читаем UTM, кодируем в start-параметр и отправляем человека в бот
