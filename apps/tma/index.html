@@ -40,7 +40,6 @@
       letter-spacing: -1px;
       line-height: 1.1;
     }
-
     h1 span { color: #6c63ff; }
 
     .subtitle {
@@ -71,43 +70,107 @@
     }
     .btn:active { opacity: 0.85; transform: scale(0.98); }
 
-    .greeting {
-      font-size: 14px;
-      opacity: 0.4;
+    .greeting { font-size: 14px; opacity: 0.4; }
+
+    /* ── Попап с виджетом GetCourse ── */
+    .gc-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 99999;
+      align-items: flex-start;
+      justify-content: center;
+      overflow-y: auto;
     }
+    .gc-modal-inner {
+      background: #16162a;
+      padding: 48px 24px 32px;
+      border-radius: 16px;
+      max-width: 480px;
+      width: 92%;
+      position: relative;
+      margin: 40px auto;
+    }
+    .gc-modal-close {
+      position: absolute;
+      top: 12px; right: 16px;
+      background: none; border: none;
+      color: #aaa; font-size: 30px;
+      cursor: pointer; line-height: 1;
+    }
+
+    /* ── Экран "Доступ получен" (startapp=free) ── */
+    .access-screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .access-icon { font-size: 64px; }
+    .access-screen h2 { font-size: 24px; font-weight: 700; }
+    .access-screen p { font-size: 15px; opacity: 0.6; line-height: 1.6; max-width: 280px; }
   </style>
 </head>
 <body>
+
+  <!-- Основной экран -->
+  <div id="main-screen">
+    <div class="badge">Онлайн-конференция</div>
+    <h1>iVision <span>Conf</span></h1>
+    <p class="subtitle">Конференция для экспертов и предпринимателей нового времени</p>
+    <div class="date">📅 Дата будет объявлена</div>
+    <button class="btn" onclick="openGCModal()">Зарегистрироваться</button>
+    <p class="greeting" id="greeting"></p>
+  </div>
+
+  <!-- Экран после регистрации на бесплатный тариф (startapp=free) -->
+  <div class="access-screen" id="access-screen">
+    <div class="access-icon">🎉</div>
+    <h2>Вы зарегистрированы!</h2>
+    <p>Доступ к материалам конференции будет открыт совсем скоро.<br>Мы пришлём уведомление в этот бот.</p>
+    <p class="greeting" id="greeting-free"></p>
+  </div>
+
+  <!-- Попап с виджетом GetCourse -->
+  <div class="gc-modal" id="gc-modal" onclick="if(event.target===this)closeGCModal()">
+    <div class="gc-modal-inner">
+      <button class="gc-modal-close" onclick="closeGCModal()">×</button>
+      <div id="gc-widget-container">
+        <script id="968c0c6ce7157b97baaad444e02f861ee91cc8a1"
+                src="https://medialift.margoforbs.ru/pl/lite/widget/script?id=1574910"></script>
+      </div>
+    </div>
+  </div>
+
   <script>
     const tg = window.Telegram.WebApp;
     tg.ready();
     tg.expand();
-  </script>
 
-  <div class="badge">Онлайн-конференция</div>
-
-  <h1>iVision <span>Conf</span></h1>
-
-  <p class="subtitle">Конференция для экспертов и предпринимателей нового времени</p>
-
-  <div class="date">📅 Дата будет объявлена</div>
-
-  <button class="btn" id="btn">Зарегистрироваться</button>
-
-  <p class="greeting" id="greeting"></p>
-
-  <script>
-    // Приветствие с именем пользователя Telegram
-    const user = tg.initDataUnsafe?.user;
-    if (user?.first_name) {
-      document.getElementById("greeting").textContent =
-        `Привет, ${user.first_name}! 👋`;
+    function openGCModal() {
+      document.getElementById("gc-modal").style.display = "flex";
+    }
+    function closeGCModal() {
+      document.getElementById("gc-modal").style.display = "none";
     }
 
-    // Сюда позже добавим виджет оплаты GetCourse
-    document.getElementById("btn").onclick = () => {
-      alert("Здесь будет виджет регистрации GetCourse");
-    };
+    // Приветствие
+    const user = tg.initDataUnsafe?.user;
+    const firstName = user?.first_name || "";
+
+    if (firstName) {
+      document.getElementById("greeting").textContent = `Привет, ${firstName}! 👋`;
+      document.getElementById("greeting-free").textContent = `${firstName}, ждём тебя на конференции!`;
+    }
+
+    // Если пришли после регистрации на бесплатный тариф
+    const startParam = tg.initDataUnsafe?.start_param || "";
+    if (startParam === "free") {
+      document.getElementById("main-screen").style.display  = "none";
+      document.getElementById("access-screen").style.display = "flex";
+    }
   </script>
+
 </body>
 </html>
