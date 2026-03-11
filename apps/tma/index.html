@@ -16,10 +16,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --peach:#FFCFA4;--purple:#C084FC;--teal:#25455D;
+      --peach:#FFCFA4;--purple:#C084FC;--teal:#25455D;--pink:#C84B9E;
       --dark:#080B12;--mid:#0D111A;--card:#111827;
       --text:#F5F0E8;--muted:rgba(245,240,232,.55);--dim:rgba(245,240,232,.32);
       --border:rgba(255,207,164,.18);
+      --btn-grad:linear-gradient(135deg,#FFCFA4 0%,#C084FC 50%,#25455D 100%);
       --r-md:16px;--r-lg:24px;--r-pill:100px;
       --ff-d:'Bebas Neue',Impact,sans-serif;
       --ff-b:'Roboto',system-ui,sans-serif;
@@ -34,52 +35,88 @@
     .h2{font-family:var(--ff-d);font-size:clamp(28px,8vw,42px);line-height:1;letter-spacing:.02em;margin-bottom:8px;}
     .sub{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:24px;}
     .pill{display:inline-block;background:rgba(255,207,164,.1);border:1px solid rgba(255,207,164,.25);color:var(--peach);border-radius:var(--r-pill);padding:4px 14px;font-size:12px;font-weight:600;}
-    /* Buttons */
-    .bp{display:block;width:100%;padding:16px;background:var(--peach);color:#080B12;border:none;border-radius:var(--r-pill);font-family:var(--ff-b);font-size:16px;font-weight:700;cursor:pointer;transition:opacity .15s,transform .1s;text-align:center;}
-    .bp:active{opacity:.85;transform:scale(.98);}
-    .bg{display:block;width:100%;padding:15px;background:transparent;color:var(--peach);border:1px solid rgba(255,207,164,.35);border-radius:var(--r-pill);font-family:var(--ff-b);font-size:16px;font-weight:700;cursor:pointer;text-align:center;}
-    .bg:active{background:rgba(255,207,164,.08);}
-    /* HERO */
-    #hero{background:linear-gradient(160deg,#25455D 0%,#080B12 65%);padding:44px 0 52px;position:relative;overflow:hidden;}
+
+    /* ── GRADIENT BORDER BUTTON ── */
+    .bgw{display:block;width:100%;padding:2px;border-radius:var(--r-pill);background:var(--btn-grad);cursor:pointer;border:none;transition:transform .15s,opacity .15s;}
+    .bgw:active{transform:scale(.98);opacity:.9;}
+    .bgi{display:flex;align-items:center;justify-content:center;background:var(--dark);color:var(--text);font-family:var(--ff-b);font-weight:700;font-size:15px;padding:14px 20px;border-radius:var(--r-pill);text-align:center;width:100%;border:none;cursor:pointer;}
+    .bgw:active .bgi{background:rgba(8,11,18,.8);}
+    /* Filled gradient button (for tariff payments) */
+    .bpay{display:block;width:100%;padding:15px;background:linear-gradient(135deg,var(--peach),var(--purple));color:#080B12;border:none;border-radius:var(--r-pill);font-family:var(--ff-b);font-size:16px;font-weight:700;cursor:pointer;transition:opacity .15s,transform .1s;text-align:center;}
+    .bpay:active{opacity:.85;transform:scale(.98);}
+
+    /* ── NAV ── */
+    #nav{position:fixed;top:14px;left:50%;transform:translateX(-50%) translateY(-120px);z-index:1000;width:calc(100% - 28px);max-width:480px;background:rgba(8,11,18,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(37,69,93,.5);border-radius:var(--r-pill);padding:9px 16px;display:flex;align-items:center;justify-content:space-between;transition:transform .4s ease;}
+    #nav.vis{transform:translateX(-50%) translateY(0);}
+    .nav-logo{font-family:var(--ff-d);font-size:16px;letter-spacing:.04em;color:var(--text);white-space:nowrap;}
+    .nav-logo span{color:var(--peach);}
+    .nav-btn{padding:2px;border-radius:var(--r-pill);background:var(--btn-grad);border:none;cursor:pointer;display:inline-block;}
+    .nav-btn-i{display:flex;align-items:center;background:var(--dark);color:var(--text);font-family:var(--ff-b);font-weight:700;font-size:12px;padding:7px 16px;border-radius:var(--r-pill);white-space:nowrap;}
+
+    /* ── SEATS BADGE ── */
+    #seats-badge{position:fixed;bottom:76px;right:12px;background:rgba(8,11,18,.92);border:1.5px solid var(--peach);box-shadow:0 0 18px rgba(255,207,164,.35),0 0 40px rgba(255,207,164,.12);border-radius:14px;padding:10px 13px;text-align:center;z-index:500;backdrop-filter:blur(10px);}
+    .sb-lbl{font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--peach);font-weight:700;line-height:1.2;}
+    .sb-cnt{font-family:var(--ff-d);font-size:17px;color:#fff;line-height:1;margin-top:3px;}
+    .sb-sub{font-size:8px;color:var(--muted);margin-top:2px;}
+
+    /* ── HERO ── */
+    #hero{background:linear-gradient(160deg,#25455D 0%,#080B12 65%);padding:52px 0 44px;position:relative;overflow:hidden;}
     #hero::before{content:'';position:absolute;top:-60px;right:-60px;width:280px;height:280px;background:radial-gradient(circle,rgba(192,132,252,.14) 0%,transparent 70%);pointer-events:none;}
-    .h-name{font-family:var(--ff-d);font-size:clamp(34px,10vw,52px);line-height:.95;letter-spacing:.02em;margin-bottom:4px;}
-    .h-sub{font-family:var(--ff-d);font-size:clamp(15px,4.5vw,20px);color:var(--peach);letter-spacing:.04em;margin-bottom:14px;}
+    .h-conf{font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.02em;margin-bottom:4px;}
+    .h-name-big{font-family:var(--ff-d);font-size:clamp(36px,10vw,54px);line-height:.95;letter-spacing:.02em;color:var(--text);margin-bottom:14px;}
     .h-tagline{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:16px;}
-    .h-slogan{font-family:var(--ff-d);font-size:clamp(18px,5vw,24px);color:var(--purple);letter-spacing:.06em;margin-bottom:16px;}
-    .h-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
+    .h-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
     .h-mi{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted);}
     .dot{width:6px;height:6px;border-radius:50%;background:var(--peach);flex-shrink:0;}
-    .h-seats{font-size:13px;color:var(--peach);font-weight:600;margin-bottom:22px;}
+    .h-gifts{margin-top:16px;display:flex;flex-direction:column;gap:6px;}
+    .h-gift{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--muted);}
+    .h-gift::before{content:'🎁';flex-shrink:0;}
     .h-greet{font-size:13px;color:var(--dim);margin-top:12px;text-align:center;}
-    /* Stats */
+
+    /* ── STATS ── */
     .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:28px;}
     .st{background:rgba(255,207,164,.06);border:1px solid var(--border);border-radius:var(--r-md);padding:12px 6px;text-align:center;}
     .sv{font-family:var(--ff-d);font-size:24px;color:var(--peach);line-height:1;}
     .sl{font-size:10px;color:var(--muted);margin-top:3px;line-height:1.3;}
-    /* Mission */
+
+    /* ── MARQUEE ── */
+    #marquee-sec{background:var(--peach);overflow:hidden;padding:0;}
+    .mq-track{display:flex;height:44px;align-items:center;overflow:hidden;}
+    .mq-inner{display:flex;white-space:nowrap;animation:mqleft 28s linear infinite;}
+    .mq-item{font-family:var(--ff-b);font-weight:700;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--dark);padding:0 22px;}
+    .mq-dot{opacity:.35;padding:0 4px;}
+    @keyframes mqleft{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    /* ── MISSION ── */
     .mission-body{background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px;margin-top:24px;}
     .mission-intro{font-size:15px;font-weight:600;color:var(--peach);margin-bottom:14px;line-height:1.5;}
+    .slogan-frame{background:linear-gradient(var(--dark),var(--dark)) padding-box,linear-gradient(135deg,var(--pink),var(--peach)) border-box;border:2px solid transparent;border-radius:var(--r-md);padding:18px 20px;text-align:center;color:#fff;font-family:var(--ff-d);font-size:clamp(18px,5vw,24px);letter-spacing:.06em;line-height:1.3;margin:16px 0;}
+    .mission-photo{width:100%;border-radius:var(--r-md);margin:16px 0;object-fit:cover;max-height:280px;}
     .mission-text{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:14px;}
     .mission-footer{font-size:13px;color:var(--dim);line-height:1.6;font-style:italic;border-left:3px solid var(--peach);padding-left:14px;}
-    /* Bonuses */
+
+    /* ── BONUSES ── */
     .bonus-list{display:flex;flex-direction:column;gap:10px;margin-top:24px;}
     .bonus-item{display:flex;gap:12px;align-items:flex-start;background:rgba(17,24,39,.5);border:1px solid rgba(255,207,164,.1);border-radius:var(--r-md);padding:14px 16px;}
     .b-arr{color:var(--peach);font-size:15px;flex-shrink:0;margin-top:1px;}
     .b-txt{font-size:13px;line-height:1.5;}
-    /* Spaces */
+
+    /* ── SPACES ── */
     .spaces-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px;}
     .space-card{background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-md);padding:16px 14px;}
     .sp-head{font-family:var(--ff-d);font-size:16px;color:var(--peach);letter-spacing:.04em;margin-bottom:6px;}
     .sp-text{font-size:12px;color:var(--muted);line-height:1.5;}
     .quote-block{background:linear-gradient(135deg,rgba(37,69,93,.4),rgba(192,132,252,.15));border:1px solid rgba(192,132,252,.25);border-radius:var(--r-lg);padding:24px;margin-top:20px;text-align:center;}
     .quote-text{font-family:var(--ff-d);font-size:clamp(18px,5vw,24px);line-height:1.3;letter-spacing:.03em;}
-    /* Special */
+
+    /* ── SPECIAL ── */
     .special-list{display:flex;flex-direction:column;gap:10px;margin-top:24px;}
     .sp-item{display:flex;gap:14px;align-items:flex-start;background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-md);padding:16px;}
     .sp-ico{font-size:22px;flex-shrink:0;}
     .sp-title{font-size:14px;font-weight:700;margin-bottom:3px;}
     .sp-desc{font-size:12px;color:var(--muted);line-height:1.5;}
-    /* Speakers */
+
+    /* ── SPEAKERS ── */
     .spk-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px;}
     .spk-card{background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 14px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;}
     .spk-photo{width:76px;height:76px;border-radius:50%;overflow:hidden;border:2px solid var(--border);flex-shrink:0;}
@@ -90,13 +127,15 @@
     .spk-creds{list-style:none;text-align:left;width:100%;}
     .spk-creds li{font-size:11px;color:var(--muted);padding:3px 0;border-bottom:1px solid rgba(255,207,164,.06);line-height:1.4;}
     .spk-creds li:last-child{border-bottom:none;}
-    /* Benefits */
+
+    /* ── BENEFITS ── */
     .ben-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px;}
     .ben-card{background:rgba(17,24,39,.7);border:1px solid rgba(255,207,164,.1);border-radius:var(--r-md);padding:16px 13px;display:flex;flex-direction:column;gap:7px;}
     .ben-ico{font-size:24px;line-height:1;}
     .ben-title{font-size:13px;font-weight:700;}
     .ben-text{font-size:12px;color:var(--muted);line-height:1.45;}
-    /* Schedule */
+
+    /* ── SCHEDULE ── */
     .sched{display:flex;flex-direction:column;gap:14px;margin-top:24px;}
     .sched-day{background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;}
     .sd-name{font-family:var(--ff-d);font-size:20px;color:var(--peach);letter-spacing:.04em;}
@@ -105,7 +144,8 @@
     .slot:last-child{border-bottom:none;}
     .sl-time{font-size:11px;font-weight:700;color:var(--peach);min-width:56px;padding-top:1px;flex-shrink:0;}
     .sl-title{font-size:13px;line-height:1.4;}
-    /* Tariffs */
+
+    /* ── TARIFFS ── */
     .tariffs{display:flex;flex-direction:column;gap:16px;margin-top:24px;}
     .tariff{background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px 20px;position:relative;}
     .tariff.rec{border-color:transparent;background:linear-gradient(var(--card),var(--card)) padding-box,linear-gradient(135deg,var(--peach),var(--purple)) border-box;box-shadow:0 0 48px rgba(200,75,158,.1);}
@@ -119,18 +159,31 @@
     .feat li.y::before{content:'✓';color:var(--peach);flex-shrink:0;font-weight:700;}
     .feat li.n{color:var(--dim);}
     .feat li.n::before{content:'✗';color:rgba(255,207,164,.22);flex-shrink:0;}
-    /* Final CTA */
+
+    /* ── OPОРА РОССИЯ ── */
+    #opora{background:var(--mid);padding:40px 0;}
+    .opora-box{display:flex;align-items:center;gap:18px;background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 20px;}
+    .opora-logo{flex-shrink:0;width:60px;height:60px;border-radius:12px;background:linear-gradient(135deg,#003087,#D4AF37);display:flex;align-items:center;justify-content:center;flex-direction:column;padding:6px;}
+    .opora-logo-txt{font-family:var(--ff-d);font-size:11px;letter-spacing:.04em;color:#fff;text-align:center;line-height:1.15;}
+    .opora-content{}
+    .opora-title{font-size:13px;font-weight:700;color:var(--peach);margin-bottom:5px;}
+    .opora-text{font-size:12px;color:var(--muted);line-height:1.5;}
+
+    /* ── FINAL CTA ── */
     #cta{background:linear-gradient(160deg,#25455D 0%,#080B12 65%);padding:52px 0;text-align:center;}
-    /* GC Modal */
+
+    /* ── GC MODAL ── */
     #gc-modal{display:none;position:fixed;inset:0;background:rgba(8,11,18,.9);z-index:99999;align-items:flex-start;justify-content:center;overflow-y:auto;backdrop-filter:blur(6px);}
     .gc-inner{background:#16162a;border:1px solid rgba(255,207,164,.2);padding:48px 18px 28px;border-radius:var(--r-lg);width:92%;max-width:440px;position:relative;margin:36px auto;}
     .gc-close{position:absolute;top:10px;right:14px;background:none;border:none;color:#aaa;font-size:28px;cursor:pointer;line-height:1;}
-    /* Access */
+
+    /* ── ACCESS ── */
     #access{display:none;min-height:100vh;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:18px;padding:40px 24px;background:linear-gradient(160deg,#25455D 0%,#080B12 65%);}
     #access .ico{font-size:60px;}
     #access h2{font-family:var(--ff-d);font-size:34px;letter-spacing:.03em;}
     #access p{font-size:14px;color:var(--muted);max-width:280px;line-height:1.6;}
-    /* Loading */
+
+    /* ── LOADING ── */
     #loading{min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;}
     .spin{width:34px;height:34px;border:3px solid rgba(255,207,164,.15);border-top-color:var(--peach);border-radius:50%;animation:spin .8s linear infinite;}
     @keyframes spin{to{transform:rotate(360deg);}}
@@ -138,6 +191,21 @@
   </style>
 </head>
 <body>
+
+<!-- ── STICKY NAV ── -->
+<nav id="nav">
+  <div class="nav-logo">ВИДЕНИЕ<span> / iViSiON</span></div>
+  <button class="nav-btn" id="nav-cta-btn">
+    <span class="nav-btn-i">Выбрать тариф</span>
+  </button>
+</nav>
+
+<!-- ── SEATS BADGE ── -->
+<div id="seats-badge" style="display:none">
+  <div class="sb-lbl">Осталось мест</div>
+  <div class="sb-cnt" id="seats-num">—</div>
+  <div class="sb-sub">из <span id="seats-total">—</span></div>
+</div>
 
 <div id="loading"><div class="spin"></div><div class="loading-txt">Загрузка…</div></div>
 <div id="app" style="display:none"></div>
@@ -160,28 +228,72 @@
 var tg=window.Telegram.WebApp;
 tg.ready();tg.expand();
 
-var activeId=null;
+/* ── NAV scroll behaviour ── */
+var nav=document.getElementById('nav');
+window.addEventListener('scroll',function(){
+  nav.classList.toggle('vis',window.scrollY>80);
+},{ passive:true });
+document.getElementById('nav-cta-btn').addEventListener('click',function(){
+  var el=document.getElementById('tariffs-sec');
+  if(el)el.scrollIntoView({behavior:'smooth'});
+});
 
+/* ── GC Modal ── */
+var activeId=null;
 function openGC(id,src){
   var box=document.getElementById('gc-box');
   if(activeId!==id){
     box.innerHTML='';
     var s=document.createElement('script');
-    s.setAttribute('id',id);
-    s.setAttribute('src',src);
-    box.appendChild(s);
-    activeId=id;
+    s.setAttribute('id',id);s.setAttribute('src',src);
+    box.appendChild(s);activeId=id;
   }
   document.getElementById('gc-modal').style.display='flex';
 }
 function closeGC(){document.getElementById('gc-modal').style.display='none';}
 
-// Делегированный обработчик для всех кнопок виджетов (надёжнее inline onclick)
+/* Delegated: payment buttons open GC widget */
 document.addEventListener('click',function(ev){
   var btn=ev.target.closest('[data-gc-id]');
-  if(btn) openGC(btn.dataset.gcId,btn.dataset.gcSrc);
+  if(btn)openGC(btn.dataset.gcId,btn.dataset.gcSrc);
+  /* non-payment CTA buttons → scroll to tariffs */
+  if(ev.target.closest('[data-to-tariffs]')){
+    var el=document.getElementById('tariffs-sec');
+    if(el)el.scrollIntoView({behavior:'smooth'});
+  }
 });
 
+/* ── Counter animation ── */
+function animateCounter(el,target,suffix,duration){
+  var start=0,step=target/(duration/16);
+  (function tick(){
+    start+=step;
+    if(start>=target){el.textContent=target+suffix;return;}
+    el.textContent=Math.floor(start)+suffix;
+    requestAnimationFrame(tick);
+  })();
+}
+function initCounters(){
+  document.querySelectorAll('[data-count]').forEach(function(el){
+    var target=parseInt(el.dataset.count,10);
+    var suffix=el.dataset.suffix||'';
+    animateCounter(el,target,suffix,1200);
+  });
+}
+var countersStarted=false;
+function watchCounters(){
+  var statsEl=document.querySelector('.stats');
+  if(!statsEl)return;
+  var obs=new IntersectionObserver(function(entries){
+    if(entries[0].isIntersecting&&!countersStarted){
+      countersStarted=true;
+      initCounters();
+    }
+  },{threshold:.3});
+  obs.observe(statsEl);
+}
+
+/* ── start_param ── */
 var startParam=(tg.initDataUnsafe&&tg.initDataUnsafe.start_param)||'';
 var firstName=(tg.initDataUnsafe&&tg.initDataUnsafe.user&&tg.initDataUnsafe.user.first_name)||'';
 
@@ -192,34 +304,73 @@ if(startParam==='free'){
 } else {
   fetch('./ivision-7.json')
     .then(function(r){return r.json();})
-    .then(function(c){render(c);document.getElementById('loading').style.display='none';document.getElementById('app').style.display='block';})
-    .catch(function(){document.getElementById('loading').innerHTML='<p style="color:var(--muted);text-align:center;padding:40px 20px">Не удалось загрузить.<br>Обнови страницу.</p>';});
+    .then(function(c){
+      render(c);
+      document.getElementById('loading').style.display='none';
+      document.getElementById('app').style.display='block';
+      /* seats badge */
+      document.getElementById('seats-num').textContent=c.capacity_free;
+      document.getElementById('seats-total').textContent=c.capacity_total;
+      document.getElementById('seats-badge').style.display='block';
+      watchCounters();
+    })
+    .catch(function(){
+      document.getElementById('loading').innerHTML='<p style="color:var(--muted);text-align:center;padding:40px 20px">Не удалось загрузить.<br>Обнови страницу.</p>';
+    });
 }
 
 function e(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
-function gcBtn(cls,label,gcId,gcSrc){
-  return '<button class="'+cls+'" data-gc-id="'+e(gcId)+'" data-gc-src="'+e(gcSrc)+'">'+label+'</button>';
+/* Gradient-border button → scrolls to tariffs */
+function scrollBtn(label){
+  return '<button class="bgw" data-to-tariffs><span class="bgi">'+label+'</span></button>';
+}
+/* Payment button → opens GC widget */
+function payBtn(label,gcId,gcSrc){
+  return '<button class="bpay" data-gc-id="'+e(gcId)+'" data-gc-src="'+e(gcSrc)+'">'+label+'</button>';
 }
 
 function render(c){
   var t0=c.tariffs[0],t1=c.tariffs[1];
   var h='';
 
+  /* ── MARQUEE (built from JSON facts) ── */
+  function buildMarquee(){
+    var items=c.marquee_facts||[];
+    /* duplicate for seamless loop */
+    var inner='';
+    var all=items.concat(items);
+    all.forEach(function(f,i){
+      inner+='<span class="mq-item">'+e(f)+'</span><span class="mq-item mq-dot">·</span>';
+    });
+    return '<section id="marquee-sec"><div class="mq-track"><div class="mq-inner">'+inner+'</div></div></section>';
+  }
+
   /* ── 1. HERO ── */
   h+='<section id="hero"><div class="w">';
-  h+='<div style="margin-bottom:14px"><span class="pill">'+e(c.hero_label)+'</span></div>';
-  h+='<div class="h-name">'+e(c.name)+'</div>';
-  h+='<div class="h-sub">'+e(c.name_sub)+'</div>';
-  h+='<div class="h-slogan">'+e(c.slogan)+'</div>';
+  h+='<div style="margin-bottom:10px"><span class="pill">'+e(c.hero_label)+'</span></div>';
+  h+='<div class="h-conf">'+e(c.name)+'</div>';
+  h+='<div class="h-name-big">'+e(c.name_sub)+'</div>';
   h+='<p class="h-tagline">'+e(c.tagline)+'</p>';
   h+='<div class="h-meta"><div class="h-mi"><div class="dot"></div>'+e(c.dates)+'</div><div class="h-mi"><div class="dot"></div>'+e(c.format)+'</div></div>';
-  h+='<p class="h-seats">🔥 Бесплатных мест: '+e(c.capacity_free)+' из '+e(c.capacity_total)+'</p>';
-  h+=gcBtn('bp','Зарегистрироваться бесплатно',t0.gc_script_id,t0.gc_script_src);
+  h+=scrollBtn('ПОЛУЧИТЬ БИЛЕТ БЕСПЛАТНО');
+  /* gifts list under button */
+  h+='<div class="h-gifts">';
+  c.bonuses.items.slice(0,3).forEach(function(b){h+='<div class="h-gift">'+e(b)+'</div>';});
+  h+='</div>';
   if(firstName)h+='<p class="h-greet">Привет, '+e(firstName)+'! 👋</p>';
+  /* stats counters */
   h+='<div class="stats">';
-  c.stats.forEach(function(s){h+='<div class="st"><div class="sv">'+e(s.value)+'</div><div class="sl">'+e(s.label)+'</div></div>';});
-  h+='</div></div></section>';
+  c.stats.forEach(function(s){
+    var num=parseInt(s.value,10);
+    var suf=s.suffix||'';
+    h+='<div class="st"><div class="sv" data-count="'+num+'" data-suffix="'+e(suf)+'">'+e(s.value+(suf||''))+'</div><div class="sl">'+e(s.label)+'</div></div>';
+  });
+  h+='</div>';
+  h+='</div></section>';
+
+  /* ── MARQUEE ── */
+  h+=buildMarquee();
 
   /* ── 2. МИССИЯ ── */
   h+='<section class="sec sa"><div class="w">';
@@ -227,6 +378,8 @@ function render(c){
   h+='<div class="h2">'+e(c.mission.title)+'</div>';
   h+='<div class="mission-body">';
   h+='<div class="mission-intro">'+e(c.mission.intro)+'</div>';
+  h+='<div class="slogan-frame">'+e(c.slogan)+'</div>';
+  if(c.mission.photo_url)h+='<img class="mission-photo" src="'+e(c.mission.photo_url)+'" alt="Конференция" loading="lazy">';
   h+='<div class="mission-text">'+e(c.mission.body)+'</div>';
   h+='<div class="mission-footer">'+e(c.mission.footer)+'</div>';
   h+='</div></div></section>';
@@ -238,7 +391,7 @@ function render(c){
   h+='<div class="bonus-list">';
   c.bonuses.items.forEach(function(b){h+='<div class="bonus-item"><div class="b-arr">→</div><div class="b-txt">'+e(b)+'</div></div>';});
   h+='</div>';
-  h+='<div style="margin-top:24px">'+gcBtn('bp',e(c.bonuses.cta),t0.gc_script_id,t0.gc_script_src)+'</div>';
+  h+='<div style="margin-top:24px">'+scrollBtn(e(c.bonuses.cta))+'</div>';
   h+='</div></section>';
 
   /* ── 4. ЭТО ПРОСТРАНСТВО ГДЕ ── */
@@ -288,7 +441,7 @@ function render(c){
     h+='<div class="ben-card"><div class="ben-ico">'+b.icon+'</div><div class="ben-title">'+e(b.title)+'</div><div class="ben-text">'+e(b.text)+'</div></div>';
   });
   h+='</div>';
-  h+='<div style="margin-top:22px">'+gcBtn('bg','ТВОЯ КНОПКА ВХОДА В СРЕДУ СВОИХ',t0.gc_script_id,t0.gc_script_src)+'</div>';
+  h+='<div style="margin-top:22px">'+scrollBtn('ВОЙТИ В СРЕДУ СВОИХ')+'</div>';
   h+='</div></section>';
 
   /* ── 8. ПРОГРАММА ── */
@@ -304,7 +457,7 @@ function render(c){
   h+='</div></div></section>';
 
   /* ── 9. ТАРИФЫ ── */
-  h+='<section class="sec"><div class="w">';
+  h+='<section class="sec" id="tariffs-sec"><div class="w">';
   h+='<div class="lbl">Варианты участия</div>';
   h+='<div class="h2">ВАРИАНТЫ<br>УЧАСТИЯ</div>';
   h+='<div class="tariffs">';
@@ -318,17 +471,26 @@ function render(c){
     t.included.forEach(function(f){h+='<li class="y">'+e(f)+'</li>';});
     t.not_included.forEach(function(f){h+='<li class="n">'+e(f)+'</li>';});
     h+='</ul>';
-    h+=gcBtn('bp','ВЫБРАТЬ',t.gc_script_id,t.gc_script_src);
+    h+=payBtn('ВЫБРАТЬ',t.gc_script_id,t.gc_script_src);
     h+='</div>';
   });
   h+='</div></div></section>';
 
-  /* ── 10. FINAL CTA ── */
+  /* ── 10. ОПОРА РОССИЯ ── */
+  h+='<section id="opora"><div class="w">';
+  h+='<div class="opora-box">';
+  h+='<div class="opora-logo"><div class="opora-logo-txt">ОПОРА<br>РОССИЯ</div></div>';
+  h+='<div class="opora-content">';
+  h+='<div class="opora-title">Член «Опора России»</div>';
+  h+='<div class="opora-text">Марго Форбс — зам. председателя комитета по личному бренду БРО «Опора России». Конференция реализуется при поддержке организации предпринимателей.</div>';
+  h+='</div></div></div></section>';
+
+  /* ── 11. FINAL CTA ── */
   h+='<section id="cta"><div class="w">';
   h+='<div class="lbl" style="text-align:center">Регистрация</div>';
   h+='<div class="h2" style="text-align:center">Твоё место<br>ждёт тебя</div>';
   h+='<p style="text-align:center;color:var(--muted);font-size:13px;margin:10px 0 24px">'+e(c.dates)+' · '+e(c.format)+'</p>';
-  h+=gcBtn('bp','Зарегистрироваться бесплатно',t0.gc_script_id,t0.gc_script_src);
+  h+=scrollBtn('Зарегистрироваться бесплатно');
   h+='</div></section>';
 
   document.getElementById('app').innerHTML=h;
