@@ -1,11 +1,12 @@
 {
   "version": 2,
   "builds": [
-    { "src": "api/webhook.py", "use": "@vercel/python" },
-    { "src": "apps/tma/index.html", "use": "@vercel/static" }
+    { "src": "api/webhook.py",  "use": "@vercel/python" },
+    { "src": "apps/tma/**",     "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "/api/webhook", "dest": "/api/webhook.py" },
-    { "src": "/(.*)",         "dest": "/apps/tma/index.html" }
+    { "src": "/api/webhook",           "dest": "/api/webhook.py" },
+    { "src": "/([^/]+\\.json)$",       "dest": "/apps/tma/$1" },
+    { "src": "/(.*)",                  "dest": "/apps/tma/index.html" }
   ]
 }
