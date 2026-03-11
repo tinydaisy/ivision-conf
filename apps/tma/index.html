@@ -1,301 +1,147 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
   <title>ВИДЕНИЕ / iViSiON-7</title>
-
-  <!-- Редирект из браузера в мини-апп — до загрузки SDK -->
   <script>
-    (function () {
-      var sp = new URLSearchParams(window.location.search);
-      var pid = sp.get('new_partner_id') || '';
-      var src = sp.get('utm_source') || '';
-      if (pid || src) {
-        var parts = [];
-        if (pid) parts.push(pid);
-        if (src) parts.push(src);
-        window.location.replace('https://t.me/Margo_forbs_bot/ivision?startapp=ref_' + parts.join('_'));
-      }
+    (function(){
+      var sp=new URLSearchParams(window.location.search);
+      var pid=sp.get('new_partner_id')||'',src=sp.get('utm_source')||'';
+      if(pid||src){var p=[];if(pid)p.push(pid);if(src)p.push(src);window.location.replace('https://t.me/Margo_forbs_bot/ivision?startapp=ref_'+p.join('_'));}
     })();
   </script>
-
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
-
   <style>
-    :root {
-      --peach:  #FFCFA4;
-      --purple: #C084FC;
-      --teal:   #25455D;
-      --dark:   #080B12;
-      --mid:    #0D111A;
-      --card:   #111827;
-      --text:   #F5F0E8;
-      --muted:  rgba(245,240,232,.55);
-      --dim:    rgba(245,240,232,.35);
-      --border: rgba(255,207,164,.18);
-      --r-md:   16px;
-      --r-lg:   24px;
-      --r-pill: 100px;
-      --display: 'Bebas Neue', Impact, sans-serif;
-      --body:    'Roboto', system-ui, sans-serif;
+    :root{
+      --peach:#FFCFA4;--purple:#C084FC;--teal:#25455D;
+      --dark:#080B12;--mid:#0D111A;--card:#111827;
+      --text:#F5F0E8;--muted:rgba(245,240,232,.55);--dim:rgba(245,240,232,.32);
+      --border:rgba(255,207,164,.18);
+      --r-md:16px;--r-lg:24px;--r-pill:100px;
+      --ff-d:'Bebas Neue',Impact,sans-serif;
+      --ff-b:'Roboto',system-ui,sans-serif;
     }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body { background:var(--dark); color:var(--text); font-family:var(--body); font-size:15px; line-height:1.55; }
-
-    .wrap  { max-width:480px; margin:0 auto; padding:0 20px; }
-    .sec   { padding:52px 0; }
-    .sec-alt { background:var(--mid); }
-
-    .lbl {
-      font-size:11px; font-weight:700; letter-spacing:.22em;
-      text-transform:uppercase; color:var(--peach); margin-bottom:10px;
-    }
-    .h2 {
-      font-family:var(--display);
-      font-size:clamp(28px,8vw,42px);
-      line-height:1; letter-spacing:.02em; margin-bottom:8px;
-    }
-    .sub { font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:28px; }
-
-    .pill {
-      display:inline-block;
-      background:rgba(255,207,164,.1); border:1px solid rgba(255,207,164,.25);
-      color:var(--peach); border-radius:var(--r-pill);
-      padding:4px 14px; font-size:12px; font-weight:600;
-    }
-
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--dark);color:var(--text);font-family:var(--ff-b);font-size:15px;line-height:1.55;}
+    .w{max-width:480px;margin:0 auto;padding:0 20px;}
+    .sec{padding:52px 0;}
+    .sa{background:var(--mid);}
+    .lbl{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--peach);margin-bottom:10px;}
+    .h2{font-family:var(--ff-d);font-size:clamp(28px,8vw,42px);line-height:1;letter-spacing:.02em;margin-bottom:8px;}
+    .sub{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:24px;}
+    .pill{display:inline-block;background:rgba(255,207,164,.1);border:1px solid rgba(255,207,164,.25);color:var(--peach);border-radius:var(--r-pill);padding:4px 14px;font-size:12px;font-weight:600;}
     /* Buttons */
-    .btn-p {
-      display:block; width:100%; padding:16px 24px;
-      background:var(--peach); color:#080B12;
-      border:none; border-radius:var(--r-pill);
-      font-family:var(--body); font-size:16px; font-weight:700;
-      cursor:pointer; transition:opacity .15s,transform .1s; text-align:center;
-    }
-    .btn-p:active { opacity:.85; transform:scale(.98); }
-    .btn-g {
-      display:block; width:100%; padding:15px 24px;
-      background:transparent; color:var(--peach);
-      border:1px solid rgba(255,207,164,.35);
-      border-radius:var(--r-pill);
-      font-family:var(--body); font-size:16px; font-weight:700;
-      cursor:pointer; transition:border-color .15s; text-align:center;
-    }
-    .btn-g:active { background:rgba(255,207,164,.08); }
-
+    .bp{display:block;width:100%;padding:16px;background:var(--peach);color:#080B12;border:none;border-radius:var(--r-pill);font-family:var(--ff-b);font-size:16px;font-weight:700;cursor:pointer;transition:opacity .15s,transform .1s;text-align:center;}
+    .bp:active{opacity:.85;transform:scale(.98);}
+    .bg{display:block;width:100%;padding:15px;background:transparent;color:var(--peach);border:1px solid rgba(255,207,164,.35);border-radius:var(--r-pill);font-family:var(--ff-b);font-size:16px;font-weight:700;cursor:pointer;text-align:center;}
+    .bg:active{background:rgba(255,207,164,.08);}
     /* HERO */
-    #hero {
-      background:linear-gradient(160deg,#25455D 0%,#080B12 65%);
-      padding:44px 0 52px; position:relative; overflow:hidden;
-    }
-    #hero::before {
-      content:''; position:absolute; top:-60px; right:-60px;
-      width:280px; height:280px;
-      background:radial-gradient(circle,rgba(192,132,252,.14) 0%,transparent 70%);
-      pointer-events:none;
-    }
-    .hero-name {
-      font-family:var(--display);
-      font-size:clamp(36px,11vw,56px);
-      line-height:.95; letter-spacing:.02em; margin-bottom:4px;
-    }
-    .hero-name span { color:var(--peach); }
-    .hero-sub-name {
-      font-family:var(--display);
-      font-size:clamp(16px,5vw,22px);
-      color:var(--peach); letter-spacing:.04em; margin-bottom:14px;
-    }
-    .hero-tagline { font-size:14px; color:var(--muted); line-height:1.65; margin-bottom:20px; }
-    .hero-meta { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:8px; }
-    .hero-meta-item {
-      display:flex; align-items:center; gap:7px;
-      font-size:13px; color:var(--muted);
-    }
-    .dot { width:6px; height:6px; border-radius:50%; background:var(--peach); flex-shrink:0; }
-    .hero-seats {
-      font-size:13px; color:var(--peach); font-weight:600; margin-bottom:24px;
-    }
-    .hero-greeting { font-size:13px; color:var(--dim); margin-top:12px; text-align:center; }
-
+    #hero{background:linear-gradient(160deg,#25455D 0%,#080B12 65%);padding:44px 0 52px;position:relative;overflow:hidden;}
+    #hero::before{content:'';position:absolute;top:-60px;right:-60px;width:280px;height:280px;background:radial-gradient(circle,rgba(192,132,252,.14) 0%,transparent 70%);pointer-events:none;}
+    .h-name{font-family:var(--ff-d);font-size:clamp(34px,10vw,52px);line-height:.95;letter-spacing:.02em;margin-bottom:4px;}
+    .h-sub{font-family:var(--ff-d);font-size:clamp(15px,4.5vw,20px);color:var(--peach);letter-spacing:.04em;margin-bottom:14px;}
+    .h-tagline{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:16px;}
+    .h-slogan{font-family:var(--ff-d);font-size:clamp(18px,5vw,24px);color:var(--purple);letter-spacing:.06em;margin-bottom:16px;}
+    .h-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
+    .h-mi{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted);}
+    .dot{width:6px;height:6px;border-radius:50%;background:var(--peach);flex-shrink:0;}
+    .h-seats{font-size:13px;color:var(--peach);font-weight:600;margin-bottom:22px;}
+    .h-greet{font-size:13px;color:var(--dim);margin-top:12px;text-align:center;}
     /* Stats */
-    .stats-row {
-      display:grid; grid-template-columns:repeat(3,1fr);
-      gap:10px; margin:28px 0 0;
-    }
-    .stat-card {
-      background:rgba(255,207,164,.06); border:1px solid var(--border);
-      border-radius:var(--r-md); padding:14px 10px; text-align:center;
-    }
-    .stat-val {
-      font-family:var(--display); font-size:28px;
-      color:var(--peach); letter-spacing:.03em; line-height:1;
-    }
-    .stat-lbl { font-size:11px; color:var(--muted); margin-top:4px; line-height:1.3; }
-
-    /* Special features */
-    .special-list { display:flex; flex-direction:column; gap:12px; margin-top:24px; }
-    .special-item {
-      display:flex; gap:14px; align-items:flex-start;
-      background:rgba(17,24,39,.7); border:1px solid var(--border);
-      border-radius:var(--r-md); padding:16px;
-      backdrop-filter:blur(20px);
-    }
-    .special-icon { font-size:22px; flex-shrink:0; }
-    .special-title { font-size:14px; font-weight:700; margin-bottom:3px; }
-    .special-text  { font-size:13px; color:var(--muted); line-height:1.5; }
-
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:28px;}
+    .st{background:rgba(255,207,164,.06);border:1px solid var(--border);border-radius:var(--r-md);padding:12px 6px;text-align:center;}
+    .sv{font-family:var(--ff-d);font-size:24px;color:var(--peach);line-height:1;}
+    .sl{font-size:10px;color:var(--muted);margin-top:3px;line-height:1.3;}
+    /* Mission */
+    .mission-body{background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px;margin-top:24px;}
+    .mission-intro{font-size:15px;font-weight:600;color:var(--peach);margin-bottom:14px;line-height:1.5;}
+    .mission-text{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:14px;}
+    .mission-footer{font-size:13px;color:var(--dim);line-height:1.6;font-style:italic;border-left:3px solid var(--peach);padding-left:14px;}
+    /* Bonuses */
+    .bonus-list{display:flex;flex-direction:column;gap:10px;margin-top:24px;}
+    .bonus-item{display:flex;gap:12px;align-items:flex-start;background:rgba(17,24,39,.5);border:1px solid rgba(255,207,164,.1);border-radius:var(--r-md);padding:14px 16px;}
+    .b-arr{color:var(--peach);font-size:15px;flex-shrink:0;margin-top:1px;}
+    .b-txt{font-size:13px;line-height:1.5;}
+    /* Spaces */
+    .spaces-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px;}
+    .space-card{background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-md);padding:16px 14px;}
+    .sp-head{font-family:var(--ff-d);font-size:16px;color:var(--peach);letter-spacing:.04em;margin-bottom:6px;}
+    .sp-text{font-size:12px;color:var(--muted);line-height:1.5;}
+    .quote-block{background:linear-gradient(135deg,rgba(37,69,93,.4),rgba(192,132,252,.15));border:1px solid rgba(192,132,252,.25);border-radius:var(--r-lg);padding:24px;margin-top:20px;text-align:center;}
+    .quote-text{font-family:var(--ff-d);font-size:clamp(18px,5vw,24px);line-height:1.3;letter-spacing:.03em;}
+    /* Special */
+    .special-list{display:flex;flex-direction:column;gap:10px;margin-top:24px;}
+    .sp-item{display:flex;gap:14px;align-items:flex-start;background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-md);padding:16px;}
+    .sp-ico{font-size:22px;flex-shrink:0;}
+    .sp-title{font-size:14px;font-weight:700;margin-bottom:3px;}
+    .sp-desc{font-size:12px;color:var(--muted);line-height:1.5;}
     /* Speakers */
-    .speakers-grid {
-      display:grid; grid-template-columns:1fr 1fr;
-      gap:12px; margin-top:24px;
-    }
-    .speaker-card {
-      background:rgba(17,24,39,.7); border:1px solid var(--border);
-      border-radius:var(--r-lg); backdrop-filter:blur(20px);
-      padding:16px 14px; display:flex; flex-direction:column;
-      align-items:center; text-align:center; gap:10px;
-    }
-    .speaker-photo {
-      width:72px; height:72px; border-radius:50%;
-      overflow:hidden; border:2px solid var(--border); flex-shrink:0;
-    }
-    .speaker-photo img { width:100%; height:100%; object-fit:cover; object-position:top; }
-    .speaker-initials {
-      width:100%; height:100%;
-      display:flex; align-items:center; justify-content:center;
-      background:linear-gradient(135deg,var(--teal),var(--purple));
-      color:#fff; font-family:var(--display); font-size:20px;
-    }
-    .speaker-role  { font-size:10px; color:var(--peach); font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
-    .speaker-name  { font-size:13px; font-weight:700; line-height:1.2; }
-    .speaker-creds { list-style:none; text-align:left; width:100%; }
-    .speaker-creds li {
-      font-size:11px; color:var(--muted); padding:3px 0;
-      border-bottom:1px solid rgba(255,207,164,.06); line-height:1.4;
-    }
-    .speaker-creds li:last-child { border-bottom:none; }
-
+    .spk-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px;}
+    .spk-card{background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 14px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;}
+    .spk-photo{width:76px;height:76px;border-radius:50%;overflow:hidden;border:2px solid var(--border);flex-shrink:0;}
+    .spk-photo img{width:100%;height:100%;object-fit:cover;object-position:top;}
+    .spk-init{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--teal),var(--purple));color:#fff;font-family:var(--ff-d);font-size:22px;}
+    .spk-role{font-size:10px;color:var(--peach);font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
+    .spk-name{font-size:13px;font-weight:700;line-height:1.2;}
+    .spk-creds{list-style:none;text-align:left;width:100%;}
+    .spk-creds li{font-size:11px;color:var(--muted);padding:3px 0;border-bottom:1px solid rgba(255,207,164,.06);line-height:1.4;}
+    .spk-creds li:last-child{border-bottom:none;}
     /* Benefits */
-    .benefits-grid {
-      display:grid; grid-template-columns:1fr 1fr;
-      gap:10px; margin-top:24px;
-    }
-    .benefit-card {
-      background:rgba(17,24,39,.7); border:1px solid rgba(255,207,164,.1);
-      border-radius:var(--r-md); padding:16px 13px;
-      display:flex; flex-direction:column; gap:8px;
-    }
-    .benefit-icon  { font-size:24px; line-height:1; }
-    .benefit-title { font-size:13px; font-weight:700; }
-    .benefit-text  { font-size:12px; color:var(--muted); line-height:1.45; }
-
+    .ben-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px;}
+    .ben-card{background:rgba(17,24,39,.7);border:1px solid rgba(255,207,164,.1);border-radius:var(--r-md);padding:16px 13px;display:flex;flex-direction:column;gap:7px;}
+    .ben-ico{font-size:24px;line-height:1;}
+    .ben-title{font-size:13px;font-weight:700;}
+    .ben-text{font-size:12px;color:var(--muted);line-height:1.45;}
     /* Schedule */
-    .sched-days { display:flex; flex-direction:column; gap:16px; margin-top:24px; }
-    .sched-day  {
-      background:rgba(17,24,39,.7); border:1px solid var(--border);
-      border-radius:var(--r-lg); padding:20px;
-    }
-    .sched-day-name { font-family:var(--display); font-size:20px; color:var(--peach); letter-spacing:.04em; }
-    .sched-day-date { font-size:12px; color:var(--muted); margin-bottom:14px; margin-top:2px; }
-    .slot {
-      display:flex; gap:12px; padding:9px 0;
-      border-bottom:1px solid rgba(255,207,164,.06); align-items:flex-start;
-    }
-    .slot:last-child { border-bottom:none; }
-    .slot-time  { font-size:11px; font-weight:700; color:var(--peach); min-width:54px; padding-top:1px; flex-shrink:0; }
-    .slot-title { font-size:13px; line-height:1.4; }
-
+    .sched{display:flex;flex-direction:column;gap:14px;margin-top:24px;}
+    .sched-day{background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;}
+    .sd-name{font-family:var(--ff-d);font-size:20px;color:var(--peach);letter-spacing:.04em;}
+    .sd-date{font-size:11px;color:var(--muted);margin-bottom:14px;margin-top:2px;}
+    .slot{display:flex;gap:12px;padding:9px 0;border-bottom:1px solid rgba(255,207,164,.06);align-items:flex-start;}
+    .slot:last-child{border-bottom:none;}
+    .sl-time{font-size:11px;font-weight:700;color:var(--peach);min-width:56px;padding-top:1px;flex-shrink:0;}
+    .sl-title{font-size:13px;line-height:1.4;}
     /* Tariffs */
-    .tariffs-list { display:flex; flex-direction:column; gap:16px; margin-top:24px; }
-    .tariff {
-      background:rgba(17,24,39,.7); border:1px solid var(--border);
-      border-radius:var(--r-lg); padding:24px 20px; position:relative;
-    }
-    .tariff.rec {
-      border-color:transparent;
-      background:linear-gradient(var(--card),var(--card)) padding-box,
-                 linear-gradient(135deg,var(--peach),var(--purple)) border-box;
-      box-shadow:0 0 48px rgba(200,75,158,.1);
-    }
-    .tariff-badge {
-      position:absolute; top:-12px; left:50%; transform:translateX(-50%);
-      background:linear-gradient(135deg,var(--peach),var(--purple));
-      color:#080B12; font-size:11px; font-weight:700;
-      letter-spacing:.1em; text-transform:uppercase;
-      padding:4px 16px; border-radius:var(--r-pill); white-space:nowrap;
-    }
-    .tariff-name  { font-family:var(--display); font-size:20px; letter-spacing:.04em; margin-bottom:4px; }
-    .tariff-price { font-size:26px; font-weight:700; color:var(--peach); margin-bottom:6px; }
-    .tariff-seats { font-size:12px; color:var(--muted); margin-bottom:18px; }
-    .feature-list { list-style:none; margin-bottom:20px; }
-    .feature-list li {
-      font-size:13px; padding:7px 0;
-      border-bottom:1px solid rgba(255,207,164,.06);
-      display:flex; gap:9px; align-items:flex-start;
-    }
-    .feature-list li:last-child { border-bottom:none; }
-    .feature-list li.yes::before { content:'✓'; color:var(--peach); flex-shrink:0; font-weight:700; }
-    .feature-list li.no  { color:var(--dim); }
-    .feature-list li.no::before  { content:'✗'; color:rgba(255,207,164,.25); flex-shrink:0; }
-
+    .tariffs{display:flex;flex-direction:column;gap:16px;margin-top:24px;}
+    .tariff{background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px 20px;position:relative;}
+    .tariff.rec{border-color:transparent;background:linear-gradient(var(--card),var(--card)) padding-box,linear-gradient(135deg,var(--peach),var(--purple)) border-box;box-shadow:0 0 48px rgba(200,75,158,.1);}
+    .t-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--peach),var(--purple));color:#080B12;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 16px;border-radius:var(--r-pill);white-space:nowrap;}
+    .t-name{font-family:var(--ff-d);font-size:20px;letter-spacing:.04em;margin-bottom:4px;}
+    .t-price{font-size:26px;font-weight:700;color:var(--peach);margin-bottom:5px;}
+    .t-seats{font-size:12px;color:var(--muted);margin-bottom:16px;}
+    .feat{list-style:none;margin-bottom:20px;}
+    .feat li{font-size:13px;padding:7px 0;border-bottom:1px solid rgba(255,207,164,.06);display:flex;gap:9px;align-items:flex-start;line-height:1.45;}
+    .feat li:last-child{border-bottom:none;}
+    .feat li.y::before{content:'✓';color:var(--peach);flex-shrink:0;font-weight:700;}
+    .feat li.n{color:var(--dim);}
+    .feat li.n::before{content:'✗';color:rgba(255,207,164,.22);flex-shrink:0;}
     /* Final CTA */
-    #cta {
-      background:linear-gradient(160deg,#25455D 0%,#080B12 65%);
-      padding:52px 0; text-align:center;
-    }
-
+    #cta{background:linear-gradient(160deg,#25455D 0%,#080B12 65%);padding:52px 0;text-align:center;}
     /* GC Modal */
-    #gc-modal {
-      display:none; position:fixed; inset:0;
-      background:rgba(8,11,18,.88); z-index:99999;
-      align-items:flex-start; justify-content:center;
-      overflow-y:auto; backdrop-filter:blur(6px);
-    }
-    .gc-inner {
-      background:#16162a; border:1px solid rgba(255,207,164,.2);
-      padding:48px 18px 28px; border-radius:var(--r-lg);
-      width:92%; max-width:440px; position:relative; margin:36px auto;
-    }
-    .gc-close {
-      position:absolute; top:10px; right:14px;
-      background:none; border:none; color:#aaa; font-size:28px; cursor:pointer; line-height:1;
-    }
-
-    /* Access screen */
-    #access {
-      display:none; min-height:100vh;
-      flex-direction:column; align-items:center; justify-content:center;
-      text-align:center; gap:18px; padding:40px 24px;
-      background:linear-gradient(160deg,#25455D 0%,#080B12 65%);
-    }
-    #access .ico { font-size:60px; }
-    #access h2  { font-family:var(--display); font-size:34px; letter-spacing:.03em; }
-    #access p   { font-size:14px; color:var(--muted); max-width:280px; line-height:1.6; }
-
+    #gc-modal{display:none;position:fixed;inset:0;background:rgba(8,11,18,.9);z-index:99999;align-items:flex-start;justify-content:center;overflow-y:auto;backdrop-filter:blur(6px);}
+    .gc-inner{background:#16162a;border:1px solid rgba(255,207,164,.2);padding:48px 18px 28px;border-radius:var(--r-lg);width:92%;max-width:440px;position:relative;margin:36px auto;}
+    .gc-close{position:absolute;top:10px;right:14px;background:none;border:none;color:#aaa;font-size:28px;cursor:pointer;line-height:1;}
+    /* Access */
+    #access{display:none;min-height:100vh;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:18px;padding:40px 24px;background:linear-gradient(160deg,#25455D 0%,#080B12 65%);}
+    #access .ico{font-size:60px;}
+    #access h2{font-family:var(--ff-d);font-size:34px;letter-spacing:.03em;}
+    #access p{font-size:14px;color:var(--muted);max-width:280px;line-height:1.6;}
     /* Loading */
-    #loading {
-      min-height:100vh; display:flex;
-      align-items:center; justify-content:center;
-      flex-direction:column; gap:14px;
-    }
-    .spin {
-      width:34px; height:34px;
-      border:3px solid rgba(255,207,164,.15);
-      border-top-color:var(--peach); border-radius:50%;
-      animation:spin .8s linear infinite;
-    }
-    @keyframes spin { to { transform:rotate(360deg); } }
-    .loading-txt { font-size:13px; color:var(--muted); }
+    #loading{min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;}
+    .spin{width:34px;height:34px;border:3px solid rgba(255,207,164,.15);border-top-color:var(--peach);border-radius:50%;animation:spin .8s linear infinite;}
+    @keyframes spin{to{transform:rotate(360deg);}}
+    .loading-txt{font-size:13px;color:var(--muted);}
   </style>
 </head>
 <body>
 
 <div id="loading"><div class="spin"></div><div class="loading-txt">Загрузка…</div></div>
 <div id="app" style="display:none"></div>
+
 <div id="access">
   <div class="ico">🎉</div>
   <h2>Вы зарегистрированы!</h2>
@@ -303,7 +149,6 @@
   <p id="access-name" style="font-size:13px;color:rgba(245,240,232,.35)"></p>
 </div>
 
-<!-- GC Modal -->
 <div id="gc-modal" onclick="if(event.target===this)closeGC()">
   <div class="gc-inner">
     <button class="gc-close" onclick="closeGC()">×</button>
@@ -312,160 +157,182 @@
 </div>
 
 <script>
-  var tg = window.Telegram.WebApp;
-  tg.ready(); tg.expand();
+var tg=window.Telegram.WebApp;
+tg.ready();tg.expand();
 
-  var DATA_URL      = './ivision-7.json';
-  var activeScriptId = null;
+var activeId=null;
 
-  function openGC(id, src) {
-    var box = document.getElementById('gc-box');
-    if (activeScriptId !== id) {
-      box.innerHTML = '';
-      var s = document.createElement('script');
-      s.id = id; s.src = src;
-      box.appendChild(s);
-      activeScriptId = id;
-    }
-    document.getElementById('gc-modal').style.display = 'flex';
+function openGC(id,src){
+  var box=document.getElementById('gc-box');
+  if(activeId!==id){
+    box.innerHTML='';
+    var s=document.createElement('script');
+    s.setAttribute('id',id);
+    s.setAttribute('src',src);
+    box.appendChild(s);
+    activeId=id;
   }
-  function closeGC() { document.getElementById('gc-modal').style.display = 'none'; }
+  document.getElementById('gc-modal').style.display='flex';
+}
+function closeGC(){document.getElementById('gc-modal').style.display='none';}
 
-  var startParam = (tg.initDataUnsafe && tg.initDataUnsafe.start_param) || '';
-  var firstName  = tg.initDataUnsafe && tg.initDataUnsafe.user && tg.initDataUnsafe.user.first_name || '';
+// Делегированный обработчик для всех кнопок виджетов (надёжнее inline onclick)
+document.addEventListener('click',function(ev){
+  var btn=ev.target.closest('[data-gc-id]');
+  if(btn) openGC(btn.dataset.gcId,btn.dataset.gcSrc);
+});
 
-  if (startParam === 'free') {
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('access').style.display  = 'flex';
-    if (firstName) document.getElementById('access-name').textContent = firstName + ', ждём тебя на конференции!';
-  } else {
-    fetch(DATA_URL)
-      .then(function(r){ return r.json(); })
-      .then(function(c){
-        render(c);
-        document.getElementById('loading').style.display = 'none';
-        document.getElementById('app').style.display     = 'block';
-      })
-      .catch(function(){
-        document.getElementById('loading').innerHTML =
-          '<p style="color:var(--muted);text-align:center;padding:40px 20px">Не удалось загрузить.<br>Обнови страницу.</p>';
-      });
-  }
+var startParam=(tg.initDataUnsafe&&tg.initDataUnsafe.start_param)||'';
+var firstName=(tg.initDataUnsafe&&tg.initDataUnsafe.user&&tg.initDataUnsafe.user.first_name)||'';
 
-  function e(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+if(startParam==='free'){
+  document.getElementById('loading').style.display='none';
+  document.getElementById('access').style.display='flex';
+  if(firstName)document.getElementById('access-name').textContent=firstName+', ждём тебя на конференции!';
+} else {
+  fetch('./ivision-7.json')
+    .then(function(r){return r.json();})
+    .then(function(c){render(c);document.getElementById('loading').style.display='none';document.getElementById('app').style.display='block';})
+    .catch(function(){document.getElementById('loading').innerHTML='<p style="color:var(--muted);text-align:center;padding:40px 20px">Не удалось загрузить.<br>Обнови страницу.</p>';});
+}
 
-  function render(c) {
-    /* Разбираем UTM из startParam */
-    var utmTgId = (tg.initDataUnsafe && tg.initDataUnsafe.user) ? String(tg.initDataUnsafe.user.id) : '';
-    var t0 = c.tariffs[0], t1 = c.tariffs[1];
-    var h = '';
+function e(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
-    /* ── HERO ── */
-    h += '<section id="hero"><div class="wrap">';
-    h += '<div style="margin-bottom:14px"><span class="pill">' + e(c.hero_label) + '</span></div>';
-    h += '<div class="hero-name">' + e(c.name).replace('/', '/ ') + '</div>';
-    h += '<div class="hero-sub-name">' + e(c.name_sub) + '</div>';
-    h += '<p class="hero-tagline">' + e(c.tagline) + '</p>';
-    h += '<div class="hero-meta">';
-    h += '<div class="hero-meta-item"><div class="dot"></div>' + e(c.dates) + '</div>';
-    h += '<div class="hero-meta-item"><div class="dot"></div>' + e(c.format) + '</div>';
-    h += '</div>';
-    h += '<p class="hero-seats">🔥 Бесплатных мест: ' + e(c.capacity_free) + ' из ' + e(c.capacity_total) + '</p>';
-    h += '<button class="btn-p" onclick="openGC(\'' + e(t0.gc_script_id) + '\',\'' + e(t0.gc_script_src) + '\')">Зарегистрироваться бесплатно</button>';
-    if (firstName) h += '<p class="hero-greeting">Привет, ' + e(firstName) + '! 👋</p>';
-    /* Stats */
-    h += '<div class="stats-row">';
-    c.stats.forEach(function(s){ h += '<div class="stat-card"><div class="stat-val">' + e(s.value) + '</div><div class="stat-lbl">' + e(s.label) + '</div></div>'; });
-    h += '</div>';
-    h += '</div></section>';
+function gcBtn(cls,label,gcId,gcSrc){
+  return '<button class="'+cls+'" data-gc-id="'+e(gcId)+'" data-gc-src="'+e(gcSrc)+'">'+label+'</button>';
+}
 
-    /* ── ЧТО ДЕЛАЕТ КОНФЕРЕНЦИЮ ОСОБЕННОЙ ── */
-    h += '<section class="sec sec-alt"><div class="wrap">';
-    h += '<div class="lbl">Особенности</div>';
-    h += '<div class="h2">Что делает<br>iViSiON особенной</div>';
-    h += '<div class="special-list">';
-    c.special.forEach(function(s){
-      h += '<div class="special-item"><div class="special-icon">' + s.icon + '</div><div><div class="special-title">' + e(s.title) + '</div><div class="special-text">' + e(s.text) + '</div></div></div>';
-    });
-    h += '</div></div></section>';
+function render(c){
+  var t0=c.tariffs[0],t1=c.tariffs[1];
+  var h='';
 
-    /* ── СПИКЕРЫ ── */
-    h += '<section class="sec"><div class="wrap">';
-    h += '<div class="lbl">Спикеры</div>';
-    h += '<div class="h2">Эксперты<br>конференции</div>';
-    h += '<div class="speakers-grid">';
-    c.speakers.forEach(function(sp){
-      h += '<div class="speaker-card">';
-      h += '<div class="speaker-photo">';
-      if (sp.photo_url) h += '<img src="' + e(sp.photo_url) + '" alt="' + e(sp.name) + '" loading="lazy">';
-      else h += '<div class="speaker-initials">' + e(sp.initials) + '</div>';
-      h += '</div>';
-      h += '<div class="speaker-role">' + e(sp.role) + '</div>';
-      h += '<div class="speaker-name">' + e(sp.name) + '</div>';
-      h += '<ul class="speaker-creds">';
-      sp.credentials.forEach(function(cr){ h += '<li>' + e(cr) + '</li>'; });
-      h += '</ul></div>';
-    });
-    h += '</div></div></section>';
+  /* ── 1. HERO ── */
+  h+='<section id="hero"><div class="w">';
+  h+='<div style="margin-bottom:14px"><span class="pill">'+e(c.hero_label)+'</span></div>';
+  h+='<div class="h-name">'+e(c.name)+'</div>';
+  h+='<div class="h-sub">'+e(c.name_sub)+'</div>';
+  h+='<div class="h-slogan">'+e(c.slogan)+'</div>';
+  h+='<p class="h-tagline">'+e(c.tagline)+'</p>';
+  h+='<div class="h-meta"><div class="h-mi"><div class="dot"></div>'+e(c.dates)+'</div><div class="h-mi"><div class="dot"></div>'+e(c.format)+'</div></div>';
+  h+='<p class="h-seats">🔥 Бесплатных мест: '+e(c.capacity_free)+' из '+e(c.capacity_total)+'</p>';
+  h+=gcBtn('bp','Зарегистрироваться бесплатно',t0.gc_script_id,t0.gc_script_src);
+  if(firstName)h+='<p class="h-greet">Привет, '+e(firstName)+'! 👋</p>';
+  h+='<div class="stats">';
+  c.stats.forEach(function(s){h+='<div class="st"><div class="sv">'+e(s.value)+'</div><div class="sl">'+e(s.label)+'</div></div>';});
+  h+='</div></div></section>';
 
-    /* ── ЧТО ТЫ ПОЛУЧИШЬ ── */
-    h += '<section class="sec sec-alt"><div class="wrap">';
-    h += '<div class="lbl">За 2 дня конференции</div>';
-    h += '<div class="h2">Что ты<br>получишь</div>';
-    h += '<div class="benefits-grid">';
-    c.benefits.forEach(function(b){
-      h += '<div class="benefit-card"><div class="benefit-icon">' + b.icon + '</div><div class="benefit-title">' + e(b.title) + '</div><div class="benefit-text">' + e(b.text) + '</div></div>';
-    });
-    h += '</div>';
-    h += '<div style="margin-top:24px"><button class="btn-g" onclick="openGC(\'' + e(t0.gc_script_id) + '\',\'' + e(t0.gc_script_src) + '\')">Занять место на конференции</button></div>';
-    h += '</div></section>';
+  /* ── 2. МИССИЯ ── */
+  h+='<section class="sec sa"><div class="w">';
+  h+='<div class="lbl">Миссия</div>';
+  h+='<div class="h2">'+e(c.mission.title)+'</div>';
+  h+='<div class="mission-body">';
+  h+='<div class="mission-intro">'+e(c.mission.intro)+'</div>';
+  h+='<div class="mission-text">'+e(c.mission.body)+'</div>';
+  h+='<div class="mission-footer">'+e(c.mission.footer)+'</div>';
+  h+='</div></div></section>';
 
-    /* ── ПРОГРАММА ── */
-    h += '<section class="sec"><div class="wrap">';
-    h += '<div class="lbl">Расписание</div>';
-    h += '<div class="h2">Программа</div>';
-    h += '<div class="sched-days">';
-    c.schedule.forEach(function(day){
-      h += '<div class="sched-day">';
-      h += '<div class="sched-day-name">' + e(day.day) + '</div>';
-      h += '<div class="sched-day-date">' + e(day.date) + '</div>';
-      day.slots.forEach(function(sl){
-        h += '<div class="slot"><div class="slot-time">' + e(sl.time) + '</div><div class="slot-title">' + e(sl.title) + '</div></div>';
-      });
-      h += '</div>';
-    });
-    h += '</div></div></section>';
+  /* ── 3. ЦЕННЫЕ МАТЕРИАЛЫ ── */
+  h+='<section class="sec"><div class="w">';
+  h+='<div class="lbl">Ценные материалы</div>';
+  h+='<div class="h2" style="font-size:clamp(20px,6vw,30px);margin-bottom:6px">'+e(c.bonuses.title)+'</div>';
+  h+='<div class="bonus-list">';
+  c.bonuses.items.forEach(function(b){h+='<div class="bonus-item"><div class="b-arr">→</div><div class="b-txt">'+e(b)+'</div></div>';});
+  h+='</div>';
+  h+='<div style="margin-top:24px">'+gcBtn('bp',e(c.bonuses.cta),t0.gc_script_id,t0.gc_script_src)+'</div>';
+  h+='</div></section>';
 
-    /* ── ТАРИФЫ ── */
-    h += '<section class="sec sec-alt"><div class="wrap">';
-    h += '<div class="lbl">Варианты участия</div>';
-    h += '<div class="h2">Тарифы</div>';
-    h += '<div class="tariffs-list">';
-    c.tariffs.forEach(function(t){
-      h += '<div class="tariff' + (t.recommended ? ' rec' : '') + '">';
-      if (t.recommended) h += '<div class="tariff-badge">Рекомендуется</div>';
-      h += '<div class="tariff-name">' + e(t.name) + '</div>';
-      h += '<div class="tariff-price">' + e(t.price_label) + '</div>';
-      if (t.seats_left) h += '<div class="tariff-seats">' + e(t.seats_left) + '</div>';
-      h += '<ul class="feature-list">';
-      t.included.forEach(function(f){ h += '<li class="yes">' + e(f) + '</li>'; });
-      t.not_included.forEach(function(f){ h += '<li class="no">' + e(f) + '</li>'; });
-      h += '</ul>';
-      h += '<button class="btn-p" onclick="openGC(\'' + e(t.gc_script_id) + '\',\'' + e(t.gc_script_src) + '\')">Выбрать тариф</button>';
-      h += '</div>';
-    });
-    h += '</div></div></section>';
+  /* ── 4. ЭТО ПРОСТРАНСТВО ГДЕ ── */
+  h+='<section class="sec sa"><div class="w">';
+  h+='<div class="lbl">Философия</div>';
+  h+='<div class="h2">'+e(c.spaces.title)+'</div>';
+  h+='<div class="spaces-grid">';
+  c.spaces.items.forEach(function(s){
+    h+='<div class="space-card"><div class="sp-head">'+e(s.heading)+'</div><div class="sp-text">'+e(s.text)+'</div></div>';
+  });
+  h+='</div>';
+  h+='<div class="quote-block"><div class="quote-text">'+e(c.spaces.quote)+'</div></div>';
+  h+='</div></section>';
 
-    /* ── FINAL CTA ── */
-    h += '<section id="cta"><div class="wrap">';
-    h += '<div class="lbl" style="text-align:center">Регистрация</div>';
-    h += '<div class="h2" style="text-align:center">Твоё место<br>ждёт тебя</div>';
-    h += '<p style="text-align:center;color:var(--muted);font-size:13px;margin:10px 0 24px">' + e(c.dates) + ' · ' + e(c.format) + '</p>';
-    h += '<button class="btn-p" onclick="openGC(\'' + e(t0.gc_script_id) + '\',\'' + e(t0.gc_script_src) + '\')">Зарегистрироваться бесплатно</button>';
-    h += '</div></section>';
+  /* ── 5. ЧТО ДЕЛАЕТ ОСОБЕННОЙ ── */
+  h+='<section class="sec"><div class="w">';
+  h+='<div class="lbl">Особенности</div>';
+  h+='<div class="h2">Что делает<br>iViSiON особенной</div>';
+  h+='<div class="special-list">';
+  c.special.forEach(function(s){
+    h+='<div class="sp-item"><div class="sp-ico">'+s.icon+'</div><div><div class="sp-title">'+e(s.title)+'</div><div class="sp-desc">'+e(s.text)+'</div></div></div>';
+  });
+  h+='</div></div></section>';
 
-    document.getElementById('app').innerHTML = h;
-  }
+  /* ── 6. СПИКЕРЫ ── */
+  h+='<section class="sec sa"><div class="w">';
+  h+='<div class="lbl">Спикеры конференции</div>';
+  h+='<div class="h2">СПИКЕРЫ<br>КОНФЕРЕНЦИИ</div>';
+  h+='<div class="spk-grid">';
+  c.speakers.forEach(function(sp){
+    h+='<div class="spk-card">';
+    h+='<div class="spk-photo">'+(sp.photo_url?'<img src="'+e(sp.photo_url)+'" alt="'+e(sp.name)+'" loading="lazy">':'<div class="spk-init">'+e(sp.initials)+'</div>')+'</div>';
+    h+='<div class="spk-role">'+e(sp.role)+'</div>';
+    h+='<div class="spk-name">'+e(sp.name)+'</div>';
+    h+='<ul class="spk-creds">';
+    sp.credentials.forEach(function(cr){h+='<li>'+e(cr)+'</li>';});
+    h+='</ul></div>';
+  });
+  h+='</div></div></section>';
+
+  /* ── 7. ЧТО ТЫ ПОЛУЧИШЬ ── */
+  h+='<section class="sec"><div class="w">';
+  h+='<div class="lbl">За 2 дня конференции</div>';
+  h+='<div class="h2">Что ты<br>получишь</div>';
+  h+='<div class="ben-grid">';
+  c.benefits.forEach(function(b){
+    h+='<div class="ben-card"><div class="ben-ico">'+b.icon+'</div><div class="ben-title">'+e(b.title)+'</div><div class="ben-text">'+e(b.text)+'</div></div>';
+  });
+  h+='</div>';
+  h+='<div style="margin-top:22px">'+gcBtn('bg','ТВОЯ КНОПКА ВХОДА В СРЕДУ СВОИХ',t0.gc_script_id,t0.gc_script_src)+'</div>';
+  h+='</div></section>';
+
+  /* ── 8. ПРОГРАММА ── */
+  h+='<section class="sec sa"><div class="w">';
+  h+='<div class="lbl">Расписание</div>';
+  h+='<div class="h2">ПРОГРАММА<br>КОНФЕРЕНЦИИ</div>';
+  h+='<div class="sched">';
+  c.schedule.forEach(function(day){
+    h+='<div class="sched-day"><div class="sd-name">'+e(day.day)+'</div><div class="sd-date">'+e(day.date)+'</div>';
+    day.slots.forEach(function(sl){h+='<div class="slot"><div class="sl-time">'+e(sl.time)+'</div><div class="sl-title">'+e(sl.title)+'</div></div>';});
+    h+='</div>';
+  });
+  h+='</div></div></section>';
+
+  /* ── 9. ТАРИФЫ ── */
+  h+='<section class="sec"><div class="w">';
+  h+='<div class="lbl">Варианты участия</div>';
+  h+='<div class="h2">ВАРИАНТЫ<br>УЧАСТИЯ</div>';
+  h+='<div class="tariffs">';
+  c.tariffs.forEach(function(t){
+    h+='<div class="tariff'+(t.recommended?' rec':'')+(t.recommended?'" style="margin-top:14px':'')+'">';
+    if(t.recommended)h+='<div class="t-badge">Рекомендуется</div>';
+    h+='<div class="t-name">'+e(t.name)+'</div>';
+    h+='<div class="t-price">'+e(t.price_label)+'</div>';
+    if(t.seats_left)h+='<div class="t-seats">'+e(t.seats_left)+'</div>';
+    h+='<ul class="feat">';
+    t.included.forEach(function(f){h+='<li class="y">'+e(f)+'</li>';});
+    t.not_included.forEach(function(f){h+='<li class="n">'+e(f)+'</li>';});
+    h+='</ul>';
+    h+=gcBtn('bp','ВЫБРАТЬ',t.gc_script_id,t.gc_script_src);
+    h+='</div>';
+  });
+  h+='</div></div></section>';
+
+  /* ── 10. FINAL CTA ── */
+  h+='<section id="cta"><div class="w">';
+  h+='<div class="lbl" style="text-align:center">Регистрация</div>';
+  h+='<div class="h2" style="text-align:center">Твоё место<br>ждёт тебя</div>';
+  h+='<p style="text-align:center;color:var(--muted);font-size:13px;margin:10px 0 24px">'+e(c.dates)+' · '+e(c.format)+'</p>';
+  h+=gcBtn('bp','Зарегистрироваться бесплатно',t0.gc_script_id,t0.gc_script_src);
+  h+='</div></section>';
+
+  document.getElementById('app').innerHTML=h;
+}
 </script>
 </body>
 </html>
