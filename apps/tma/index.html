@@ -47,20 +47,42 @@
   <button class="btn" id="btn">Открыть вручную</button>
 
   <script>
-    const BOT_USERNAME = "margo_forbs_bot";
+    const BOT_APP_LINK = "https://t.me/Margo_forbs_bot/ivision";
     const LANDING      = "https://medialift.margoforbs.ru/ivision-conf-7";
 
-    const sp             = new URLSearchParams(window.location.search);
-    const new_partner_id = sp.get("new_partner_id") || "";
-    const utm_source     = sp.get("utm_source")     || "";
-    const tg_id          = sp.get("tg_id")          || "";
+    // Разбирает "ref_5725111966_insta" → {new_partner_id, utm_source}
+    function parseStartParam(payload) {
+      if (!payload || !payload.startsWith("ref_")) return {};
+      const parts = payload.slice(4).split("_", 2);
+      const result = {};
+      if (parts[0]) result.new_partner_id = parts[0];
+      if (parts[1]) result.utm_source     = parts[1];
+      return result;
+    }
 
     const tg = window.Telegram.WebApp;
 
-    // ── Внутри Telegram (мини-апп) ────────────────────────────────────────
+    // ── Внутри Telegram (мини-апп открылся через startapp или WebApp кнопку) ──
     if (tg.initData) {
       tg.ready();
       tg.expand();
+
+      // Параметры могут прийти двумя путями:
+      // 1. Через startapp: tg.initDataUnsafe.start_param = "ref_5725111966_insta"
+      // 2. Через URL (WebApp кнопка бота): ?new_partner_id=...&utm_source=...
+      const sp = new URLSearchParams(window.location.search);
+
+      let new_partner_id = sp.get("new_partner_id") || "";
+      let utm_source     = sp.get("utm_source")     || "";
+      const tg_id        = sp.get("tg_id") || String(tg.initDataUnsafe?.user?.id || "");
+
+      // startapp перекрывает URL-параметры если они есть
+      const startParam = tg.initDataUnsafe?.start_param || "";
+      if (startParam) {
+        const parsed = parseStartParam(startParam);
+        if (parsed.new_partner_id) new_partner_id = parsed.new_partner_id;
+        if (parsed.utm_source)     utm_source     = parsed.utm_source;
+      }
 
       const params = {};
       if (new_partner_id) params.new_partner_id = new_partner_id;
@@ -70,25 +92,32 @@
       const query = new URLSearchParams(params).toString();
       const url   = query ? `${LANDING}?${query}` : LANDING;
 
-      // Открывает в Telegram-браузере (шторка поверх чата, не Safari/Chrome)
+      // Открывает лендинг в Telegram-браузере (шторка внутри Telegram)
       tg.openLink(url);
 
-      // Резервная кнопка если что-то пошло не так
+      // Резервная кнопка через 3 сек
       setTimeout(() => {
         document.getElementById("btn").style.display = "block";
         document.getElementById("btn").onclick = () => tg.openLink(url);
       }, 3000);
 
-    // ── В обычном браузере (по ссылке из Instagram / рекламы) ────────────
+    // ── В обычном браузере (ссылка из Instagram / рекламы) ────────────────
+    // Редиректим на мини-апп — откроется сразу, без кнопок в боте
     } else {
+      const sp             = new URLSearchParams(window.location.search);
+      const new_partner_id = sp.get("new_partner_id") || "";
+      const utm_source     = sp.get("utm_source")     || "";
+
       const parts = [];
       if (new_partner_id) parts.push(new_partner_id);
       if (utm_source)     parts.push(utm_source);
-      const startParam = parts.length ? "ref_" + parts.join("_") : "";
-      const botUrl = startParam
-        ? `https://t.me/${BOT_USERNAME}?start=${startParam}`
-        : `https://t.me/${BOT_USERNAME}`;
-      window.location.href = botUrl;
+      const startapp = parts.length ? "ref_" + parts.join("_") : "";
+
+      const url = startapp
+        ? `${BOT_APP_LINK}?startapp=${startapp}`
+        : BOT_APP_LINK;
+
+      window.location.href = url;
     }
   </script>
 </body>
