@@ -144,7 +144,24 @@
   </div>
 
   <script>
+    const BOT_APP_LINK = "https://t.me/Margo_forbs_bot/ivision";
     const tg = window.Telegram.WebApp;
+
+    // ── Открыто в обычном браузере (ссылка из рекламы/Instagram) ──────────
+    // Читаем GET-параметры и редиректим в мини-апп
+    if (!tg.initData) {
+      const sp             = new URLSearchParams(window.location.search);
+      const new_partner_id = sp.get("new_partner_id") || "";
+      const utm_source     = sp.get("utm_source")     || "";
+      const parts          = [];
+      if (new_partner_id) parts.push(new_partner_id);
+      if (utm_source)     parts.push(utm_source);
+      const startapp = parts.length ? "ref_" + parts.join("_") : "";
+      window.location.href = startapp
+        ? `${BOT_APP_LINK}?startapp=${startapp}`
+        : BOT_APP_LINK;
+    }
+
     tg.ready();
     tg.expand();
 
