@@ -8,25 +8,46 @@
 </head>
 <body>
   <script>
+    const BOT_USERNAME = "margo_forbs_bot";
+    const LANDING      = "https://medialift.margoforbs.ru/ivision-conf-7";
+
+    const sp             = new URLSearchParams(window.location.search);
+    const new_partner_id = sp.get("new_partner_id") || "";
+    const utm_source     = sp.get("utm_source")     || "";
+    const tg_id          = sp.get("tg_id")          || "";
+
     const tg = window.Telegram.WebApp;
-    tg.ready();
-    tg.expand();
 
-    const LANDING = "https://medialift.margoforbs.ru/ivision-conf-7";
+    // ── Режим 1: открыто внутри Telegram (мини-апп) ──────────────────────
+    // tg.initData не пуст → мы внутри бота → открываем лендинг
+    if (tg.initData) {
+      tg.ready();
+      tg.expand();
 
-    // Читаем UTM-параметры, которые бот передал в URL этой страницы
-    const sp = new URLSearchParams(window.location.search);
+      const params = {};
+      if (new_partner_id) params.new_partner_id = new_partner_id;
+      if (utm_source)     params.utm_source     = utm_source;
+      if (tg_id)          params.tg_id          = tg_id;
 
-    const params = {};
-    if (sp.get("new_partner_id")) params.new_partner_id = sp.get("new_partner_id");
-    if (sp.get("utm_source"))     params.utm_source     = sp.get("utm_source");
-    if (sp.get("tg_id"))          params.tg_id          = sp.get("tg_id");
+      const query = new URLSearchParams(params).toString();
+      const url   = query ? `${LANDING}?${query}` : LANDING;
 
-    const query = new URLSearchParams(params).toString();
-    const url   = query ? `${LANDING}?${query}` : LANDING;
+      tg.openLink(url);
 
-    // Открываем лендинг внутри Telegram (встроенный браузер)
-    tg.openLink(url);
+    // ── Режим 2: открыто в браузере (по ссылке из Instagram / рекламы) ───
+    // Читаем UTM, кодируем в start-параметр и отправляем человека в бот
+    } else {
+      const parts = [];
+      if (new_partner_id) parts.push(new_partner_id);
+      if (utm_source)     parts.push(utm_source);
+
+      const startParam = parts.length ? "ref_" + parts.join("_") : "";
+      const botUrl     = startParam
+        ? `https://t.me/${BOT_USERNAME}?start=${startParam}`
+        : `https://t.me/${BOT_USERNAME}`;
+
+      window.location.href = botUrl;
+    }
   </script>
 </body>
 </html>
