@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>iVision Conf</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--tg-theme-bg-color, #1c1c1e);
+      color: var(--tg-theme-text-color, #ffffff);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .logo {
+      width: 96px;
+      height: 96px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #6c63ff, #3ecfcf);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 42px;
+      margin-bottom: 28px;
+      box-shadow: 0 8px 32px rgba(108, 99, 255, 0.35);
+    }
+
+    h1 {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      color: var(--tg-theme-hint-color, #8e8e93);
+      line-height: 1.5;
+      max-width: 280px;
+      margin-bottom: 40px;
+    }
+
+    .btn {
+      display: inline-block;
+      width: 100%;
+      max-width: 320px;
+      padding: 16px 24px;
+      border: none;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+      text-decoration: none;
+    }
+
+    .btn:active {
+      opacity: 0.85;
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background: var(--tg-theme-button-color, #6c63ff);
+      color: var(--tg-theme-button-text-color, #ffffff);
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 20px;
+      font-size: 12px;
+      color: var(--tg-theme-hint-color, #8e8e93);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="logo">🎯</div>
+  <h1>iVision Conf</h1>
+  <p class="subtitle">Конференция для экспертов и предпринимателей.<br>Зарегистрируйся и получи доступ к кабинету участника.</p>
+
+  <button class="btn btn-primary" id="register-btn">
+    Зарегистрироваться
+  </button>
+
+  <div class="footer">iVision Conf</div>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.ready();
+    tg.expand();
+
+    // URL берётся из meta-тега, который Vercel подставляет через env VITE_LANDING_URL
+    // Пока — захардкожен здесь, менять только это место:
+    const LANDING_URL = "https://medialift.margoforbs.ru/ivision-conf-7";
+
+    const user = tg.initDataUnsafe?.user;
+    const tgId = user?.id ?? "";
+    const tgUsername = user?.username ?? "";
+
+    document.getElementById("register-btn").addEventListener("click", () => {
+      const url = `${LANDING_URL}?tg_id=${tgId}&tg_username=${tgUsername}`;
+      tg.openLink(url);
+    });
+  </script>
+
+</body>
+</html>
