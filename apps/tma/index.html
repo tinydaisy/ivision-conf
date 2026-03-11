@@ -92,14 +92,14 @@
       const query = new URLSearchParams(params).toString();
       const url   = query ? `${LANDING}?${query}` : LANDING;
 
-      // Открывает лендинг в Telegram-браузере (шторка внутри Telegram)
-      tg.openLink(url);
+      // Открываем GetCourse прямо в WebView мини-апп (не внешний браузер)
+      window.location.replace(url);
 
-      // Резервная кнопка через 3 сек
+      // Резервная кнопка через 4 сек если что-то пошло не так
       setTimeout(() => {
         document.getElementById("btn").style.display = "block";
-        document.getElementById("btn").onclick = () => tg.openLink(url);
-      }, 3000);
+        document.getElementById("btn").onclick = () => window.location.replace(url);
+      }, 4000);
 
     // ── В обычном браузере (ссылка из Instagram / рекламы) ────────────────
     // Редиректим на мини-апп — откроется сразу, без кнопок в боте
