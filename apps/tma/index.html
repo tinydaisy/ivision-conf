@@ -250,6 +250,8 @@
       .tariffs{display:grid;grid-template-columns:1fr 1fr;align-items:start;}
       /* Headliner/organizer creds: centered block, left text */
       .spk-headliner .spk-creds,.spk-organizer .spk-creds{max-width:560px;margin-left:auto;margin-right:auto;}
+      /* Hero seats row: left-aligned under button */
+      .h-seats-row{justify-content:flex-start;}
     }
 
     /* ── LOADING ── */
@@ -362,6 +364,11 @@ function watchCounters(){
       });
     }
   },{threshold:.3}).observe(el);
+}
+
+/* OPEN EXTERNAL LINK (works in Telegram WebApp and browser) */
+function openExternal(url){
+  if(tg&&tg.openLink){tg.openLink(url);}else{window.open(url,'_blank');}
 }
 
 /* EQUALIZE SPEAKER NAME+ROLE HEIGHTS PER ROW (desktop only) */
@@ -675,8 +682,8 @@ function render(c){
   /* FOOTER */
   h+='<footer id="site-footer"><div class="w">';
   h+='<div class="footer-links">';
-  h+='<a href="https://medialift.margoforbs.ru/oferta_list" target="_blank">Договор оферты</a>';
-  h+='<a href="https://medialift.margoforbs.ru/politika" target="_blank">Политика обработки персональных данных</a>';
+  h+='<a href="#" onclick="openExternal(\'https://medialift.margoforbs.ru/oferta_list\');return false;">Договор оферты</a>';
+  h+='<a href="#" onclick="openExternal(\'https://medialift.margoforbs.ru/politika\');return false;">Политика обработки персональных данных</a>';
   h+='</div>';
   h+='<div class="footer-legal">ИП САХИБГАРЕЕВА МАРГАРИТА ВЛАДИМИРОВНА<br>ИНН 890306512862</div>';
   h+='</div></footer>';
