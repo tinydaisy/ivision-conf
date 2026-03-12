@@ -114,7 +114,7 @@
     .mission-body{padding:0;margin-top:24px;}
     .mission-intro{font-size:15px;font-weight:600;color:var(--peach);margin-bottom:14px;line-height:1.5;}
     .slogan-frame{background:linear-gradient(var(--dark),var(--dark)) padding-box,linear-gradient(135deg,var(--pink),var(--peach)) border-box;border:2px solid transparent;border-radius:var(--r-md);padding:18px 20px;text-align:center;color:#fff;font-family:var(--ff-d);font-size:clamp(18px,5vw,24px);letter-spacing:.06em;line-height:1.3;margin:16px 0;}
-    .mission-photo{width:100%;border-radius:var(--r-md);margin:16px 0;object-fit:cover;max-height:280px;}
+    .mission-photo{width:100%;border-radius:var(--r-md);margin:16px 0;display:block;}
     .mission-text{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:14px;}
     .mission-footer{font-size:13px;color:var(--dim);line-height:1.6;font-style:italic;border-left:3px solid var(--peach);padding-left:14px;}
 
@@ -243,6 +243,13 @@
       .w{max-width:1100px;padding:0 48px;}
       #nav{max-width:1100px;width:calc(100% - 48px);}
       .spk-grid{grid-template-columns:1fr 1fr;}
+      /* Buttons: not full-width */
+      .btn-align .btn-grad-wrap{width:auto;display:inline-block;}
+      .btn-align .btn-pay{width:auto;display:inline-block;}
+      /* Tariffs: 2 columns */
+      .tariffs{display:grid;grid-template-columns:1fr 1fr;align-items:start;}
+      /* Headliner/organizer creds: centered block, left text */
+      .spk-headliner .spk-creds,.spk-organizer .spk-creds{max-width:560px;margin-left:auto;margin-right:auto;}
     }
 
     /* ── LOADING ── */
@@ -401,11 +408,12 @@ if(startParam==='free'){
 
 function e(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
-function scrollBtn(label){
-  return '<button class="btn-grad-wrap" data-to-tariffs><span class="btn-grad-inner">'+label+'</span></button>';
+function scrollBtn(label,leftAlign){
+  var align=leftAlign?'left':'center';
+  return '<div class="btn-align" style="text-align:'+align+'"><button class="btn-grad-wrap" data-to-tariffs><span class="btn-grad-inner">'+label+'</span></button></div>';
 }
 function payBtn(label,modalId){
-  return '<button class="btn-pay" onclick="openGC(\''+modalId+'\')"><span class="btn-pay-i">'+label+'</span></button>';
+  return '<div class="btn-align" style="text-align:center"><button class="btn-pay" onclick="openGC(\''+modalId+'\')"><span class="btn-pay-i">'+label+'</span></button></div>';
 }
 
 /* SVG icons (peach) */
@@ -474,7 +482,7 @@ function render(c){
   h+='<div class="h-name-big">'+e(c.name_sub)+'</div>';
   h+='<p class="h-tagline">'+e(c.tagline)+'</p>';
   /* Button */
-  h+=scrollBtn('ПОЛУЧИТЬ БИЛЕТ БЕСПЛАТНО');
+  h+=scrollBtn('ПОЛУЧИТЬ БИЛЕТ БЕСПЛАТНО',true);
   /* Seats */
   h+='<div class="h-seats-row">';
   h+='<span class="h-seats-label">Осталось мест:</span>';
