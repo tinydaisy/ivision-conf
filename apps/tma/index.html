@@ -23,7 +23,7 @@
       --border:rgba(255,207,164,.18);
       --btn-grad:linear-gradient(135deg,#FFCFA4 0%,#C084FC 50%,#25455D 100%);
       --r-md:16px;--r-lg:24px;--r-pill:100px;
-      --ff-d:'Bebas Neue',Impact,sans-serif;
+      --ff-d:'Bebas Neue','Roboto',sans-serif;
       --ff-b:'Roboto',system-ui,sans-serif;
     }
     *{margin:0;padding:0;box-sizing:border-box;}
@@ -32,13 +32,14 @@
     .w{max-width:480px;margin:0 auto;padding:0 20px;}
     .sec{padding:52px 0;}
     .sa{background:var(--mid);}
-    /* ── SHARED DISPLAY FONT — Bebas Neue ── */
+    /* ── SHARED DISPLAY FONT — Bebas Neue → Roboto Bold uppercase fallback ── */
     .bebas,.lbl,.h2,.h-name-big,.gifts-label,.slogan-frame,.sd-name,.sp-head,.sp-title,
     .t-name,.t-price,.ben-title,.spk-name,.sv4,.quote-text,.h-seats-free,.h-seats-total{
-      font-family:'Bebas Neue',Impact,sans-serif !important;
+      font-family:'Bebas Neue','Roboto',sans-serif !important;
+      font-weight:700;
     }
     .lbl{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--peach);margin-bottom:10px;}
-    .h2{font-size:clamp(28px,8vw,42px);line-height:1;letter-spacing:.02em;margin-bottom:8px;}
+    .h2{font-size:clamp(28px,8vw,42px);line-height:1;letter-spacing:.02em;margin-bottom:8px;text-transform:uppercase;}
 
     /* ── BUTTONS — gradient border with glow ── */
     .btn-grad-wrap{display:block;width:100%;padding:4px;border-radius:var(--r-pill);background:var(--btn-grad);cursor:pointer;border:none;transition:transform .25s ease,box-shadow .25s ease;box-shadow:0 0 18px rgba(255,207,164,.25),0 0 36px rgba(192,132,252,.15);}
@@ -71,9 +72,11 @@
     .hero-ivision{height:30px;width:auto;object-fit:contain;}
     /* Date pill */
     .pill-tag{display:inline-flex;align-items:center;background:rgba(255,207,164,.08);border:1px solid rgba(255,207,164,.28);color:var(--peach);border-radius:var(--r-pill);padding:5px 14px;font-size:12px;font-weight:600;font-family:var(--ff-b);}
+    /* Date + Countdown row */
+    .hero-date-row{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:nowrap;}
     /* Countdown pill */
-    .cd-pill{display:inline-flex;align-items:center;gap:3px;background:rgba(37,69,93,.35);border:1px solid rgba(255,207,164,.28);border-radius:var(--r-pill);padding:5px 12px;font-family:var(--ff-d);font-size:13px;letter-spacing:.03em;color:var(--text);margin-top:8px;flex-wrap:nowrap;white-space:nowrap;}
-    .cd-pill-label{color:var(--muted);font-size:10px;letter-spacing:.05em;font-family:var(--ff-b);font-weight:600;margin-right:3px;}
+    .cd-pill{display:inline-flex;align-items:center;gap:3px;background:rgba(200,75,158,.12);border:1px solid var(--pink);border-radius:var(--r-pill);padding:5px 12px;font-family:var(--ff-d);font-size:13px;letter-spacing:.03em;color:var(--text);flex-wrap:nowrap;white-space:nowrap;flex-shrink:0;}
+    .cd-pill-label{color:var(--pink);font-size:10px;letter-spacing:.05em;font-family:var(--ff-b);font-weight:700;margin-right:3px;}
     .cd-num{color:var(--peach);font-size:15px;min-width:18px;text-align:center;}
     .cd-sep{color:var(--muted);opacity:.6;font-size:13px;}
     .cd-unit{font-family:var(--ff-b);font-size:8px;color:var(--muted);letter-spacing:.05em;margin-left:1px;}
@@ -425,9 +428,9 @@ function render(c){
   h+='<img src="/img/opora.png" alt="Опора России" class="hero-opora">';
   h+='<img src="/img/logo_ivision.png" alt="iViSiON" class="hero-ivision">';
   h+='</div>';
-  /* Date pill only (no emoji, format removed) */
-  h+='<div style="margin-bottom:8px"><span class="pill-tag">'+e(c.dates)+'</span></div>';
-  /* Countdown pill */
+  /* Date pill + Countdown on same row */
+  h+='<div class="hero-date-row">';
+  h+='<span class="pill-tag">'+e(c.dates)+'</span>';
   h+='<div class="cd-pill" id="countdown">';
   h+='<span class="cd-pill-label">До старта:</span>';
   h+='<span class="cd-num" id="cd-d">--</span><span class="cd-unit">д</span>';
@@ -437,6 +440,7 @@ function render(c){
   h+='<span class="cd-num" id="cd-m">--</span><span class="cd-unit">м</span>';
   h+='<span class="cd-sep">:</span>';
   h+='<span class="cd-num" id="cd-s">--</span><span class="cd-unit">с</span>';
+  h+='</div>';
   h+='</div>';
   /* One-line conf label */
   h+='<div class="h-conf-line">Онлайн-конференция '+e(c.name)+'</div>';
@@ -481,19 +485,9 @@ function render(c){
   h+='<section class="sec"><div class="w">';
   h+='<div class="h2">'+e(c.bonuses.title)+'</div>';
   h+='<div class="gifts3-grid">';
-  /* Diagonal ribbon + bow for gift cards */
+  /* Diagonal ribbon only (no bow) — bottom-right corner */
   var bowSVG='<svg class="gift3-ribbon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">'
-    /* diagonal ribbon band crossing the corner */
     +'<path d="M56 14 L56 28 L28 56 L14 56 Z" fill="#C84B9E" opacity=".82"/>'
-    /* bow — left loop */
-    +'<path d="M32 24 C26 15 14 14 17 21 C20 28 27 26 32 24Z" fill="#E966B8"/>'
-    /* bow — right loop */
-    +'<path d="M32 24 C38 15 50 14 47 21 C44 28 37 26 32 24Z" fill="#E966B8"/>'
-    /* bow tails */
-    +'<path d="M32 24 L27 34" stroke="#C84B9E" stroke-width="2.5" stroke-linecap="round"/>'
-    +'<path d="M32 24 L37 34" stroke="#C84B9E" stroke-width="2.5" stroke-linecap="round"/>'
-    /* center knot */
-    +'<circle cx="32" cy="24" r="4" fill="#F595D0"/>'
     +'</svg>';
   c.bonuses.items.forEach(function(b,i){
     h+='<div class="gift3-card">';
