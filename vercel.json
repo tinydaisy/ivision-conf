@@ -9,5 +9,13 @@
     { "src": "/img/([^/]+)$",         "dest": "/apps/tma/img/$1" },
     { "src": "/([^/]+\\.json)$",      "dest": "/apps/tma/$1" },
     { "src": "/(.*)",                 "dest": "/apps/tma/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store, must-revalidate" }
+      ]
+    }
   ]
 }
