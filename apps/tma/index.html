@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
-  <title>ВИДЕНИЕ / iViSiON-7</title>
+  <title>Онлайн-конференция «Видение / iViSiON»</title>
+  <link rel="icon" type="image/png" href="/img/logo_ivision.png">
   <script>
     (function(){
       var sp=new URLSearchParams(window.location.search);
@@ -223,7 +224,8 @@
     /* ── FOOTER ── */
     #site-footer{background:#04060d;padding:28px 0;border-top:1px solid rgba(255,207,164,.08);}
     .footer-links{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:14px;}
-    .footer-links a{font-size:11px;color:var(--muted);text-decoration:underline;text-underline-offset:3px;}
+    .footer-links a,.footer-link-btn{font-size:11px;color:var(--muted);text-decoration:underline;text-underline-offset:3px;}
+    .footer-link-btn{background:none;border:none;padding:0;cursor:pointer;font-family:inherit;}
     .footer-legal{font-size:11px;color:var(--dim);line-height:1.6;}
 
     /* ── GC MODALS ── */
@@ -682,8 +684,8 @@ function render(c){
   /* FOOTER */
   h+='<footer id="site-footer"><div class="w">';
   h+='<div class="footer-links">';
-  h+='<a href="#" onclick="openExternal(\'https://medialift.margoforbs.ru/oferta_list\');return false;">Договор оферты</a>';
-  h+='<a href="#" onclick="openExternal(\'https://medialift.margoforbs.ru/politika\');return false;">Политика обработки персональных данных</a>';
+  h+='<button class="footer-link-btn" onclick="openExternal(\'https://medialift.margoforbs.ru/oferta_list\')">Договор оферты</button>';
+  h+='<button class="footer-link-btn" onclick="openExternal(\'https://medialift.margoforbs.ru/politika\')">Политика обработки персональных данных</button>';
   h+='</div>';
   h+='<div class="footer-legal">ИП САХИБГАРЕЕВА МАРГАРИТА ВЛАДИМИРОВНА<br>ИНН 890306512862</div>';
   h+='</div></footer>';
