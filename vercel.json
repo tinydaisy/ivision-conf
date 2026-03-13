@@ -5,14 +5,12 @@
     { "src": "apps/tma/**",    "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "/api/webhook",                        "dest": "/api/webhook.py" },
-    { "src": "/img/(.+)",                           "dest": "/apps/tma/img/$1" },
-    { "src": "/([^/]+\\.json)$",                    "dest": "/apps/tma/$1" },
-    { "src": "/ivision-conf-7",                     "dest": "/apps/tma/ivision-conf-7.html" },
-    { "src": "/ivision-conf-7\\.html",              "dest": "/apps/tma/ivision-conf-7.html" },
-    { "src": "/ivision-for-speakers",               "dest": "/apps/tma/ivision-for-speakers.html" },
-    { "src": "/ivision-for-speakers\\.html",        "dest": "/apps/tma/ivision-for-speakers.html" },
-    { "src": "/(.*)",                               "dest": "/apps/tma/index.html" }
+    { "src": "^/api/webhook$",                          "dest": "/api/webhook.py" },
+    { "src": "^/img/(.+)$",                             "dest": "/apps/tma/img/$1" },
+    { "src": "^/([^/]+\\.json)$",                       "dest": "/apps/tma/$1" },
+    { "src": "^/ivision-conf-7(\\.html)?$",             "dest": "/apps/tma/ivision-conf-7.html" },
+    { "src": "^/ivision-for-speakers(\\.html)?$",       "dest": "/apps/tma/ivision-for-speakers.html" },
+    { "src": "^/(.*)$",                                 "dest": "/apps/tma/index.html" }
   ],
   "headers": [
     {
