@@ -1,0 +1,58 @@
+{
+  "stats": {
+    "title": "ВИДЕНИЕ / iViSiON в цифрах и статистике",
+    "photo": null,
+    "description": "Конференция собирает платёжеспособную аудиторию предпринимателей и экспертов со всей страны. Ниже — реальные показатели охвата.",
+    "items": [
+      { "value": "2 900+", "label": "человек в email-базе" },
+      { "value": "1 000+", "label": "участников в закрытом сообществе" },
+      { "value": "50–109",  "label": "зрителей одновременно в прямом эфире" },
+      { "value": "150–300", "label": "новых подписок в Telegram за конференцию" },
+      { "value": "50%",     "label": "аудитории с доходом 100 000–500 000+ ₽" },
+      { "value": "6–15",    "label": "именных спикеров на каждом выпуске" }
+    ],
+    "quote": "Это не просто зрители — это предприниматели, которые ищут решения и готовы платить за них прямо сейчас"
+  },
+
+  "testimonials": {
+    "title": "Что говорят спикеры о конференции",
+
+    "videos": [
+      {
+        "url": "https://youtu.be/DxEVBfY7a6k?si=3JlfCFY3QGSCDyuf",
+        "thumb": null,
+        "orientation": "horizontal"
+      },
+      {
+        "url": "https://youtu.be/RJ7Q4jah64Y?si=9cznlPpV8nq1uJdG",
+        "thumb": null,
+        "orientation": "horizontal"
+      },
+      {
+        "url": "https://youtube.com/shorts/m3gq20EEJ9g?si=HBbfxIqeF9uMWgTc",
+        "thumb": null,
+        "orientation": "vertical"
+      },
+      {
+        "url": "https://youtube.com/shorts/WRMIHN5nu3U?si=6xLLChv-r61CllZ5",
+        "thumb": null,
+        "orientation": "vertical"
+      }
+    ],
+
+    "images": [
+      "/img/speaker-photos/speaker_01.png",
+      "/img/speaker-photos/speaker_02.png",
+      "/img/speaker-photos/speaker_03.png",
+      "/img/speaker-photos/speaker_04.png",
+      "/img/speaker-photos/speaker_05.png",
+      "/img/speaker-photos/speaker_06.png",
+      "/img/speaker-photos/speaker_07.png",
+      "/img/speaker-photos/speaker_08.png",
+      "/img/speaker-photos/speaker_09.png",
+      "/img/speaker-photos/speaker_10.png",
+      "/img/speaker-photos/speaker_11.png",
+      "/img/speaker-photos/speaker_12.png"
+    ]
+  }
+}
