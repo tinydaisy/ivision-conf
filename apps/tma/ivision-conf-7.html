@@ -8,8 +8,16 @@
   <script>
     (function(){
       var sp=new URLSearchParams(window.location.search);
-      var pid=sp.get('new_partner_id')||'',src=sp.get('utm_source')||'';
-      if(pid||src){var p=[];if(pid)p.push(pid);if(src)p.push(src);window.location.replace('https://t.me/Margo_forbs_bot/ivision?startapp=ref_'+p.join('_'));}
+      var app=sp.get('app')||'';
+      var pid=sp.get('new_partner_id')||'';
+      var src=sp.get('utm_source')||'';
+      if(app==='tg'){
+        var p=['ref'];
+        if(pid)p.push('pid'+pid);
+        if(src)p.push('src'+src);
+        window.location.replace('https://t.me/Margo_forbs_bot/ivision?startapp='+p.join('_'));
+      }
+      // app==='max' — reserved for future Max mini-app
     })();
   </script>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
