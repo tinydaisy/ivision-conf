@@ -5,22 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
   <title>Онлайн-конференция «Видение / iViSiON»</title>
   <link rel="icon" type="image/png" href="/img/favicon.png">
-  <script>
-    (function(){
-      var sp=new URLSearchParams(window.location.search);
-      var app=sp.get('app')||'';
-      var pid=sp.get('new_partner_id')||'';
-      var src=sp.get('utm_source')||'';
-      if(app==='tg'){
-        var p=['ref','pgconf7'];
-        if(pid)p.push('pid'+pid);
-        if(src)p.push('src'+src);
-        window.location.replace('https://t.me/Margo_forbs_bot/ivision?startapp='+p.join('_'));
-      }
-      // app==='max' — reserved for future Max mini-app
-    })();
-  </script>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script>var PAGE_CODE='conf7';</script>
+  <script src="/tg-redirect.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -310,8 +296,8 @@
 </div>
 
 <script>
-var tg=window.Telegram.WebApp;
-tg.ready();tg.expand();
+var tg=(window.Telegram&&window.Telegram.WebApp)||null;
+if(tg){tg.ready();tg.expand();}
 
 /* NAV */
 var nav=document.getElementById('nav');
@@ -380,7 +366,6 @@ function watchCounters(){
 function openExternal(url){
   if(tg&&tg.openLink){tg.openLink(url);}else{window.open(url,'_blank');}
 }
-
 /* EQUALIZE SPEAKER NAME+ROLE HEIGHTS PER ROW (desktop only) */
 function equalizeSpkRows(){
   if(window.innerWidth<=640)return;
@@ -400,8 +385,8 @@ function equalizeSpkRows(){
 window.addEventListener('resize',equalizeSpkRows,{passive:true});
 
 /* MAIN */
-var startParam=(tg.initDataUnsafe&&tg.initDataUnsafe.start_param)||'';
-var firstName=(tg.initDataUnsafe&&tg.initDataUnsafe.user&&tg.initDataUnsafe.user.first_name)||'';
+var startParam=(tg&&tg.initDataUnsafe&&tg.initDataUnsafe.start_param)||'';
+var firstName=(tg&&tg.initDataUnsafe&&tg.initDataUnsafe.user&&tg.initDataUnsafe.user.first_name)||'';
 
 if(startParam==='free'){
   document.getElementById('loading').style.display='none';

@@ -5,20 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
   <title>Стать спикером — iViSiON-7</title>
   <link rel="icon" type="image/png" href="/img/favicon.png">
-  <script>
-    (function(){
-      var sp=new URLSearchParams(window.location.search);
-      var app=sp.get('app')||'';
-      var pid=sp.get('new_partner_id')||'';
-      var src=sp.get('utm_source')||'';
-      if(app==='tg'){
-        var p=['ref','pgspkrs'];
-        if(pid)p.push('pid'+pid);
-        if(src)p.push('src'+src);
-        window.location.replace('https://t.me/Margo_forbs_bot/ivision?startapp='+p.join('_'));
-      }
-    })();
-  </script>
+  <script>var PAGE_CODE='spkrs';</script>
+  <script src="/tg-redirect.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
