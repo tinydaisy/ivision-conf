@@ -9,17 +9,12 @@
  *   в нужное приложение, передавая туда PAGE_CODE и UTM-параметры.
  *
  * Как подключить к странице:
- *   1. До подключения этого скрипта задай конфиг страницы:
- *        <script>
- *          var PAGE_CODE = 'conf7';   // уникальный код страницы
- *          var APP_CONFIG = {
- *            tg: 'https://t.me/Margo_forbs_bot/ivision'
- *            // max: 'https://...'   // будущая поддержка Max
- *          };
- *        </script>
+ *   1. До подключения этого скрипта задай код страницы и загрузи app_config.js:
+ *        <script>var PAGE_CODE = 'conf7';</script>
+ *        <script src="/redirect_web_app/app_config.js"></script>
  *        <script src="/redirect_web_app/redirect_web_app.js"></script>
  *
- *   2. В bot.html добавь код страницы в карту PAGES:
+ *   2. В pages.json добавь код страницы:
  *        'conf7': '/ivision-conf-7'
  *
  *   3. В vercel.json добавь маршрут для новой страницы (если нужно)

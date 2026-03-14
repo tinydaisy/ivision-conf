@@ -15,9 +15,10 @@
 
 ```
 redirect_web_app/
+├── app_config.js             ← настройки платформ (URL бота/Mini App) — редактировать при смене бота
 ├── redirect_web_app.js       ← скрипт маршрутизации (подключается на каждой странице)
 ├── bot.html                  ← роутер Mini App (URL регистрируется в BotFather один раз)
-├── pages.json                ← карта кодов страниц → URL (единственный файл для редактирования при добавлении страниц)
+├── pages.json                ← карта кодов страниц → URL (редактировать при добавлении страниц)
 └── brief_redirect_web_app.md ← эта документация
 ```
 
@@ -125,15 +126,15 @@ var PAGES = {
 };
 ```
 
-### Шаг 2 — подключить скрипт в `<head>` новой HTML-страницы
+### Шаг 2 — подключить скрипты в `<head>` новой HTML-страницы
 
 ```html
-<script>
-  var PAGE_CODE  = 'mypage';
-  var APP_CONFIG = { tg: 'https://t.me/Margo_forbs_bot/ivision' };
-</script>
+<script>var PAGE_CODE = 'mypage';</script>
+<script src="/redirect_web_app/app_config.js"></script>
 <script src="/redirect_web_app/redirect_web_app.js"></script>
 ```
+
+> URL бота прописан в `app_config.js` — здесь указывать не нужно.
 
 ### Шаг 3 — добавить маршрут в `vercel.json`
 
@@ -157,25 +158,27 @@ var PAGES = {
 ## Как перенести в другой проект
 
 1. Скопировать папку `redirect_web_app/` в `apps/tma/` нового проекта
-2. Отредактировать `pages.json` — вписать страницы нового проекта
-3. В `bot.html` изменить `DEFAULT` на нужную страницу по умолчанию
-4. В `vercel.json` добавить маршруты:
+2. В `app_config.js` вписать URL нового бота/Mini App — **единственный файл для редактирования при смене бота**
+3. Отредактировать `pages.json` — вписать страницы нового проекта
+4. В `bot.html` изменить `DEFAULT` на нужную страницу по умолчанию
+5. В `vercel.json` добавить маршруты:
    ```json
+   { "src": "^/redirect_web_app/app_config\\.js$",       "dest": "/apps/tma/redirect_web_app/app_config.js" },
    { "src": "^/redirect_web_app/redirect_web_app\\.js$", "dest": "/apps/tma/redirect_web_app/redirect_web_app.js" },
    { "src": "^/redirect_web_app/pages\\.json$",          "dest": "/apps/tma/redirect_web_app/pages.json" },
    { "src": "^/bot(\\.html)?$",                          "dest": "/apps/tma/redirect_web_app/bot.html" }
    ```
-5. Зарегистрировать бота в BotFather, создать Mini App, указать URL: `https://домен/bot`
-6. Подключить скрипт на каждой странице (Шаги 1–3 из раздела выше)
+6. Зарегистрировать бота в BotFather, создать Mini App, указать URL: `https://домен/bot`
+7. Подключить скрипты на каждой странице (Шаги 1–4 из раздела выше)
 
 ---
 
 ## Добавление новой платформы (например, Max)
 
-В `APP_CONFIG` на странице добавить ключ платформы:
+В `app_config.js` добавить ключ платформы:
 ```js
 var APP_CONFIG = {
-  tg:  'https://t.me/Margo_forbs_bot/ivision',
+  tg:  'https://t.me/ВАШ_БОТ/ваш_апп',
   max: 'https://...'    // URL Mini App в Max
 };
 ```

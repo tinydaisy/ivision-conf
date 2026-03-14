@@ -8,6 +8,7 @@
     { "src": "^/api/webhook$",                          "dest": "/api/webhook.py" },
     { "src": "^/img/(.+)$",                             "dest": "/apps/tma/img/$1" },
     { "src": "^/([^/]+\\.json)$",                       "dest": "/apps/tma/$1" },
+    { "src": "^/redirect_web_app/app_config\\.js$",        "dest": "/apps/tma/redirect_web_app/app_config.js" },
     { "src": "^/redirect_web_app/redirect_web_app\\.js$",  "dest": "/apps/tma/redirect_web_app/redirect_web_app.js" },
     { "src": "^/redirect_web_app/pages\\.json$",          "dest": "/apps/tma/redirect_web_app/pages.json" },
     { "src": "^/bot(\\.html)?$",                          "dest": "/apps/tma/redirect_web_app/bot.html" },

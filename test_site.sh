@@ -67,10 +67,13 @@ echo "$(date)"
 
 # ── 1. Статические ресурсы ──────────────────────────────────────
 header "Статические ресурсы"
+check_200 "$BASE/redirect_web_app/app_config.js"       "app_config.js"
 check_200 "$BASE/redirect_web_app/redirect_web_app.js" "redirect_web_app.js"
 check_200 "$BASE/redirect_web_app/pages.json"          "pages.json"
 check_200 "$BASE/bot"                                  "bot.html"
 check_200 "$BASE/img/favicon.png"                      "favicon.png"
+# app_config.js — не содержит имя бота напрямую в HTML (вынесено в отдельный файл)
+check_content "$BASE/redirect_web_app/app_config.js" "app_config.js: содержит APP_CONFIG" "APP_CONFIG"
 
 # ── 2. JSON данные ──────────────────────────────────────────────
 header "JSON данные"
@@ -115,9 +118,9 @@ check_content \
 
 # ── 5. bot.html — содержит карту страниц ────────────────────────
 header "bot.html — роутер мини-аппа"
-check_content "$BASE/bot" "bot.html содержит PAGES"   "var PAGES"
-check_content "$BASE/bot" "bot.html содержит conf7"   "conf7"
-check_content "$BASE/bot" "bot.html содержит spkrs"   "spkrs"
+check_content "$BASE/bot" "bot.html содержит Telegram SDK"  "telegram-web-app.js"
+check_content "$BASE/bot" "bot.html загружает pages.json"   "pages.json"
+check_content "$BASE/bot" "bot.html содержит DEFAULT"       "DEFAULT"
 
 # ── Итог ────────────────────────────────────────────────────────
 echo ""
