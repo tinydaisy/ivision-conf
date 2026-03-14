@@ -18,22 +18,21 @@
     // Dev-fallback: ?sp=ref_pgconf7_pid123_srcinsta
     if(!sp) sp = new URLSearchParams(window.location.search).get('sp') || '';
 
-    // Загружаем карту страниц из pages.json и делаем редирект
-    fetch('/redirect_web_app/pages.json?v=' + Date.now())
-      .then(function(r){ return r.json(); })
-      .then(function(PAGES){
-        var dest = DEFAULT;
-        sp.split('_').forEach(function(part){
-          if(part.indexOf('pg') === 0){
-            var code = part.slice(2);
-            if(PAGES[code]) dest = PAGES[code];
-          }
-        });
-        window.location.replace(dest);
-      })
-      .catch(function(){
-        window.location.replace(DEFAULT);
-      });
+    // Карта страниц — редактировать здесь при добавлении новых страниц
+    // (дублирует pages.json — для мгновенного редиректа без сетевого запроса)
+    var PAGES = {
+      "conf7": "/ivision-conf-7",
+      "spkrs": "/ivision-for-speakers"
+    };
+
+    var dest = DEFAULT;
+    sp.split('_').forEach(function(part){
+      if(part.indexOf('pg') === 0){
+        var code = part.slice(2);
+        if(PAGES[code]) dest = PAGES[code];
+      }
+    });
+    window.location.replace(dest);
   </script>
 </head>
 <body></body>
