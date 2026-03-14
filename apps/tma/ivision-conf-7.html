@@ -394,7 +394,7 @@ if(startParam==='free'){
   document.getElementById('access').style.display='flex';
   if(firstName)document.getElementById('access-name').textContent=firstName+', ждём тебя на конференции!';
 }else{
-  fetch('./ivision-7.json?v='+Date.now())
+  fetch('./ivision-conf-7.json?v='+Date.now())
     .then(function(r){return r.json();})
     .then(function(c){
       render(c);
