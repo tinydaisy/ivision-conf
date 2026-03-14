@@ -148,14 +148,17 @@
       box-shadow:0 0 48px rgba(200,75,158,.12),0 8px 32px rgba(0,0,0,.4);
     }
     .t-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--peach),var(--purple));color:#080B12;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 18px;border-radius:var(--r-pill);white-space:nowrap;}
-    .t-name{font-weight:700;font-size:22px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px;}
-    .t-price{font-weight:700;font-size:30px;color:var(--peach);margin-bottom:16px;}
+    .t-name{font-weight:700;font-size:22px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px;text-align:left;}
+    .t-price{font-weight:700;font-size:30px;color:var(--peach);margin-bottom:16px;text-align:left;}
+    /* .t-price перенесён выше */
     .feat{list-style:none;margin-bottom:20px;}
     .feat li{font-size:13px;padding:7px 0;border-bottom:1px solid rgba(255,207,164,.06);display:flex;gap:9px;align-items:flex-start;line-height:1.45;text-align:left;}
     .feat li:last-child{border-bottom:none;}
     .feat li.y::before{content:'✓';color:var(--peach);flex-shrink:0;font-weight:700;}
     .feat li.n{color:var(--dim);}
     .feat li.n::before{content:'✗';color:rgba(255,207,164,.22);flex-shrink:0;}
+    /* Цифры subscribers/base_size в зачёркнутых пунктах — бледно-персиковый (п.2) */
+    .feat li.n .ph-sub,.feat li.n .ph-base{color:rgba(255,207,164,.28);}
 
     /* ── ABOUT (Марго) ── */
     #organizer-sec{
@@ -354,7 +357,7 @@
   <section class="sec sa">
     <div class="w">
       <span class="lbl">О проекте</span>
-      <div class="h2">МИССИЯ «Видение / iViSiON»</div>
+      <div class="h2">МИССИЯ ПРОЕКТА «ВИДЕНИЕ / iViSiON»</div>
       <div style="margin-top:24px">
         <p class="mission-intro">«ВИДЕНИЕ / iViSiON» – это регулярная онлайн-конференция для офлайн- и онлайн-предпринимателей.</p>
         <div class="slogan-frame">Я — ВИДЕНИЕ! Я — СТРАСТЬ! Я — ВЛИЯНИЕ!</div>
