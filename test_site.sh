@@ -100,16 +100,16 @@ check_content \
   "redirect_web_app.js"
 check_content \
   "$BASE/ivision-conf-7" \
-  "ivision-conf-7: APP_CONFIG.tg настроен" \
-  "APP_CONFIG"
+  "ivision-conf-7: app_config.js подключён" \
+  "app_config.js"
 check_content \
   "$BASE/ivision-for-speakers" \
   "ivision-for-speakers: скрипт редиректа подключён" \
   "redirect_web_app.js"
 check_content \
   "$BASE/ivision-for-speakers" \
-  "ivision-for-speakers: APP_CONFIG.tg настроен" \
-  "APP_CONFIG"
+  "ivision-for-speakers: app_config.js подключён" \
+  "app_config.js"
 # Проверка что сам redirect_web_app.js содержит логику редиректа на tg
 check_content \
   "$BASE/redirect_web_app/redirect_web_app.js" \
