@@ -217,12 +217,19 @@
 </head>
 <body>
 
+<!-- GC МОДАЛ — Участник -->
+<div class="gc-modal" id="gc-part" onclick="if(event.target===this)closeGC('gc-part')">
+  <div class="gc-box">
+    <button class="gc-close" onclick="closeGC('gc-part')">&#215;</button>
+    <script id="3f7a87f058715d4e576479f406ed9b9985b3df5a" src="https://medialift.margoforbs.ru/pl/lite/widget/script?id=1576111"></script>
+  </div>
+</div>
+
 <!-- GC МОДАЛ — Приоритет -->
 <div class="gc-modal" id="gc-prior" onclick="if(event.target===this)closeGC('gc-prior')">
   <div class="gc-box">
     <button class="gc-close" onclick="closeGC('gc-prior')">&#215;</button>
-    <!-- Сюда добавить виджет GetCourse для тарифа «Приоритет» -->
-    <p style="color:var(--muted);text-align:center;padding:20px 0;">Форма регистрации будет добавлена.</p>
+    <script id="810b0bd9bc4a798957b3e3b67fa34ced4c7e1f00" src="https://medialift.margoforbs.ru/pl/lite/widget/script?id=1576214"></script>
   </div>
 </div>
 
@@ -460,7 +467,7 @@
             <li class="n">Доступ к базе из 27 нелинейных стратегий для роста репутации, узнаваемости и продаж без вложений в рекламу</li>
           </ul>
           <div class="btn-tariff-wrap">
-            <button class="btn-pay" onclick="document.getElementById('tariffs-sec').scrollIntoView({behavior:'smooth'})">
+            <button class="btn-pay" onclick="openGC('gc-part')">
               <span class="btn-pay-i">ВЫБРАТЬ</span>
             </button>
           </div>
@@ -520,6 +527,15 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- CTA под About -->
+  <section class="sec" style="padding-top:0;padding-bottom:52px;">
+    <div class="w" style="text-align:center;">
+      <button class="btn-grad" onclick="document.getElementById('tariffs-sec').scrollIntoView({behavior:'smooth'})">
+        <span class="btn-grad-inner">ВЫБРАТЬ ТАРИФ</span>
+      </button>
     </div>
   </section>
 
