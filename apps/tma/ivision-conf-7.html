@@ -603,6 +603,9 @@ function render(c){
   h+='</div></section>';
 
   /* PROGRAM */
+  var spkStatusMap={};
+  c.speakers.forEach(function(sp){ spkStatusMap[sp.name]=sp.status; });
+
   h+='<section class="sec" id="program-sec"><div class="w">';
   h+='<div class="h2">ПРОГРАММА КОНФЕРЕНЦИИ</div>';
   h+='<div class="sched" id="sched-list">';
@@ -615,7 +618,9 @@ function render(c){
     h+='<div class="sd-body">';
     day.slots.forEach(function(sl){
       var theme=sl.theme||sl.title||'';
-      var spkHtml=(sl.speaker&&sl.speaker.trim())?'<span style="color:var(--peach);font-size:13px;font-weight:600;"> ('+e(sl.speaker)+')</span>':'';
+      var spkName=sl.speaker&&sl.speaker.trim();
+      var spkLabel=spkName?(spkName+(spkStatusMap[spkName]==='headliner'?' - ХЕДЛАЙНЕР':'')):''
+      var spkHtml=spkLabel?'<span style="color:var(--peach);font-size:13px;font-weight:600;"> ('+e(spkLabel)+')</span>':'';
       h+='<div class="slot"><div class="sl-time">'+e(sl.time)+'</div><div class="sl-title">'+e(theme)+spkHtml+'</div></div>';
     });
     h+='</div></div>';
