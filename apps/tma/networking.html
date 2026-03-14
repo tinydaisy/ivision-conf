@@ -151,7 +151,7 @@
     .t-name{font-weight:700;font-size:22px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px;}
     .t-price{font-weight:700;font-size:30px;color:var(--peach);margin-bottom:16px;}
     .feat{list-style:none;margin-bottom:20px;}
-    .feat li{font-size:13px;padding:7px 0;border-bottom:1px solid rgba(255,207,164,.06);display:flex;gap:9px;align-items:flex-start;line-height:1.45;}
+    .feat li{font-size:13px;padding:7px 0;border-bottom:1px solid rgba(255,207,164,.06);display:flex;gap:9px;align-items:flex-start;line-height:1.45;text-align:left;}
     .feat li:last-child{border-bottom:none;}
     .feat li.y::before{content:'✓';color:var(--peach);flex-shrink:0;font-weight:700;}
     .feat li.n{color:var(--dim);}
@@ -166,7 +166,7 @@
     /* п.2 — заголовок "ОРГАНИЗАТОР И МОДЕРАТОР" как h2 белыми буквами */
     .about-heading{font-weight:700;font-size:clamp(24px,7vw,38px);line-height:1.05;letter-spacing:.04em;text-transform:uppercase;color:#fff;margin-bottom:24px;}
     .about-photo{width:100%;max-width:320px;aspect-ratio:3/4;object-fit:cover;object-position:top;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;border:2px solid rgba(255,207,164,.22);box-shadow:0 40px 80px rgba(0,0,0,.5),0 0 60px rgba(200,75,158,.18);margin:0 auto;display:block;}
-    .about-name{font-weight:900;font-size:clamp(28px,8vw,44px);text-transform:uppercase;letter-spacing:.03em;margin-bottom:18px;}
+    .about-name{font-weight:900;font-size:clamp(28px,8vw,44px);text-transform:uppercase;letter-spacing:.03em;margin-bottom:18px;color:var(--peach);}
     .about-creds{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
     .about-creds li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--muted);line-height:1.5;}
     .about-creds li .dot{color:var(--peach);flex-shrink:0;}
@@ -503,7 +503,7 @@
           <div class="about-name">Марго Форбс</div>
           <ul class="about-creds">
             <li><span class="dot">◆</span>Нелинейный стратег для маркетинга и продаж</li>
-            <li><span class="dot">◆</span>Создатель бизнес-конференции «Айвижн&nbsp;/ iViSiON» для продвижения предпринимателей и экспертов</li>
+            <li><span class="dot">◆</span>Создатель бизнес-конференции «Видение&nbsp;/ iViSiON» для продвижения предпринимателей и экспертов</li>
             <li><span class="dot">◆</span>Чемпион смеха Приволжского округа 2025</li>
             <li><span class="dot">◆</span>Зам. председателя комитета по личному бренду БРО «Опора России»</li>
             <li><span class="dot">◆</span>Кандидат физ-мат наук</li>
@@ -521,6 +521,19 @@
             <div class="astat"><span class="astat-num">20+</span><span class="astat-lbl">ниш клиентов</span></div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6б. CTA под блоком организатора -->
+  <section class="sec sa" style="padding:36px 0;text-align:center;">
+    <div class="w" style="text-align:center;">
+      <div class="h2" style="margin-bottom:18px;">Твоё место ждёт тебя</div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:28px;line-height:1.6;">Присоединяйся к нетворкингу — заяви о себе, найди партнёров и расширь социальный капитал</p>
+      <div style="display:inline-block;width:100%;max-width:360px;">
+        <button class="btn-grad-wrap" onclick="document.getElementById('tariffs-sec').scrollIntoView({behavior:'smooth'})">
+          <span class="btn-grad-inner">ЗАРЕГИСТРИРОВАТЬСЯ</span>
+        </button>
       </div>
     </div>
   </section>
