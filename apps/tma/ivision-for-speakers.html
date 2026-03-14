@@ -12,7 +12,7 @@
       var pid=sp.get('new_partner_id')||'';
       var src=sp.get('utm_source')||'';
       if(app==='tg'){
-        var p=['ref'];
+        var p=['ref','pgspkrs'];
         if(pid)p.push('pid'+pid);
         if(src)p.push('src'+src);
         window.location.replace('https://t.me/Margo_forbs_bot/ivision?startapp='+p.join('_'));
