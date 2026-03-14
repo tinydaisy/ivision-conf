@@ -15,7 +15,9 @@
 
 ```
 redirect_web_app/
-├── redirect_web_app.js       ← главный скрипт маршрутизации
+├── redirect_web_app.js       ← скрипт маршрутизации (подключается на каждой странице)
+├── bot.html                  ← роутер Mini App (URL регистрируется в BotFather один раз)
+├── pages.json                ← карта кодов страниц → URL (единственный файл для редактирования при добавлении страниц)
 └── brief_redirect_web_app.md ← эта документация
 ```
 
@@ -35,13 +37,38 @@ redirect_web_app.js проверяет ?app=...
    ─────┴────────────────────┐
    │ ?app=tg                 │ нет параметра
    ▼                         ▼
-Редирект в Telegram      Показывается
-Mini App                 веб-версия страницы
-(t.me/БОТ/АППЛЕТ         (как обычно)
- ?startapp=ref_pgCODE)
+Редирект на бот          Показывается
+t.me/БОТ/АППЛЕТ          веб-версия страницы
+?startapp=ref_pgCODE     (как обычно)
+        │
+        ▼
+   Telegram открывает
+   bot.html (URL из BotFather)
+        │
+        ▼
+   bot.html читает startapp,
+   загружает pages.json,
+   находит URL по PAGE_CODE,
+   открывает нужную страницу
 ```
 
-Внутри Telegram Mini App — `bot.html` читает `start_param`, находит нужную страницу по коду и открывает её.
+---
+
+## pages.json — главный конфигурационный файл
+
+Это единственный файл, который нужно редактировать при добавлении новых страниц.
+
+```json
+{
+  "conf7": "/ivision-conf-7",
+  "spkrs": "/ivision-for-speakers"
+}
+```
+
+**Формат:** `"КОД_СТРАНИЦЫ": "/url-страницы"`
+
+- Ключ — `PAGE_CODE` страницы (латиница, без пробелов)
+- Значение — URL страницы на сайте
 
 ---
 
@@ -63,65 +90,60 @@ Mini App                 веб-версия страницы
 
 ---
 
-## Как подключить к новой странице
+## Как добавить новую страницу (3 шага)
 
-### Шаг 1 — добавить конфиг и скрипт в HTML
+### Шаг 1 — добавить страницу в `pages.json`
 
-В `<head>` страницы, **до всех остальных скриптов**:
+```json
+{
+  "conf7":  "/ivision-conf-7",
+  "spkrs":  "/ivision-for-speakers",
+  "mypage": "/my-new-page"
+}
+```
+
+### Шаг 2 — подключить скрипт в `<head>` новой HTML-страницы
 
 ```html
 <script>
-  var PAGE_CODE = 'mypage';       // уникальный код этой страницы (латиница, цифры)
-  var APP_CONFIG = {
-    tg: 'https://t.me/Margo_forbs_bot/ivision'
-    // max: 'https://...'          // добавить когда появится Max
-  };
+  var PAGE_CODE  = 'mypage';
+  var APP_CONFIG = { tg: 'https://t.me/Margo_forbs_bot/ivision' };
 </script>
 <script src="/redirect_web_app/redirect_web_app.js"></script>
-```
-
-### Шаг 2 — добавить код в `bot.html`
-
-В файле `bot.html` (универсальный роутер Mini App) в карту `PAGES`:
-
-```js
-var PAGES = {
-  'conf7':  '/ivision-conf-7',
-  'spkrs':  '/ivision-for-speakers',
-  'mypage': '/my-page-url'       // ← добавить эту строку
-};
 ```
 
 ### Шаг 3 — добавить маршрут в `vercel.json`
 
 ```json
-{ "src": "^/my-page-url(\\.html)?$", "dest": "/apps/tma/my-page.html" }
+{ "src": "^/my-new-page(\\.html)?$", "dest": "/apps/tma/my-new-page.html" }
 ```
 
 Добавить **перед** строкой с `^/(.*)$` (catch-all).
 
-### Шаг 4 — готово. Ссылки для страницы:
+**Готово.** Ссылки для новой страницы:
 
 | Назначение | Ссылка |
 |---|---|
-| Веб-версия | `https://домен/my-page-url` |
-| Открыть в Telegram | `https://домен/my-page-url?app=tg` |
-| С партнёрским ID | `https://домен/my-page-url?app=tg&new_partner_id=123` |
-| С UTM | `https://домен/my-page-url?app=tg&utm_source=insta` |
-| Всё вместе | `https://домен/my-page-url?app=tg&new_partner_id=123&utm_source=insta` |
+| Веб-версия | `https://домен/my-new-page` |
+| Открыть в Telegram | `https://домен/my-new-page?app=tg` |
+| С партнёрским ID | `https://домен/my-new-page?app=tg&new_partner_id=123` |
+| С UTM | `https://домен/my-new-page?app=tg&utm_source=insta` |
 
 ---
 
 ## Как перенести в другой проект
 
 1. Скопировать папку `redirect_web_app/` в `apps/tma/` нового проекта
-2. В `vercel.json` добавить маршрут для скрипта:
+2. Отредактировать `pages.json` — вписать страницы нового проекта
+3. В `bot.html` изменить `DEFAULT` на нужную страницу по умолчанию
+4. В `vercel.json` добавить маршруты:
    ```json
-   { "src": "^/redirect_web_app/redirect_web_app\\.js$", "dest": "/apps/tma/redirect_web_app/redirect_web_app.js" }
+   { "src": "^/redirect_web_app/redirect_web_app\\.js$", "dest": "/apps/tma/redirect_web_app/redirect_web_app.js" },
+   { "src": "^/redirect_web_app/pages\\.json$",          "dest": "/apps/tma/redirect_web_app/pages.json" },
+   { "src": "^/bot(\\.html)?$",                          "dest": "/apps/tma/redirect_web_app/bot.html" }
    ```
-3. Создать `bot.html` (роутер Mini App) — пример в этом репозитории: `apps/tma/bot.html`
-4. Зарегистрировать бота и Mini App в BotFather, указать URL: `https://домен/bot`
-5. Подключить скрипт на каждой странице по инструкции выше (Шаги 1–3)
+5. Зарегистрировать бота в BotFather, создать Mini App, указать URL: `https://домен/bot`
+6. Подключить скрипт на каждой странице (Шаги 1–3 из раздела выше)
 
 ---
 
@@ -131,7 +153,7 @@ var PAGES = {
 ```js
 var APP_CONFIG = {
   tg:  'https://t.me/Margo_forbs_bot/ivision',
-  max: 'https://m.vk.com/app...'    // URL Mini App в Max
+  max: 'https://...'    // URL Mini App в Max
 };
 ```
 
@@ -144,11 +166,16 @@ https://домен/страница?app=max&new_partner_id=123&utm_source=tg
 
 ---
 
-## Связанные файлы
+## Структура файлов проекта (итог)
 
-| Файл | Роль |
-|---|---|
-| `redirect_web_app/redirect_web_app.js` | Скрипт маршрутизации |
-| `apps/tma/bot.html` | Роутер Mini App (читает startapp, открывает нужную страницу) |
-| `vercel.json` | Маршруты деплоя (Vercel) |
-| `apps/tma/*.html` | Страницы, к которым подключена технология |
+```
+apps/tma/
+├── redirect_web_app/           ← вся технология здесь
+│   ├── redirect_web_app.js     ← скрипт (подключается на каждой странице)
+│   ├── bot.html                ← роутер Mini App (URL в BotFather)
+│   ├── pages.json              ← карта страниц (редактировать при добавлении новых)
+│   └── brief_redirect_web_app.md
+├── ivision-conf-7.html         ← страница конференции
+├── ivision-for-speakers.html   ← страница для спикеров
+└── ...
+```

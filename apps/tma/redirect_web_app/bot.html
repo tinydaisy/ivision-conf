@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
+  <title>iVision</title>
+  <script>
+    var DEFAULT = '/ivision-conf-7';
+    var twa = window.Telegram && window.Telegram.WebApp;
+    var sp = '';
+
+    if(twa){
+      twa.ready();
+      twa.expand();
+      sp = (twa.initDataUnsafe && twa.initDataUnsafe.start_param) || '';
+    }
+
+    // Dev-fallback: ?sp=ref_pgconf7_pid123_srcinsta
+    if(!sp) sp = new URLSearchParams(window.location.search).get('sp') || '';
+
+    // Загружаем карту страниц из pages.json и делаем редирект
+    fetch('/redirect_web_app/pages.json?v=' + Date.now())
+      .then(function(r){ return r.json(); })
+      .then(function(PAGES){
+        var dest = DEFAULT;
+        sp.split('_').forEach(function(part){
+          if(part.indexOf('pg') === 0){
+            var code = part.slice(2);
+            if(PAGES[code]) dest = PAGES[code];
+          }
+        });
+        window.location.replace(dest);
+      })
+      .catch(function(){
+        window.location.replace(DEFAULT);
+      });
+  </script>
+</head>
+<body></body>
+</html>
