@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
+  <title>Международный онлайн-нетворкинг | Марго Форбс</title>
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <script>var PAGE_CODE = 'ntwrk';</script>
+  <script src="/redirect_web_app/app_config.js"></script>
+  <script src="/redirect_web_app/redirect_web_app.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --peach:#FFCFA4; --purple:#C084FC; --teal:#25455D; --pink:#C84B9E;
+      --dark:#080B12; --mid:#0D111A; --card:#111827;
+      --text:#F5F0E8; --muted:rgba(245,240,232,.55); --dim:rgba(245,240,232,.32);
+      --border:rgba(255,207,164,.18);
+      --btn-grad:linear-gradient(135deg,#FFCFA4 0%,#C084FC 50%,#25455D 100%);
+      --r-md:16px; --r-lg:24px; --r-pill:100px;
+      --ff:'Roboto',system-ui,sans-serif;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--dark);color:var(--text);font-family:var(--ff);font-size:15px;line-height:1.55;}
+    .w{max-width:480px;margin:0 auto;padding:0 20px;}
+    .sec{padding:52px 0;}
+    .sa{background:var(--mid);}
+
+    /* ── TYPOGRAPHY ── */
+    .h2{font-weight:700;font-size:clamp(24px,7vw,38px);line-height:1.05;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px;}
+    .lbl{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--peach);margin-bottom:14px;display:block;}
+
+    /* ── BUTTONS ── */
+    .btn-grad-wrap{display:block;width:100%;padding:8px;border-radius:var(--r-pill);background:var(--btn-grad);cursor:pointer;border:none;transition:transform .25s ease,box-shadow .25s ease;box-shadow:0 0 18px rgba(255,207,164,.25),0 0 36px rgba(192,132,252,.15);}
+    .btn-grad-wrap:active{transform:scale(.97);}
+    .btn-grad-inner{display:flex;align-items:center;justify-content:center;background:var(--dark);color:var(--text);font-family:var(--ff);font-weight:700;font-size:15px;padding:14px 36px;border-radius:var(--r-pill);transition:background .25s ease;text-align:center;width:100%;border:none;cursor:pointer;white-space:normal;line-height:1.3;}
+    .btn-grad-wrap:active .btn-grad-inner{background:rgba(8,11,18,.75);}
+    .btn-pay{display:block;width:100%;padding:4px;border-radius:var(--r-pill);background:var(--btn-grad);cursor:pointer;border:none;transition:transform .25s ease;box-shadow:0 0 18px rgba(255,207,164,.2);}
+    .btn-pay:active{transform:scale(.97);}
+    .btn-pay-i{display:flex;align-items:center;justify-content:center;background:rgba(255,207,164,.12);color:var(--text);font-family:var(--ff);font-weight:700;font-size:15px;padding:14px 36px;border-radius:var(--r-pill);text-align:center;width:100%;border:none;cursor:pointer;}
+    .btn-align{text-align:center;}
+
+    /* ── LOADING ── */
+    #loading{min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;}
+    .spin{width:34px;height:34px;border:3px solid rgba(255,207,164,.15);border-top-color:var(--peach);border-radius:50%;animation:spin .8s linear infinite;}
+    @keyframes spin{to{transform:rotate(360deg);}}
+    .loading-txt{font-size:13px;color:var(--muted);}
+
+    /* ── HERO ── */
+    #hero{position:relative;padding:0;overflow:hidden;background:var(--dark);}
+    #hero::before{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(37,69,93,.6) 0%,rgba(8,11,18,.97) 70%);z-index:1;pointer-events:none;}
+    .hero-rings{position:absolute;right:-15%;top:-10%;width:70%;max-width:420px;opacity:.18;pointer-events:none;z-index:1;}
+    .glow-pink{position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(200,75,158,.35) 0%,transparent 70%);pointer-events:none;}
+    .glow-teal{position:absolute;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(37,69,93,.5) 0%,transparent 70%);pointer-events:none;}
+    .hero-inner{position:relative;z-index:2;padding:36px 20px 44px;}
+    /* Top logos row */
+    .hero-logos{display:flex;align-items:center;gap:14px;margin-bottom:28px;}
+    .hero-opora{height:34px;width:auto;object-fit:contain;border-radius:6px;}
+    .hero-ivision{height:30px;width:auto;object-fit:contain;}
+    /* Two-column grid */
+    .hero-grid{display:flex;flex-direction:column;gap:32px;}
+    /* Label above title */
+    .hero-label{font-size:13px;font-weight:600;color:var(--muted);line-height:1.5;margin-bottom:16px;}
+    /* Main title */
+    .hero-h1{font-weight:900;font-size:clamp(36px,11vw,64px);line-height:.95;letter-spacing:.02em;text-transform:uppercase;margin-bottom:20px;}
+    .hero-h1 .accent{background:var(--btn-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    /* Bullet list */
+    .hero-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
+    .hero-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--muted);line-height:1.5;}
+    .hero-dot{width:8px;height:8px;border-radius:50%;background:var(--peach);flex-shrink:0;margin-top:5px;}
+    /* Photo */
+    .hero-photo-wrap{display:flex;justify-content:center;align-items:center;position:relative;}
+    .hero-photo{width:100%;max-width:280px;aspect-ratio:3/4;object-fit:cover;object-position:top;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;border:2px solid rgba(255,207,164,.22);box-shadow:0 30px 60px rgba(0,0,0,.5),0 0 60px rgba(200,75,158,.2);}
+    /* Deco rings on photo */
+    .hero-deco{position:absolute;border-radius:50%;pointer-events:none;}
+    .hero-deco-1{width:110px;height:110px;border:1.5px solid rgba(255,207,164,.25);border-radius:30% 70% 70% 30% / 30% 30% 70% 70%;top:8%;right:4%;}
+    .hero-deco-2{width:75px;height:75px;border:1px solid rgba(192,132,252,.3);border-radius:60% 40% 40% 60%;bottom:10%;left:8%;}
+
+    /* ── MARQUEE ── */
+    #marquee-sec{background:var(--peach);overflow:hidden;padding:0;}
+    .mq-track{display:flex;height:40px;align-items:center;overflow:hidden;}
+    .mq-track+.mq-track{border-top:1px solid rgba(8,11,18,.15);}
+    .mq-inner{display:flex;white-space:nowrap;animation:mqleft 32s linear infinite;}
+    .mq-inner.rev{animation:mqright 32s linear infinite;}
+    .mq-item{font-family:var(--ff);font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--dark);padding:0 18px;}
+    .mq-dot{opacity:.3;padding:0 2px;}
+    @keyframes mqleft{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    @keyframes mqright{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+
+    /* ── MISSION ── */
+    .mission-intro{font-size:15px;font-weight:600;color:var(--peach);margin-bottom:14px;line-height:1.5;}
+    .slogan-frame{background:linear-gradient(var(--dark),var(--dark)) padding-box,linear-gradient(135deg,var(--pink),var(--peach)) border-box;border:2px solid transparent;border-radius:var(--r-md);padding:18px 20px;text-align:center;color:#fff;font-weight:700;font-size:clamp(17px,5vw,24px);letter-spacing:.06em;line-height:1.3;margin:16px 0;text-transform:uppercase;}
+    .mission-photo{width:100%;border-radius:var(--r-md);margin:16px 0;display:block;}
+    .mission-text{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:14px;}
+    .mission-footer{font-size:13px;color:var(--dim);line-height:1.6;font-style:italic;border-left:3px solid var(--peach);padding-left:14px;}
+
+    /* ── DIFFERENTIATORS ── */
+    .diff-layout{display:flex;flex-direction:column;gap:24px;margin-top:24px;}
+    .diff-list{list-style:none;display:flex;flex-direction:column;gap:14px;}
+    .diff-list li{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--muted);line-height:1.6;}
+    .diff-dot{width:8px;height:8px;border-radius:50%;background:var(--peach);flex-shrink:0;margin-top:6px;}
+    .diff-img{width:100%;border-radius:var(--r-lg);display:block;object-fit:cover;}
+
+    /* ── TARIFFS ── */
+    .tariffs-grid{display:flex;flex-direction:column;gap:16px;margin-top:24px;}
+    .tariff{background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px 20px;position:relative;}
+    .tariff.rec{border-color:transparent;background:linear-gradient(var(--card),var(--card)) padding-box,linear-gradient(135deg,var(--peach),var(--purple)) border-box;box-shadow:0 0 48px rgba(200,75,158,.1);}
+    .t-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--peach),var(--purple));color:#080B12;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 18px;border-radius:var(--r-pill);white-space:nowrap;}
+    .t-name{font-weight:700;font-size:22px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px;}
+    .t-price{font-weight:700;font-size:30px;color:var(--peach);margin-bottom:16px;}
+    .feat{list-style:none;margin-bottom:20px;}
+    .feat li{font-size:13px;padding:7px 0;border-bottom:1px solid rgba(255,207,164,.06);display:flex;gap:9px;align-items:flex-start;line-height:1.45;}
+    .feat li:last-child{border-bottom:none;}
+    .feat li.y::before{content:'✓';color:var(--peach);flex-shrink:0;font-weight:700;}
+    .feat li.n{color:var(--dim);}
+    .feat li.n::before{content:'✗';color:rgba(255,207,164,.22);flex-shrink:0;}
+
+    /* ── ABOUT (Марго) ── */
+    .about-grid{display:flex;flex-direction:column;gap:32px;margin-top:24px;}
+    .about-photo{width:100%;max-width:320px;aspect-ratio:3/4;object-fit:cover;object-position:top;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;border:2px solid rgba(255,207,164,.22);box-shadow:0 40px 80px rgba(0,0,0,.5),0 0 60px rgba(200,75,158,.15);margin:0 auto;display:block;}
+    .about-role{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--peach);margin-bottom:14px;display:block;}
+    .about-name{font-weight:900;font-size:clamp(28px,8vw,44px);text-transform:uppercase;letter-spacing:.03em;margin-bottom:18px;}
+    .about-creds{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
+    .about-creds li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--muted);line-height:1.5;}
+    .about-creds li .dot{color:var(--peach);flex-shrink:0;}
+    .about-mission{font-size:13px;color:var(--peach);font-style:italic;line-height:1.7;border-left:2px solid var(--peach);padding-left:16px;margin-bottom:24px;}
+    .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+    .astat{background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-md);padding:16px 14px;}
+    .astat-num{font-weight:700;font-size:28px;color:var(--peach);display:block;}
+    .astat-lbl{font-size:11px;color:var(--muted);display:block;margin-top:3px;line-height:1.4;}
+
+    /* ── GC MODALS ── */
+    .gc-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.88);z-index:99999;align-items:flex-start;justify-content:center;overflow-y:auto;}
+    .gc-box{background:#16162a;border:1px solid rgba(255,207,164,.2);padding:48px 18px 28px;border-radius:var(--r-lg);max-width:480px;width:92%;position:relative;margin:40px auto;}
+    .gc-close{position:absolute;top:12px;right:16px;background:none;border:none;color:#aaa;font-size:30px;cursor:pointer;line-height:1;}
+
+    /* ── FOOTER ── */
+    #site-footer{background:#04060d;padding:28px 0;border-top:1px solid rgba(255,207,164,.08);}
+    .footer-links{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:14px;}
+    .footer-links a{font-size:11px;color:var(--muted);text-decoration:underline;text-underline-offset:3px;}
+    .footer-legal{font-size:11px;color:var(--dim);line-height:1.6;}
+
+    /* ── DESKTOP ── */
+    @media(min-width:641px){
+      .w{max-width:1100px;padding:0 48px;}
+      .hero-inner{padding:52px 48px 60px;max-width:1100px;margin:0 auto;}
+      .hero-grid{flex-direction:row;align-items:center;gap:60px;}
+      .hero-content{flex:1.1;}
+      .hero-photo-wrap{flex:1;}
+      .hero-photo{max-width:380px;margin:0 auto;display:block;}
+      .btn-align .btn-grad-wrap,.btn-align .btn-pay{width:auto;display:inline-block;}
+      .about-grid{flex-direction:row;align-items:center;gap:60px;}
+      .about-photo-wrap{flex:1;}
+      .about-content{flex:1.3;}
+      .about-photo{max-width:380px;}
+      .diff-layout{flex-direction:row;align-items:flex-start;gap:40px;}
+      .diff-list-wrap{flex:1;}
+      .diff-img-wrap{flex:1;}
+      .tariffs-grid{flex-direction:row;align-items:flex-start;}
+      .tariff{flex:1;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── GC МОДАЛЬНЫЕ ОКНА ── -->
+<div class="gc-modal" id="gc-t0" onclick="if(event.target===this)closeGC('gc-t0')">
+  <div class="gc-box">
+    <button class="gc-close" onclick="closeGC('gc-t0')">&#215;</button>
+    <script id="3f7a87f058715d4e576479f406ed9b9985b3df5a" src="https://medialift.margoforbs.ru/pl/lite/widget/script?id=1576111"></script>
+  </div>
+</div>
+<div class="gc-modal" id="gc-t1" onclick="if(event.target===this)closeGC('gc-t1')">
+  <div class="gc-box">
+    <button class="gc-close" onclick="closeGC('gc-t1')">&#215;</button>
+    <script id="3e9b15a8ec64d80b45201a683d42c7af95fd2de0" src="https://medialift.margoforbs.ru/pl/lite/widget/script?id=1576112"></script>
+  </div>
+</div>
+<div class="gc-modal" id="gc-t2" onclick="if(event.target===this)closeGC('gc-t2')">
+  <div class="gc-box">
+    <button class="gc-close" onclick="closeGC('gc-t2')">&#215;</button>
+    <script id="75bcca2a72b37160e57be0e9cc436c3aecfd6430" src="https://medialift.margoforbs.ru/pl/lite/widget/script?id=1576113"></script>
+  </div>
+</div>
+
+<!-- ── ЗАГРУЗКА ── -->
+<div id="loading"><div class="spin"></div><div class="loading-txt">Загрузка...</div></div>
+
+<!-- ── ОСНОВНОЙ КОНТЕНТ ── -->
+<div id="app" style="display:none">
+
+  <!-- 1. HERO -->
+  <section id="hero">
+    <div class="glow-pink" style="top:-80px;left:-80px;"></div>
+    <div class="glow-teal"  style="bottom:0;right:-60px;"></div>
+    <!-- Декоративные кольца -->
+    <svg class="hero-rings" viewBox="0 0 700 700" aria-hidden="true">
+      <defs>
+        <linearGradient id="rg1" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%"  stop-color="#1A3A5C"/>
+          <stop offset="50%" stop-color="#6B4FA0"/>
+          <stop offset="100%" stop-color="#C84B9E"/>
+        </linearGradient>
+      </defs>
+      <circle cx="350" cy="350" r="50"  fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.7"/>
+      <circle cx="350" cy="350" r="80"  fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.6"/>
+      <circle cx="350" cy="350" r="110" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.5"/>
+      <circle cx="350" cy="350" r="140" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.4"/>
+      <circle cx="350" cy="350" r="170" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.33"/>
+      <circle cx="350" cy="350" r="200" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.27"/>
+      <circle cx="350" cy="350" r="230" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.22"/>
+      <circle cx="350" cy="350" r="260" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.17"/>
+      <circle cx="350" cy="350" r="290" fill="none" stroke="url(#rg1)" stroke-width="0.7" opacity="0.13"/>
+      <circle cx="350" cy="350" r="320" fill="none" stroke="url(#rg1)" stroke-width="0.6" opacity="0.09"/>
+      <circle cx="350" cy="350" r="345" fill="none" stroke="url(#rg1)" stroke-width="0.5" opacity="0.06"/>
+    </svg>
+
+    <div class="hero-inner">
+      <!-- Логотипы -->
+      <div class="hero-logos">
+        <img src="/img/opora.png" alt="Опора России" class="hero-opora">
+        <img src="/img/logo_ivision.png" alt="iViSiON" class="hero-ivision">
+      </div>
+
+      <div class="hero-grid">
+        <!-- Текстовый блок -->
+        <div class="hero-content">
+          <p class="hero-label">Комьюнити Марго Форбс &amp; бизнес-конференции «Видение&nbsp;/&nbsp;iViSiON» (<span class="ph-sub">900</span>+&nbsp;человек)</p>
+          <h1 class="hero-h1">МЕЖДУНАРОДНЫЙ<br><span class="accent">ОНЛАЙН-НЕТВОРКИНГ</span></h1>
+          <ul class="hero-list">
+            <li><span class="hero-dot"></span>Заявите о себе и повысите узнаваемость</li>
+            <li><span class="hero-dot"></span>Донесёте ценность своих услуг&nbsp;/ товаров&nbsp;/ продуктов через интерактив</li>
+            <li><span class="hero-dot"></span>Расширите социальный капитал и найдёте партнёров или клиентов</li>
+          </ul>
+          <div class="btn-align" style="text-align:left">
+            <button class="btn-grad-wrap" onclick="document.getElementById('tariffs-sec').scrollIntoView({behavior:'smooth'})">
+              <span class="btn-grad-inner">ПОЛУЧИТЬ БИЛЕТ БЕСПЛАТНО</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Фото в форме яйца -->
+        <div class="hero-photo-wrap">
+          <div class="hero-deco hero-deco-1"></div>
+          <div class="hero-deco hero-deco-2"></div>
+          <img src="/img/margo.jpg" alt="Марго Форбс" class="hero-photo">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. БЕГУЩИЕ СТРОКИ -->
+  <section id="marquee-sec">
+    <div class="mq-track">
+      <div class="mq-inner">
+        <span class="mq-item">Объединили 3600+ экспертов и предпринимателей</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">40+ лидеров рынка выступили спикерами</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">6 конференций</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">1000 участников</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">50% аудитории с доходом более 100.000–200.000 ₽</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">Аудитория экспертов и предпринимателей</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">Интерактив со зрителями</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">Призовой фонд на 300.000+ рублей</span><span class="mq-item mq-dot">·</span>
+        <!-- дублируем для бесшовности -->
+        <span class="mq-item">Объединили 3600+ экспертов и предпринимателей</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">40+ лидеров рынка выступили спикерами</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">6 конференций</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">1000 участников</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">50% аудитории с доходом более 100.000–200.000 ₽</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">Аудитория экспертов и предпринимателей</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">Интерактив со зрителями</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">Призовой фонд на 300.000+ рублей</span><span class="mq-item mq-dot">·</span>
+      </div>
+    </div>
+    <div class="mq-track">
+      <div class="mq-inner rev">
+        <span class="mq-item">«Видение / iViSiON»</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">Опора России</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">Нетворкинг онлайн</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">Международное комьюнити</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">Партнёрство с топами ниши</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">Выступление и самопрезентация</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">Рост социального капитала</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">Регалии и титулы</span><span class="mq-item mq-dot">·</span>
+        <!-- дублируем -->
+        <span class="mq-item">«Видение / iViSiON»</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">Опора России</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">Нетворкинг онлайн</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">Международное комьюнити</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">Партнёрство с топами ниши</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">Выступление и самопрезентация</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">Рост социального капитала</span><span class="mq-item mq-dot">·</span>
+        <span class="mq-item">Регалии и титулы</span><span class="mq-item mq-dot">·</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. МИССИЯ -->
+  <section class="sec sa">
+    <div class="w">
+      <span class="lbl">О проекте</span>
+      <div class="h2">МИССИЯ «Видение / iViSiON»</div>
+      <div style="margin-top:24px">
+        <p class="mission-intro">«ВИДЕНИЕ / iViSiON» – это регулярная онлайн-конференция для офлайн- и онлайн-предпринимателей.</p>
+        <div class="slogan-frame">Я — ВИДЕНИЕ! Я — СТРАСТЬ! Я — ВЛИЯНИЕ!</div>
+        <img class="mission-photo" src="/img/mission.jpg" alt="Миссия iViSiON" loading="lazy">
+        <p class="mission-text">Мы убеждены: бизнес — это высшая форма творчества для тех, кто влюблён в своё дело, кто творит и вытворяет на рынке. Здесь не строят «быстрых лошадей», здесь создают правила и активы, которые открывают окна возможностей даже в кризисы, меняют мир и оставляют след на рынке.</p>
+        <p class="mission-footer">Благодаря бизнесу и нелинейным стратегиям мы создаём среду для развития офлайн- и онлайн-предпринимателей и приумножения наследия для общества.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. ЧТО ОТЛИЧАЕТ НАС -->
+  <section class="sec">
+    <div class="w">
+      <span class="lbl">Наши особенности</span>
+      <div class="h2">ЧТО ОТЛИЧАЕТ НАС<br>ОТ ДРУГИХ НЕТВОРКИНГОВ?</div>
+      <div class="diff-layout">
+        <div class="diff-list-wrap">
+          <ul class="diff-list">
+            <li>
+              <span class="diff-dot"></span>
+              <span>Проявленность не только в комнате на 15–30 человек, но и в чате на <strong style="color:var(--peach)"><span class="ph-sub">900</span>+</strong> участников</span>
+            </li>
+            <li>
+              <span class="diff-dot"></span>
+              <span>Долгий эффект видимости: о вас могут узнавать в чате и после нетворкинга</span>
+            </li>
+            <li>
+              <span class="diff-dot"></span>
+              <span>Интерактивные задания, которые раскрывают грани вашей личности и ценность ваших услуг, товаров и продуктов</span>
+            </li>
+            <li>
+              <span class="diff-dot"></span>
+              <span>Возможность выиграть регалии и титулы в дополнение к новым контактам и социальному капиталу</span>
+            </li>
+          </ul>
+        </div>
+        <div class="diff-img-wrap">
+          <img
+            class="diff-img"
+            src="https://fs-thb02.getcourse.ru/fileservice/file/thumbnail/h/bfa182aa2193f65a0b7e2f6867e90554.jpeg/s/s1200x/a/904149/sc/148"
+            alt="Нетворкинг iViSiON"
+            loading="lazy"
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. ТАРИФЫ -->
+  <section class="sec sa" id="tariffs-sec">
+    <div class="w">
+      <span class="lbl">Форматы участия</span>
+      <div class="h2">ВАРИАНТЫ УЧАСТИЯ</div>
+      <div class="tariffs-grid">
+
+        <!-- Тариф 1: Участник -->
+        <div class="tariff">
+          <div class="t-name">Участник</div>
+          <div class="t-price">0 руб.</div>
+          <ul class="feat">
+            <li class="y">Участие в интерактиве нетворкинга</li>
+            <li class="y">Доступ к закрытому чату <span class="ph-sub">900</span>+&nbsp;предпринимателей и экспертов</li>
+            <li class="y">Право выложить рекламную ссылку на свой канал или любой свой продающий материал</li>
+            <li class="n">Выступление с самопрезентацией 5&nbsp;минут на онлайн-нетворкинге</li>
+            <li class="n">Статус гостя-спикера</li>
+            <li class="n">Размещение фото и имени на рекламной афише нетворкинга</li>
+            <li class="n">Размещение имени и темы в программе нетворкинга</li>
+            <li class="n">Рассылка афиши и программы по емейл и чат-боту на <span class="ph-base">2800</span>&nbsp;чел.</li>
+            <li class="n">Рассылка поста-знакомства на <span class="ph-base">2800</span>&nbsp;чел. по чат-боту: фото + регалии + ссылка на канал</li>
+            <li class="n">Ваш видео-кружок в чат на <span class="ph-sub">900</span>+&nbsp;человек + имя + ссылка на канал + тема вашего выступления</li>
+            <li class="n">Рассылка вашего рекламного материала по базе <span class="ph-base">2800</span>+&nbsp;чел. после выступления</li>
+          </ul>
+          <div class="btn-align">
+            <button class="btn-pay" onclick="openGC('gc-t0')">
+              <span class="btn-pay-i">ВЫБРАТЬ</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Тариф 2: VIP-Микрофон -->
+        <div class="tariff rec">
+          <div class="t-badge">Популярный</div>
+          <div class="t-name">VIP-«Микрофон»</div>
+          <div class="t-price">4 900 ₽</div>
+          <ul class="feat">
+            <li class="y">Участие в интерактиве нетворкинга</li>
+            <li class="y">Доступ к закрытому чату <span class="ph-sub">900</span>+&nbsp;предпринимателей и экспертов</li>
+            <li class="y">Право выложить рекламную ссылку на свой канал или любой свой продающий материал</li>
+            <li class="y">Выступление с самопрезентацией 5&nbsp;минут на онлайн-нетворкинге</li>
+            <li class="n">Статус гостя-спикера</li>
+            <li class="n">Размещение фото и имени на рекламной афише нетворкинга</li>
+            <li class="n">Размещение имени и темы в программе нетворкинга</li>
+            <li class="n">Рассылка афиши и программы по емейл и чат-боту на <span class="ph-base">2800</span>&nbsp;чел.</li>
+            <li class="n">Рассылка поста-знакомства на <span class="ph-base">2800</span>&nbsp;чел. по чат-боту: фото + регалии + ссылка на канал</li>
+            <li class="n">Ваш видео-кружок в чат на <span class="ph-sub">900</span>+&nbsp;человек + имя + ссылка на канал + тема вашего выступления</li>
+            <li class="n">Рассылка вашего рекламного материала по базе <span class="ph-base">2800</span>+&nbsp;чел. после выступления</li>
+          </ul>
+          <div class="btn-align">
+            <button class="btn-pay" onclick="openGC('gc-t1')">
+              <span class="btn-pay-i">ВЫБРАТЬ</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Тариф 3: VIP-Спикер -->
+        <div class="tariff">
+          <div class="t-name">VIP-«Спикер»</div>
+          <div class="t-price">12 900 ₽</div>
+          <ul class="feat">
+            <li class="y">Участие в интерактиве нетворкинга</li>
+            <li class="y">Доступ к закрытому чату <span class="ph-sub">900</span>+&nbsp;предпринимателей и экспертов</li>
+            <li class="y">Право выложить рекламную ссылку на свой канал или любой свой продающий материал</li>
+            <li class="y">20&nbsp;минут выступления c демонстрацией презентации и QR-кодом</li>
+            <li class="y">Статус гостя-спикера</li>
+            <li class="y">Размещение фото и имени на рекламной афише нетворкинга</li>
+            <li class="y">Размещение имени и темы в программе нетворкинга</li>
+            <li class="y">Рассылка афиши и программы по емейл и чат-боту на <span class="ph-base">2800</span>&nbsp;чел.</li>
+            <li class="y">Рассылка поста-знакомства на <span class="ph-base">2800</span>&nbsp;чел. по чат-боту: фото + регалии + ссылка на канал</li>
+            <li class="y">Ваш видео-кружок в чат на <span class="ph-sub">900</span>+&nbsp;человек + имя + ссылка на канал + тема вашего выступления</li>
+            <li class="y">Рассылка вашего рекламного материала по базе <span class="ph-base">2800</span>+&nbsp;чел. после выступления</li>
+          </ul>
+          <div class="btn-align">
+            <button class="btn-pay" onclick="openGC('gc-t2')">
+              <span class="btn-pay-i">ВЫБРАТЬ</span>
+            </button>
+          </div>
+        </div>
+
+      </div><!-- /tariffs-grid -->
+    </div>
+  </section>
+
+  <!-- 6. ОСНОВАТЕЛЬ И МОДЕРАТОР — МАРГО ФОРБС -->
+  <section class="sec">
+    <div class="w">
+      <span class="lbl">Организатор и модератор</span>
+      <div class="about-grid">
+        <!-- Фото -->
+        <div class="about-photo-wrap">
+          <img src="/img/mission.jpg" alt="Марго Форбс" class="about-photo">
+        </div>
+        <!-- Контент -->
+        <div class="about-content">
+          <span class="about-role">Нелинейный стратег · Организатор событий · Спикер</span>
+          <div class="about-name">Марго Форбс</div>
+          <ul class="about-creds">
+            <li><span class="dot">◆</span>Нелинейный стратег для маркетинга и продаж</li>
+            <li><span class="dot">◆</span>Создатель бизнес-конференции «Айвижн&nbsp;/ iViSiON» для продвижения предпринимателей и экспертов</li>
+            <li><span class="dot">◆</span>Чемпион смеха Приволжского округа 2025</li>
+            <li><span class="dot">◆</span>Зам. председателя комитета по личному бренду БРО «Опора России»</li>
+            <li><span class="dot">◆</span>Кандидат физ-мат наук</li>
+            <li><span class="dot">◆</span>Независимый финансовый консультант</li>
+            <li><span class="dot">◆</span>Спикер Сколково, ЭКСПО, эксперт СМИ (5&nbsp;тв канал, Москва&nbsp;FM и&nbsp;др.)</li>
+            <li><span class="dot">◆</span>7 лет практики йоги и исследований возможностей духа и тела (ходила по гвоздям, стояла на коне и верблюде, прыгала с 207&nbsp;м банджи)</li>
+          </ul>
+          <p class="about-mission"><strong>Миссия:</strong> Благодаря бизнесу, творчеству и нелинейным стратегиям создавать бизнес-среду для развития узнаваемости предпринимателей и экспертов и приумножения наследия для общества</p>
+          <div class="about-stats">
+            <div class="astat"><span class="astat-num">300+</span><span class="astat-lbl">клиентов</span></div>
+            <div class="astat"><span class="astat-num">9</span><span class="astat-lbl">стран — география клиентов</span></div>
+            <div class="astat"><span class="astat-num">40+</span><span class="astat-lbl">коллабораций с лидерами рынка</span></div>
+            <div class="astat"><span class="astat-num">10+</span><span class="astat-lbl">организованных онлайн-событий</span></div>
+            <div class="astat"><span class="astat-num">25+</span><span class="astat-lbl">нелинейных стратегий в базе</span></div>
+            <div class="astat"><span class="astat-num">20+</span><span class="astat-lbl">ниш клиентов</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. FOOTER -->
+  <footer id="site-footer">
+    <div class="w">
+      <div class="footer-links">
+        <a href="https://medialift.margoforbs.ru/oferta_list" target="_blank" rel="noopener">Оферта</a>
+        <a href="https://medialift.margoforbs.ru/politika" target="_blank" rel="noopener">Политика конфиденциальности и обработки персональных данных</a>
+      </div>
+      <div class="footer-legal">
+        Индивидуальный предприниматель Сахибгареева Маргарита Владимировна<br>
+        ОГРНИП: 323028000078129&nbsp;·&nbsp;ИНН: 890306512862
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /app -->
+
+<script>
+/* ── GC модальные окна ── */
+function openGC(id){document.getElementById(id).style.display='flex';document.body.style.overflow='hidden';}
+function closeGC(id){document.getElementById(id).style.display='none';document.body.style.overflow='';}
+
+/* ── Замена плейсхолдеров из networking.json ── */
+function applyValues(sub, base) {
+  document.querySelectorAll('.ph-sub').forEach(function(el){ el.textContent = sub; });
+  document.querySelectorAll('.ph-base').forEach(function(el){ el.textContent = base; });
+}
+
+/* ── Инициализация Telegram WebApp ── */
+var tg = (window.Telegram && window.Telegram.WebApp) || null;
+if (tg) { tg.ready(); tg.expand(); }
+
+/* ── Загрузка конфигурации ── */
+fetch('./networking.json?v=' + Date.now())
+  .then(function(r){ return r.json(); })
+  .then(function(cfg){
+    applyValues(cfg.subscribers, cfg.base_size);
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+  })
+  .catch(function(){
+    /* Показываем страницу с дефолтными значениями при ошибке */
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+  });
+</script>
+</body>
+</html>

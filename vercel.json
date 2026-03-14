@@ -14,6 +14,7 @@
     { "src": "^/bot(\\.html)?$",                          "dest": "/apps/tma/redirect_web_app/bot.html" },
     { "src": "^/ivision-conf-7(\\.html)?$",             "dest": "/apps/tma/ivision-conf-7.html" },
     { "src": "^/ivision-for-speakers(\\.html)?$",       "dest": "/apps/tma/ivision-for-speakers.html" },
+    { "src": "^/networking(\\.html)?$",                 "dest": "/apps/tma/networking.html" },
     { "src": "^/(.*)$",                                 "dest": "/apps/tma/index.html" }
   ],
   "headers": [
