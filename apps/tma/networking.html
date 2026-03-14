@@ -22,24 +22,51 @@
     }
     *{margin:0;padding:0;box-sizing:border-box;}
     html{scroll-behavior:smooth;}
-    body{background:var(--dark);color:var(--text);font-family:var(--ff);font-size:15px;line-height:1.55;}
+
+    /* Фон с градиентами (п.5) */
+    body{
+      background:var(--dark);
+      background-image:
+        radial-gradient(ellipse 80% 40% at 0% 15%, rgba(200,75,158,.12) 0%, transparent 60%),
+        radial-gradient(ellipse 70% 50% at 100% 40%, rgba(37,69,93,.22) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 35% at 50% 75%, rgba(107,79,160,.10) 0%, transparent 55%);
+      color:var(--text);
+      font-family:var(--ff);
+      font-size:15px;
+      line-height:1.55;
+    }
     .w{max-width:480px;margin:0 auto;padding:0 20px;}
-    .sec{padding:52px 0;}
-    .sa{background:var(--mid);}
+    .sec{padding:52px 0;position:relative;}
+    .sa{
+      background:linear-gradient(135deg,rgba(13,17,26,.95) 0%,rgba(15,11,22,.95) 50%,rgba(13,17,26,.95) 100%);
+    }
 
     /* ── TYPOGRAPHY ── */
     .h2{font-weight:700;font-size:clamp(24px,7vw,38px);line-height:1.05;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px;}
     .lbl{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--peach);margin-bottom:14px;display:block;}
+
+    /* Персиковые значения (п.8) */
+    .ph-sub,.ph-base{color:var(--peach);font-weight:700;}
+
+    /* ── NAV (п.3) ── */
+    #nav{position:fixed;top:12px;left:50%;transform:translateX(-50%) translateY(-120px);z-index:1000;width:calc(100% - 24px);max-width:480px;background:rgba(8,11,18,.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(37,69,93,.55);border-radius:var(--r-pill);padding:9px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;transition:transform .4s ease;}
+    #nav.vis{transform:translateX(-50%) translateY(0);}
+    .nav-links{display:flex;align-items:center;gap:14px;}
+    .nav-links a{font-family:var(--ff);font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--muted);text-decoration:none;white-space:nowrap;}
+    .nav-links a:active{color:var(--peach);}
+    .nav-btn{padding:1.5px;border-radius:var(--r-pill);background:var(--btn-grad);border:none;cursor:pointer;flex-shrink:0;}
+    .nav-btn-i{display:flex;align-items:center;background:var(--dark);color:var(--text);font-family:var(--ff);font-weight:700;font-size:12px;letter-spacing:.04em;padding:7px 12px;border-radius:var(--r-pill);white-space:nowrap;}
 
     /* ── BUTTONS ── */
     .btn-grad-wrap{display:block;width:100%;padding:8px;border-radius:var(--r-pill);background:var(--btn-grad);cursor:pointer;border:none;transition:transform .25s ease,box-shadow .25s ease;box-shadow:0 0 18px rgba(255,207,164,.25),0 0 36px rgba(192,132,252,.15);}
     .btn-grad-wrap:active{transform:scale(.97);}
     .btn-grad-inner{display:flex;align-items:center;justify-content:center;background:var(--dark);color:var(--text);font-family:var(--ff);font-weight:700;font-size:15px;padding:14px 36px;border-radius:var(--r-pill);transition:background .25s ease;text-align:center;width:100%;border:none;cursor:pointer;white-space:normal;line-height:1.3;}
     .btn-grad-wrap:active .btn-grad-inner{background:rgba(8,11,18,.75);}
-    .btn-pay{display:block;width:100%;padding:4px;border-radius:var(--r-pill);background:var(--btn-grad);cursor:pointer;border:none;transition:transform .25s ease;box-shadow:0 0 18px rgba(255,207,164,.2);}
+    /* Кнопки тарифов — не на всю ширину (п.6) */
+    .btn-pay{display:inline-block;padding:4px;border-radius:var(--r-pill);background:var(--btn-grad);cursor:pointer;border:none;transition:transform .25s ease;box-shadow:0 0 18px rgba(255,207,164,.2);}
     .btn-pay:active{transform:scale(.97);}
-    .btn-pay-i{display:flex;align-items:center;justify-content:center;background:rgba(255,207,164,.12);color:var(--text);font-family:var(--ff);font-weight:700;font-size:15px;padding:14px 36px;border-radius:var(--r-pill);text-align:center;width:100%;border:none;cursor:pointer;}
-    .btn-align{text-align:center;}
+    .btn-pay-i{display:flex;align-items:center;justify-content:center;background:rgba(255,207,164,.12);color:var(--text);font-family:var(--ff);font-weight:700;font-size:15px;padding:12px 40px;border-radius:var(--r-pill);text-align:center;border:none;cursor:pointer;}
+    .btn-tariff-wrap{text-align:center;margin-top:4px;}
 
     /* ── LOADING ── */
     #loading{min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;}
@@ -48,31 +75,34 @@
     .loading-txt{font-size:13px;color:var(--muted);}
 
     /* ── HERO ── */
-    #hero{position:relative;padding:0;overflow:hidden;background:var(--dark);}
-    #hero::before{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(37,69,93,.6) 0%,rgba(8,11,18,.97) 70%);z-index:1;pointer-events:none;}
-    .hero-rings{position:absolute;right:-15%;top:-10%;width:70%;max-width:420px;opacity:.18;pointer-events:none;z-index:1;}
-    .glow-pink{position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(200,75,158,.35) 0%,transparent 70%);pointer-events:none;}
-    .glow-teal{position:absolute;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(37,69,93,.5) 0%,transparent 70%);pointer-events:none;}
+    #hero{position:relative;padding:0;overflow:hidden;background:transparent;}
+    #hero::before{
+      content:'';position:absolute;inset:0;
+      background:
+        radial-gradient(ellipse 90% 60% at 0% 0%, rgba(200,75,158,.2) 0%, transparent 55%),
+        linear-gradient(160deg,rgba(37,69,93,.5) 0%,rgba(8,11,18,.92) 65%);
+      z-index:1;pointer-events:none;
+    }
+    .hero-rings{position:absolute;right:-15%;top:-10%;width:70%;max-width:420px;opacity:.22;pointer-events:none;z-index:1;}
     .hero-inner{position:relative;z-index:2;padding:36px 20px 44px;}
-    /* Top logos row */
+    /* Логотипы */
     .hero-logos{display:flex;align-items:center;gap:14px;margin-bottom:28px;}
     .hero-opora{height:34px;width:auto;object-fit:contain;border-radius:6px;}
     .hero-ivision{height:30px;width:auto;object-fit:contain;}
-    /* Two-column grid */
+    /* Grid */
     .hero-grid{display:flex;flex-direction:column;gap:32px;}
-    /* Label above title */
+    /* Label */
     .hero-label{font-size:13px;font-weight:600;color:var(--muted);line-height:1.5;margin-bottom:16px;}
-    /* Main title */
-    .hero-h1{font-weight:900;font-size:clamp(36px,11vw,64px);line-height:.95;letter-spacing:.02em;text-transform:uppercase;margin-bottom:20px;}
+    /* H1 — меньше на мобиле (п.9) */
+    .hero-h1{font-weight:900;font-size:clamp(28px,9.5vw,64px);line-height:.95;letter-spacing:.02em;text-transform:uppercase;margin-bottom:20px;}
     .hero-h1 .accent{background:var(--btn-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
     /* Bullet list */
     .hero-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
     .hero-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--muted);line-height:1.5;}
     .hero-dot{width:8px;height:8px;border-radius:50%;background:var(--peach);flex-shrink:0;margin-top:5px;}
-    /* Photo */
+    /* Фото */
     .hero-photo-wrap{display:flex;justify-content:center;align-items:center;position:relative;}
-    .hero-photo{width:100%;max-width:280px;aspect-ratio:3/4;object-fit:cover;object-position:top;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;border:2px solid rgba(255,207,164,.22);box-shadow:0 30px 60px rgba(0,0,0,.5),0 0 60px rgba(200,75,158,.2);}
-    /* Deco rings on photo */
+    .hero-photo{width:100%;max-width:280px;aspect-ratio:3/4;object-fit:cover;object-position:top;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;border:2px solid rgba(255,207,164,.22);box-shadow:0 30px 60px rgba(0,0,0,.5),0 0 60px rgba(200,75,158,.25);}
     .hero-deco{position:absolute;border-radius:50%;pointer-events:none;}
     .hero-deco-1{width:110px;height:110px;border:1.5px solid rgba(255,207,164,.25);border-radius:30% 70% 70% 30% / 30% 30% 70% 70%;top:8%;right:4%;}
     .hero-deco-2{width:75px;height:75px;border:1px solid rgba(192,132,252,.3);border-radius:60% 40% 40% 60%;bottom:10%;left:8%;}
@@ -95,17 +125,28 @@
     .mission-text{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:14px;}
     .mission-footer{font-size:13px;color:var(--dim);line-height:1.6;font-style:italic;border-left:3px solid var(--peach);padding-left:14px;}
 
-    /* ── DIFFERENTIATORS ── */
-    .diff-layout{display:flex;flex-direction:column;gap:24px;margin-top:24px;}
-    .diff-list{list-style:none;display:flex;flex-direction:column;gap:14px;}
+    /* ── ЧТО ОТЛИЧАЕТ (п.4) — изображение на одном уровне с заголовком ── */
+    .diff-outer{display:flex;flex-direction:column;gap:24px;margin-top:0;}
+    .diff-left{flex:1;}
+    .diff-list{list-style:none;display:flex;flex-direction:column;gap:14px;margin-top:20px;}
     .diff-list li{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--muted);line-height:1.6;}
     .diff-dot{width:8px;height:8px;border-radius:50%;background:var(--peach);flex-shrink:0;margin-top:6px;}
+    .diff-img-wrap{flex:1;}
     .diff-img{width:100%;border-radius:var(--r-lg);display:block;object-fit:cover;}
 
     /* ── TARIFFS ── */
-    .tariffs-grid{display:flex;flex-direction:column;gap:16px;margin-top:24px;}
-    .tariff{background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px 20px;position:relative;}
-    .tariff.rec{border-color:transparent;background:linear-gradient(var(--card),var(--card)) padding-box,linear-gradient(135deg,var(--peach),var(--purple)) border-box;box-shadow:0 0 48px rgba(200,75,158,.1);}
+    .tariffs-grid{display:flex;flex-direction:column;gap:20px;margin-top:24px;}
+    .tariff{
+      background:linear-gradient(145deg,rgba(17,24,39,.85) 0%,rgba(12,9,20,.85) 100%);
+      border:1px solid var(--border);
+      border-radius:var(--r-lg);padding:24px 20px;position:relative;
+      box-shadow:0 4px 24px rgba(0,0,0,.3);
+    }
+    .tariff.rec{
+      border-color:transparent;
+      background:linear-gradient(var(--card),var(--card)) padding-box,linear-gradient(135deg,var(--peach),var(--purple)) border-box;
+      box-shadow:0 0 48px rgba(200,75,158,.12),0 8px 32px rgba(0,0,0,.4);
+    }
     .t-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--peach),var(--purple));color:#080B12;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 18px;border-radius:var(--r-pill);white-space:nowrap;}
     .t-name{font-weight:700;font-size:22px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px;}
     .t-price{font-weight:700;font-size:30px;color:var(--peach);margin-bottom:16px;}
@@ -117,9 +158,14 @@
     .feat li.n::before{content:'✗';color:rgba(255,207,164,.22);flex-shrink:0;}
 
     /* ── ABOUT (Марго) ── */
+    #organizer-sec{
+      background:linear-gradient(160deg,rgba(37,69,93,.18) 0%,transparent 50%),
+                  linear-gradient(320deg,rgba(107,79,160,.12) 0%,transparent 50%);
+    }
     .about-grid{display:flex;flex-direction:column;gap:32px;margin-top:24px;}
-    .about-photo{width:100%;max-width:320px;aspect-ratio:3/4;object-fit:cover;object-position:top;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;border:2px solid rgba(255,207,164,.22);box-shadow:0 40px 80px rgba(0,0,0,.5),0 0 60px rgba(200,75,158,.15);margin:0 auto;display:block;}
-    .about-role{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--peach);margin-bottom:14px;display:block;}
+    /* п.2 — заголовок "ОРГАНИЗАТОР И МОДЕРАТОР" как h2 белыми буквами */
+    .about-heading{font-weight:700;font-size:clamp(24px,7vw,38px);line-height:1.05;letter-spacing:.04em;text-transform:uppercase;color:#fff;margin-bottom:24px;}
+    .about-photo{width:100%;max-width:320px;aspect-ratio:3/4;object-fit:cover;object-position:top;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;border:2px solid rgba(255,207,164,.22);box-shadow:0 40px 80px rgba(0,0,0,.5),0 0 60px rgba(200,75,158,.18);margin:0 auto;display:block;}
     .about-name{font-weight:900;font-size:clamp(28px,8vw,44px);text-transform:uppercase;letter-spacing:.03em;margin-bottom:18px;}
     .about-creds{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
     .about-creds li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--muted);line-height:1.5;}
@@ -144,21 +190,22 @@
     /* ── DESKTOP ── */
     @media(min-width:641px){
       .w{max-width:1100px;padding:0 48px;}
+      #nav{max-width:1100px;width:calc(100% - 48px);}
       .hero-inner{padding:52px 48px 60px;max-width:1100px;margin:0 auto;}
       .hero-grid{flex-direction:row;align-items:center;gap:60px;}
       .hero-content{flex:1.1;}
       .hero-photo-wrap{flex:1;}
       .hero-photo{max-width:380px;margin:0 auto;display:block;}
-      .btn-align .btn-grad-wrap,.btn-align .btn-pay{width:auto;display:inline-block;}
+      /* Diff — изображение рядом с заголовком (п.4) */
+      .diff-outer{flex-direction:row;align-items:flex-start;gap:48px;}
+      .diff-left{flex:1.1;}
+      .diff-img-wrap{flex:1;padding-top:0;}
+      .tariffs-grid{flex-direction:row;align-items:flex-start;}
+      .tariff{flex:1;}
       .about-grid{flex-direction:row;align-items:center;gap:60px;}
       .about-photo-wrap{flex:1;}
       .about-content{flex:1.3;}
       .about-photo{max-width:380px;}
-      .diff-layout{flex-direction:row;align-items:flex-start;gap:40px;}
-      .diff-list-wrap{flex:1;}
-      .diff-img-wrap{flex:1;}
-      .tariffs-grid{flex-direction:row;align-items:flex-start;}
-      .tariff{flex:1;}
     }
   </style>
 </head>
@@ -187,13 +234,22 @@
 <!-- ── ЗАГРУЗКА ── -->
 <div id="loading"><div class="spin"></div><div class="loading-txt">Загрузка...</div></div>
 
+<!-- ── НАВИГАЦИЯ (п.3) ── -->
+<nav id="nav">
+  <div class="nav-links">
+    <a href="#" data-nav="tariffs-sec">Тарифы</a>
+    <a href="#" data-nav="organizer-sec">Организатор</a>
+  </div>
+  <button class="nav-btn" id="nav-cta-btn">
+    <span class="nav-btn-i">Зарегистрироваться</span>
+  </button>
+</nav>
+
 <!-- ── ОСНОВНОЙ КОНТЕНТ ── -->
 <div id="app" style="display:none">
 
   <!-- 1. HERO -->
   <section id="hero">
-    <div class="glow-pink" style="top:-80px;left:-80px;"></div>
-    <div class="glow-teal"  style="bottom:0;right:-60px;"></div>
     <!-- Декоративные кольца -->
     <svg class="hero-rings" viewBox="0 0 700 700" aria-hidden="true">
       <defs>
@@ -211,9 +267,9 @@
       <circle cx="350" cy="350" r="200" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.27"/>
       <circle cx="350" cy="350" r="230" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.22"/>
       <circle cx="350" cy="350" r="260" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.17"/>
-      <circle cx="350" cy="350" r="290" fill="none" stroke="url(#rg1)" stroke-width="0.7" opacity="0.13"/>
-      <circle cx="350" cy="350" r="320" fill="none" stroke="url(#rg1)" stroke-width="0.6" opacity="0.09"/>
-      <circle cx="350" cy="350" r="345" fill="none" stroke="url(#rg1)" stroke-width="0.5" opacity="0.06"/>
+      <circle cx="350" cy="350" r="290" fill="none" stroke="url(#rg1)" stroke-width="0.7" opacity="0.12"/>
+      <circle cx="350" cy="350" r="320" fill="none" stroke="url(#rg1)" stroke-width="0.6" opacity="0.08"/>
+      <circle cx="350" cy="350" r="345" fill="none" stroke="url(#rg1)" stroke-width="0.5" opacity="0.05"/>
     </svg>
 
     <div class="hero-inner">
@@ -224,16 +280,16 @@
       </div>
 
       <div class="hero-grid">
-        <!-- Текстовый блок -->
+        <!-- Текст -->
         <div class="hero-content">
-          <p class="hero-label">Комьюнити Марго Форбс &amp; бизнес-конференции «Видение&nbsp;/&nbsp;iViSiON» (<span class="ph-sub">900</span>+&nbsp;человек)</p>
+          <p class="hero-label">Комьюнити Марго Форбс &amp; бизнес-конференции «Видение&nbsp;/&nbsp;iViSiON» (<span class="ph-sub">900+</span>&nbsp;человек)</p>
           <h1 class="hero-h1">МЕЖДУНАРОДНЫЙ<br><span class="accent">ОНЛАЙН-НЕТВОРКИНГ</span></h1>
           <ul class="hero-list">
             <li><span class="hero-dot"></span>Заявите о себе и повысите узнаваемость</li>
             <li><span class="hero-dot"></span>Донесёте ценность своих услуг&nbsp;/ товаров&nbsp;/ продуктов через интерактив</li>
             <li><span class="hero-dot"></span>Расширите социальный капитал и найдёте партнёров или клиентов</li>
           </ul>
-          <div class="btn-align" style="text-align:left">
+          <div style="text-align:left">
             <button class="btn-grad-wrap" onclick="document.getElementById('tariffs-sec').scrollIntoView({behavior:'smooth'})">
               <span class="btn-grad-inner">ПОЛУЧИТЬ БИЛЕТ БЕСПЛАТНО</span>
             </button>
@@ -262,7 +318,6 @@
         <span class="mq-item">Аудитория экспертов и предпринимателей</span><span class="mq-item mq-dot">·</span>
         <span class="mq-item">Интерактив со зрителями</span><span class="mq-item mq-dot">·</span>
         <span class="mq-item">Призовой фонд на 300.000+ рублей</span><span class="mq-item mq-dot">·</span>
-        <!-- дублируем для бесшовности -->
         <span class="mq-item">Объединили 3600+ экспертов и предпринимателей</span><span class="mq-item mq-dot">·</span>
         <span class="mq-item">40+ лидеров рынка выступили спикерами</span><span class="mq-item mq-dot">·</span>
         <span class="mq-item">6 конференций</span><span class="mq-item mq-dot">·</span>
@@ -283,7 +338,6 @@
         <span class="mq-item">Выступление и самопрезентация</span><span class="mq-item mq-dot">·</span>
         <span class="mq-item">Рост социального капитала</span><span class="mq-item mq-dot">·</span>
         <span class="mq-item">Регалии и титулы</span><span class="mq-item mq-dot">·</span>
-        <!-- дублируем -->
         <span class="mq-item">«Видение / iViSiON»</span><span class="mq-item mq-dot">·</span>
         <span class="mq-item">Опора России</span><span class="mq-item mq-dot">·</span>
         <span class="mq-item">Нетворкинг онлайн</span><span class="mq-item mq-dot">·</span>
@@ -311,17 +365,18 @@
     </div>
   </section>
 
-  <!-- 4. ЧТО ОТЛИЧАЕТ НАС -->
+  <!-- 4. ЧТО ОТЛИЧАЕТ НАС (п.4 — image на уровне заголовка) -->
   <section class="sec">
     <div class="w">
-      <span class="lbl">Наши особенности</span>
-      <div class="h2">ЧТО ОТЛИЧАЕТ НАС<br>ОТ ДРУГИХ НЕТВОРКИНГОВ?</div>
-      <div class="diff-layout">
-        <div class="diff-list-wrap">
+      <!-- diff-outer начинается здесь, включая lbl+h2 слева -->
+      <div class="diff-outer">
+        <div class="diff-left">
+          <span class="lbl">Наши особенности</span>
+          <div class="h2">ЧТО ОТЛИЧАЕТ НАС<br>ОТ ДРУГИХ НЕТВОРКИНГОВ?</div>
           <ul class="diff-list">
             <li>
               <span class="diff-dot"></span>
-              <span>Проявленность не только в комнате на 15–30 человек, но и в чате на <strong style="color:var(--peach)"><span class="ph-sub">900</span>+</strong> участников</span>
+              <span>Проявленность не только в комнате на 15–30 человек, но и в чате на <span class="ph-sub">900+</span> участников</span>
             </li>
             <li>
               <span class="diff-dot"></span>
@@ -362,18 +417,18 @@
           <div class="t-price">0 руб.</div>
           <ul class="feat">
             <li class="y">Участие в интерактиве нетворкинга</li>
-            <li class="y">Доступ к закрытому чату <span class="ph-sub">900</span>+&nbsp;предпринимателей и экспертов</li>
+            <li class="y">Доступ к закрытому чату <span class="ph-sub">900+</span>&nbsp;предпринимателей и экспертов</li>
             <li class="y">Право выложить рекламную ссылку на свой канал или любой свой продающий материал</li>
             <li class="n">Выступление с самопрезентацией 5&nbsp;минут на онлайн-нетворкинге</li>
             <li class="n">Статус гостя-спикера</li>
             <li class="n">Размещение фото и имени на рекламной афише нетворкинга</li>
             <li class="n">Размещение имени и темы в программе нетворкинга</li>
-            <li class="n">Рассылка афиши и программы по емейл и чат-боту на <span class="ph-base">2800</span>&nbsp;чел.</li>
-            <li class="n">Рассылка поста-знакомства на <span class="ph-base">2800</span>&nbsp;чел. по чат-боту: фото + регалии + ссылка на канал</li>
-            <li class="n">Ваш видео-кружок в чат на <span class="ph-sub">900</span>+&nbsp;человек + имя + ссылка на канал + тема вашего выступления</li>
-            <li class="n">Рассылка вашего рекламного материала по базе <span class="ph-base">2800</span>+&nbsp;чел. после выступления</li>
+            <li class="n">Рассылка афиши и программы по емейл и чат-боту на <span class="ph-base">2800+</span>&nbsp;чел.</li>
+            <li class="n">Рассылка поста-знакомства на <span class="ph-base">2800+</span>&nbsp;чел. по чат-боту: фото + регалии + ссылка на канал</li>
+            <li class="n">Ваш видео-кружок в чат на <span class="ph-sub">900+</span>&nbsp;человек + имя + ссылка + тема выступления</li>
+            <li class="n">Рассылка рекламного материала по базе <span class="ph-base">2800+</span>&nbsp;чел. после выступления</li>
           </ul>
-          <div class="btn-align">
+          <div class="btn-tariff-wrap">
             <button class="btn-pay" onclick="openGC('gc-t0')">
               <span class="btn-pay-i">ВЫБРАТЬ</span>
             </button>
@@ -387,18 +442,18 @@
           <div class="t-price">4 900 ₽</div>
           <ul class="feat">
             <li class="y">Участие в интерактиве нетворкинга</li>
-            <li class="y">Доступ к закрытому чату <span class="ph-sub">900</span>+&nbsp;предпринимателей и экспертов</li>
+            <li class="y">Доступ к закрытому чату <span class="ph-sub">900+</span>&nbsp;предпринимателей и экспертов</li>
             <li class="y">Право выложить рекламную ссылку на свой канал или любой свой продающий материал</li>
             <li class="y">Выступление с самопрезентацией 5&nbsp;минут на онлайн-нетворкинге</li>
             <li class="n">Статус гостя-спикера</li>
             <li class="n">Размещение фото и имени на рекламной афише нетворкинга</li>
             <li class="n">Размещение имени и темы в программе нетворкинга</li>
-            <li class="n">Рассылка афиши и программы по емейл и чат-боту на <span class="ph-base">2800</span>&nbsp;чел.</li>
-            <li class="n">Рассылка поста-знакомства на <span class="ph-base">2800</span>&nbsp;чел. по чат-боту: фото + регалии + ссылка на канал</li>
-            <li class="n">Ваш видео-кружок в чат на <span class="ph-sub">900</span>+&nbsp;человек + имя + ссылка на канал + тема вашего выступления</li>
-            <li class="n">Рассылка вашего рекламного материала по базе <span class="ph-base">2800</span>+&nbsp;чел. после выступления</li>
+            <li class="n">Рассылка афиши и программы по емейл и чат-боту на <span class="ph-base">2800+</span>&nbsp;чел.</li>
+            <li class="n">Рассылка поста-знакомства на <span class="ph-base">2800+</span>&nbsp;чел. по чат-боту: фото + регалии + ссылка на канал</li>
+            <li class="n">Ваш видео-кружок в чат на <span class="ph-sub">900+</span>&nbsp;человек + имя + ссылка + тема выступления</li>
+            <li class="n">Рассылка рекламного материала по базе <span class="ph-base">2800+</span>&nbsp;чел. после выступления</li>
           </ul>
-          <div class="btn-align">
+          <div class="btn-tariff-wrap">
             <button class="btn-pay" onclick="openGC('gc-t1')">
               <span class="btn-pay-i">ВЫБРАТЬ</span>
             </button>
@@ -411,18 +466,18 @@
           <div class="t-price">12 900 ₽</div>
           <ul class="feat">
             <li class="y">Участие в интерактиве нетворкинга</li>
-            <li class="y">Доступ к закрытому чату <span class="ph-sub">900</span>+&nbsp;предпринимателей и экспертов</li>
+            <li class="y">Доступ к закрытому чату <span class="ph-sub">900+</span>&nbsp;предпринимателей и экспертов</li>
             <li class="y">Право выложить рекламную ссылку на свой канал или любой свой продающий материал</li>
             <li class="y">20&nbsp;минут выступления c демонстрацией презентации и QR-кодом</li>
             <li class="y">Статус гостя-спикера</li>
             <li class="y">Размещение фото и имени на рекламной афише нетворкинга</li>
             <li class="y">Размещение имени и темы в программе нетворкинга</li>
-            <li class="y">Рассылка афиши и программы по емейл и чат-боту на <span class="ph-base">2800</span>&nbsp;чел.</li>
-            <li class="y">Рассылка поста-знакомства на <span class="ph-base">2800</span>&nbsp;чел. по чат-боту: фото + регалии + ссылка на канал</li>
-            <li class="y">Ваш видео-кружок в чат на <span class="ph-sub">900</span>+&nbsp;человек + имя + ссылка на канал + тема вашего выступления</li>
-            <li class="y">Рассылка вашего рекламного материала по базе <span class="ph-base">2800</span>+&nbsp;чел. после выступления</li>
+            <li class="y">Рассылка афиши и программы по емейл и чат-боту на <span class="ph-base">2800+</span>&nbsp;чел.</li>
+            <li class="y">Рассылка поста-знакомства на <span class="ph-base">2800+</span>&nbsp;чел. по чат-боту: фото + регалии + ссылка на канал</li>
+            <li class="y">Ваш видео-кружок в чат на <span class="ph-sub">900+</span>&nbsp;человек + имя + ссылка + тема выступления</li>
+            <li class="y">Рассылка рекламного материала по базе <span class="ph-base">2800+</span>&nbsp;чел. после выступления</li>
           </ul>
-          <div class="btn-align">
+          <div class="btn-tariff-wrap">
             <button class="btn-pay" onclick="openGC('gc-t2')">
               <span class="btn-pay-i">ВЫБРАТЬ</span>
             </button>
@@ -433,18 +488,18 @@
     </div>
   </section>
 
-  <!-- 6. ОСНОВАТЕЛЬ И МОДЕРАТОР — МАРГО ФОРБС -->
-  <section class="sec">
+  <!-- 6. МАРГО ФОРБС (п.1 — убрана роль, п.2 — заголовок как h2) -->
+  <section class="sec" id="organizer-sec">
     <div class="w">
-      <span class="lbl">Организатор и модератор</span>
+      <!-- п.2: "ОРГАНИЗАТОР И МОДЕРАТОР" — большие белые буквы как заголовки разделов -->
+      <div class="about-heading">ОРГАНИЗАТОР И МОДЕРАТОР</div>
       <div class="about-grid">
         <!-- Фото -->
         <div class="about-photo-wrap">
           <img src="/img/mission.jpg" alt="Марго Форбс" class="about-photo">
         </div>
-        <!-- Контент -->
+        <!-- Контент (п.1 — about-role убрана) -->
         <div class="about-content">
-          <span class="about-role">Нелинейный стратег · Организатор событий · Спикер</span>
           <div class="about-name">Марго Форбс</div>
           <ul class="about-creds">
             <li><span class="dot">◆</span>Нелинейный стратег для маркетинга и продаж</li>
@@ -491,15 +546,28 @@
 function openGC(id){document.getElementById(id).style.display='flex';document.body.style.overflow='hidden';}
 function closeGC(id){document.getElementById(id).style.display='none';document.body.style.overflow='';}
 
+/* ── Навигация (п.3) ── */
+var nav = document.getElementById('nav');
+window.addEventListener('scroll', function(){
+  nav.classList.toggle('vis', window.scrollY > 80);
+}, {passive:true});
+document.addEventListener('click', function(ev){
+  var a = ev.target.closest('[data-nav]');
+  if(a){ ev.preventDefault(); var el = document.getElementById(a.dataset.nav); if(el) el.scrollIntoView({behavior:'smooth'}); }
+});
+document.getElementById('nav-cta-btn').addEventListener('click', function(){
+  var el = document.getElementById('tariffs-sec'); if(el) el.scrollIntoView({behavior:'smooth'});
+});
+
 /* ── Замена плейсхолдеров из networking.json ── */
 function applyValues(sub, base) {
   document.querySelectorAll('.ph-sub').forEach(function(el){ el.textContent = sub; });
   document.querySelectorAll('.ph-base').forEach(function(el){ el.textContent = base; });
 }
 
-/* ── Инициализация Telegram WebApp ── */
+/* ── Telegram WebApp ── */
 var tg = (window.Telegram && window.Telegram.WebApp) || null;
-if (tg) { tg.ready(); tg.expand(); }
+if(tg){ tg.ready(); tg.expand(); }
 
 /* ── Загрузка конфигурации ── */
 fetch('./networking.json?v=' + Date.now())
@@ -510,7 +578,6 @@ fetch('./networking.json?v=' + Date.now())
     document.getElementById('app').style.display = 'block';
   })
   .catch(function(){
-    /* Показываем страницу с дефолтными значениями при ошибке */
     document.getElementById('loading').style.display = 'none';
     document.getElementById('app').style.display = 'block';
   });
