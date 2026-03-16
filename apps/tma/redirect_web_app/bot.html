@@ -15,44 +15,58 @@
       "razbory": "/razbory-meet"
     };
 
-    var twa    = window.Telegram && window.Telegram.WebApp;
-    var sp     = '';
-    var userId = '';
+    var twa        = window.Telegram && window.Telegram.WebApp;
+    var sp         = '';
+    var userId     = '';
+    var firstName  = '';
+    var lastName   = '';
+    var username   = '';
+    var partnerId  = '';
 
     if (twa) {
       twa.ready();
       twa.expand();
-      sp     = (twa.initDataUnsafe && twa.initDataUnsafe.start_param) || '';
-      userId = (twa.initDataUnsafe && twa.initDataUnsafe.user && String(twa.initDataUnsafe.user.id)) || '';
+      sp = (twa.initDataUnsafe && twa.initDataUnsafe.start_param) || '';
+      var u = twa.initDataUnsafe && twa.initDataUnsafe.user;
+      if (u) {
+        userId    = String(u.id || '');
+        firstName = u.first_name  || '';
+        lastName  = u.last_name   || '';
+        username  = u.username    || '';
+      }
     }
 
     // Dev-fallback: ?sp=ref_pgconf7_pid123_srcinsta
     if (!sp) sp = new URLSearchParams(window.location.search).get('sp') || '';
 
-    // Определяем страницу назначения по коду pg...
+    // Определяем страницу назначения и partner_id из start_param
     var dest = DEFAULT;
     sp.split('_').forEach(function (part) {
-      if (part.indexOf('pg') === 0) {
-        var code = part.slice(2);
-        if (PAGES[code]) dest = PAGES[code];
-      }
+      if (part.indexOf('pg')  === 0) { var code = part.slice(2); if (PAGES[code]) dest = PAGES[code]; }
+      if (part.indexOf('pid') === 0) { partnerId = part.slice(3); }
     });
 
-    // Отправляем event_start через наш бэкенд (сервер → Salebot, без CORS-блокировок).
-    function sendSalebotEvent(uid) {
-      if (!uid) return;
+    // Вызываем наш бэкенд: он отправит сообщение через Telegram Bot API
+    function sendEvent(event) {
       try {
-        fetch('/api/salebot-event', {
+        fetch('/api/event', {
           method:    'POST',
           keepalive: true,
           headers:   { 'Content-Type': 'application/json' },
-          body:      JSON.stringify({ user_id: uid, event: 'event_start' })
+          body:      JSON.stringify({
+            user_id:    userId,
+            event:      event,
+            first_name: firstName,
+            last_name:  lastName,
+            username:   username,
+            partner_id: partnerId
+          })
         });
       } catch (e) {}
     }
 
     function go() {
-      sendSalebotEvent(userId);
+      if (userId) sendEvent('event_start');
       setTimeout(function () { window.location.replace(dest); }, 200);
     }
 
@@ -62,7 +76,6 @@
     if (twa && twa.requestWriteAccess) {
       twa.requestWriteAccess(function () { go(); });
     } else {
-      // открыто в браузере (не в Telegram) — редиректим сразу
       go();
     }
   </script>
