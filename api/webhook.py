@@ -1,28 +1,22 @@
 """
-Telegram webhook — обрабатывает сообщения от пользователей в боте.
+Telegram webhook — синхронный обработчик без aiogram async.
 - /start         → кнопка «Открыть мини-апп»
 - event_start    → приветственное сообщение + кнопка «Зарегистрироваться»
 - event_reg      → сообщение «Поздравляю! Вы зарегистрированы»
 """
 import os
 import json
-import asyncio
 import urllib.request
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlencode
 from datetime import datetime, timezone
 
-from aiogram import Bot, Dispatcher, F, types
-from aiogram.filters import CommandStart
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
-
 BOT_TOKEN     = os.environ["BOT_TOKEN"]
 TMA_URL       = os.environ.get("TMA_URL", "https://ivision-conf.vercel.app")
-LOG_BOT_TOKEN = os.environ.get("LOG_BOT_TOKEN", "")  # бот с доступом к каналу
-LOG_CHAT_ID   = os.environ.get("LOG_CHAT_ID", "")    # id канала для логов
+LOG_BOT_TOKEN = os.environ.get("LOG_BOT_TOKEN", "")
+LOG_CHAT_ID   = os.environ.get("LOG_CHAT_ID", "")
 
-# Читаем конфиг с текстами (fallback встроен на случай если файл не найден)
-_DEFAULT_CONFIG = {
+CONFIG = {
     "conference_name": "iVision Conf",
     "registration_url": "https://ivision.margoforbs.ru/ivision-conf-7",
     "messages": {
@@ -32,32 +26,11 @@ _DEFAULT_CONFIG = {
     }
 }
 try:
-    _cfg_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "bot_config.json")
-    with open(_cfg_path) as _f:
-        CONFIG = json.load(_f)
+    _cfg = os.path.join(os.path.dirname(os.path.abspath(__file__)), "bot_config.json")
+    with open(_cfg) as f:
+        CONFIG = json.load(f)
 except Exception:
-    CONFIG = _DEFAULT_CONFIG
-
-bot = Bot(token=BOT_TOKEN)
-dp  = Dispatcher()
-
-
-def build_url(base, **params):
-    filtered = {k: v for k, v in params.items() if v}
-    return f"{base}?{urlencode(filtered)}" if filtered else base
-
-
-def parse_payload(payload):
-    """ref_5725111966_insta → {partner_id, utm_source}"""
-    if not payload.startswith("ref_"):
-        return {}
-    parts  = payload[4:].split("_", 1)
-    result = {}
-    if parts[0]:
-        result["partner_id"] = parts[0]
-    if len(parts) > 1 and parts[1]:
-        result["utm_source"] = parts[1]
-    return result
+    pass
 
 
 def tg_post(token, method, payload):
@@ -71,7 +44,7 @@ def tg_post(token, method, payload):
         pass
 
 
-def get_tg_username(tg_id):
+def get_username(tg_id):
     try:
         url  = f"https://api.telegram.org/bot{BOT_TOKEN}/getChat?chat_id={tg_id}"
         resp = urllib.request.urlopen(url, timeout=3).read()
@@ -80,20 +53,38 @@ def get_tg_username(tg_id):
         return ""
 
 
-def log_new_user(user, partner_id=""):
+def send_message(user_id, event, name=""):
+    msg = CONFIG["messages"].get(event)
+    if not msg:
+        return
+    conf = CONFIG.get("conference_name", "")
+    text = msg["text"].format(name=name, conference_name=conf)
+
+    if "button_text" in msg:
+        btn = msg["button_text"].format(conference_name=conf)
+        url = CONFIG.get("registration_url", "")
+        tg_post(BOT_TOKEN, "sendMessage", {
+            "chat_id": user_id, "text": text,
+            "reply_markup": {"inline_keyboard": [[
+                {"text": btn, "web_app": {"url": url}}
+            ]]}
+        })
+    else:
+        tg_post(BOT_TOKEN, "sendMessage", {"chat_id": user_id, "text": text})
+
+
+def log_user(user_id, first_name, last_name, username, partner_id):
     if not LOG_BOT_TOKEN or not LOG_CHAT_ID:
         return
     try:
-        partner_username = get_tg_username(partner_id) if partner_id else ""
-        full_name = f"{user.first_name or ''} {user.last_name or ''}".strip()
-        dt        = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+        partner_uname = get_username(partner_id) if partner_id else ""
+        full_name = f"{first_name or ''} {last_name or ''}".strip()
+        dt = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
         lines = [
-            "🆕 Новый подписчик",
-            f"📅 {dt}",
-            f"🆔 {user.id}",
+            "🆕 Новый подписчик", f"📅 {dt}", f"🆔 {user_id}",
             f"👤 {full_name}" if full_name else None,
-            f"📎 @{user.username}" if user.username else None,
-            f"🤝 Партнёр: {partner_id}" + (f" (@{partner_username})" if partner_username else "") if partner_id else None,
+            f"📎 @{username}" if username else None,
+            (f"🤝 Партнёр: {partner_id}" + (f" (@{partner_uname})" if partner_uname else "")) if partner_id else None,
         ]
         tg_post(LOG_BOT_TOKEN, "sendMessage", {
             "chat_id": LOG_CHAT_ID,
@@ -103,86 +94,71 @@ def log_new_user(user, partner_id=""):
         pass
 
 
-def send_event_message_sync(user_id, event, user_name=""):
-    """Отправить сообщение по имени события."""
-    msg = CONFIG.get("messages", {}).get(event)
+def parse_start_payload(payload):
+    """ref_5725111966_insta → (partner_id, utm_source)"""
+    if not payload.startswith("ref_"):
+        return "", ""
+    parts = payload[4:].split("_", 1)
+    return parts[0], (parts[1] if len(parts) > 1 else "")
+
+
+def handle_update(data):
+    msg = data.get("message") or data.get("edited_message")
     if not msg:
         return
-    conf_name = CONFIG.get("conference_name", "")
-    text      = msg["text"].format(name=user_name, conference_name=conf_name)
 
-    if "button_text" in msg:
-        btn_text = msg["button_text"].format(conference_name=conf_name)
-        reg_url  = CONFIG.get("registration_url", "")
+    user    = msg.get("from", {})
+    user_id = user.get("id")
+    text    = (msg.get("text") or "").strip()
+
+    if not user_id or not text:
+        return
+
+    first_name = user.get("first_name", "")
+    last_name  = user.get("last_name", "")
+    username   = user.get("username", "")
+
+    # /start [payload]
+    if text.startswith("/start"):
+        parts      = text.split(maxsplit=1)
+        payload    = parts[1] if len(parts) > 1 else ""
+        partner_id, utm = parse_start_payload(payload)
+
+        log_user(user_id, first_name, last_name, username, partner_id)
+
+        tma_url = TMA_URL + "/bot"
+        params  = {k: v for k, v in [("new_partner_id", partner_id), ("utm_source", utm), ("tg_id", str(user_id))] if v}
+        if params:
+            tma_url += "?" + urlencode(params)
+
+        conf = CONFIG.get("conference_name", "iVision Conf")
+        btn  = CONFIG["messages"]["start"]["button_text"].format(conference_name=conf)
+        txt  = CONFIG["messages"]["start"]["text"].format(name=first_name, conference_name=conf)
         tg_post(BOT_TOKEN, "sendMessage", {
-            "chat_id":      user_id,
-            "text":         text,
+            "chat_id": user_id, "text": txt,
             "reply_markup": {"inline_keyboard": [[
-                {"text": btn_text, "web_app": {"url": reg_url}}
+                {"text": btn, "web_app": {"url": tma_url}}
             ]]}
         })
-    else:
-        tg_post(BOT_TOKEN, "sendMessage", {"chat_id": user_id, "text": text})
+        return
 
+    if text == "event_start":
+        send_message(user_id, "event_start", first_name)
+        return
 
-@dp.message(CommandStart())
-async def cmd_start(message: types.Message):
-    text_parts = message.text.split(maxsplit=1)
-    payload    = text_parts[1] if len(text_parts) > 1 else ""
-    parsed     = parse_payload(payload)
-    partner_id = parsed.get("partner_id", "")
-    utm_source = parsed.get("utm_source", "")
-    tg_id      = str(message.from_user.id)
-
-    # Логируем нового пользователя
-    log_new_user(message.from_user, partner_id)
-
-    tma_url = build_url(TMA_URL + "/bot",
-                        new_partner_id=partner_id,
-                        utm_source=utm_source,
-                        tg_id=tg_id)
-
-    conf_name = CONFIG.get("conference_name", "iVision Conf")
-    btn_text  = CONFIG["messages"]["start"]["button_text"].format(conference_name=conf_name)
-    text      = CONFIG["messages"]["start"]["text"].format(
-        name=message.from_user.first_name or "",
-        conference_name=conf_name
-    )
-
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[[
-        InlineKeyboardButton(text=btn_text, web_app=WebAppInfo(url=tma_url))
-    ]])
-    await message.answer(text, reply_markup=keyboard)
-
-
-@dp.message(F.text == "event_start")
-async def cmd_event_start(message: types.Message):
-    send_event_message_sync(
-        message.from_user.id,
-        "event_start",
-        message.from_user.first_name or ""
-    )
-
-
-@dp.message(F.text == "event_reg")
-async def cmd_event_reg(message: types.Message):
-    send_event_message_sync(
-        message.from_user.id,
-        "event_reg",
-        message.from_user.first_name or ""
-    )
+    if text == "event_reg":
+        send_message(user_id, "event_reg", first_name)
+        return
 
 
 class handler(BaseHTTPRequestHandler):
     def do_POST(self):
         length = int(self.headers.get("Content-Length", 0))
         body   = self.rfile.read(length)
-
-        async def process():
-            update = types.Update.model_validate_json(body)
-            await dp.feed_update(bot, update)
-
-        asyncio.run(process())
+        try:
+            handle_update(json.loads(body))
+        except Exception:
+            pass
 
         self.send_response(200)
         self.send_header("Content-Type", "application/json")
