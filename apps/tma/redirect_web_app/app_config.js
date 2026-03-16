@@ -9,6 +9,6 @@
  *   <script src="/redirect_web_app/redirect_web_app.js"></script>
  */
 var APP_CONFIG = {
-  tg: 'https://t.me/Margo_forbs_bot/ivision'
+  tg: 'https://t.me/pluson_bot/ivision'
   // max: 'https://...'   // будущая поддержка Max
 };
