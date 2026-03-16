@@ -38,20 +38,15 @@
       }
     });
 
-    // Отправляем event_start в Salebot.
-    // keepalive держит запрос живым даже при смене страницы.
-    // setTimeout 200мс — страховка: даём сети инициировать запрос до редиректа.
+    // Отправляем event_start через наш бэкенд (сервер → Salebot, без CORS-блокировок).
     function sendSalebotEvent(uid) {
-      if (!uid || !APP_CONFIG.saleBotApiKey) return;
-      var url  = 'https://chatter.salebot.pro/api/' + APP_CONFIG.saleBotApiKey + '/callback';
-      var data = 'client_id=' + encodeURIComponent(uid) + '&message=event_start';
+      if (!uid) return;
       try {
-        fetch(url, {
+        fetch('/api/salebot-event', {
           method:    'POST',
-          mode:      'no-cors',
           keepalive: true,
-          headers:   { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body:      data
+          headers:   { 'Content-Type': 'application/json' },
+          body:      JSON.stringify({ user_id: uid, event: 'event_start' })
         });
       } catch (e) {}
     }

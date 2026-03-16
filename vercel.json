@@ -1,11 +1,13 @@
 {
   "version": 2,
   "builds": [
-    { "src": "api/webhook.py", "use": "@vercel/python" },
+    { "src": "api/webhook.py",       "use": "@vercel/python" },
+    { "src": "api/salebot_event.py", "use": "@vercel/python" },
     { "src": "apps/tma/**",    "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "^/api/webhook$",                          "dest": "/api/webhook.py" },
+    { "src": "^/api/webhook$",       "dest": "/api/webhook.py" },
+    { "src": "^/api/salebot-event$", "dest": "/api/salebot_event.py" },
     { "src": "^/img/(.+)$",                             "dest": "/apps/tma/img/$1" },
     { "src": "^/([^/]+\\.json)$",                       "dest": "/apps/tma/$1" },
     { "src": "^/redirect_web_app/app_config\\.js$",        "dest": "/apps/tma/redirect_web_app/app_config.js" },
