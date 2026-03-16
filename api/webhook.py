@@ -12,25 +12,14 @@ from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlencode
 from datetime import datetime, timezone
 
-import gspread
-from google.oauth2.service_account import Credentials
 from aiogram import Bot, Dispatcher, F, types
 from aiogram.filters import CommandStart
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
 
-BOT_TOKEN    = os.environ["BOT_TOKEN"]
-TMA_URL      = os.environ.get("TMA_URL", "https://ivision-conf.vercel.app")
-SHEETS_ID    = os.environ.get("GOOGLE_SHEETS_ID", "RXiUPEAmxVdzBTP9tnJ5ddkoBxuhlnHFgsx_nTkBE")
-SHEETS_CREDS = os.environ.get("GOOGLE_SERVICE_ACCOUNT_JSON", "")
-
-SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
-
-
-def get_sheet():
-    creds_dict = json.loads(SHEETS_CREDS)
-    creds      = Credentials.from_service_account_info(creds_dict, scopes=SCOPES)
-    gc         = gspread.authorize(creds)
-    return gc.open_by_key(SHEETS_ID).worksheet("bot_users")
+BOT_TOKEN     = os.environ["BOT_TOKEN"]
+TMA_URL       = os.environ.get("TMA_URL", "https://ivision-conf.vercel.app")
+LOG_BOT_TOKEN = os.environ.get("LOG_BOT_TOKEN", "")  # бот с доступом к каналу
+LOG_CHAT_ID   = os.environ.get("LOG_CHAT_ID", "")    # id канала для логов
 
 # Читаем конфиг с текстами
 _cfg_path = os.path.join(os.path.dirname(__file__), "bot_config.json")
@@ -59,8 +48,8 @@ def parse_payload(payload):
     return result
 
 
-def tg_post(method, payload):
-    url  = f"https://api.telegram.org/bot{BOT_TOKEN}/{method}"
+def tg_post(token, method, payload):
+    url  = f"https://api.telegram.org/bot{token}/{method}"
     data = json.dumps(payload).encode()
     req  = urllib.request.Request(url, data=data,
                                    headers={"Content-Type": "application/json"})
@@ -80,22 +69,24 @@ def get_tg_username(tg_id):
 
 
 def log_new_user(user, partner_id=""):
-    if not SHEETS_CREDS:
+    if not LOG_BOT_TOKEN or not LOG_CHAT_ID:
         return
     try:
-        sheet    = get_sheet()
-        existing = sheet.col_values(2)  # столбец tg_id
-        if str(user.id) in existing:
-            return
         partner_username = get_tg_username(partner_id) if partner_id else ""
-        sheet.append_row([
-            datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
-            str(user.id),
-            f"{user.first_name or ''} {user.last_name or ''}".strip(),
-            user.username or "",
-            str(partner_id) if partner_id else "",
-            partner_username
-        ])
+        full_name = f"{user.first_name or ''} {user.last_name or ''}".strip()
+        dt        = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+        lines = [
+            "🆕 Новый подписчик",
+            f"📅 {dt}",
+            f"🆔 {user.id}",
+            f"👤 {full_name}" if full_name else None,
+            f"📎 @{user.username}" if user.username else None,
+            f"🤝 Партнёр: {partner_id}" + (f" (@{partner_username})" if partner_username else "") if partner_id else None,
+        ]
+        tg_post(LOG_BOT_TOKEN, "sendMessage", {
+            "chat_id": LOG_CHAT_ID,
+            "text":    "\n".join(l for l in lines if l)
+        })
     except Exception:
         pass
 
@@ -111,7 +102,7 @@ def send_event_message_sync(user_id, event, user_name=""):
     if "button_text" in msg:
         btn_text = msg["button_text"].format(conference_name=conf_name)
         reg_url  = CONFIG.get("registration_url", "")
-        tg_post("sendMessage", {
+        tg_post(BOT_TOKEN, "sendMessage", {
             "chat_id":      user_id,
             "text":         text,
             "reply_markup": {"inline_keyboard": [[
@@ -119,7 +110,7 @@ def send_event_message_sync(user_id, event, user_name=""):
             ]]}
         })
     else:
-        tg_post("sendMessage", {"chat_id": user_id, "text": text})
+        tg_post(BOT_TOKEN, "sendMessage", {"chat_id": user_id, "text": text})
 
 
 @dp.message(CommandStart())

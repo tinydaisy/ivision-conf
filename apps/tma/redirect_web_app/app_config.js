@@ -9,7 +9,6 @@
  *   <script src="/redirect_web_app/redirect_web_app.js"></script>
  */
 var APP_CONFIG = {
-  tg: 'https://t.me/Margo_forbs_bot/ivision',
-  saleBotApiKey: '315a5e0842886f038831a5a29fbb9aa2'
+  tg: 'https://t.me/Margo_forbs_bot/ivision'
   // max: 'https://...'   // будущая поддержка Max
 };
