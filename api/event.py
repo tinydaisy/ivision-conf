@@ -13,10 +13,22 @@ BOT_TOKEN   = os.environ["BOT_TOKEN"]
 LOG_BOT_TOKEN = os.environ.get("LOG_BOT_TOKEN", "")   # бот с доступом к каналу
 LOG_CHAT_ID   = os.environ.get("LOG_CHAT_ID", "")     # id канала для логов
 
-# Читаем конфиг с текстами сообщений
-_cfg_path = os.path.join(os.path.dirname(__file__), "bot_config.json")
-with open(_cfg_path) as _f:
-    CONFIG = json.load(_f)
+# Читаем конфиг с текстами сообщений (fallback встроен на случай если файл не найден)
+_DEFAULT_CONFIG = {
+    "conference_name": "iVision Conf",
+    "registration_url": "https://ivision.margoforbs.ru/ivision-conf-7",
+    "messages": {
+        "start":       {"text": "👋 Привет, {name}!\n\nНажми кнопку — откроется {conference_name}.", "button_text": "Открыть {conference_name}"},
+        "event_start": {"text": "Добрейшего-богатейшего! Приветствуем вас на событии! Для регистрации нажмите кнопку «Зарегистрироваться»", "button_text": "Зарегистрироваться"},
+        "event_reg":   {"text": "Поздравляю! Вы зарегистрированы"}
+    }
+}
+try:
+    _cfg_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "bot_config.json")
+    with open(_cfg_path) as _f:
+        CONFIG = json.load(_f)
+except Exception:
+    CONFIG = _DEFAULT_CONFIG
 
 
 def tg_post(token, method, payload):
