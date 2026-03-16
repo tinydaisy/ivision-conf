@@ -38,16 +38,19 @@
       }
     });
 
-    // Отправляем event_start в Salebot (fire-and-forget, no-cors)
+    // Отправляем event_start в Salebot.
+    // sendBeacon гарантирует отправку даже при немедленном редиректе.
     function sendSalebotEvent(uid) {
       if (!uid || !APP_CONFIG.saleBotApiKey) return;
-      var url = 'https://chatter.salebot.pro/api/' + APP_CONFIG.saleBotApiKey + '/callback';
-      fetch(url, {
-        method:  'POST',
-        mode:    'no-cors',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body:    'client_id=' + encodeURIComponent(uid) + '&message=event_start'
-      }).catch(function () {});
+      var url  = 'https://chatter.salebot.pro/api/' + APP_CONFIG.saleBotApiKey + '/callback';
+      var data = 'client_id=' + encodeURIComponent(uid) + '&message=event_start';
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(url, new Blob([data], { type: 'application/x-www-form-urlencoded' }));
+      } else {
+        fetch(url, { method: 'POST', mode: 'no-cors',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: data
+        }).catch(function () {});
+      }
     }
 
     function go() {
