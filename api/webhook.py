@@ -12,13 +12,25 @@ from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlencode
 from datetime import datetime, timezone
 
+import gspread
+from google.oauth2.service_account import Credentials
 from aiogram import Bot, Dispatcher, F, types
 from aiogram.filters import CommandStart
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
 
-BOT_TOKEN          = os.environ["BOT_TOKEN"]
-TMA_URL            = os.environ.get("TMA_URL", "https://ivision-conf.vercel.app")
-SHEETS_WEBHOOK_URL = os.environ.get("SHEETS_WEBHOOK_URL", "")
+BOT_TOKEN    = os.environ["BOT_TOKEN"]
+TMA_URL      = os.environ.get("TMA_URL", "https://ivision-conf.vercel.app")
+SHEETS_ID    = os.environ.get("GOOGLE_SHEETS_ID", "RXiUPEAmxVdzBTP9tnJ5ddkoBxuhlnHFgsx_nTkBE")
+SHEETS_CREDS = os.environ.get("GOOGLE_SERVICE_ACCOUNT_JSON", "")
+
+SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
+
+
+def get_sheet():
+    creds_dict = json.loads(SHEETS_CREDS)
+    creds      = Credentials.from_service_account_info(creds_dict, scopes=SCOPES)
+    gc         = gspread.authorize(creds)
+    return gc.open_by_key(SHEETS_ID).worksheet("bot_users")
 
 # Читаем конфиг с текстами
 _cfg_path = os.path.join(os.path.dirname(__file__), "bot_config.json")
@@ -68,23 +80,22 @@ def get_tg_username(tg_id):
 
 
 def log_new_user(user, partner_id=""):
-    if not SHEETS_WEBHOOK_URL:
+    if not SHEETS_CREDS:
         return
     try:
+        sheet    = get_sheet()
+        existing = sheet.col_values(2)  # столбец tg_id
+        if str(user.id) in existing:
+            return
         partner_username = get_tg_username(partner_id) if partner_id else ""
-        payload = json.dumps({
-            "datetime":            datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
-            "tg_id":               str(user.id),
-            "full_name":           f"{user.first_name or ''} {user.last_name or ''}".strip(),
-            "tg_username":         user.username or "",
-            "partner_tg_id":       str(partner_id) if partner_id else "",
-            "partner_tg_username": partner_username
-        }).encode()
-        req = urllib.request.Request(
-            SHEETS_WEBHOOK_URL, data=payload,
-            headers={"Content-Type": "application/json"}, method="POST"
-        )
-        urllib.request.urlopen(req, timeout=5)
+        sheet.append_row([
+            datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
+            str(user.id),
+            f"{user.first_name or ''} {user.last_name or ''}".strip(),
+            user.username or "",
+            str(partner_id) if partner_id else "",
+            partner_username
+        ])
     except Exception:
         pass
 
