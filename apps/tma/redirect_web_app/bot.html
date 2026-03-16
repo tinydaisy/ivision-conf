@@ -4,37 +4,66 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
   <title>iVision</title>
+  <script src="/redirect_web_app/app_config.js"></script>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script>
     var DEFAULT = '/ivision-conf-7';
-    // Синхронная карта страниц (мгновенный редирект без fetch)
     var PAGES = {
-      "conf7": "/ivision-conf-7",
-      "spkrs": "/ivision-for-speakers",
-      "ntwrk": "/networking",
+      "conf7":   "/ivision-conf-7",
+      "spkrs":   "/ivision-for-speakers",
+      "ntwrk":   "/networking",
       "razbory": "/razbory-meet"
     };
-    var twa = window.Telegram && window.Telegram.WebApp;
-    var sp = '';
 
-    if(twa){
+    var twa    = window.Telegram && window.Telegram.WebApp;
+    var sp     = '';
+    var userId = '';
+
+    if (twa) {
       twa.ready();
       twa.expand();
-      sp = (twa.initDataUnsafe && twa.initDataUnsafe.start_param) || '';
+      sp     = (twa.initDataUnsafe && twa.initDataUnsafe.start_param) || '';
+      userId = (twa.initDataUnsafe && twa.initDataUnsafe.user && String(twa.initDataUnsafe.user.id)) || '';
     }
 
     // Dev-fallback: ?sp=ref_pgconf7_pid123_srcinsta
-    if(!sp) sp = new URLSearchParams(window.location.search).get('sp') || '';
+    if (!sp) sp = new URLSearchParams(window.location.search).get('sp') || '';
 
-    // Синхронный редирект по карте страниц
+    // Определяем страницу назначения по коду pg...
     var dest = DEFAULT;
-    sp.split('_').forEach(function(part){
-      if(part.indexOf('pg') === 0){
+    sp.split('_').forEach(function (part) {
+      if (part.indexOf('pg') === 0) {
         var code = part.slice(2);
-        if(PAGES[code]) dest = PAGES[code];
+        if (PAGES[code]) dest = PAGES[code];
       }
     });
-    window.location.replace(dest);
+
+    // Отправляем event_start в Salebot (fire-and-forget, no-cors)
+    function sendSalebotEvent(uid) {
+      if (!uid || !APP_CONFIG.saleBotApiKey) return;
+      var url = 'https://chatter.salebot.pro/api/' + APP_CONFIG.saleBotApiKey + '/callback';
+      fetch(url, {
+        method:  'POST',
+        mode:    'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body:    'client_id=' + encodeURIComponent(uid) + '&message=event_start'
+      }).catch(function () {});
+    }
+
+    function go() {
+      sendSalebotEvent(userId);
+      window.location.replace(dest);
+    }
+
+    // requestWriteAccess:
+    //   новый пользователь  → показывает диалог «Разрешить боту писать сообщения»
+    //   повторный           → тихо возвращает true, диалог не показывается
+    if (twa && twa.requestWriteAccess) {
+      twa.requestWriteAccess(function () { go(); });
+    } else {
+      // открыто в браузере (не в Telegram) — редиректим сразу
+      go();
+    }
   </script>
 </head>
 <body></body>
