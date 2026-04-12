@@ -591,13 +591,14 @@ function render(c){
 
   /* MISSION */
   h+='<section class="sec sa"><div class="w">';
-  h+='<div class="h2">'+e(c.mission.title)+'</div>';
+  h+='<div class="h2">О КОНФЕРЕНЦИИ И МИССИИ</div>';
   h+='<div class="mission-body">';
   h+='<div class="mission-intro">'+e(c.mission.intro)+'</div>';
-  h+='<div class="slogan-frame">'+e(c.slogan)+'</div>';
-  if(c.mission.photo_url)h+='<img class="mission-photo" src="'+e(c.mission.photo_url)+'" alt="Конференция" loading="lazy">';
   h+='<div class="mission-text">'+e(c.mission.body)+'</div>';
+  h+='<div class="slogan-frame">'+e(c.slogan)+'</div>';
   h+='<div class="mission-footer">'+e(c.mission.footer)+'</div>';
+  h+='<div class="h2" style="margin-top:28px;margin-bottom:16px;">БОЛЕЕ 50 ЛИДЕРОВ РЫНКА УЖЕ ВЫСТУПАЛИ НА «ВИДЕНИЕ / IVISION»</div>';
+  if(c.mission.photo_url)h+='<img class="mission-photo" src="'+e(c.mission.photo_url)+'" alt="Конференция" loading="lazy">';
   h+='</div></div></section>';
 
   /* GIFTS 3-column */
