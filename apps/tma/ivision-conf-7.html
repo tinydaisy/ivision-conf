@@ -167,10 +167,31 @@
     .spk-creds li::before{content:'◆';position:absolute;left:0;top:5px;font-size:6px;color:var(--peach);}
     .spk-creds li:last-child{border-bottom:none;}
 
+    /* ── FOUNDER ── */
+    .founder-sec{background:var(--mid);}
+    .founder-grid{display:flex;flex-direction:column;gap:24px;margin-top:24px;align-items:center;}
+    .founder-photo-wrap{position:relative;width:220px;height:220px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .founder-photo-wrap::before{content:'';position:absolute;inset:-5px;border-radius:50%;background:conic-gradient(from 0deg,transparent 0%,rgba(255,207,164,.7) 30%,rgba(192,132,252,.9) 50%,rgba(200,75,158,.7) 70%,transparent 100%);animation:founderSpin 6s linear infinite;filter:blur(5px);z-index:0;}
+    .founder-photo{position:relative;z-index:1;width:210px;height:210px;border-radius:50%;object-fit:cover;object-position:center top;display:block;}
+    .founder-creds{flex:1;width:100%;}
+    .founder-creds ul{list-style:none;}
+    .founder-creds li{font-size:13px;color:var(--muted);padding:6px 0 6px 16px;border-bottom:1px solid rgba(255,207,164,.06);line-height:1.4;position:relative;}
+    .founder-creds li::before{content:'◆';position:absolute;left:0;top:8px;font-size:6px;color:var(--peach);}
+    .founder-creds li:last-child{border-bottom:none;}
+    .founder-role{font-size:12px;color:var(--peach);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;}
+    @keyframes founderSpin{to{transform:rotate(360deg);}}
+    @media(min-width:641px){
+      .founder-grid{flex-direction:row;align-items:flex-start;gap:40px;justify-content:center;}
+      .founder-photo-wrap{width:280px;height:280px;}
+      .founder-photo{width:270px;height:270px;}
+    }
+
     /* ── PARTNERS ── */
     .partners-list{display:flex;flex-direction:column;gap:12px;margin-top:20px;}
     .partner-card{display:flex;flex-direction:column;align-items:center;gap:14px;background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px 20px;text-align:center;}
-    .partner-logo{max-width:140px;max-height:80px;width:auto;height:auto;object-fit:contain;}
+    .partner-logo{display:block;}
+    .partner-logo-type-logo{max-width:140px;max-height:80px;width:auto;height:auto;object-fit:contain;border-radius:var(--r-md);}
+    .partner-logo-type-person{width:80px;height:80px;border-radius:50%;object-fit:cover;}
     .partner-name{font-family:'Roboto',sans-serif;font-weight:700;font-size:16px;letter-spacing:.03em;line-height:1.2;text-transform:uppercase;margin-bottom:8px;}
     .partner-info{list-style:none;text-align:left;width:100%;margin-top:4px;}
     .partner-info li{font-size:11px;color:var(--muted);padding:4px 0 4px 14px;border-bottom:1px solid rgba(255,207,164,.06);line-height:1.4;position:relative;}
@@ -579,13 +600,11 @@ function render(c){
   h+='<div class="h2">СПИКЕРЫ КОНФЕРЕНЦИИ</div>';
   h+='<div class="spk-grid">';
   c.speakers.forEach(function(sp){
+    if(sp.status==='organizer')return;
     var isHL=sp.status==='headliner';
-    var isOrg=sp.status==='organizer';
-    var isWide=isHL||isOrg;
     var initials=sp.name.split(' ').map(function(w){return w[0];}).join('').slice(0,2);
-    h+='<div class="spk-card'+(isHL?' spk-headliner':isOrg?' spk-organizer':'')+'">';
+    h+='<div class="spk-card'+(isHL?' spk-headliner':'')+'">';
     if(isHL)h+='<div class="spk-badge">ХЕДЛАЙНЕР</div>';
-    if(isOrg)h+='<div class="spk-badge spk-org-badge">ОРГАНИЗАТОР И МОДЕРАТОР</div>';
     h+='<div class="spk-photo">'+(sp.photo_url?'<img src="'+e(sp.photo_url)+'" alt="'+e(sp.name)+'" loading="lazy">':'<div class="spk-init">'+e(initials)+'</div>')+'</div>';
     h+='<div class="spk-name">'+e(sp.name)+'</div>';
     h+='<div class="spk-role">'+e(sp.role)+'</div>';
@@ -594,6 +613,20 @@ function render(c){
     h+='</ul></div>';
   });
   h+='</div></div></section>';
+
+  /* FOUNDER */
+  var org=c.speakers.filter(function(sp){return sp.status==='organizer';})[0];
+  if(org){
+    h+='<section class="sec sa founder-sec"><div class="w">';
+    h+='<div class="lbl">ОСНОВАТЕЛЬ И МОДЕРАТОР</div>';
+    h+='<div class="h2">'+e(org.name)+'</div>';
+    h+='<div class="founder-grid">';
+    h+='<div class="founder-photo-wrap">'+(org.photo_url?'<img class="founder-photo" src="'+e(org.photo_url)+'" alt="'+e(org.name)+'" loading="lazy">':'')+'</div>';
+    h+='<div class="founder-creds"><div class="founder-role">'+e(org.role)+'</div><ul>';
+    org.credentials.forEach(function(cr){h+='<li>'+e(cr)+'</li>';});
+    h+='</ul></div>';
+    h+='</div></div></section>';
+  }
 
   /* BENEFITS */
   h+='<section class="sec sa"><div class="w">';
@@ -658,7 +691,10 @@ function render(c){
     h+='<div class="partners-list">';
     c.partners.forEach(function(p){
       h+='<div class="partner-card">';
-      if(p.logo)h+='<img src="'+e(p.logo)+'" alt="'+e(p.name)+'" class="partner-logo">';
+      if(p.logo){
+        var logoType='partner-logo-type-'+(p.photo_type||'logo');
+        h+='<img src="'+e(p.logo)+'" alt="'+e(p.name)+'" class="partner-logo '+logoType+'">';
+      }
       h+='<div class="partner-name">'+e(p.name)+'</div>';
       h+='<ul class="partner-info">';
       if(Array.isArray(p.text)){
