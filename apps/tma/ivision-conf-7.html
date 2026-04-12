@@ -107,7 +107,9 @@
     @keyframes mqright{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 
     /* ── MISSION ── */
-    .mission-body{padding:32px 20px;margin-top:24px;background:url(/img/circles.jpeg) center/cover;border-radius:20px;border:1px solid rgba(200,75,158,.15);}
+    .mission-body{padding:32px 20px;margin-top:24px;background:url(/img/circles.jpeg) center/cover;border-radius:20px;border:1px solid rgba(200,75,158,.15);position:relative;z-index:1;}
+    .mission-body::before{content:'';position:absolute;inset:0;background:rgba(8,11,18,.5);border-radius:20px;z-index:0;pointer-events:none;}
+    .mission-body>*{position:relative;z-index:1;}
     .mission-h2-50{background:linear-gradient(135deg,rgba(200,75,158,.15) 0%,rgba(200,75,158,.08) 100%);padding:16px 20px;margin:32px -20px 0;border-radius:0 0 20px 20px;}
     .mission-intro{font-size:15px;font-weight:400;color:var(--peach);margin-bottom:14px;line-height:1.5;}
     .slogan-frame{background:linear-gradient(var(--dark),var(--dark)) padding-box,linear-gradient(135deg,var(--pink),var(--peach)) border-box;border:2px solid transparent;border-radius:var(--r-md);padding:18px 20px;text-align:center;color:#fff;font-family:var(--ff-d);font-size:clamp(18px,5vw,24px);letter-spacing:.06em;line-height:1.6;margin:16px 0;}
@@ -318,6 +320,8 @@
       .special-center{height:400px;width:180px;margin:0 auto;}
       .special-center video{width:100%;height:100%;object-fit:cover;}
     }
+    video::cue{display:none;}
+    video::-webkit-media-controls-start-playback-button{display:none;}
     @media(min-width:641px){
       .special-layout{flex-direction:row;gap:16px;align-items:flex-start;}
       .special-left{flex:0 0 32%;}
@@ -331,11 +335,13 @@
 
     /* ── REVIEWS CAROUSEL (like titles) ── */
     .reviews-carousel{position:relative;height:auto;display:flex;align-items:center;justify-content:center;overflow:hidden;margin:24px 0;}
-    .reviews-scroll-inner{display:flex;gap:16px;animation:scrollReviews 60s linear infinite;align-items:center;}
+    .reviews-scroll-inner{display:flex;gap:16px;animation:scrollReviews 45s linear infinite;align-items:center;}
+    @media(max-width:640px){.reviews-scroll-inner{animation:scrollReviews 30s linear infinite;}}
     .review-item{flex-shrink:0;border-radius:12px;overflow:hidden;border:3px solid var(--pink);filter:drop-shadow(0 6px 16px rgba(0,0,0,.4));}
     .review-item:nth-child(odd){transform:rotateZ(-7deg) rotateY(3deg);}
     .review-item:nth-child(even){transform:rotateZ(7deg) rotateY(-3deg);}
     .review-item img{height:auto;width:auto;max-height:187px;object-fit:contain;}
+    @media(max-width:640px){.review-item img{max-height:159px;}}
     @keyframes scrollReviews{0%{transform:translateX(0)} 100%{transform:translateX(calc(-50%))}}
 
     /* ── BENEFITS ── (no icons) */
@@ -1005,10 +1011,7 @@ function render(c){
       video.addEventListener('ended',function(){
         this.currentTime=0;
         this.pause();
-        this.style.backgroundImage='url(/img/margo.png)';
-      });
-      video.addEventListener('play',function(){
-        this.style.backgroundImage='none';
+        this.load();
       });
     }
   },100);
