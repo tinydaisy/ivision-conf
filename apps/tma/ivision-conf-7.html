@@ -509,13 +509,13 @@ function watchSpaces(){
 function watchSpeakers(){
   var g=document.querySelector('.spk-grid');if(!g)return;
   g.classList.add('pre-anim');
-  new IntersectionObserver(function(entries,obs){
-    if(entries[0].isIntersecting){
-      g.classList.remove('pre-anim');
-      g.classList.add('visible');
-      obs.disconnect();
-    }
-  },{threshold:0.1}).observe(g);
+  var reveal=function(){g.classList.remove('pre-anim');g.classList.add('visible');};
+  if(!window.IntersectionObserver){reveal();return;}
+  var io=new IntersectionObserver(function(entries,obs){
+    if(entries[0].isIntersecting){reveal();obs.disconnect();}
+  },{threshold:0.1});
+  io.observe(g);
+  setTimeout(function(){if(g.classList.contains('pre-anim')){reveal();io.disconnect();}},3000);
 }
 function watchPartners(){
   var g=document.querySelector('.partners-list');if(!g)return;
