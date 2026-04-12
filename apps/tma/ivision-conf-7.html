@@ -514,7 +514,8 @@ function watchSpeakers(){
       var cards=g.querySelectorAll('.spk-card');
       cards.forEach(function(card,idx){
         var delay=[0,0.15,0.3,0.45,0.6,0.75,0.9][idx]||0.9;
-        card.style.animation='slideUpFade 0.6s ease-out '+delay+'s forwards';
+        card.style.animationDelay=delay+'s';
+        card.style.animationPlayState='running';
       });
     }
   },{threshold:0.2}).observe(g);
