@@ -49,10 +49,10 @@
     .btn-pay-i{display:flex;align-items:center;justify-content:center;background:rgba(255,207,164,.12);color:var(--text);font-family:var(--ff-b);font-weight:700;font-size:15px;padding:14px 36px;border-radius:var(--r-pill);text-align:center;width:100%;border:none;cursor:pointer;}
 
     /* ── STICKY NAV (links + button only, no logos) ── */
-    #nav{position:fixed;top:12px;left:50%;transform:translateX(-50%) translateY(-120px);z-index:1000;width:calc(100% - 24px);max-width:480px;background:rgba(8,11,18,.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(37,69,93,.55);border-radius:var(--r-pill);padding:9px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;transition:transform .4s ease;}
+    #nav{position:fixed;top:12px;left:50%;transform:translateX(-50%) translateY(-120px);z-index:1000;width:calc(100% - 24px);max-width:480px;background:linear-gradient(135deg,rgba(200,75,158,.25),rgba(37,69,93,.35));backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,207,164,.2);border-radius:var(--r-pill);padding:9px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;transition:transform .4s ease;}
     #nav.vis{transform:translateX(-50%) translateY(0);}
     .nav-links{display:flex;align-items:center;gap:14px;}
-    .nav-links a{font-family:var(--ff-b);font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--muted);text-decoration:none;white-space:nowrap;}
+    .nav-links a{font-family:var(--ff-b);font-size:13px;font-weight:600;letter-spacing:.02em;color:#fff;text-decoration:none;white-space:nowrap;}
     .nav-links a:active{color:var(--peach);}
     .nav-btn{padding:1.5px;border-radius:var(--r-pill);background:var(--btn-grad);border:none;cursor:pointer;flex-shrink:0;}
     .nav-btn-i{display:flex;align-items:center;background:var(--dark);color:var(--text);font-family:var(--ff-d);font-size:13px;letter-spacing:.06em;padding:7px 14px;border-radius:var(--r-pill);white-space:nowrap;}
@@ -109,7 +109,8 @@
     /* ── MISSION ── */
     .mission-body{padding:0;margin-top:24px;}
     .mission-intro{font-size:15px;font-weight:400;color:var(--peach);margin-bottom:14px;line-height:1.5;}
-    .slogan-frame{background:linear-gradient(var(--dark),var(--dark)) padding-box,linear-gradient(135deg,var(--pink),var(--peach)) border-box;border:2px solid transparent;border-radius:var(--r-md);padding:18px 20px;text-align:center;color:#fff;font-family:var(--ff-d);font-size:clamp(18px,5vw,24px);letter-spacing:.06em;line-height:1.3;margin:16px 0;}
+    .slogan-frame{background:linear-gradient(var(--dark),var(--dark)) padding-box,linear-gradient(135deg,var(--pink),var(--peach)) border-box;border:2px solid transparent;border-radius:var(--r-md);padding:18px 20px;text-align:center;color:#fff;font-family:var(--ff-d);font-size:clamp(18px,5vw,24px);letter-spacing:.06em;line-height:1.3;margin:16px 0;word-spacing:999px;}
+    @media(min-width:641px){.slogan-frame{word-spacing:normal;}}
     .mission-photo{width:100%;border-radius:var(--r-md);margin:16px 0;display:block;}
     .mission-text{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:14px;}
     .mission-footer{font-size:13px;color:var(--peach);font-weight:700;text-transform:uppercase;line-height:1.6;font-style:italic;border-left:3px solid var(--peach);padding-left:14px;}
@@ -274,10 +275,10 @@
     .t-desc-placeholder{height:42px;margin-bottom:12px;}
 
     /* ── TITLES CAROUSEL (SCROLLING WITH CHAOS) ── */
-    .titles-scroll-chaos{position:relative;height:260px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-    .titles-scroll-inner{display:flex;gap:24px;animation:scrollChaos 45s linear infinite;}
+    .titles-scroll-chaos{position:relative;height:280px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+    .titles-scroll-inner{display:flex;gap:28px;animation:scrollChaos 45s linear infinite;}
     .title-scroll-item{flex-shrink:0;border-radius:12px;overflow:hidden;border:2px solid var(--border);background:rgba(255,207,164,.08);filter:drop-shadow(0 6px 16px rgba(0,0,0,.4));}
-    .title-scroll-item{width:140px;height:140px;transform:rotateZ(0deg);}
+    .title-scroll-item{width:168px;height:168px;transform:rotateZ(0deg);}
     .title-scroll-item:nth-child(odd){transform:rotateZ(-8deg) rotateY(4deg);}
     .title-scroll-item:nth-child(even){transform:rotateZ(6deg) rotateY(-4deg);}
     .title-scroll-item img{width:100%;height:100%;object-fit:cover;}
@@ -294,7 +295,11 @@
     .special-item-title{font-family:var(--ff-d);font-size:13px;letter-spacing:.02em;color:var(--peach);margin-bottom:2px;}
     .special-item-text{font-size:10px;color:var(--muted);line-height:1.4;}
     .special-center{width:100%;height:300px;background:linear-gradient(135deg,rgba(25,69,93,.25),rgba(200,75,158,.15));border-radius:var(--r-lg);overflow:hidden;display:flex;align-items:center;justify-content:center;}
-    .special-center video{width:100%;height:100%;object-fit:contain;background:#000;}
+    .special-center video{width:100%;height:100%;object-fit:contain;background:#000;cursor:pointer;}
+    @media(max-width:640px){
+      .special-center{height:400px;width:180px;margin:0 auto;}
+      .special-center video{width:100%;height:100%;object-fit:cover;}
+    }
     @media(min-width:641px){
       .special-layout{flex-direction:row;gap:16px;align-items:flex-start;}
       .special-left{flex:0 0 32%;}
@@ -307,13 +312,12 @@
     }
 
     /* ── REVIEWS CAROUSEL (like titles) ── */
-    .reviews-carousel{position:relative;height:200px;display:flex;align-items:center;justify-content:center;overflow:hidden;margin:24px 0;}
-    .reviews-scroll-inner{display:flex;gap:20px;animation:scrollReviews 55s linear infinite;}
-    .review-item{flex-shrink:0;border-radius:12px;overflow:hidden;border:2px solid var(--border);filter:drop-shadow(0 6px 16px rgba(0,0,0,.4));background:#000;}
-    .review-item{width:auto;max-width:160px;height:180px;}
+    .reviews-carousel{position:relative;height:auto;display:flex;align-items:center;justify-content:center;overflow:hidden;margin:24px 0;}
+    .reviews-scroll-inner{display:flex;gap:16px;animation:scrollReviews 60s linear infinite;align-items:center;}
+    .review-item{flex-shrink:0;border-radius:12px;overflow:hidden;border:2px solid var(--border);filter:drop-shadow(0 6px 16px rgba(0,0,0,.4));}
     .review-item:nth-child(odd){transform:rotateZ(-7deg) rotateY(3deg);}
     .review-item:nth-child(even){transform:rotateZ(7deg) rotateY(-3deg);}
-    .review-item img{height:100%;width:auto;object-fit:contain;object-position:center;}
+    .review-item img{height:auto;width:auto;max-height:220px;object-fit:contain;}
     @keyframes scrollReviews{0%{transform:translateX(0)} 100%{transform:translateX(calc(-50%))}}
 
     /* ── BENEFITS ── (no icons) */
@@ -652,9 +656,10 @@ function render(c){
   h+='<div class="h2">О КОНФЕРЕНЦИИ И МИССИИ</div>';
   h+='<div class="mission-body">';
   h+='<div class="mission-intro">'+e(c.mission.intro)+'</div>';
-  h+='<div class="mission-text">'+e(c.mission.body)+'</div>';
+  h+='<div class="mission-text">'+e(c.mission.body_1)+'</div>';
   h+='<div class="slogan-frame">'+e(c.slogan)+'</div>';
   h+='<div class="mission-footer">'+e(c.mission.footer)+'</div>';
+  h+='<div class="mission-text" style="margin-top:24px;">'+e(c.mission.body_2)+'</div>';
   h+='<div class="h2" style="margin-top:48px;margin-bottom:16px;">БОЛЕЕ 50 ЛИДЕРОВ РЫНКА УЖЕ ВЫСТУПАЛИ НА «ВИДЕНИЕ / IVISION»</div>';
   if(c.mission.photo_url)h+='<img class="mission-photo" src="'+e(c.mission.photo_url)+'" alt="Конференция" loading="lazy">';
   h+='</div></div></section>';
@@ -756,7 +761,7 @@ function render(c){
   h+='<div class="special-item"><div class="special-item-icon">'+spIcons[3]+'</div><div class="special-item-content"><div class="special-item-title">Партнерские игры и розыгрыши</div><div class="special-item-text">Получать ценные инструменты в подарок за активность</div></div></div>';
   h+='</div>';
   /* CENTER VIDEO */
-  h+='<div class="special-center"><video controls><source src="/img/chastushka_kromberger.mp4" type="video/mp4"></video></div>';
+  h+='<div class="special-center"><video controls poster="/img/margo.png"><source src="/img/chastushka_kromberger.mp4" type="video/mp4"></video></div>';
   /* RIGHT COLUMN */
   h+='<div class="special-right">';
   h+='<div class="special-item"><div class="special-item-icon">'+spIcons[4]+'</div><div class="special-item-content"><div class="special-item-title">Музыкальные портреты</div><div class="special-item-text">Аутентичность креатива и творчества Марго</div></div></div>';
