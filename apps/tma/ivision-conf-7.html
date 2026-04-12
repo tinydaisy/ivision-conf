@@ -210,11 +210,26 @@
     .partner-info li:last-child{border-bottom:none;}
 
     /* ── BENEFITS ── */
-    .ben-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px;}
-    .ben-card{background:rgba(17,24,39,.7);border:1px solid rgba(255,207,164,.1);border-radius:var(--r-md);padding:16px 13px;display:flex;flex-direction:column;gap:7px;}
-    .ben-ico{font-size:24px;line-height:1;}
-    .ben-title{font-family:var(--ff-d);font-size:16px;letter-spacing:.03em;}
-    .ben-text{font-size:12px;color:var(--muted);line-height:1.45;}
+    .ben-grid{display:grid;grid-template-columns:1fr;gap:20px;margin-top:24px;}
+    /* Top 3 benefits with images (large visual cards) */
+    .ben-img-grid{display:grid;grid-template-columns:1fr;gap:20px;margin-bottom:32px;}
+    .ben-img-card{display:flex;flex-direction:column;gap:14px;}
+    .ben-img-card-img{width:100%;height:220px;border-radius:20px;overflow:hidden;object-fit:cover;display:block;}
+    .ben-img-card-title{font-family:var(--ff-d);font-size:20px;letter-spacing:.03em;color:var(--peach);}
+    .ben-img-card-text{font-size:13px;color:var(--muted);line-height:1.5;}
+    /* Bottom 4 benefits (simple list format) */
+    .ben-list{display:flex;flex-direction:column;gap:14px;}
+    .ben-list-item{display:flex;gap:14px;align-items:flex-start;padding:14px;background:rgba(255,207,164,.04);border:1px solid rgba(255,207,164,.1);border-radius:var(--r-md);}
+    .ben-list-num{font-family:var(--ff-d);font-size:24px;color:var(--peach);flex-shrink:0;line-height:1;}
+    .ben-list-content{flex:1;}
+    .ben-list-title{font-family:var(--ff-d);font-size:15px;letter-spacing:.03em;margin-bottom:4px;}
+    .ben-list-text{font-size:12px;color:var(--muted);line-height:1.4;}
+    /* Desktop: 3 columns for image cards */
+    @media(min-width:641px){
+      .ben-img-grid{grid-template-columns:repeat(3,1fr);}
+      .ben-img-card-img{height:280px;}
+      .ben-list{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+    }
 
     /* ── SCHEDULE / ACCORDION ── */
     .sched{display:flex;flex-direction:column;gap:14px;margin-top:24px;}
@@ -597,7 +612,7 @@ function render(c){
   h+='<div class="mission-text">'+e(c.mission.body)+'</div>';
   h+='<div class="slogan-frame">'+e(c.slogan)+'</div>';
   h+='<div class="mission-footer">'+e(c.mission.footer)+'</div>';
-  h+='<div class="h2" style="margin-top:48px;padding-top:24px;border-top:2px solid var(--pink);margin-bottom:16px;">БОЛЕЕ 50 ЛИДЕРОВ РЫНКА УЖЕ ВЫСТУПАЛИ НА «ВИДЕНИЕ / IVISION»</div>';
+  h+='<div class="h2" style="margin-top:48px;margin-bottom:16px;">БОЛЕЕ 50 ЛИДЕРОВ РЫНКА УЖЕ ВЫСТУПАЛИ НА «ВИДЕНИЕ / IVISION»</div>';
   if(c.mission.photo_url)h+='<img class="mission-photo" src="'+e(c.mission.photo_url)+'" alt="Конференция" loading="lazy">';
   h+='</div></div></section>';
 
@@ -711,12 +726,31 @@ function render(c){
   /* BENEFITS */
   h+='<section class="sec sa"><div class="w">';
   h+='<div class="h2">Что ты получишь</div>';
-  h+='<div class="ben-grid">';
+  /* Top 3 benefits with images */
+  var benImgs=['/img/dollars.png','/img/microphone.png','/img/speaker.png'];
+  var benImgIdx={};
+  benImgIdx['Масштабирование']=0;benImgIdx['Маркетинг и продажи']=1;benImgIdx['Рычаги влияния']=2;
+  h+='<div class="ben-img-grid">';
+  var imgCount=0;
   c.benefits.forEach(function(b){
-    h+='<div class="ben-card"><div class="ben-title">'+e(b.title)+'</div><div class="ben-text">'+e(b.text)+'</div></div>';
+    if(benImgIdx.hasOwnProperty(b.title)){
+      var imgId=benImgIdx[b.title];
+      h+='<div class="ben-img-card"><img class="ben-img-card-img" src="'+benImgs[imgId]+'" alt="'+e(b.title)+'" loading="lazy"><div class="ben-img-card-title">'+e(b.title)+'</div><div class="ben-img-card-text">'+e(b.text)+'</div></div>';
+      imgCount++;
+    }
   });
   h+='</div>';
-  h+='<div style="margin-top:22px">'+scrollBtn('ВОЙТИ В СРЕДУ СВОИХ')+'</div>';
+  /* Bottom 4 benefits (list format) */
+  h+='<div class="ben-list">';
+  var listNum=1;
+  c.benefits.forEach(function(b){
+    if(!benImgIdx.hasOwnProperty(b.title)){
+      h+='<div class="ben-list-item"><div class="ben-list-num">0'+listNum+'</div><div class="ben-list-content"><div class="ben-list-title">'+e(b.title)+'</div><div class="ben-list-text">'+e(b.text)+'</div></div></div>';
+      listNum++;
+    }
+  });
+  h+='</div>';
+  h+='<div style="margin-top:32px">'+scrollBtn('ВОЙТИ В СРЕДУ СВОИХ')+'</div>';
   h+='</div></section>';
 
   /* PROGRAM */
