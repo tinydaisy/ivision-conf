@@ -250,11 +250,11 @@
     .t-description{font-size:13px;color:var(--muted);margin-bottom:12px;line-height:1.5;padding:8px;background:rgba(255,207,164,.06);border-radius:var(--r-md);}
     /* Аккордеон description для PREMIUM */
     .t-head{display:flex;flex-direction:column;}
-    .t-desc-toggle{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:8px;border:1px solid rgba(255,207,164,.18);background:rgba(255,207,164,.06);border-radius:var(--r-md);margin-bottom:12px;font-size:12px;color:var(--muted);line-height:1.5;user-select:none;transition:all .3s ease;flex-wrap:wrap;}
-    .t-desc-text{flex:1 0 100%;padding-right:28px;}
+    .t-desc-toggle{display:flex;align-items:flex-start;flex-wrap:wrap;cursor:pointer;padding:8px;border:1px solid rgba(255,207,164,.18);background:rgba(255,207,164,.06);border-radius:var(--r-md);margin-bottom:12px;font-size:12px;color:var(--muted);line-height:1.5;user-select:none;transition:all .3s ease;}
+    .t-desc-text{flex:1 0 calc(100% - 28px);padding-right:8px;}
     .t-desc-more{display:none;flex:1 0 100%;margin-top:4px;}
-    .tariff.desc-open .t-desc-more{display:inline;}
-    .t-desc-arrow{width:18px;height:18px;flex-shrink:0;color:var(--pink);transition:transform .3s ease;margin-left:8px;align-self:flex-start;margin-top:2px;}
+    .tariff.desc-open .t-desc-more{display:block;}
+    .t-desc-arrow{width:18px;height:18px;flex-shrink:0;color:var(--pink);transition:transform .3s ease;}
     .tariff.desc-open .t-desc-arrow{transform:rotate(180deg);}
     .t-desc-placeholder{height:42px;margin-bottom:12px;}
 
@@ -761,7 +761,7 @@ function render(c){
     if(t.name==='PREMIUM'&&t.description_short){
       h+='<div class="t-desc-toggle" onclick="this.closest(\'.tariff\').classList.toggle(\'desc-open\')">';
       h+='<span class="t-desc-text">'+e(t.description_short)+'</span>';
-      h+='<span class="t-desc-more" style="display:none;">'+e(t.description_full)+'</span>';
+      h+='<span class="t-desc-more">'+e(t.description_full)+'</span>';
       h+='<svg class="t-desc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>';
       h+='</div>';
     } else if(t.name!=='PREMIUM'){
