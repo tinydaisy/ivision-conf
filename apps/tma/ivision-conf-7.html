@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
   <title>Онлайн-конференция «Видение / iViSiON»</title>
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/logo_ivision.png">
   <script>var PAGE_CODE = 'conf7';</script>
   <script src="/redirect_web_app/app_config.js"></script>
   <script src="/redirect_web_app/redirect_web_app.js"></script>
@@ -107,10 +107,10 @@
     @keyframes mqright{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 
     /* ── MISSION ── */
-    .mission-body{padding:0;margin-top:24px;}
+    .mission-body{padding:32px 20px;margin-top:24px;background:linear-gradient(135deg,rgba(200,75,158,.08) 0%,rgba(37,69,93,.06) 100%);border-radius:20px;border:1px solid rgba(200,75,158,.15);}
     .mission-intro{font-size:15px;font-weight:400;color:var(--peach);margin-bottom:14px;line-height:1.5;}
-    .slogan-frame{background:linear-gradient(var(--dark),var(--dark)) padding-box,linear-gradient(135deg,var(--pink),var(--peach)) border-box;border:2px solid transparent;border-radius:var(--r-md);padding:18px 20px;text-align:center;color:#fff;font-family:var(--ff-d);font-size:clamp(18px,5vw,24px);letter-spacing:.06em;line-height:1.3;margin:16px 0;word-spacing:999px;}
-    @media(min-width:641px){.slogan-frame{word-spacing:normal;}}
+    .slogan-frame{background:linear-gradient(var(--dark),var(--dark)) padding-box,linear-gradient(135deg,var(--pink),var(--peach)) border-box;border:2px solid transparent;border-radius:var(--r-md);padding:18px 20px;text-align:center;color:#fff;font-family:var(--ff-d);font-size:clamp(18px,5vw,24px);letter-spacing:.06em;line-height:1.5;margin:16px 0;word-spacing:999px;display:flex;flex-direction:column;gap:6px;}
+    @media(min-width:641px){.slogan-frame{word-spacing:normal;display:block;}}
     .mission-photo{width:100%;border-radius:var(--r-md);margin:16px 0;display:block;}
     .mission-text{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:14px;}
     .mission-footer{font-size:13px;color:var(--peach);font-weight:700;text-transform:uppercase;line-height:1.6;font-style:italic;border-left:3px solid var(--peach);padding-left:14px;}
@@ -160,7 +160,16 @@
 
     /* ── SPEAKERS ── */
     .spk-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:24px;}
-    .spk-card{background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 14px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;position:relative;}
+    .spk-card{background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 14px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;position:relative;animation:slideUpFade 0.6s ease-out forwards;opacity:0;animation-play-state:paused;}
+    .spk-grid.visible .spk-card{animation-play-state:running;}
+    .spk-card:nth-child(1){animation-delay:0s;}
+    .spk-card:nth-child(2){animation-delay:0.15s;}
+    .spk-card:nth-child(3){animation-delay:0.3s;}
+    .spk-card:nth-child(4){animation-delay:0.45s;}
+    .spk-card:nth-child(5){animation-delay:0.6s;}
+    .spk-card:nth-child(6){animation-delay:0.75s;}
+    .spk-card:nth-child(n+7){animation-delay:0.9s;}
+    @keyframes slideUpFade{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
     /* Headliner: full-width, highlighted */
     .spk-card.spk-headliner{grid-column:1/-1;border-color:transparent;background:linear-gradient(var(--card),var(--card)) padding-box,linear-gradient(135deg,var(--peach),var(--purple)) border-box;box-shadow:0 0 40px rgba(200,75,158,.15);}
     /* Organizer: full-width */
@@ -200,7 +209,15 @@
 
     /* ── PARTNERS ── */
     .partners-list{display:flex;flex-direction:column;gap:12px;margin-top:20px;}
-    .partner-card{display:flex;flex-direction:column;align-items:center;gap:14px;background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px 20px;text-align:center;}
+    .partner-card{display:flex;flex-direction:column;align-items:center;gap:14px;background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px 20px;text-align:center;animation:slideUpFade 0.6s ease-out forwards;opacity:0;animation-play-state:paused;}
+    .partners-list.visible .partner-card{animation-play-state:running;}
+    .partner-card:nth-child(1){animation-delay:0s;}
+    .partner-card:nth-child(2){animation-delay:0.15s;}
+    .partner-card:nth-child(3){animation-delay:0.3s;}
+    .partner-card:nth-child(4){animation-delay:0.45s;}
+    .partner-card:nth-child(5){animation-delay:0.6s;}
+    .partner-card:nth-child(6){animation-delay:0.75s;}
+    .partner-card:nth-child(n+7){animation-delay:0.9s;}
     .partner-logo{display:block;}
     .partner-logo-type-logo{max-width:140px;max-height:80px;width:auto;height:auto;object-fit:contain;border-radius:var(--r-md);}
     .partner-logo-type-person{width:80px;height:80px;border-radius:50%;object-fit:cover;}
@@ -275,10 +292,10 @@
     .t-desc-placeholder{height:42px;margin-bottom:12px;}
 
     /* ── TITLES CAROUSEL (SCROLLING WITH CHAOS) ── */
-    .titles-scroll-chaos{position:relative;height:280px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+    .titles-scroll-chaos{position:relative;height:340px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
     .titles-scroll-inner{display:flex;gap:28px;animation:scrollChaos 45s linear infinite;}
     .title-scroll-item{flex-shrink:0;border-radius:12px;overflow:hidden;border:2px solid var(--border);background:rgba(255,207,164,.08);filter:drop-shadow(0 6px 16px rgba(0,0,0,.4));}
-    .title-scroll-item{width:168px;height:168px;transform:rotateZ(0deg);}
+    .title-scroll-item{width:200px;height:200px;transform:rotateZ(0deg);}
     .title-scroll-item:nth-child(odd){transform:rotateZ(-8deg) rotateY(4deg);}
     .title-scroll-item:nth-child(even){transform:rotateZ(6deg) rotateY(-4deg);}
     .title-scroll-item img{width:100%;height:100%;object-fit:cover;}
@@ -314,10 +331,10 @@
     /* ── REVIEWS CAROUSEL (like titles) ── */
     .reviews-carousel{position:relative;height:auto;display:flex;align-items:center;justify-content:center;overflow:hidden;margin:24px 0;}
     .reviews-scroll-inner{display:flex;gap:16px;animation:scrollReviews 60s linear infinite;align-items:center;}
-    .review-item{flex-shrink:0;border-radius:12px;overflow:hidden;border:2px solid var(--border);filter:drop-shadow(0 6px 16px rgba(0,0,0,.4));}
+    .review-item{flex-shrink:0;border-radius:12px;overflow:hidden;border:3px solid var(--pink);filter:drop-shadow(0 6px 16px rgba(0,0,0,.4));}
     .review-item:nth-child(odd){transform:rotateZ(-7deg) rotateY(3deg);}
     .review-item:nth-child(even){transform:rotateZ(7deg) rotateY(-3deg);}
-    .review-item img{height:auto;width:auto;max-height:220px;object-fit:contain;}
+    .review-item img{height:auto;width:auto;max-height:187px;object-fit:contain;}
     @keyframes scrollReviews{0%{transform:translateX(0)} 100%{transform:translateX(calc(-50%))}}
 
     /* ── BENEFITS ── (no icons) */
@@ -417,7 +434,12 @@ if(tg){tg.ready();tg.expand();}
 
 /* NAV */
 var nav=document.getElementById('nav');
-window.addEventListener('scroll',function(){nav.classList.toggle('vis',window.scrollY>80);},{passive:true});
+var lastScrollY=0;
+window.addEventListener('scroll',function(){
+  var currentScrollY=window.scrollY;
+  nav.classList.toggle('vis',Math.abs(currentScrollY-lastScrollY)>50&&currentScrollY>0);
+  lastScrollY=currentScrollY;
+},{passive:true});
 document.addEventListener('click',function(ev){
   var a=ev.target.closest('[data-nav]');
   if(a){ev.preventDefault();var el=document.getElementById(a.dataset.nav);if(el)el.scrollIntoView({behavior:'smooth'});}
@@ -483,6 +505,18 @@ function watchSpaces(){
     if(entries[0].isIntersecting){g.classList.add('visible');}
   },{threshold:0.2}).observe(g);
 }
+function watchSpeakers(){
+  var g=document.querySelector('.spk-grid');if(!g)return;
+  new IntersectionObserver(function(entries){
+    if(entries[0].isIntersecting){g.classList.add('visible');}
+  },{threshold:0.2}).observe(g);
+}
+function watchPartners(){
+  var g=document.querySelector('.partners-list');if(!g)return;
+  new IntersectionObserver(function(entries){
+    if(entries[0].isIntersecting){g.classList.add('visible');}
+  },{threshold:0.2}).observe(g);
+}
 
 /* OPEN EXTERNAL LINK (works in Telegram WebApp and browser) */
 function openExternal(url){
@@ -534,6 +568,8 @@ if(startParam==='free'){
       updateCountdown();
       watchCounters();
       watchSpaces();
+      watchSpeakers();
+      watchPartners();
       equalizeSpkRows();
       equalizeTariffHeads();
     })
@@ -761,7 +797,7 @@ function render(c){
   h+='<div class="special-item"><div class="special-item-icon">'+spIcons[3]+'</div><div class="special-item-content"><div class="special-item-title">Партнерские игры и розыгрыши</div><div class="special-item-text">Получать ценные инструменты в подарок за активность</div></div></div>';
   h+='</div>';
   /* CENTER VIDEO */
-  h+='<div class="special-center"><video controls poster="/img/margo.png"><source src="/img/chastushka_kromberger.mp4" type="video/mp4"></video></div>';
+  h+='<div class="special-center"><video id="conf-video" controls playsinline poster="/img/margo.png"><source src="/img/chastushka_kromberger.mp4" type="video/mp4"></video></div>';
   /* RIGHT COLUMN */
   h+='<div class="special-right">';
   h+='<div class="special-item"><div class="special-item-icon">'+spIcons[4]+'</div><div class="special-item-content"><div class="special-item-title">Музыкальные портреты</div><div class="special-item-text">Аутентичность креатива и творчества Марго</div></div></div>';
@@ -965,6 +1001,17 @@ function render(c){
   h+='</div></footer>';
 
   document.getElementById('app').innerHTML=h;
+
+  /* RESTORE VIDEO POSTER ON END */
+  setTimeout(function(){
+    var video=document.getElementById('conf-video');
+    if(video){
+      video.addEventListener('ended',function(){
+        this.currentTime=0;
+        this.pause();
+      });
+    }
+  },100);
 }
 </script>
 </body>
