@@ -273,55 +273,29 @@
     .tariff.desc-open .t-desc-arrow{transform:rotate(180deg);}
     .t-desc-placeholder{height:42px;margin-bottom:12px;}
 
-    /* ── SPECIAL INTERACTIVE SECTIONS ── */
-    .special-section{display:flex;flex-direction:column;gap:24px;margin-top:28px;}
-    .special-card{background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column;}
-    .special-header{display:flex;align-items:center;gap:14px;padding:20px;cursor:pointer;user-select:none;background:rgba(255,207,164,.04);transition:all .3s ease;}
-    .special-header:hover{background:rgba(255,207,164,.08);}
-    .special-header-icon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;color:var(--peach);flex-shrink:0;}
-    .special-header-icon svg{width:100%;height:100%;}
-    .special-header-content{flex:1;}
-    .special-header-title{font-family:var(--ff-d);font-size:18px;letter-spacing:.03em;color:var(--peach);margin-bottom:4px;}
-    .special-header-desc{font-size:12px;color:var(--muted);}
-    .special-toggle-arrow{width:20px;height:20px;color:var(--muted);transition:transform .3s ease;flex-shrink:0;}
-    .special-card.open .special-toggle-arrow{transform:rotate(180deg);}
-    .special-body{display:none;padding:0;}
-    .special-card.open .special-body{display:block;}
+    /* ── TITLES CAROUSEL (CHAOTIC STYLE) ── */
+    .titles-chaos{position:relative;height:240px;display:flex;align-items:center;justify-content:center;overflow:hidden;perspective:1000px;}
+    .titles-chaos-scroll{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
+    .title-item-chaos{position:absolute;width:100px;height:140px;border-radius:12px;overflow:hidden;border:2px solid var(--border);background:rgba(255,207,164,.08);cursor:pointer;transition:all .4s cubic-bezier(.34,.1,.68,.55);filter:drop-shadow(0 4px 12px rgba(0,0,0,.4));}
+    .title-item-chaos img{width:100%;height:100%;object-fit:cover;}
+    .title-item-chaos:nth-child(1){width:95px;height:130px;transform:translateX(-140px) rotateZ(-12deg) rotateY(8deg);opacity:.75;}
+    .title-item-chaos:nth-child(2){width:110px;height:150px;transform:translateX(-70px) rotateZ(-5deg);opacity:.85;z-index:2;}
+    .title-item-chaos:nth-child(3){width:125px;height:170px;transform:translateX(0) rotateZ(2deg) scale(1.05);opacity:1;z-index:3;}
+    .title-item-chaos:nth-child(4){width:110px;height:150px;transform:translateX(70px) rotateZ(6deg);opacity:.85;z-index:2;}
+    .title-item-chaos:nth-child(5){width:95px;height:130px;transform:translateX(140px) rotateZ(15deg) rotateY(-8deg);opacity:.75;}
+    .title-item-chaos:hover{transform:scale(1.1) !important;opacity:1 !important;z-index:10;}
 
-    /* Media carousel */
-    .media-carousel{position:relative;width:100%;height:260px;background:linear-gradient(135deg,rgba(25,69,93,.3),rgba(200,75,158,.1));border-radius:var(--r-md);overflow:hidden;display:flex;align-items:center;justify-content:center;}
-    .carousel-item{display:none;width:100%;height:100%;object-fit:cover;}
-    .carousel-item.active{display:block;animation:fadeIn .5s ease;}
-    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-    .carousel-nav{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:10;}
-    .carousel-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,207,164,.3);cursor:pointer;transition:all .3s ease;}
-    .carousel-dot.active{background:var(--peach);width:20px;border-radius:4px;}
-    .carousel-prev,.carousel-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(8,11,18,.6);border:none;color:var(--peach);width:36px;height:36px;border-radius:50%;cursor:pointer;z-index:5;display:flex;align-items:center;justify-content:center;font-size:18px;transition:all .3s ease;}
-    .carousel-prev:hover,.carousel-next:hover{background:rgba(8,11,18,.9);}
-    .carousel-prev{left:8px;}
-    .carousel-next{right:8px;}
-
-    /* Carousel titles section */
-    .carousel-section{padding:20px;}
-    .carousel-section-header{font-family:var(--ff-d);font-size:16px;color:var(--peach);margin-bottom:12px;letter-spacing:.03em;}
-
-    /* Rotated titles carousel */
-    .titles-carousel{position:relative;height:200px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-    .titles-scroll{display:flex;gap:16px;animation:scroll-titles 20s linear infinite;}
-    .title-item{flex-shrink:0;width:120px;height:160px;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:rgba(255,207,164,.08);border:1px solid var(--border);transform:perspective(800px) rotateY(0deg);transition:transform .3s ease;}
-    .title-item:hover{transform:perspective(800px) rotateY(15deg) scale(1.05);}
-    .title-item img{width:100%;height:100%;object-fit:cover;}
-    @keyframes scroll-titles{0%{transform:translateX(0)} 100%{transform:translateX(calc(-100% - 32px))}}
-
-    /* Media player icon */
-    .play-overlay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,207,164,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;opacity:0.8;transition:all .3s ease;}
-    .media-carousel:hover .play-overlay{opacity:1;transform:translate(-50%,-50%) scale(1.1);}
-
-    /* Text blocks with media */
-    .special-text-grid{display:flex;flex-direction:column;gap:12px;}
-    .special-text-block{font-size:13px;color:var(--muted);line-height:1.6;padding:0 20px;}
-    .special-text-block:first-child{padding-top:12px;}
-    .special-text-block:last-child{padding-bottom:20px;}
+    /* ── SPECIAL DIFF SECTION (RADIAL LAYOUT) ── */
+    .special-diff{position:relative;margin-top:32px;}
+    .special-diff-center{position:relative;width:100%;height:280px;background:linear-gradient(135deg,rgba(25,69,93,.25),rgba(200,75,158,.15));border-radius:var(--r-lg);overflow:hidden;display:flex;align-items:center;justify-content:center;margin-bottom:32px;box-shadow:0 8px 32px rgba(0,0,0,.3);}
+    .special-diff-media{width:100%;height:100%;object-fit:cover;display:block;}
+    .special-diff-media video{width:100%;height:100%;object-fit:contain;background:#000;}
+    .special-diff-points{display:flex;flex-direction:column;gap:16px;}
+    .special-point{display:flex;gap:14px;align-items:flex-start;padding:16px;background:rgba(17,24,39,.6);border:1px solid var(--border);border-radius:var(--r-md);transition:all .3s ease;}
+    .special-point:hover{background:rgba(17,24,39,.9);border-color:var(--peach);}
+    .special-point-letter{width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--peach),var(--purple));color:#080B12;font-weight:700;font-size:16px;border-radius:50%;flex-shrink:0;}
+    .special-point-title{font-family:var(--ff-d);font-size:14px;letter-spacing:.03em;color:var(--peach);margin-bottom:4px;}
+    .special-point-text{font-size:11px;color:var(--muted);line-height:1.5;}
 
     /* ── BENEFITS ── (no icons) */
 
@@ -684,6 +658,21 @@ function render(c){
   });
   h+='</div>';
   h+='<div style="margin-top:22px">'+scrollBtn(e(c.bonuses.cta))+'</div>';
+
+  /* TITLES CAROUSEL - chaotic style */
+  h+='<div style="margin-top:48px;">';
+  h+='<div class="h2" style="margin-bottom:24px;">Титулы за активность</div>';
+  h+='<div class="titles-chaos">';
+  h+='<div class="titles-chaos-scroll">';
+  h+='<div class="title-item-chaos"><img src="/img/tituls/titul_9516.JPG" alt="Титул 1" loading="lazy"></div>';
+  h+='<div class="title-item-chaos"><img src="/img/tituls/titul_9517.JPG" alt="Титул 2" loading="lazy"></div>';
+  h+='<div class="title-item-chaos"><img src="/img/tituls/titul_9518.JPG" alt="Титул 3" loading="lazy"></div>';
+  h+='<div class="title-item-chaos"><img src="/img/tituls/titul_9520.JPG" alt="Титул 4" loading="lazy"></div>';
+  h+='<div class="title-item-chaos"><img src="/img/tituls/titul_9521.JPG" alt="Титул 5" loading="lazy"></div>';
+  h+='</div>';
+  h+='</div>';
+  h+='</div>';
+
   h+='</div></section>';
 
   /* SPACES */
@@ -698,82 +687,45 @@ function render(c){
   h+='<div class="quote-block"><div class="quote-text">'+e(c.spaces.quote)+'</div></div>';
   h+='</div></section>';
 
-  /* SPECIAL - INTERACTIVE SECTIONS */
-  h+='<section class="sec"><div class="w">';
-  h+='<div class="h2">Что делает iViSiON особенной</div>';
-  h+='<div class="special-section">';
-
-  /* Card 1: Спикеры практики + интервью (networking фото) */
-  h+='<div class="special-card" onclick="toggleSpecial(event,this)">';
-  h+='<div class="special-header">';
-  h+='<div class="special-header-icon">'+spIcons[0]+'</div>';
-  h+='<div class="special-header-content">';
-  h+='<div class="special-header-title">Спикеры практики</div>';
-  h+='<div class="special-header-desc">Крупные лидеры ниши с реальным опытом и интервью</div>';
+  /* SPECIAL - What makes iVision special (radial layout) */
+  h+='<section class="sec sa"><div class="w">';
+  h+='<div class="h2">ЧТО ДЕЛАЕТ iViSiON ОСОБЕННОЙ</div>';
+  h+='<div class="special-diff">';
+  h+='<div class="special-diff-center">';
+  h+='<video class="special-diff-media" controls><source src="/img/chastushka_kromberger.mp4" type="video/mp4"></video>';
   h+='</div>';
-  h+='<div class="special-toggle-arrow">▼</div>';
-  h+='</div>';
-  h+='<div class="special-body">';
-  h+='<div class="media-carousel" id="carousel-1">';
-  h+='<img class="carousel-item active" src="/img/networking.jpeg" alt="Networking" loading="lazy">';
-  h+='<div class="carousel-nav">';
-  h+='<div class="carousel-dot active" onclick="carouselGoto(event,\'carousel-1\',0)"></div>';
-  h+='</div>';
-  h+='</div>';
-  h+='<div class="special-text-grid">';
-  h+='<div class="special-text-block">Интервью со спикерами раскрывают их реальный путь, стратегии и мышление. Честный диалог, который показывает первопричины успеха и инструменты лидеров рынка.</div>';
-  h+='</div>';
+  h+='<div class="special-diff-points">';
+  h+='<div class="special-point">';
+  h+='<div class="special-point-letter">а)</div>';
+  h+='<div>';
+  h+='<div class="special-point-title">Форматы для раскрытия граней личности</div>';
+  h+='<div class="special-point-text">Уникальные интерактивы для возможности заявить о себе, привлечь аудиторию и прокачать узнаваемость</div>';
   h+='</div></div>';
-
-  /* Card 2: Музыкальные портреты (видео частушки) */
-  h+='<div class="special-card" onclick="toggleSpecial(event,this)">';
-  h+='<div class="special-header">';
-  h+='<div class="special-header-icon">'+spIcons[4]+'</div>';
-  h+='<div class="special-header-content">';
-  h+='<div class="special-header-title">Музыкальные портреты</div>';
-  h+='<div class="special-header-desc">Творческие паузы для сонастройки с аутентичностью</div>';
-  h+='</div>';
-  h+='<div class="special-toggle-arrow">▼</div>';
-  h+='</div>';
-  h+='<div class="special-body">';
-  h+='<div class="media-carousel" style="height:280px;position:relative;" id="carousel-2">';
-  h+='<video class="carousel-item active" controls style="width:100%;height:100%;object-fit:contain;background:#000;"><source src="/img/chastushka_kromberger.mp4" type="video/mp4"></video>';
-  h+='</div>';
-  h+='<div class="special-text-grid">';
-  h+='<div class="special-text-block">Музыкальные портреты спикеров — это уникальная форма выражения их энергии и миссии через творчество. Творческие паузы между блоками для переосмысления и сонастройки с идеей аутентичности.</div>';
-  h+='</div>';
+  h+='<div class="special-point">';
+  h+='<div class="special-point-letter">б)</div>';
+  h+='<div>';
+  h+='<div class="special-point-title">Партнерские игры и розыгрыши</div>';
+  h+='<div class="special-point-text">Возможность получать особо-ценные рабочие инструменты в подарок за активность и вовлеченность</div>';
   h+='</div></div>';
-
-  /* Card 3: Титулы зрителям (карусель с поворотом) */
-  h+='<div class="special-card" onclick="toggleSpecial(event,this)">';
-  h+='<div class="special-header">';
-  h+='<div class="special-header-icon">'+spIcons[1]+'</div>';
-  h+='<div class="special-header-content">';
-  h+='<div class="special-header-title">Титулы зрителям</div>';
-  h+='<div class="special-header-desc">Запомниться среди участников и получить персональные награды</div>';
-  h+='</div>';
-  h+='<div class="special-toggle-arrow">▼</div>';
-  h+='</div>';
-  h+='<div class="special-body">';
-  h+='<div class="carousel-section">';
-  h+='<div class="carousel-section-header">Смотри варианты титулов за активность:</div>';
-  h+='<div class="titles-carousel">';
-  h+='<div class="titles-scroll">';
-  h+='<div class="title-item"><img src="/img/tituls/titul_9516.JPG" alt="Титул 1" loading="lazy"></div>';
-  h+='<div class="title-item"><img src="/img/tituls/titul_9517.JPG" alt="Титул 2" loading="lazy"></div>';
-  h+='<div class="title-item"><img src="/img/tituls/titul_9518.JPG" alt="Титул 3" loading="lazy"></div>';
-  h+='<div class="title-item"><img src="/img/tituls/titul_9520.JPG" alt="Титул 4" loading="lazy"></div>';
-  h+='<div class="title-item"><img src="/img/tituls/titul_9521.JPG" alt="Титул 5" loading="lazy"></div>';
-  h+='<div class="title-item"><img src="/img/tituls/titul_9522.JPG" alt="Титул 6" loading="lazy"></div>';
-  h+='<div class="title-item"><img src="/img/tituls/titul_9523.JPG" alt="Титул 7" loading="lazy"></div>';
-  h+='<div class="title-item"><img src="/img/tituls/titul_9524.JPG" alt="Титул 8" loading="lazy"></div>';
-  h+='</div>';
-  h+='</div>';
-  h+='<div class="special-text-grid">';
-  h+='<div class="special-text-block">Для участников есть возможность получить специальные титулы и персональные награды за активность, вовлечённость и задавание острых вопросов.</div>';
-  h+='</div>';
+  h+='<div class="special-point">';
+  h+='<div class="special-point-letter">в)</div>';
+  h+='<div>';
+  h+='<div class="special-point-title">Музыкальные портреты</div>';
+  h+='<div class="special-point-text">Аутентичность креатива и творчества организатора Марго Форбс</div>';
   h+='</div></div>';
-
+  h+='<div class="special-point">';
+  h+='<div class="special-point-letter">г)</div>';
+  h+='<div>';
+  h+='<div class="special-point-title">Спикеры-практики</div>';
+  h+='<div class="special-point-text">Всегда крупные лидеры ниши с реальным опытом, без воды, с результатами и конкретикой</div>';
+  h+='</div></div>';
+  h+='<div class="special-point">';
+  h+='<div class="special-point-letter">д)</div>';
+  h+='<div>';
+  h+='<div class="special-point-title">Присвоение титулов зрителям</div>';
+  h+='<div class="special-point-text">Возможность выделиться среди зрителей и получить персональные титулы за активность</div>';
+  h+='</div></div>';
+  h+='</div>';
   h+='</div></div></section>';
 
   /* STATS */
@@ -968,52 +920,6 @@ function render(c){
   h+='</div></footer>';
 
   document.getElementById('app').innerHTML=h;
-
-  /* Инициализация интерактивных элементов */
-  setTimeout(function(){
-    initSpecialCards();
-    if(typeof initCarousel==='function')initCarousel();
-  },100);
-}
-
-/* Toggle special cards */
-function toggleSpecial(evt,el){
-  if(evt.target.closest('.carousel-dot')||evt.target.closest('.carousel-nav')||evt.target.closest('video')||evt.target.closest('.media-carousel'))return;
-  el.classList.toggle('open');
-}
-
-/* Carousel navigation */
-function carouselGoto(evt,id,idx){
-  evt.stopPropagation();
-  var carousel=document.getElementById(id);
-  if(!carousel)return;
-  var items=carousel.querySelectorAll('.carousel-item');
-  var dots=carousel.querySelectorAll('.carousel-dot');
-  items.forEach(function(item,i){item.classList.remove('active');if(i===idx)item.classList.add('active');});
-  dots.forEach(function(dot,i){dot.classList.remove('active');if(i===idx)dot.classList.add('active');});
-}
-
-/* Initialize special cards */
-function initSpecialCards(){
-  var cards=document.querySelectorAll('.special-card');
-  cards.forEach(function(card,idx){
-    /* Open first card by default */
-    if(idx===0)card.classList.add('open');
-  });
-}
-
-/* Scroll animation for titles */
-function initCarousel(){
-  var titleCarousels=document.querySelectorAll('.titles-scroll');
-  titleCarousels.forEach(function(carousel){
-    var items=carousel.querySelectorAll('.title-item');
-    if(items.length>0){
-      /* Duplicate items for infinite scroll */
-      items.forEach(function(item){
-        carousel.appendChild(item.cloneNode(true));
-      });
-    }
-  });
 }
 </script>
 </body>
