@@ -170,8 +170,12 @@
     /* ── PARTNERS ── */
     .partners-list{display:flex;flex-direction:column;gap:12px;margin-top:20px;}
     .partner-card{display:flex;flex-direction:column;align-items:center;gap:14px;background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px 20px;text-align:center;}
-    .partner-logo{max-width:140px;max-height:56px;width:auto;height:auto;object-fit:contain;}
-    .partner-text{font-size:13px;color:var(--muted);line-height:1.65;}
+    .partner-logo{max-width:140px;max-height:80px;width:auto;height:auto;object-fit:contain;}
+    .partner-name{font-family:'Roboto',sans-serif;font-weight:700;font-size:16px;letter-spacing:.03em;line-height:1.2;text-transform:uppercase;margin-bottom:8px;}
+    .partner-info{list-style:none;text-align:left;width:100%;margin-top:4px;}
+    .partner-info li{font-size:11px;color:var(--muted);padding:4px 0 4px 14px;border-bottom:1px solid rgba(255,207,164,.06);line-height:1.4;position:relative;}
+    .partner-info li::before{content:'◆';position:absolute;left:0;top:5px;font-size:6px;color:var(--peach);}
+    .partner-info li:last-child{border-bottom:none;}
 
     /* ── BENEFITS ── */
     .ben-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px;}
@@ -655,8 +659,14 @@ function render(c){
     c.partners.forEach(function(p){
       h+='<div class="partner-card">';
       if(p.logo)h+='<img src="'+e(p.logo)+'" alt="'+e(p.name)+'" class="partner-logo">';
-      h+='<div class="partner-text">'+e(p.text)+'</div>';
-      h+='</div>';
+      h+='<div class="partner-name">'+e(p.name)+'</div>';
+      h+='<ul class="partner-info">';
+      if(Array.isArray(p.text)){
+        p.text.forEach(function(t){h+='<li>'+e(t)+'</li>';});
+      }else{
+        h+='<li>'+e(p.text)+'</li>';
+      }
+      h+='</ul></div>';
     });
     h+='</div></div></section>';
   }
