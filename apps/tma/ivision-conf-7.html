@@ -49,7 +49,7 @@
     .btn-pay-i{display:flex;align-items:center;justify-content:center;background:rgba(255,207,164,.12);color:var(--text);font-family:var(--ff-b);font-weight:700;font-size:15px;padding:14px 36px;border-radius:var(--r-pill);text-align:center;width:100%;border:none;cursor:pointer;}
 
     /* ── STICKY NAV (links + button only, no logos) ── */
-    #nav{position:fixed;top:12px;left:50%;transform:translateX(-50%) translateY(-120px);z-index:1000;width:calc(100% - 24px);max-width:480px;background:linear-gradient(135deg,rgba(200,75,158,.25),rgba(37,69,93,.35));backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,207,164,.2);border-radius:var(--r-pill);padding:9px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;transition:transform .4s ease;}
+    #nav{position:fixed;top:12px;left:50%;transform:translateX(-50%) translateY(-120px);z-index:1000;width:calc(100% - 24px);max-width:480px;background:linear-gradient(135deg,rgba(13,17,26,.92),rgba(17,24,39,.94));backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,207,164,.25);border-radius:var(--r-pill);padding:9px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;transition:transform .4s ease;box-shadow:0 8px 24px rgba(0,0,0,.3);}
     #nav.vis{transform:translateX(-50%) translateY(0);}
     .nav-links{display:flex;align-items:center;gap:14px;}
     .nav-links a{font-family:var(--ff-b);font-size:13px;font-weight:600;letter-spacing:.02em;color:#fff;text-decoration:none;white-space:nowrap;}
@@ -801,7 +801,7 @@ function render(c){
   h+='<div class="special-item"><div class="special-item-icon">'+spIcons[3]+'</div><div class="special-item-content"><div class="special-item-title">Партнерские игры и розыгрыши</div><div class="special-item-text">Получать ценные инструменты в подарок за активность</div></div></div>';
   h+='</div>';
   /* CENTER VIDEO */
-  h+='<div class="special-center"><video id="conf-video" controls playsinline preload="metadata"><source src="/img/chastushka_kromberger.mp4" type="video/mp4"></video></div>';
+  h+='<div class="special-center"><video id="conf-video" controls playsinline preload="auto"><source src="/img/chastushka_kromberger.mp4#t=0.1" type="video/mp4"></video></div>';
   /* RIGHT COLUMN */
   h+='<div class="special-right">';
   h+='<div class="special-item"><div class="special-item-icon">'+spIcons[4]+'</div><div class="special-item-content"><div class="special-item-title">Музыкальные портреты</div><div class="special-item-text">Аутентичность креатива и творчества Марго</div></div></div>';
@@ -1006,24 +1006,30 @@ function render(c){
 
   document.getElementById('app').innerHTML=h;
 
-  /* CAPTURE VIDEO POSTER & RESTORE ON END */
+  /* VIDEO: force first frame as poster + restore on end */
   setTimeout(function(){
     var video=document.getElementById('conf-video');
     if(video){
-      video.addEventListener('loadedmetadata',function(){
-        var canvas=document.createElement('canvas');
-        canvas.width=video.videoWidth;
-        canvas.height=video.videoHeight;
-        var ctx=canvas.getContext('2d');
-        ctx.drawImage(video,0,0);
-        var posterUrl=canvas.toDataURL('image/jpeg');
-        video.setAttribute('poster',posterUrl);
-      });
+      var forceFrame=function(){
+        if(video.readyState>=2){
+          try{
+            var canvas=document.createElement('canvas');
+            canvas.width=video.videoWidth||640;
+            canvas.height=video.videoHeight||360;
+            var ctx=canvas.getContext('2d');
+            ctx.drawImage(video,0,0,canvas.width,canvas.height);
+            var posterUrl=canvas.toDataURL('image/jpeg',0.8);
+            video.setAttribute('poster',posterUrl);
+          }catch(e){}
+        }
+      };
+      video.addEventListener('loadeddata',forceFrame);
+      video.addEventListener('canplay',forceFrame);
       video.addEventListener('ended',function(){
-        this.currentTime=0;
+        this.currentTime=0.1;
         this.pause();
-        this.load();
       });
+      video.load();
     }
   },100);
 }
