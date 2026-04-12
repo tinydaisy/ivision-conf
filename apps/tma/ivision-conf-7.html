@@ -126,7 +126,14 @@
 
     /* ── SPACES ── */
     .spaces-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px;}
-    .space-card{background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-md);padding:16px 14px;}
+    .space-card{background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-md);padding:16px 14px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;}
+    /* Анимация въезда для левой колонки */
+    .spaces-grid>:nth-child(odd){animation:slideFromLeft 0.8s ease-out;}
+    /* Анимация въезда для правой колонки */
+    .spaces-grid>:nth-child(even){animation:slideFromRight 0.8s ease-out;}
+    @keyframes slideFromLeft{from{opacity:0;transform:translateX(-30px);} to{opacity:1;transform:translateX(0);}}
+    @keyframes slideFromRight{from{opacity:0;transform:translateX(30px);} to{opacity:1;transform:translateX(0);}}
+    .sp-icon{font-size:28px;margin-bottom:4px;}
     .sp-head{font-family:var(--ff-d);font-size:16px;color:var(--peach);letter-spacing:.04em;margin-bottom:6px;}
     .sp-text{font-size:12px;color:var(--muted);line-height:1.5;}
     .quote-block{background:linear-gradient(135deg,rgba(37,69,93,.4),rgba(192,132,252,.15));border:1px solid rgba(192,132,252,.25);border-radius:var(--r-lg);padding:24px;margin-top:20px;text-align:center;}
@@ -270,8 +277,8 @@
       /* Buttons: not full-width */
       .btn-align .btn-grad-wrap{width:auto;display:inline-block;}
       .btn-align .btn-pay{width:auto;display:inline-block;}
-      /* Tariffs: 2 columns */
-      .tariffs{display:grid;grid-template-columns:1fr 1fr;align-items:start;}
+      /* Tariffs: 3 columns (БАЗОВЫЙ | VIP | PREMIUM) */
+      .tariffs{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:start;gap:16px;}
       /* Headliner/organizer creds: centered block, left text */
       .spk-headliner .spk-creds,.spk-organizer .spk-creds{max-width:560px;margin-left:auto;margin-right:auto;}
       /* Hero seats row: left-aligned under button */
@@ -571,7 +578,7 @@ function render(c){
   h+='<div class="h2">'+e(c.spaces.title)+'</div>';
   h+='<div class="spaces-grid">';
   c.spaces.items.forEach(function(s){
-    h+='<div class="space-card"><div class="sp-head">'+e(s.heading)+'</div><div class="sp-text">'+e(s.text)+'</div></div>';
+    h+='<div class="space-card">'+(s.icon?'<div class="sp-icon">'+e(s.icon)+'</div>':'')+'<div class="sp-head">'+e(s.heading)+'</div><div class="sp-text">'+e(s.text)+'</div></div>';
   });
   h+='</div>';
   h+='<div class="quote-block"><div class="quote-text">'+e(c.spaces.quote)+'</div></div>';
@@ -709,12 +716,14 @@ function render(c){
     });
     t.not_included.forEach(function(f){h+='<li class="n">'+e(f)+'</li>';});
     h+='</ul>';
-    /* Для PREMIUM используем виджет GetCourse, для остальных обычную кнопку */
+    /* Для всех тарифов кнопка ВЫБРАТЬ */
+    var modal='gc-modal-t'+i;
+    h+=payBtn('ВЫБРАТЬ',modal);
+    /* Для PREMIUM добавляем виджет GetCourse после кнопки */
     if(t.name==='PREMIUM'&&t.gc_script_src){
+      h+='<div style="margin-top:12px;display:none;">';
       h+='<script id="'+e(t.gc_script_id)+'" src="'+e(t.gc_script_src)+'"><\/script>';
-    }else{
-      var modal='gc-modal-t'+i;
-      h+=payBtn('ВЫБРАТЬ',modal);
+      h+='</div>';
     }
     h+='</div>';
   });
