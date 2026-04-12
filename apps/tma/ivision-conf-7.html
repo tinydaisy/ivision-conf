@@ -128,12 +128,16 @@
     .spaces-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px;}
     .space-card{background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-md);padding:16px 14px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;}
     /* Анимация въезда для левой колонки */
-    .spaces-grid>:nth-child(odd){animation:slideFromLeft 0.8s ease-out;}
+    .spaces-grid>:nth-child(odd){animation:slideFromLeft 0.8s ease-out both;animation-play-state:paused;}
     /* Анимация въезда для правой колонки */
-    .spaces-grid>:nth-child(even){animation:slideFromRight 0.8s ease-out;}
+    .spaces-grid>:nth-child(even){animation:slideFromRight 0.8s ease-out both;animation-play-state:paused;}
+    /* При скролле — запускаем анимацию */
+    .spaces-grid.visible>:nth-child(odd){animation-play-state:running;}
+    .spaces-grid.visible>:nth-child(even){animation-play-state:running;}
     @keyframes slideFromLeft{from{opacity:0;transform:translateX(-30px);} to{opacity:1;transform:translateX(0);}}
     @keyframes slideFromRight{from{opacity:0;transform:translateX(30px);} to{opacity:1;transform:translateX(0);}}
-    .sp-icon{font-size:28px;margin-bottom:4px;}
+    .sp-icon{width:32px;height:32px;color:var(--pink);margin-bottom:4px;flex-shrink:0;}
+    .sp-icon svg{width:100%;height:100%;}
     .sp-head{font-family:var(--ff-d);font-size:16px;color:var(--peach);letter-spacing:.04em;margin-bottom:6px;}
     .sp-text{font-size:12px;color:var(--muted);line-height:1.5;}
     .quote-block{background:linear-gradient(135deg,rgba(37,69,93,.4),rgba(192,132,252,.15));border:1px solid rgba(192,132,252,.25);border-radius:var(--r-lg);padding:24px;margin-top:20px;text-align:center;}
@@ -244,6 +248,13 @@
     .feat li.n{color:var(--dim);}
     .feat li.n::before{content:'✗';color:rgba(255,207,164,.22);flex-shrink:0;}
     .t-description{font-size:13px;color:var(--muted);margin-bottom:12px;line-height:1.5;padding:8px;background:rgba(255,207,164,.06);border-radius:var(--r-md);}
+    /* Аккордеон PREMIUM */
+    .t-head{display:flex;flex-direction:column;}
+    .t-feat-toggle{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:8px 0;border-top:1px solid rgba(255,207,164,.12);margin-top:8px;font-size:12px;color:var(--pink);font-weight:700;letter-spacing:.05em;text-transform:uppercase;user-select:none;}
+    .t-feat-arrow{width:18px;height:18px;flex-shrink:0;transition:transform .3s ease;}
+    .t-feat-wrap{display:none;margin-top:4px;}
+    .tariff.feat-open .t-feat-wrap{display:block;}
+    .tariff.feat-open .t-feat-arrow{transform:rotate(180deg);}
 
     /* ── BENEFITS ── (no icons) */
 
@@ -317,6 +328,12 @@
   <div class="gc-box">
     <button class="gc-close" onclick="closeGC('gc-modal-t1')">&#215;</button>
     <script id="44f3317c4171353f2104d189ce90be788e8715ba" src="https://medialift.margoforbs.ru/pl/lite/widget/script?id=1574912"></script>
+  </div>
+</div>
+<div class="gc-modal" id="gc-modal-t2" onclick="if(event.target===this)closeGC('gc-modal-t2')">
+  <div class="gc-box">
+    <button class="gc-close" onclick="closeGC('gc-modal-t2')">&#215;</button>
+    <script id="3235181a87a2a311409413d2308cacdca7456f90" src="https://medialift.margoforbs.ru/pl/lite/widget/script?id=1589362"></script>
   </div>
 </div>
 
@@ -396,6 +413,12 @@ function watchCounters(){
     }
   },{threshold:.3}).observe(el);
 }
+function watchSpaces(){
+  var g=document.querySelector('.spaces-grid');if(!g)return;
+  new IntersectionObserver(function(entries){
+    if(entries[0].isIntersecting){g.classList.add('visible');}
+  },{threshold:0.2}).observe(g);
+}
 
 /* OPEN EXTERNAL LINK (works in Telegram WebApp and browser) */
 function openExternal(url){
@@ -419,6 +442,16 @@ function equalizeSpkRows(){
 }
 window.addEventListener('resize',equalizeSpkRows,{passive:true});
 
+/* EQUALIZE TARIFF HEADS (desktop only) */
+function equalizeTariffHeads(){
+  if(window.innerWidth<=640)return;
+  var heads=document.querySelectorAll('.t-head');
+  var maxH=0;
+  heads.forEach(function(h){h.style.minHeight='';maxH=Math.max(maxH,h.offsetHeight);});
+  heads.forEach(function(h){h.style.minHeight=maxH+'px';});
+}
+window.addEventListener('resize',equalizeTariffHeads,{passive:true});
+
 /* MAIN */
 var startParam=(tg&&tg.initDataUnsafe&&tg.initDataUnsafe.start_param)||'';
 var firstName=(tg&&tg.initDataUnsafe&&tg.initDataUnsafe.user&&tg.initDataUnsafe.user.first_name)||'';
@@ -436,7 +469,9 @@ if(startParam==='free'){
       document.getElementById('app').style.display='block';
       updateCountdown();
       watchCounters();
+      watchSpaces();
       equalizeSpkRows();
+      equalizeTariffHeads();
     })
     .catch(function(){
       document.getElementById('loading').innerHTML='<p style="color:var(--muted);text-align:center;padding:40px 20px">Не удалось загрузить.<br>Обнови страницу.</p>';
@@ -452,6 +487,16 @@ function scrollBtn(label,leftAlign){
 function payBtn(label,modalId){
   return '<div class="btn-align" style="text-align:center"><button class="btn-pay" onclick="openGC(\''+modalId+'\')"><span class="btn-pay-i">'+label+'</span></button></div>';
 }
+
+/* SVG icons for SPACES section (pink) */
+var spaceIcons=[
+  /* briefcase */  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>',
+  /* chart up */   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="20" x2="21" y2="20"/><polyline points="6 16 10 10 14 14 18 6"/><circle cx="18" cy="6" r="2" fill="currentColor" opacity=".5"/></svg>',
+  /* users */      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M17 11a3 3 0 0 1 0-6M23 21v-2a4 4 0 0 0-3-3.87"/></svg>',
+  /* eye */        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>',
+  /* pen */        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>',
+  /* compass */    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg>'
+];
 
 /* SVG icons (peach) */
 var spIcons=[
@@ -577,8 +622,8 @@ function render(c){
   h+='<section class="sec sa"><div class="w">';
   h+='<div class="h2">'+e(c.spaces.title)+'</div>';
   h+='<div class="spaces-grid">';
-  c.spaces.items.forEach(function(s){
-    h+='<div class="space-card">'+(s.icon?'<div class="sp-icon">'+e(s.icon)+'</div>':'')+'<div class="sp-head">'+e(s.heading)+'</div><div class="sp-text">'+e(s.text)+'</div></div>';
+  c.spaces.items.forEach(function(s,idx){
+    h+='<div class="space-card"><div class="sp-icon">'+spaceIcons[idx%spaceIcons.length]+'</div><div class="sp-head">'+e(s.heading)+'</div><div class="sp-text">'+e(s.text)+'</div></div>';
   });
   h+='</div>';
   h+='<div class="quote-block"><div class="quote-text">'+e(c.spaces.quote)+'</div></div>';
@@ -703,28 +748,37 @@ function render(c){
   c.tariffs.forEach(function(t,i){
     h+='<div class="tariff'+(t.recommended?' rec':'')+(t.recommended?'" style="margin-top:14px':'')+'">';
     if(t.recommended)h+='<div class="t-badge">Рекомендуется</div>';
+    h+='<div class="t-head">';
     h+='<div class="t-name">'+e(t.name)+'</div>';
     h+='<div class="t-price">'+e(t.price_label)+'</div>';
     if(t.seats_left)h+='<div class="t-seats">'+e(t.seats_left)+'</div>';
     if(t.description)h+='<div class="t-description">'+e(t.description)+'</div>';
-    h+='<ul class="feat">';
-    /* Для VIP и PREMIUM выделяем первые 5 фичей цветом (общие для всех) */
-    var isHighlight=(t.name==='VIP'||t.name==='PREMIUM');
-    t.included.forEach(function(f,idx){
-      var highlight=(isHighlight&&idx<5)?' highlight':'';
-      h+='<li class="y'+highlight+'">'+e(f)+'</li>';
-    });
-    t.not_included.forEach(function(f){h+='<li class="n">'+e(f)+'</li>';});
-    h+='</ul>';
-    /* Для всех тарифов кнопка ВЫБРАТЬ */
+    h+='</div>';
+
+    /* Для PREMIUM — аккордеон */
+    if(t.name==='PREMIUM'){
+      h+='<div class="t-feat-toggle" onclick="this.closest(\'.tariff\').classList.toggle(\'feat-open\')">';
+      h+='<span>Что входит</span>';
+      h+='<svg class="t-feat-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>';
+      h+='</div><div class="t-feat-wrap"><ul class="feat">';
+      t.included.forEach(function(f){h+='<li class="y">'+e(f)+'</li>';});
+      t.not_included.forEach(function(f){h+='<li class="n">'+e(f)+'</li>';});
+      h+='</ul></div>';
+    } else {
+      /* Для остальных — обычный список фичей */
+      h+='<ul class="feat">';
+      var isHighlight=(t.name==='VIP');
+      t.included.forEach(function(f,idx){
+        var highlight=(isHighlight&&idx<5)?' highlight':'';
+        h+='<li class="y'+highlight+'">'+e(f)+'</li>';
+      });
+      t.not_included.forEach(function(f){h+='<li class="n">'+e(f)+'</li>';});
+      h+='</ul>';
+    }
+
+    /* Кнопка ВЫБРАТЬ для всех */
     var modal='gc-modal-t'+i;
     h+=payBtn('ВЫБРАТЬ',modal);
-    /* Для PREMIUM добавляем виджет GetCourse после кнопки */
-    if(t.name==='PREMIUM'&&t.gc_script_src){
-      h+='<div style="margin-top:12px;display:none;">';
-      h+='<script id="'+e(t.gc_script_id)+'" src="'+e(t.gc_script_src)+'"><\/script>';
-      h+='</div>';
-    }
     h+='</div>';
   });
   h+='</div></div></section>';
