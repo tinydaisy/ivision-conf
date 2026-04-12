@@ -33,7 +33,7 @@
 ## Архитектура MVP-системы
 
 ```
-Telegram-бот (@medialift_app_bot)
+Telegram-бот (настраивается в app_config.js)
   │
   ├── /start → кнопка «Открыть iVision» → открывает TMA
   │
@@ -68,10 +68,17 @@ Backend API (FastAPI) — хостинг: Railway
 **Итог:** бот настроен, TMA открывается кнопкой, в ней появляется лендинг GetCourse.
 
 ### 0.1 Настройка бота
-- [ ] Назначить @medialift_app_bot Web App в @BotFather: `Menu Button` → URL TMA на Vercel
+- [ ] Назначить бота Web App в @BotFather: `Menu Button` → URL TMA на Vercel
 - [ ] Написать `/start`-обработчик (aiogram 3):
   - Кнопка «Открыть iVision» → `web_app` с URL TMA
   - Параметр `startapp` → сохраняется как `ref_code` для будущего участника
+
+> **Реализовано (текущий лендинг):** `apps/tma/redirect_web_app/bot.html` — промежуточная страница, которая:
+> 1. Вызывает `twa.requestWriteAccess()` — при первом открытии показывает диалог «Разрешить боту писать сообщения»; повторные пользователи пропускают диалог автоматически
+> 2. После получения разрешения вызывает `POST /api/event` с `event_start` — бот немедленно присылает приветственное сообщение с кнопкой «Зарегистрироваться»
+> 3. Через 200 мс делает редирект на нужный лендинг
+>
+> Бот присылает сообщение **параллельно** с открытием лендинга. Формат `start_param`: `pg{PAGE}_pid{PARTNER_ID}_src{UTM}`.
 
 ### 0.2 Деплой TMA-заглушки
 - [ ] Инициализировать `apps/tma/` (React + Vite + @telegram-apps/sdk)
@@ -85,7 +92,7 @@ Backend API (FastAPI) — хостинг: Railway
 - [ ] Endpoint `GET /health` → `{"status": "ok"}`
 - [ ] Деплой на Railway
 
-**Проверка:** открыть `t.me/medialift_app_bot?startapp=test` → кнопка в сообщении → TMA открывается → кнопка «Зарегистрироваться» → GetCourse лендинг.
+**Проверка:** открыть ссылку бота `?startapp=test` → кнопка в сообщении → TMA открывается → кнопка «Зарегистрироваться» → GetCourse лендинг.
 
 ---
 
@@ -206,7 +213,7 @@ Backend API (FastAPI) — хостинг: Railway
 - [ ] После заполнения: под карточкой показывается «До Уровня 1: ещё X приглашений → [Приз]»
 
 ### 5.2 Реферальная ссылка
-- [ ] `GET /api/referral/my-link` → возвращает `t.me/medialift_app_bot?startapp=REF_CODE`
+- [ ] `GET /api/referral/my-link` → возвращает ссылку на бота `?startapp=REF_CODE` (имя бота из конфига)
 - [ ] Кнопка «Поделиться» → `shareURL()` (нативный шеринг Telegram)
 - [ ] Кнопка «Скопировать» → `copyTextToClipboard()` + `HapticFeedback.impactOccurred('medium')`
 

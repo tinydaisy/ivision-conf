@@ -134,5 +134,5 @@ referalka/
 ## Связанные ресурсы
 
 - **PLUSSON:** `/Users/macbookair/Documents/projects/referalka`
-- **Telegram-бот:** `@medialift_app_bot` (токен в `.env` PLUSSON)
+- **Telegram-бот:** имя и ссылка на Mini App — в `apps/tma/redirect_web_app/app_config.js` (ключ `tg`), токен — в `.env` PLUSSON
 - **GetCourse лендинг:** `https://medialift.margoforbs.ru/ivision-conf-7`

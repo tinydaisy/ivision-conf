@@ -233,8 +233,10 @@
     .feat li{font-size:13px;padding:7px 0;border-bottom:1px solid rgba(255,207,164,.06);display:flex;gap:9px;align-items:flex-start;line-height:1.45;}
     .feat li:last-child{border-bottom:none;}
     .feat li.y::before{content:'✓';color:var(--peach);flex-shrink:0;font-weight:700;}
+    .feat li.y.highlight{color:var(--peach);font-weight:600;}
     .feat li.n{color:var(--dim);}
     .feat li.n::before{content:'✗';color:rgba(255,207,164,.22);flex-shrink:0;}
+    .t-description{font-size:13px;color:var(--muted);margin-bottom:12px;line-height:1.5;padding:8px;background:rgba(255,207,164,.06);border-radius:var(--r-md);}
 
     /* ── BENEFITS ── (no icons) */
 
@@ -614,6 +616,29 @@ function render(c){
   });
   h+='</div></div></section>';
 
+  /* PARTNERS */
+  if(c.partners&&c.partners.length){
+    h+='<section class="sec sa" id="partners-sec"><div class="w">';
+    h+='<div class="h2">ПАРТНЁРЫ</div>';
+    h+='<div class="partners-list">';
+    c.partners.forEach(function(p){
+      h+='<div class="partner-card">';
+      if(p.logo){
+        var logoType='partner-logo-type-'+(p.photo_type||'logo');
+        h+='<img src="'+e(p.logo)+'" alt="'+e(p.name)+'" class="partner-logo '+logoType+'">';
+      }
+      h+='<div class="partner-name">'+e(p.name)+'</div>';
+      h+='<ul class="partner-info">';
+      if(Array.isArray(p.text)){
+        p.text.forEach(function(t){h+='<li>'+e(t)+'</li>';});
+      }else{
+        h+='<li>'+e(p.text)+'</li>';
+      }
+      h+='</ul></div>';
+    });
+    h+='</div></div></section>';
+  }
+
   /* FOUNDER */
   var org=c.speakers.filter(function(sp){return sp.status==='organizer';})[0];
   if(org){
@@ -668,44 +693,32 @@ function render(c){
   h+='<section class="sec sa" id="tariffs-sec"><div class="w">';
   h+='<div class="h2">ВАРИАНТЫ УЧАСТИЯ</div>';
   h+='<div class="tariffs">';
-  var modals=['gc-modal-t0','gc-modal-t1'];
   c.tariffs.forEach(function(t,i){
     h+='<div class="tariff'+(t.recommended?' rec':'')+(t.recommended?'" style="margin-top:14px':'')+'">';
     if(t.recommended)h+='<div class="t-badge">Рекомендуется</div>';
     h+='<div class="t-name">'+e(t.name)+'</div>';
     h+='<div class="t-price">'+e(t.price_label)+'</div>';
     if(t.seats_left)h+='<div class="t-seats">'+e(t.seats_left)+'</div>';
+    if(t.description)h+='<div class="t-description">'+e(t.description)+'</div>';
     h+='<ul class="feat">';
-    t.included.forEach(function(f){h+='<li class="y">'+e(f)+'</li>';});
+    /* Для VIP и PREMIUM выделяем первые 5 фичей цветом (общие для всех) */
+    var isHighlight=(t.name==='VIP'||t.name==='PREMIUM');
+    t.included.forEach(function(f,idx){
+      var highlight=(isHighlight&&idx<5)?' highlight':'';
+      h+='<li class="y'+highlight+'">'+e(f)+'</li>';
+    });
     t.not_included.forEach(function(f){h+='<li class="n">'+e(f)+'</li>';});
     h+='</ul>';
-    h+=payBtn('ВЫБРАТЬ',modals[i]);
+    /* Для PREMIUM используем виджет GetCourse, для остальных обычную кнопку */
+    if(t.name==='PREMIUM'&&t.gc_script_src){
+      h+='<script id="'+e(t.gc_script_id)+'" src="'+e(t.gc_script_src)+'"><\/script>';
+    }else{
+      var modal='gc-modal-t'+i;
+      h+=payBtn('ВЫБРАТЬ',modal);
+    }
     h+='</div>';
   });
   h+='</div></div></section>';
-
-  /* PARTNERS */
-  if(c.partners&&c.partners.length){
-    h+='<section class="sec sa" id="partners-sec"><div class="w">';
-    h+='<div class="h2">ПАРТНЁРЫ</div>';
-    h+='<div class="partners-list">';
-    c.partners.forEach(function(p){
-      h+='<div class="partner-card">';
-      if(p.logo){
-        var logoType='partner-logo-type-'+(p.photo_type||'logo');
-        h+='<img src="'+e(p.logo)+'" alt="'+e(p.name)+'" class="partner-logo '+logoType+'">';
-      }
-      h+='<div class="partner-name">'+e(p.name)+'</div>';
-      h+='<ul class="partner-info">';
-      if(Array.isArray(p.text)){
-        p.text.forEach(function(t){h+='<li>'+e(t)+'</li>';});
-      }else{
-        h+='<li>'+e(p.text)+'</li>';
-      }
-      h+='</ul></div>';
-    });
-    h+='</div></div></section>';
-  }
 
   /* FINAL CTA */
   h+='<section id="cta"><div class="w">';
