@@ -49,7 +49,7 @@
     .btn-pay-i{display:flex;align-items:center;justify-content:center;background:rgba(255,207,164,.12);color:var(--text);font-family:var(--ff-b);font-weight:700;font-size:15px;padding:14px 36px;border-radius:var(--r-pill);text-align:center;width:100%;border:none;cursor:pointer;}
 
     /* ── STICKY NAV (links + button only, no logos) ── */
-    #nav{position:fixed;top:12px;left:50%;transform:translateX(-50%) translateY(-120px);z-index:1000;width:calc(100% - 24px);max-width:480px;background:linear-gradient(135deg,rgba(160,50,120,.7),rgba(25,45,70,.75));backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,207,164,.2);border-radius:var(--r-pill);padding:9px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;transition:transform .4s ease;box-shadow:0 8px 24px rgba(0,0,0,.3);will-change:transform;contain:layout style paint;pointer-events:none;}
+    #nav{position:fixed;top:12px;left:50%;transform:translateX(-50%) translateY(-120px);z-index:1000;width:calc(100% - 24px);max-width:480px;background:linear-gradient(135deg,rgba(160,50,120,.7),rgba(25,45,70,.75));backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,207,164,.2);border-radius:var(--r-pill);padding:9px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;transition:transform .3s ease;box-shadow:0 8px 24px rgba(0,0,0,.3);will-change:transform;pointer-events:none;}
     #nav *{pointer-events:auto;}
     #nav.vis{transform:translateX(-50%) translateY(0);}
     .nav-links{display:flex;align-items:center;gap:14px;}
@@ -321,8 +321,8 @@
 
     /* ── REVIEWS CAROUSEL (like titles) ── */
     .reviews-carousel{position:relative;height:auto;display:flex;align-items:center;justify-content:center;overflow:hidden;margin:24px 0;}
-    .reviews-scroll-inner{display:flex;gap:16px;animation:scrollReviews 25s linear infinite;align-items:center;will-change:transform;transform:translateZ(0);}
-    @media(max-width:640px){.reviews-scroll-inner{animation:scrollReviews 20s linear infinite;will-change:transform;transform:translateZ(0);}}
+    .reviews-scroll-inner{display:flex;gap:16px;animation:scrollReviews 30s linear infinite;align-items:center;will-change:transform;transform:translateZ(0);}
+    @media(max-width:640px){.reviews-scroll-inner{animation:scrollReviews 30s linear infinite;}}
     .review-item{flex-shrink:0;border-radius:12px;overflow:hidden;border:3px solid var(--pink);filter:drop-shadow(0 6px 16px rgba(0,0,0,.4));box-shadow:0 4px 12px rgba(0,0,0,.3);}
     @media(max-width:640px){.review-item{filter:none;box-shadow:0 2px 8px rgba(0,0,0,.2);}}
     .review-item:nth-child(odd){transform:rotateZ(-7deg) rotateY(3deg);}
@@ -426,9 +426,18 @@
 var tg=(window.Telegram&&window.Telegram.WebApp)||null;
 if(tg){tg.ready();tg.expand();}
 
+/* SAFARI MOBILE - FASTER REVIEWS */
+if(/^((?!chrome|android).)*safari/i.test(navigator.userAgent)&&window.innerWidth<=640){
+  var style=document.createElement('style');
+  style.textContent='.reviews-scroll-inner{animation:scrollReviews 10s linear infinite!important;}';
+  document.head.appendChild(style);
+}
+
 /* NAV */
 var nav=document.getElementById('nav');
-window.addEventListener('scroll',function(){nav.classList.toggle('vis',window.scrollY>80);},{passive:true});
+window.addEventListener('scroll',function(){
+  nav.classList.toggle('vis',window.scrollY>80);
+},{passive:true});
 document.addEventListener('click',function(ev){
   var a=ev.target.closest('[data-nav]');
   if(a){ev.preventDefault();var el=document.getElementById(a.dataset.nav);if(el)el.scrollIntoView({behavior:'smooth'});}
