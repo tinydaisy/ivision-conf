@@ -307,13 +307,13 @@
     }
 
     /* ── REVIEWS CAROUSEL (like titles) ── */
-    .reviews-carousel{position:relative;height:240px;display:flex;align-items:center;justify-content:center;overflow:hidden;margin:24px 0;}
-    .reviews-scroll-inner{display:flex;gap:20px;animation:scrollReviews 50s linear infinite;}
-    .review-item{flex-shrink:0;border-radius:12px;overflow:hidden;border:2px solid var(--border);filter:drop-shadow(0 6px 16px rgba(0,0,0,.4));}
-    .review-item{width:130px;height:130px;}
+    .reviews-carousel{position:relative;height:200px;display:flex;align-items:center;justify-content:center;overflow:hidden;margin:24px 0;}
+    .reviews-scroll-inner{display:flex;gap:20px;animation:scrollReviews 55s linear infinite;}
+    .review-item{flex-shrink:0;border-radius:12px;overflow:hidden;border:2px solid var(--border);filter:drop-shadow(0 6px 16px rgba(0,0,0,.4));background:#000;}
+    .review-item{width:auto;max-width:160px;height:180px;}
     .review-item:nth-child(odd){transform:rotateZ(-7deg) rotateY(3deg);}
     .review-item:nth-child(even){transform:rotateZ(7deg) rotateY(-3deg);}
-    .review-item img{width:100%;height:100%;object-fit:cover;}
+    .review-item img{height:100%;width:auto;object-fit:contain;object-position:center;}
     @keyframes scrollReviews{0%{transform:translateX(0)} 100%{transform:translateX(calc(-50%))}}
 
     /* ── BENEFITS ── (no icons) */
@@ -700,18 +700,55 @@ function render(c){
     h+='<div class="space-card" style="animation-delay:'+delay+'"><div class="sp-icon">'+spaceIcons[idx%spaceIcons.length]+'</div><div class="sp-head">'+e(s.heading)+'</div><div class="sp-text">'+e(s.text)+'</div></div>';
   });
   h+='</div>';
+  h+='<div class="quote-block"><div class="quote-text">'+e(c.spaces.quote)+'</div></div>';
+  h+='</div></section>';
+
+  /* TARIFFS REPEAT */
+  h+='<section class="sec" id="tariffs-repeat"><div class="w">';
+  h+='<div class="h2">ВАРИАНТЫ УЧАСТИЯ</div>';
+  h+='<div class="tariffs">';
+  c.tariffs.forEach(function(t,i){
+    h+='<div class="tariff'+(t.recommended?' rec':'')+(t.recommended?'" style="margin-top:14px':'')+'">';
+    if(t.recommended)h+='<div class="t-badge">Рекомендуется</div>';
+    h+='<div class="t-head">';
+    h+='<div class="t-name">'+e(t.name)+'</div>';
+    h+='<div class="t-price">'+e(t.price_label)+'</div>';
+    if(t.seats_left)h+='<div class="t-seats">'+e(t.seats_left)+'</div>';
+    h+='</div>';
+    if(t.name==='PREMIUM'&&t.description_short){
+      h+='<div class="t-desc-toggle" onclick="this.closest(\'.tariff\').classList.toggle(\'desc-open\')">';
+      h+='<span class="t-desc-text">'+e(t.description_short)+'</span>';
+      h+='<span class="t-desc-more">'+e(t.description_full)+'</span>';
+      h+='<svg class="t-desc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>';
+      h+='</div>';
+    } else if(t.name!=='PREMIUM'){
+      h+='<div class="t-desc-placeholder"></div>';
+    } else if(t.description){
+      h+='<div class="t-description">'+e(t.description)+'</div>';
+    }
+    var hasIncludedWhite=t.included_white&&t.included_white.length>0;
+    var hasIncludedPeach=t.included_peach&&t.included_peach.length>0;
+    h+='<ul class="feat">';
+    if(hasIncludedWhite)t.included_white.forEach(function(f){h+='<li class="y">'+e(f)+'</li>';});
+    if(hasIncludedPeach)t.included_peach.forEach(function(f){h+='<li class="y highlight">'+e(f)+'</li>';});
+    if(t.not_included)t.not_included.forEach(function(f){h+='<li class="n">'+e(f)+'</li>';});
+    h+='</ul>';
+    var modal='gc-modal-t'+i;
+    h+=payBtn('ВЫБРАТЬ',modal);
+    h+='</div>';
+  });
+  h+='</div></div></section>';
+
+  /* SPECIAL - 3 COLUMN LAYOUT */
+  h+='<section class="sec sa"><div class="w">';
+  h+='<div class="h2">ЧТО ДЕЛАЕТ iViSiON ОСОБЕННОЙ</div>';
   h+='<div class="reviews-carousel"><div class="reviews-scroll-inner">';
   var reviewImages=['/img/reviews/review_9525.jpg','/img/reviews/review_9526.jpg','/img/reviews/review_9527.jpg','/img/reviews/review_9528.jpg','/img/reviews/review_9529.jpg','/img/reviews/review_9530.jpg','/img/reviews/review_9531.jpg','/img/reviews/review_9532.jpg','/img/reviews/review_9535.jpg','/img/reviews/review_9536.jpg','/img/reviews/review_9537.jpg','/img/reviews/review_9538.jpg','/img/reviews/review_9539.jpg','/img/reviews/review_9540.jpg','/img/reviews/review_9541.jpg'];
   reviewImages.forEach(function(img){h+='<div class="review-item"><img src="'+img+'" alt="Отзыв" loading="lazy"></div>';});
   reviewImages.forEach(function(img){h+='<div class="review-item"><img src="'+img+'" alt="Отзыв" loading="lazy"></div>';});
   h+='</div></div>';
-  h+='<div class="quote-block"><div class="quote-text">'+e(c.spaces.quote)+'</div></div>';
-  h+='</div></section>';
-
-  /* SPECIAL - 3 COLUMN LAYOUT */
-  h+='<section class="sec sa"><div class="w">';
-  h+='<div class="h2">ЧТО ДЕЛАЕТ iViSiON ОСОБЕННОЙ</div>';
   h+='<div class="special-layout">';
+  h+='<div style="width:100%;height:20px;"></div>';
   /* LEFT COLUMN */
   h+='<div class="special-left">';
   h+='<div class="special-item"><div class="special-item-icon">'+spIcons[5]+'</div><div class="special-item-content"><div class="special-item-title">Спикеры-практики</div><div class="special-item-text">Крупные лидеры ниши с реальным опытом, результатами и конкретикой</div></div></div>';
@@ -727,6 +764,9 @@ function render(c){
   h+='<div class="special-item"><div class="special-item-icon">'+spIcons[2]+'</div><div class="special-item-content"><div class="special-item-title">Форматы для раскрытия граней</div><div class="special-item-text">Заявить о себе и прокачать узнаваемость</div></div></div>';
   h+='</div>';
   h+='</div></div></section>';
+
+  /* CTA BEFORE STATS */
+  h+='<section id="cta-stats" style="background:linear-gradient(160deg,#25455D 0%,#080B12 65%);padding:52px 20px;text-align:center;"><div style="max-width:480px;margin:0 auto;"><div class="h2" style="text-align:center;margin-bottom:24px;">Твоё место ждёт</div>'+scrollBtn('ЗАРЕГИСТИРОВАТЬСЯ')+'</div></section>';
 
   /* STATS */
   h+='<section class="sec sa"><div class="w">';
