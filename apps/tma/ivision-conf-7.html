@@ -49,7 +49,7 @@
     .btn-pay-i{display:flex;align-items:center;justify-content:center;background:rgba(255,207,164,.12);color:var(--text);font-family:var(--ff-b);font-weight:700;font-size:15px;padding:14px 36px;border-radius:var(--r-pill);text-align:center;width:100%;border:none;cursor:pointer;}
 
     /* ── STICKY NAV (links + button only, no logos) ── */
-    #nav{position:fixed;top:12px;left:50%;transform:translateX(-50%) translateY(-120px);z-index:1000;width:calc(100% - 24px);max-width:480px;background:linear-gradient(135deg,rgba(200,75,158,.85),rgba(37,69,93,.9));backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,207,164,.3);border-radius:var(--r-pill);padding:9px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;transition:transform .4s ease;box-shadow:0 8px 24px rgba(0,0,0,.3);}
+    #nav{position:fixed;top:12px;left:50%;transform:translateX(-50%) translateY(-120px);z-index:1000;width:calc(100% - 24px);max-width:480px;background:linear-gradient(135deg,rgba(160,50,120,.7),rgba(25,45,70,.75));backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,207,164,.2);border-radius:var(--r-pill);padding:9px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;transition:transform .4s ease;box-shadow:0 8px 24px rgba(0,0,0,.3);}
     #nav.vis{transform:translateX(-50%) translateY(0);}
     .nav-links{display:flex;align-items:center;gap:14px;}
     .nav-links a{font-family:var(--ff-b);font-size:13px;font-weight:600;letter-spacing:.02em;color:#fff;text-decoration:none;white-space:nowrap;}
@@ -201,11 +201,7 @@
 
     /* ── PARTNERS ── */
     .partners-list{display:flex;flex-direction:column;gap:12px;margin-top:20px;}
-    .partner-card{display:flex;flex-direction:column;align-items:center;gap:14px;background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px 20px;text-align:center;animation:slideUpFade 0.6s ease-out forwards;opacity:0;animation-play-state:paused;}
-    .partners-list.visible .partner-card{animation-play-state:running;}
-    .partner-card:nth-child(1){animation-delay:0s;}
-    .partner-card:nth-child(2){animation-delay:0.15s;}
-    .partner-card:nth-child(3){animation-delay:0.3s;}
+    .partner-card{display:flex;flex-direction:column;align-items:center;gap:14px;background:rgba(17,24,39,.7);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px 20px;text-align:center;}
     .partner-card:nth-child(4){animation-delay:0.45s;}
     .partner-card:nth-child(5){animation-delay:0.6s;}
     .partner-card:nth-child(6){animation-delay:0.75s;}
@@ -497,12 +493,7 @@ function watchSpaces(){
   },{threshold:0.2}).observe(g);
 }
 function watchSpeakers(){}
-function watchPartners(){
-  var g=document.querySelector('.partners-list');if(!g)return;
-  new IntersectionObserver(function(entries){
-    if(entries[0].isIntersecting){g.classList.add('visible');}
-  },{threshold:0.2}).observe(g);
-}
+function watchPartners(){}
 
 /* OPEN EXTERNAL LINK (works in Telegram WebApp and browser) */
 function openExternal(url){
