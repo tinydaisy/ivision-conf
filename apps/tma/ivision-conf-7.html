@@ -273,29 +273,36 @@
     .tariff.desc-open .t-desc-arrow{transform:rotate(180deg);}
     .t-desc-placeholder{height:42px;margin-bottom:12px;}
 
-    /* ── TITLES CAROUSEL (CHAOTIC STYLE) ── */
-    .titles-chaos{position:relative;height:240px;display:flex;align-items:center;justify-content:center;overflow:hidden;perspective:1000px;}
-    .titles-chaos-scroll{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
-    .title-item-chaos{position:absolute;width:100px;height:140px;border-radius:12px;overflow:hidden;border:2px solid var(--border);background:rgba(255,207,164,.08);cursor:pointer;transition:all .4s cubic-bezier(.34,.1,.68,.55);filter:drop-shadow(0 4px 12px rgba(0,0,0,.4));}
-    .title-item-chaos img{width:100%;height:100%;object-fit:cover;}
-    .title-item-chaos:nth-child(1){width:95px;height:130px;transform:translateX(-140px) rotateZ(-12deg) rotateY(8deg);opacity:.75;}
-    .title-item-chaos:nth-child(2){width:110px;height:150px;transform:translateX(-70px) rotateZ(-5deg);opacity:.85;z-index:2;}
-    .title-item-chaos:nth-child(3){width:125px;height:170px;transform:translateX(0) rotateZ(2deg) scale(1.05);opacity:1;z-index:3;}
-    .title-item-chaos:nth-child(4){width:110px;height:150px;transform:translateX(70px) rotateZ(6deg);opacity:.85;z-index:2;}
-    .title-item-chaos:nth-child(5){width:95px;height:130px;transform:translateX(140px) rotateZ(15deg) rotateY(-8deg);opacity:.75;}
-    .title-item-chaos:hover{transform:scale(1.1) !important;opacity:1 !important;z-index:10;}
+    /* ── TITLES CAROUSEL (SCROLLING WITH CHAOS) ── */
+    .titles-scroll-chaos{position:relative;height:220px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+    .titles-scroll-inner{display:flex;gap:20px;animation:scrollChaos 25s linear infinite;}
+    .title-scroll-item{flex-shrink:0;border-radius:12px;overflow:hidden;border:2px solid var(--border);background:rgba(255,207,164,.08);filter:drop-shadow(0 4px 12px rgba(0,0,0,.3));}
+    .title-scroll-item:nth-child(odd){width:100px;height:135px;transform:rotateZ(-10deg) rotateY(5deg);}
+    .title-scroll-item:nth-child(even){width:115px;height:155px;transform:rotateZ(8deg) rotateY(-5deg);}
+    .title-scroll-item img{width:100%;height:100%;object-fit:cover;}
+    @keyframes scrollChaos{0%{transform:translateX(0)} 100%{transform:translateX(calc(-100% - 40px))}}
 
-    /* ── SPECIAL DIFF SECTION (RADIAL LAYOUT) ── */
-    .special-diff{position:relative;margin-top:32px;}
-    .special-diff-center{position:relative;width:100%;height:280px;background:linear-gradient(135deg,rgba(25,69,93,.25),rgba(200,75,158,.15));border-radius:var(--r-lg);overflow:hidden;display:flex;align-items:center;justify-content:center;margin-bottom:32px;box-shadow:0 8px 32px rgba(0,0,0,.3);}
-    .special-diff-media{width:100%;height:100%;object-fit:cover;display:block;}
-    .special-diff-media video{width:100%;height:100%;object-fit:contain;background:#000;}
-    .special-diff-points{display:flex;flex-direction:column;gap:16px;}
-    .special-point{display:flex;gap:14px;align-items:flex-start;padding:16px;background:rgba(17,24,39,.6);border:1px solid var(--border);border-radius:var(--r-md);transition:all .3s ease;}
-    .special-point:hover{background:rgba(17,24,39,.9);border-color:var(--peach);}
-    .special-point-letter{width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--peach),var(--purple));color:#080B12;font-weight:700;font-size:16px;border-radius:50%;flex-shrink:0;}
-    .special-point-title{font-family:var(--ff-d);font-size:14px;letter-spacing:.03em;color:var(--peach);margin-bottom:4px;}
-    .special-point-text{font-size:11px;color:var(--muted);line-height:1.5;}
+    /* ── SPECIAL SECTION (2 COLUMNS: POINTS + VIDEO) ── */
+    .special-layout{display:flex;flex-direction:column;gap:24px;margin-top:28px;}
+    .special-points{display:flex;flex-direction:column;gap:14px;}
+    .special-item{display:flex;gap:12px;align-items:flex-start;padding:14px;background:rgba(17,24,39,.6);border:1px solid var(--border);border-radius:var(--r-md);transition:all .3s ease;}
+    .special-item:hover{background:rgba(17,24,39,.9);border-color:var(--peach);}
+    .special-item-icon{width:32px;height:32px;color:var(--peach);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+    .special-item-icon svg{width:100%;height:100%;}
+    .special-item-content{flex:1;}
+    .special-item-title{font-family:var(--ff-d);font-size:14px;letter-spacing:.03em;color:var(--peach);margin-bottom:3px;}
+    .special-item-text{font-size:11px;color:var(--muted);line-height:1.5;}
+    .special-video{width:100%;height:280px;background:linear-gradient(135deg,rgba(25,69,93,.25),rgba(200,75,158,.15));border-radius:var(--r-lg);overflow:hidden;display:flex;align-items:center;justify-content:center;}
+    .special-video video{width:100%;height:100%;object-fit:contain;background:#000;}
+    @media(min-width:641px){
+      .special-layout{flex-direction:row-reverse;gap:32px;align-items:flex-start;}
+      .special-points{flex:0 0 50%;}
+      .special-video{flex:0 0 45%;height:340px;}
+    }
+
+    /* ── NETWORKING PHOTO ANIMATION ── */
+    .networking-photo{width:100%;border-radius:16px;overflow:hidden;margin:20px 0;display:block;object-fit:cover;box-shadow:0 0 0 2px var(--peach);animation:pulseGlow 3s ease-in-out infinite;}
+    @keyframes pulseGlow{0%,100%{box-shadow:0 0 0 2px var(--peach),0 0 12px rgba(255,207,164,.3)}50%{box-shadow:0 0 0 4px var(--peach),0 0 24px rgba(255,207,164,.6)}}
 
     /* ── BENEFITS ── (no icons) */
 
@@ -659,16 +666,13 @@ function render(c){
   h+='</div>';
   h+='<div style="margin-top:22px">'+scrollBtn(e(c.bonuses.cta))+'</div>';
 
-  /* TITLES CAROUSEL - chaotic style */
-  h+='<div style="margin-top:48px;">';
-  h+='<div class="h2" style="margin-bottom:24px;">Титулы за активность</div>';
-  h+='<div class="titles-chaos">';
-  h+='<div class="titles-chaos-scroll">';
-  h+='<div class="title-item-chaos"><img src="/img/tituls/titul_9516.JPG" alt="Титул 1" loading="lazy"></div>';
-  h+='<div class="title-item-chaos"><img src="/img/tituls/titul_9517.JPG" alt="Титул 2" loading="lazy"></div>';
-  h+='<div class="title-item-chaos"><img src="/img/tituls/titul_9518.JPG" alt="Титул 3" loading="lazy"></div>';
-  h+='<div class="title-item-chaos"><img src="/img/tituls/titul_9520.JPG" alt="Титул 4" loading="lazy"></div>';
-  h+='<div class="title-item-chaos"><img src="/img/tituls/titul_9521.JPG" alt="Титул 5" loading="lazy"></div>';
+  /* TITLES CAROUSEL - scrolling with chaos style */
+  h+='<div style="margin-top:32px;">';
+  h+='<div class="titles-scroll-chaos">';
+  h+='<div class="titles-scroll-inner">';
+  var titleImages=['/img/tituls/titul_9516.JPG','/img/tituls/titul_9517.JPG','/img/tituls/titul_9518.JPG','/img/tituls/titul_9520.JPG','/img/tituls/titul_9521.JPG','/img/tituls/titul_9522.JPG','/img/tituls/titul_9523.JPG','/img/tituls/titul_9524.JPG'];
+  titleImages.forEach(function(img){h+='<div class="title-scroll-item"><img src="'+img+'" alt="Титул" loading="lazy"></div>';});
+  titleImages.forEach(function(img){h+='<div class="title-scroll-item"><img src="'+img+'" alt="Титул" loading="lazy"></div>';});
   h+='</div>';
   h+='</div>';
   h+='</div>';
@@ -684,47 +688,21 @@ function render(c){
     h+='<div class="space-card" style="animation-delay:'+delay+'"><div class="sp-icon">'+spaceIcons[idx%spaceIcons.length]+'</div><div class="sp-head">'+e(s.heading)+'</div><div class="sp-text">'+e(s.text)+'</div></div>';
   });
   h+='</div>';
+  h+='<img src="/img/networking.jpeg" alt="Networking" class="networking-photo" loading="lazy">';
   h+='<div class="quote-block"><div class="quote-text">'+e(c.spaces.quote)+'</div></div>';
   h+='</div></section>';
 
   /* SPECIAL - What makes iVision special (radial layout) */
   h+='<section class="sec sa"><div class="w">';
   h+='<div class="h2">ЧТО ДЕЛАЕТ iViSiON ОСОБЕННОЙ</div>';
-  h+='<div class="special-diff">';
-  h+='<div class="special-diff-center">';
-  h+='<video class="special-diff-media" controls><source src="/img/chastushka_kromberger.mp4" type="video/mp4"></video>';
-  h+='</div>';
-  h+='<div class="special-diff-points">';
-  h+='<div class="special-point">';
-  h+='<div class="special-point-letter">а)</div>';
-  h+='<div>';
-  h+='<div class="special-point-title">Форматы для раскрытия граней личности</div>';
-  h+='<div class="special-point-text">Уникальные интерактивы для возможности заявить о себе, привлечь аудиторию и прокачать узнаваемость</div>';
-  h+='</div></div>';
-  h+='<div class="special-point">';
-  h+='<div class="special-point-letter">б)</div>';
-  h+='<div>';
-  h+='<div class="special-point-title">Партнерские игры и розыгрыши</div>';
-  h+='<div class="special-point-text">Возможность получать особо-ценные рабочие инструменты в подарок за активность и вовлеченность</div>';
-  h+='</div></div>';
-  h+='<div class="special-point">';
-  h+='<div class="special-point-letter">в)</div>';
-  h+='<div>';
-  h+='<div class="special-point-title">Музыкальные портреты</div>';
-  h+='<div class="special-point-text">Аутентичность креатива и творчества организатора Марго Форбс</div>';
-  h+='</div></div>';
-  h+='<div class="special-point">';
-  h+='<div class="special-point-letter">г)</div>';
-  h+='<div>';
-  h+='<div class="special-point-title">Спикеры-практики</div>';
-  h+='<div class="special-point-text">Всегда крупные лидеры ниши с реальным опытом, без воды, с результатами и конкретикой</div>';
-  h+='</div></div>';
-  h+='<div class="special-point">';
-  h+='<div class="special-point-letter">д)</div>';
-  h+='<div>';
-  h+='<div class="special-point-title">Присвоение титулов зрителям</div>';
-  h+='<div class="special-point-text">Возможность выделиться среди зрителей и получить персональные титулы за активность</div>';
-  h+='</div></div>';
+  h+='<div class="special-layout">';
+  h+='<div class="special-video"><video controls><source src="/img/chastushka_kromberger.mp4" type="video/mp4"></video></div>';
+  h+='<div class="special-points">';
+  h+='<div class="special-item"><div class="special-item-icon">'+spIcons[2]+'</div><div class="special-item-content"><div class="special-item-title">Форматы для раскрытия граней личности</div><div class="special-item-text">Уникальные интерактивы для возможности заявить о себе, привлечь аудиторию и прокачать узнаваемость</div></div></div>';
+  h+='<div class="special-item"><div class="special-item-icon">'+spIcons[3]+'</div><div class="special-item-content"><div class="special-item-title">Партнерские игры и розыгрыши</div><div class="special-item-text">Возможность получать особо-ценные рабочие инструменты в подарок за активность и вовлеченность</div></div></div>';
+  h+='<div class="special-item"><div class="special-item-icon">'+spIcons[4]+'</div><div class="special-item-content"><div class="special-item-title">Музыкальные портреты</div><div class="special-item-text">Аутентичность креатива и творчества организатора Марго Форбс</div></div></div>';
+  h+='<div class="special-item"><div class="special-item-icon">'+spIcons[5]+'</div><div class="special-item-content"><div class="special-item-title">Спикеры-практики</div><div class="special-item-text">Всегда крупные лидеры ниши с реальным опытом, без воды, с результатами и конкретикой</div></div></div>';
+  h+='<div class="special-item"><div class="special-item-icon">'+spIcons[1]+'</div><div class="special-item-content"><div class="special-item-title">Присвоение титулов зрителям</div><div class="special-item-text">Возможность выделиться среди зрителей и получить персональные титулы за активность</div></div></div>';
   h+='</div>';
   h+='</div></div></section>';
 
@@ -799,7 +777,7 @@ function render(c){
   /* Top 3 benefits with images */
   var benImgs=['/img/dollars.png','/img/microphone.png','/img/speaker.png'];
   var benImgIdx={};
-  benImgIdx['Масштабирование']=0;benImgIdx['Маркетинг и продажи']=1;benImgIdx['Рычаги влияния']=2;
+  benImgIdx['Маркетинг и продажи']=0;benImgIdx['Рычаги влияния']=1;benImgIdx['Масштабирование']=2;
   h+='<div class="ben-img-grid">';
   var imgCount=0;
   c.benefits.forEach(function(b){
