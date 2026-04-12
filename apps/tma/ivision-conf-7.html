@@ -248,7 +248,12 @@
     .feat li.n{color:var(--dim);}
     .feat li.n::before{content:'✗';color:rgba(255,207,164,.22);flex-shrink:0;}
     .t-description{font-size:13px;color:var(--muted);margin-bottom:12px;line-height:1.5;padding:8px;background:rgba(255,207,164,.06);border-radius:var(--r-md);}
-    /* Аккордеон PREMIUM */
+    /* Аккордеон description для PREMIUM */
+    .t-desc-toggle{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:8px;border:1px solid rgba(255,207,164,.18);background:rgba(255,207,164,.06);border-radius:var(--r-md);margin-bottom:12px;font-size:12px;color:var(--muted);line-height:1.5;user-select:none;transition:all .3s ease;}
+    .t-desc-text{flex:1;}
+    .t-desc-arrow{width:18px;height:18px;flex-shrink:0;color:var(--pink);transition:transform .3s ease;margin-left:8px;}
+    .tariff.desc-open .t-desc-arrow{transform:rotate(180deg);}
+    /* Аккордеон фич PREMIUM */
     .t-head{display:flex;flex-direction:column;}
     .t-feat-toggle{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:8px 0;border-top:1px solid rgba(255,207,164,.12);margin-top:8px;font-size:12px;color:var(--pink);font-weight:700;letter-spacing:.05em;text-transform:uppercase;user-select:none;}
     .t-feat-arrow{width:18px;height:18px;flex-shrink:0;transition:transform .3s ease;}
@@ -623,7 +628,8 @@ function render(c){
   h+='<div class="h2">'+e(c.spaces.title)+'</div>';
   h+='<div class="spaces-grid">';
   c.spaces.items.forEach(function(s,idx){
-    h+='<div class="space-card"><div class="sp-icon">'+spaceIcons[idx%spaceIcons.length]+'</div><div class="sp-head">'+e(s.heading)+'</div><div class="sp-text">'+e(s.text)+'</div></div>';
+    var delay=(idx*0.2)+'s';
+    h+='<div class="space-card" style="animation-delay:'+delay+'"><div class="sp-icon">'+spaceIcons[idx%spaceIcons.length]+'</div><div class="sp-head">'+e(s.heading)+'</div><div class="sp-text">'+e(s.text)+'</div></div>';
   });
   h+='</div>';
   h+='<div class="quote-block"><div class="quote-text">'+e(c.spaces.quote)+'</div></div>';
@@ -752,27 +758,38 @@ function render(c){
     h+='<div class="t-name">'+e(t.name)+'</div>';
     h+='<div class="t-price">'+e(t.price_label)+'</div>';
     if(t.seats_left)h+='<div class="t-seats">'+e(t.seats_left)+'</div>';
-    if(t.description)h+='<div class="t-description">'+e(t.description)+'</div>';
     h+='</div>';
 
-    /* Для PREMIUM — аккордеон */
+    /* Для PREMIUM — description в аккордеоне */
+    if(t.name==='PREMIUM'&&t.description){
+      h+='<div class="t-desc-toggle" onclick="this.closest(\'.tariff\').classList.toggle(\'desc-open\')">';
+      h+='<span class="t-desc-text">'+e(t.description)+'</span>';
+      h+='<svg class="t-desc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>';
+      h+='</div>';
+    } else if(t.description){
+      h+='<div class="t-description">'+e(t.description)+'</div>';
+    }
+
+    /* Список фичей */
+    var hasIncludedWhite=t.included_white&&t.included_white.length>0;
+    var hasIncludedPeach=t.included_peach&&t.included_peach.length>0;
+
+    /* Для PREMIUM — аккордеон Что входит */
     if(t.name==='PREMIUM'){
       h+='<div class="t-feat-toggle" onclick="this.closest(\'.tariff\').classList.toggle(\'feat-open\')">';
       h+='<span>Что входит</span>';
       h+='<svg class="t-feat-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>';
       h+='</div><div class="t-feat-wrap"><ul class="feat">';
-      t.included.forEach(function(f){h+='<li class="y">'+e(f)+'</li>';});
-      t.not_included.forEach(function(f){h+='<li class="n">'+e(f)+'</li>';});
+      if(hasIncludedWhite)t.included_white.forEach(function(f){h+='<li class="y">'+e(f)+'</li>';});
+      if(hasIncludedPeach)t.included_peach.forEach(function(f){h+='<li class="y highlight">'+e(f)+'</li>';});
+      if(t.not_included)t.not_included.forEach(function(f){h+='<li class="n">'+e(f)+'</li>';});
       h+='</ul></div>';
     } else {
       /* Для остальных — обычный список фичей */
       h+='<ul class="feat">';
-      var isHighlight=(t.name==='VIP');
-      t.included.forEach(function(f,idx){
-        var highlight=(isHighlight&&idx<5)?' highlight':'';
-        h+='<li class="y'+highlight+'">'+e(f)+'</li>';
-      });
-      t.not_included.forEach(function(f){h+='<li class="n">'+e(f)+'</li>';});
+      if(hasIncludedWhite)t.included_white.forEach(function(f){h+='<li class="y">'+e(f)+'</li>';});
+      if(hasIncludedPeach)t.included_peach.forEach(function(f){h+='<li class="y highlight">'+e(f)+'</li>';});
+      if(t.not_included)t.not_included.forEach(function(f){h+='<li class="n">'+e(f)+'</li>';});
       h+='</ul>';
     }
 
