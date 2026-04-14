@@ -790,9 +790,11 @@ function render(c){
   h+='</div>';
   /* CENTER VIDEO CAROUSEL */
   h+='<div class="special-center"><div class="chastushki-carousel"><div class="chastushki-scroll">';
-  conf.chastushki.forEach(function(ch){
-    h+='<div class="chastushki-item"><video playsinline preload="auto"><source src="/img/'+ch.file+'" type="video/mp4"></video></div>';
-  });
+  if(c.chastushki){
+    c.chastushki.forEach(function(ch){
+      h+='<div class="chastushki-item"><video playsinline preload="auto"><source src="/img/'+ch.file+'" type="video/mp4"></video></div>';
+    });
+  }
   h+='</div></div></div>';
   /* RIGHT COLUMN */
   h+='<div class="special-right">';
