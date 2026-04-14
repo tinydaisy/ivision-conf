@@ -7,8 +7,8 @@
   "dates": "5–6 февраля 2026 г.",
   "format": "Онлайн-конференция для предпринимателей",
   "hero_label": "Онлайн-конференция",
-  "capacity_total": "1000",
-  "capacity_free": "800",
+  "capacity_total": "600",
+  "capacity_free": "36",
   "stats": [
     {
       "value": "2",
@@ -507,7 +507,7 @@
     {
       "name": "БАЗОВЫЙ",
       "price_label": "БЕСПЛАТНО",
-      "seats_left": "Всего 800 мест из 1000",
+      "seats_left": "Осталось 36 мест из 700",
       "recommended": false,
       "included_white": [
         "Доступ на живые эфиры спикеров и возможность задать им вопросы",
