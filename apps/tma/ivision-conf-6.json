@@ -136,7 +136,7 @@
       "name": "Марго Форбс-Сахибгареева",
       "status": "organizer",
       "role": "Создатель конференции",
-      "photo_url": "/img/ivision-conf-6/01.png",
+      "photo_url": "/img/ivision-conf-6/01.jpg",
       "credentials": [
         "Создатель конференции «i-ViSiON»",
         "Самый позитивный нелинейный стратег",
@@ -150,7 +150,7 @@
     },
     {
       "name": "Яна Кондраченко",
-      "status": "headliner",
+      "status": "speaker",
       "role": "Эксперт по воронкам продаж в Телеграм",
       "photo_url": "/img/ivision-conf-6/02.jpeg",
       "credentials": [
@@ -187,7 +187,7 @@
       "name": "Настасья Белочкина",
       "status": "speaker",
       "role": "Эксперт по продажам и скриптам",
-      "photo_url": "/img/ivision-conf-6/05.jpeg",
+      "photo_url": "/img/ivision-conf-6/05.jpg",
       "credentials": [
         "Лидер ниши. Эксперт по продажам и скриптам",
         "Сооснователь компании HyperScript.ru",
@@ -213,7 +213,7 @@
       "name": "Анастасия Котова",
       "status": "speaker",
       "role": "Эксперт по digital-воронкам",
-      "photo_url": "/img/ivision-conf-6/07.png",
+      "photo_url": "/img/ivision-conf-6/07.jpg",
       "credentials": [
         "Директор по развитию Notibot",
         "Эксперт по digital-воронкам и автоматизации для EdTech",
@@ -225,7 +225,7 @@
       "name": "Алена Мишурко",
       "status": "speaker",
       "role": "Маркетолог-практик",
-      "photo_url": "/img/ivision-conf-6/08.jpeg",
+      "photo_url": "/img/ivision-conf-6/08.jpg",
       "credentials": [
         "Маркетолог-практик с 18-летним опытом",
         "Автор 2-х бестселлеров",
@@ -260,7 +260,7 @@
       "name": "Юлия Корчагина",
       "status": "speaker",
       "role": "Маркетолог и спикер",
-      "photo_url": "/img/ivision-conf-6/11.jpeg",
+      "photo_url": "/img/ivision-conf-6/11.jpg",
       "credentials": [
         "Маркетолог, спикер Синергии, Сколково, СБЕР Университета, МБА",
         "Колумнист РБК и Форбс",
@@ -295,7 +295,7 @@
       "name": "Анастасия Вангулова",
       "status": "speaker",
       "role": "Эксперт в продажах",
-      "photo_url": "/img/ivision-conf-6/14.jpeg",
+      "photo_url": "/img/ivision-conf-6/14.png",
       "credentials": [
         "Эксперт в продажах",
         "Бизнес-тренер с опытом продаж более 23 года",
