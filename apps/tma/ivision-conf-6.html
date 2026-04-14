@@ -482,7 +482,7 @@ function closeGC(id){document.getElementById(id).style.display='none';document.b
 
 /* COUNTDOWN */
 function updateCountdown(){
-  var target=new Date('2026-04-23T09:00:00+03:00');
+  var target=new Date('2026-02-05T09:00:00+03:00');
   var diff=target-new Date();
   if(diff<=0){
     ['cd-d','cd-h','cd-m','cd-s','cd-d2','cd-h2','cd-m2','cd-s2'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent='00';});
