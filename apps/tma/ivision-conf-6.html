@@ -570,10 +570,10 @@ var startParam=(tg&&tg.initDataUnsafe&&tg.initDataUnsafe.start_param)||'';
 var firstName=(tg&&tg.initDataUnsafe&&tg.initDataUnsafe.user&&tg.initDataUnsafe.user.first_name)||'';
 
 if(startParam==='free'){
-  document.getElementById('loading').style.display='none';
-  document.getElementById('access').style.display='flex';
-  if(firstName)document.getElementById('access-name').textContent=firstName+', ждём тебя на конференции!';
-}else{
+  //document.getElementById('loading').style.display='none';
+  //document.getElementById('access').style.display='flex';
+  //if(firstName)document.getElementById('access-name').textContent=firstName+', ждём тебя на конференции!';
+  //} else {
   fetch('./ivision-conf-6.json?v='+Date.now())
     .then(function(r){return r.json();})
     .then(function(c){
