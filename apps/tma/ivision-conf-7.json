@@ -70,6 +70,12 @@
     { "title": "Титулы зрителям",                       "text": "Возможность запомниться среди участников и получить персональные титулы за активность" }
   ],
 
+  "chastushki": [
+    { "file": "chastushka_kromberger.mp4", "name": "Кромбергер" },
+    { "file": "chastushka_belochkina.mp4", "name": "Белочкина" },
+    { "file": "chastushka_lebedev.mp4", "name": "Лебедев" }
+  ],
+
   "speakers": [
     {
       "name": "Марго Форбс",
