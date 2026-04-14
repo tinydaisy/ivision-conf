@@ -462,6 +462,10 @@ document.addEventListener('click',function(ev){
       var idx=Array.from(items).indexOf(active);
       var dir=parseInt(arrow.dataset.dir);
       idx=(idx+dir+items.length)%items.length;
+      if(active){
+        var oldVideo=active.querySelector('video');
+        if(oldVideo){oldVideo.pause();oldVideo.currentTime=0;}
+      }
       items.forEach(function(item){item.classList.remove('active');});
       items[idx].classList.add('active');
     }

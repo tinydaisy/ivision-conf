@@ -71,9 +71,9 @@
   ],
 
   "chastushki": [
-    { "file": "chastushka_kromberger.mp4", "poster": "chastushka_kromberger.jpg" },
-    { "file": "chastushka_belochkina.mp4", "poster": "chastushka_belochkina.jpg" },
-    { "file": "chastushka_lebedev.mp4", "poster": "chastushka_lebedev.jpg" }
+    { "file": "chastushka_kromberger.mp4", "poster": "chastushka_oblozhka_kromberger.JPG" },
+    { "file": "chastushka_belochkina.mp4", "poster": "chastushka_oblozhka_belochkina.JPG" },
+    { "file": "chastushka_lebedev.mp4", "poster": "chastushka_oblozhka_levedev.JPG" }
   ],
 
   "speakers": [
