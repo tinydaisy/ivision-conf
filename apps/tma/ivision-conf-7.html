@@ -809,7 +809,7 @@ function render(c){
   h+='<div class="special-center" id="chastushki-carousel"><div class="chastushki-carousel"><div class="chastushki-scroll">';
   if(c.chastushki){
     c.chastushki.forEach(function(ch,i){
-      h+='<div class="chastushki-item '+(i===0?'active':'')+'" data-idx="'+i+'"><video playsinline preload="auto" poster="/img/'+ch.poster+'"><source src="/img/'+ch.file+'" type="video/mp4"></video></div>';
+      h+='<div class="chastushki-item '+(i===0?'active':'')+'" data-idx="'+i+'"><video controls playsinline preload="auto" poster="/img/'+ch.poster+'"><source src="/img/'+ch.file+'" type="video/mp4"></video></div>';
     });
   }
   h+='</div>';
