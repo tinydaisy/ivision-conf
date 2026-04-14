@@ -317,10 +317,10 @@
     video::cue{display:none;}
     video::-webkit-media-controls-start-playback-button{display:none;}
     @media(min-width:641px){
-      .special-layout{flex-direction:row;gap:16px;align-items:flex-start;}
-      .special-left{flex:0 0 32%;}
-      .special-center{flex:0 0 24%;height:380px;border-radius:12px;}
-      .special-right{flex:0 0 32%;}
+      .special-layout{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+      .special-left{grid-column:1/3;}
+      .special-center{grid-column:1/2;height:400px;}
+      .special-right{grid-column:2/3;}
       .special-item{padding:10px;gap:8px;}
       .special-item-icon{width:24px;height:24px;}
       .special-item-title{font-size:12px;}
