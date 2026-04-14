@@ -300,16 +300,16 @@
     .special-item-content{flex:1;}
     .special-item-title{font-family:var(--ff-d);font-size:13px;letter-spacing:.02em;color:var(--peach);margin-bottom:2px;}
     .special-item-text{font-size:10px;color:var(--muted);line-height:1.4;}
-    .special-center{width:100%;height:300px;background:linear-gradient(135deg,rgba(25,69,93,.25),rgba(200,75,158,.15));border-radius:var(--r-lg);overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative;}
-    .chastushki-carousel{width:100%;height:100%;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+    .special-center{width:100%;height:300px;background:linear-gradient(135deg,rgba(25,69,93,.25),rgba(200,75,158,.15));border-radius:var(--r-lg);overflow:visible;display:flex;align-items:center;justify-content:center;position:relative;gap:12px;}
+    .chastushki-carousel{width:100%;height:100%;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;border-radius:var(--r-lg);}
     .chastushki-scroll{width:100%;height:100%;position:relative;}
     .chastushki-item{width:100%;height:100%;display:none;align-items:center;justify-content:center;}
     .chastushki-item.active{display:flex;}
     .chastushki-item video{width:100%;height:100%;object-fit:contain;background:#000;cursor:pointer;}
-    .chastushki-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;background:var(--pink);border:none;color:#fff;font-size:24px;cursor:pointer;z-index:100;border-radius:6px;display:flex;align-items:center;justify-content:center;transition:all .2s ease;}
-    .chastushki-arrow:active{transform:translateY(-50%) scale(.95);}
-    .chastushki-arrow-prev{left:8px;}
-    .chastushki-arrow-next{right:8px;}
+    .chastushki-arrow{position:relative;width:40px;height:40px;background:var(--pink);border:none;color:#fff;font-size:24px;cursor:pointer;z-index:10;border-radius:6px;display:flex;align-items:center;justify-content:center;transition:all .2s ease;flex-shrink:0;}
+    .chastushki-arrow:active{transform:scale(.95);}
+    .chastushki-arrow-prev{}
+    .chastushki-arrow-next{}
     @media(max-width:640px){
       .special-center{height:400px;width:100%;margin:0 auto;}
       .chastushki-item video{width:100%;height:100%;object-fit:cover;}
