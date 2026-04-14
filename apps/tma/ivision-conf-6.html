@@ -569,29 +569,24 @@ window.addEventListener('resize',equalizeTariffHeads,{passive:true});
 var startParam=(tg&&tg.initDataUnsafe&&tg.initDataUnsafe.start_param)||'';
 var firstName=(tg&&tg.initDataUnsafe&&tg.initDataUnsafe.user&&tg.initDataUnsafe.user.first_name)||'';
 
-if(startParam==='free'){
-  //document.getElementById('loading').style.display='none';
-  //document.getElementById('access').style.display='flex';
-  //if(firstName)document.getElementById('access-name').textContent=firstName+', ждём тебя на конференции!';
-  //} else {
-  fetch('./ivision-conf-6.json?v='+Date.now())
-    .then(function(r){return r.json();})
-    .then(function(c){
-      render(c);
-      document.getElementById('loading').style.display='none';
-      document.getElementById('app').style.display='block';
-      updateCountdown();
-      watchCounters();
-      watchSpaces();
-      watchSpeakers();
-      watchPartners();
-      equalizeSpkRows();
-      equalizeTariffHeads();
-    })
-    .catch(function(){
-      document.getElementById('loading').innerHTML='<p style="color:var(--muted);text-align:center;padding:40px 20px">Не удалось загрузить.<br>Обнови страницу.</p>';
-    });
-}
+// Always load content
+fetch('./ivision-conf-6.json?v='+Date.now())
+  .then(function(r){return r.json();})
+  .then(function(c){
+    render(c);
+    document.getElementById('loading').style.display='none';
+    document.getElementById('app').style.display='block';
+    updateCountdown();
+    watchCounters();
+    watchSpaces();
+    watchSpeakers();
+    watchPartners();
+    equalizeSpkRows();
+    equalizeTariffHeads();
+  })
+  .catch(function(){
+    document.getElementById('loading').innerHTML='<p style="color:var(--muted);text-align:center;padding:40px 20px">Не удалось загрузить.<br>Обнови страницу.</p>';
+  });
 
 function e(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
