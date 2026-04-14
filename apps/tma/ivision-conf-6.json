@@ -136,7 +136,7 @@
       "name": "Марго Форбс-Сахибгареева",
       "status": "organizer",
       "role": "Создатель конференции",
-      "photo_url": "/img/ivision-conf-6/01.jpg",
+      "photo_url": "/img/ivision-conf-6/01.png",
       "credentials": [
         "Создатель конференции «i-ViSiON»",
         "Самый позитивный нелинейный стратег",
@@ -152,7 +152,7 @@
       "name": "Яна Кондраченко",
       "status": "speaker",
       "role": "Эксперт по воронкам продаж в Телеграм",
-      "photo_url": "/img/ivision-conf-6/02.jpg",
+      "photo_url": "/img/ivision-conf-6/02.png",
       "credentials": [
         "Владелица лучшего телеграм канала по продажам 2025",
         "7 лет в маркетинге, лидер ниши по воронкам продаж в Телеграм",
@@ -165,7 +165,7 @@
       "name": "Алиса Котляр",
       "status": "speaker",
       "role": "Эксперт онлайн-продаж",
-      "photo_url": "/img/ivision-conf-6/03.jpg",
+      "photo_url": "/img/ivision-conf-6/03.jpeg",
       "credentials": [
         "8 лет зарабатываю только онлайн",
         "5 лет управляла оффлайн бизнесом",
@@ -187,7 +187,7 @@
       "name": "Настасья Белочкина",
       "status": "speaker",
       "role": "Эксперт по продажам и скриптам",
-      "photo_url": "/img/ivision-conf-6/05.jpg",
+      "photo_url": "/img/ivision-conf-6/05.png",
       "credentials": [
         "Лидер ниши. Эксперт по продажам и скриптам",
         "Сооснователь компании HyperScript.ru",
@@ -213,7 +213,7 @@
       "name": "Анастасия Котова",
       "status": "speaker",
       "role": "Эксперт по digital-воронкам",
-      "photo_url": "/img/ivision-conf-6/07.png",
+      "photo_url": "/img/ivision-conf-6/07.jpg",
       "credentials": [
         "Директор по развитию Notibot",
         "Эксперт по digital-воронкам и автоматизации для EdTech",
@@ -225,7 +225,7 @@
       "name": "Алена Мишурко",
       "status": "speaker",
       "role": "Маркетолог-практик",
-      "photo_url": "/img/ivision-conf-6/08.jpeg",
+      "photo_url": "/img/ivision-conf-6/08.jpg",
       "credentials": [
         "Маркетолог-практик с 18-летним опытом",
         "Автор 2-х бестселлеров",
@@ -248,7 +248,7 @@
       "name": "Наталья Барвинская",
       "status": "speaker",
       "role": "Маркетолог и эксперт продаж",
-      "photo_url": "/img/ivision-conf-6/10.jpeg",
+      "photo_url": "/img/ivision-conf-6/10.jpg",
       "credentials": [
         "25+ лет в маркетинге, продажах и управлении",
         "Автор ТРЕХМЕРНОЙ СИСТЕМЫ ПРОДАЖ для экспертов",
@@ -260,7 +260,7 @@
       "name": "Юлия Корчагина",
       "status": "speaker",
       "role": "Маркетолог и спикер",
-      "photo_url": "/img/ivision-conf-6/11.jpg",
+      "photo_url": "/img/ivision-conf-6/11.png",
       "credentials": [
         "Маркетолог, спикер Синергии, Сколково, СБЕР Университета, МБА",
         "Колумнист РБК и Форбс",
@@ -271,7 +271,7 @@
       "name": "Татьяна Михайленко",
       "status": "speaker",
       "role": "Системный предприниматель",
-      "photo_url": "/img/ivision-conf-6/12.png",
+      "photo_url": "",
       "credentials": [
         "Системный предприниматель 18 лет",
         "Создатель бизнес-клуба и онлайн-школы FREEDOM",
@@ -284,7 +284,7 @@
       "name": "Алена Яковлева",
       "status": "speaker",
       "role": "Юрист и бизнес-консультант",
-      "photo_url": "/img/ivision-conf-6/13.jpg",
+      "photo_url": "",
       "credentials": [
         "Юрист, 17+ лет предпринимательско-юридического опыта",
         "Резидент Ассоциации юристов онлайн-бизнеса",
@@ -295,7 +295,7 @@
       "name": "Анастасия Вангулова",
       "status": "speaker",
       "role": "Эксперт в продажах",
-      "photo_url": "/img/ivision-conf-6/14.jpg",
+      "photo_url": "",
       "credentials": [
         "Эксперт в продажах",
         "Бизнес-тренер с опытом продаж более 23 года",
@@ -308,7 +308,7 @@
       "name": "Алина Сатыева",
       "status": "speaker",
       "role": "Диджитал-продюсер",
-      "photo_url": "/img/ivision-conf-6/15.jpg",
+      "photo_url": "",
       "credentials": [
         "Диджитал-Продюсер",
         "Создатель Места Силы (Мобильное приложение с ИИ-командой для экспертов)",
