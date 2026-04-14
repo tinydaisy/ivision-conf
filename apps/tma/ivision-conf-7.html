@@ -300,8 +300,8 @@
     .special-item-content{flex:1;}
     .special-item-title{font-family:var(--ff-d);font-size:13px;letter-spacing:.02em;color:var(--peach);margin-bottom:2px;}
     .special-item-text{font-size:10px;color:var(--muted);line-height:1.4;}
-    .special-center{width:100%;height:300px;background:linear-gradient(135deg,rgba(25,69,93,.25),rgba(200,75,158,.15));border-radius:var(--r-lg);overflow:visible;display:flex;align-items:center;justify-content:space-between;position:relative;padding:0 12px;}
-    .chastushki-carousel{width:100%;height:100%;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;border-radius:var(--r-lg);}
+    .special-center{width:100%;height:300px;background:linear-gradient(135deg,rgba(25,69,93,.25),rgba(200,75,158,.15));border-radius:var(--r-lg);overflow:visible;display:flex;align-items:center;justify-content:center;position:relative;gap:8px;}
+    .chastushki-carousel{flex:1;height:100%;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;border-radius:var(--r-lg);}
     .chastushki-scroll{width:100%;height:100%;position:relative;}
     .chastushki-item{width:100%;height:100%;display:none;align-items:center;justify-content:center;}
     .chastushki-item.active{display:flex;}
@@ -317,10 +317,10 @@
     video::cue{display:none;}
     video::-webkit-media-controls-start-playback-button{display:none;}
     @media(min-width:641px){
-      .special-layout{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-      .special-left{grid-column:1/3;}
-      .special-center{grid-column:1/2;height:400px;}
-      .special-right{grid-column:2/3;}
+      .special-layout{flex-direction:row;gap:16px;align-items:center;justify-content:center;}
+      .special-left{flex:0 0 28%;display:flex;flex-direction:column;gap:12px;}
+      .special-center{flex:0 0 36%;height:450px;border-radius:12px;}
+      .special-right{flex:0 0 28%;display:flex;flex-direction:column;gap:12px;}
       .special-item{padding:10px;gap:8px;}
       .special-item-icon{width:24px;height:24px;}
       .special-item-title{font-size:12px;}
