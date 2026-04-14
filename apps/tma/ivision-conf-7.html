@@ -306,12 +306,12 @@
     .chastushki-item{width:100%;height:100%;display:none;align-items:center;justify-content:center;}
     .chastushki-item.active{display:flex;}
     .chastushki-item video{width:100%;height:100%;object-fit:contain;background:#000;cursor:pointer;}
-    .chastushki-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;background:var(--pink);border:none;color:#fff;font-size:24px;cursor:pointer;z-index:10;border-radius:6px;display:flex;align-items:center;justify-content:center;transition:all .2s ease;}
+    .chastushki-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;background:var(--pink);border:none;color:#fff;font-size:24px;cursor:pointer;z-index:100;border-radius:6px;display:flex;align-items:center;justify-content:center;transition:all .2s ease;}
     .chastushki-arrow:active{transform:translateY(-50%) scale(.95);}
     .chastushki-arrow-prev{left:8px;}
     .chastushki-arrow-next{right:8px;}
     @media(max-width:640px){
-      .special-center{height:400px;width:180px;margin:0 auto;}
+      .special-center{height:400px;width:100%;margin:0 auto;}
       .chastushki-item video{width:100%;height:100%;object-fit:cover;}
     }
     video::cue{display:none;}
