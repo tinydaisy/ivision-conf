@@ -91,6 +91,13 @@
     .values-grid{display:flex;gap:16px;flex-wrap:wrap;margin:32px 0;}
     .value-pill{border:2px solid rgba(255,207,164,.4);border-radius:100px;padding:12px 24px;font-size:14px;color:var(--text-light);text-align:center;background:rgba(255,207,164,.05);}
 
+    /* VISION SECTION */
+    .vision-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin:48px 0;}
+    .vision-text{color:var(--brand-peach);font-size:16px;line-height:1.8;font-weight:500;}
+    .vision-egg-wrap{position:relative;display:flex;justify-content:center;align-items:center;}
+    .vision-egg{width:100%;max-width:400px;aspect-ratio:3/4;object-fit:cover;object-position:center;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;border:2px solid rgba(255,207,164,.2);position:relative;}
+    .vision-egg-text{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);font-size:18px;font-weight:700;color:var(--brand-peach);text-align:center;width:80%;z-index:3;}
+
     /* BENEFITS */
     .benefits{list-style:none;margin:24px 0;}
     .benefits li{font-size:14px;color:var(--text-light);padding:12px 0 12px 32px;line-height:1.6;position:relative;}
@@ -189,10 +196,12 @@
 
     <div class="values-grid" id="values-container"></div>
 
-    <p class="desc">Мы задаем новое направление жизни и бизнесу - жить так масштабно и креативно по версии Форбс, чтобы люди спрашивали "Это ИИ?"</p>
-
-    <div style="width:100%;max-width:400px;border-radius:16px;overflow:hidden;border:2px solid rgba(255,207,164,.15);margin-top:24px;">
-      <img src="https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/skriny/skrin_eto_AI.png" alt="Это ИИ?" style="width:100%;display:block;">
+    <div class="vision-grid">
+      <p class="vision-text">Мы задаем новое направление жизни и бизнесу - жить так масштабно и креативно по версии Форбс, чтобы люди спрашивали "Это ИИ?"</p>
+      <div class="vision-egg-wrap">
+        <img src="https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/skriny/skrin_eto_AI.png" alt="Это ИИ?" class="vision-egg">
+        <div class="vision-egg-text">это не ИИ?</div>
+      </div>
     </div>
   </div>
 </section>
