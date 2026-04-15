@@ -20,7 +20,9 @@
       "Bash(mv temp.jpeg 002.jpg)",
       "Bash(find /Users/macbookair/Documents/projects/ivision-conf/apps/tma/img/turnir_zhivu -name \".DS_Store\" -delete)",
       "Bash(git lfs *)",
-      "WebFetch(domain:www.margoforbs.ru)"
+      "WebFetch(domain:www.margoforbs.ru)",
+      "Bash(git check-ignore *)",
+      "Bash(awk '{print $5, $9}')"
     ],
     "additionalDirectories": [
       "/Users/macbookair/.claude/projects/-Users-macbookair-Documents-projects-ivision-conf"
