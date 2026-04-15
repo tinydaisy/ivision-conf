@@ -4,3 +4,7 @@ __pycache__/
 .DS_Store
 speakers/
 apps/tma/img/turnir_zhivu/
+!apps/tma/img/turnir_zhivu/
+!apps/tma/img/turnir_zhivu/kreativ_video/
+!apps/tma/img/turnir_zhivu/kreativ_video/lichnyi_brend.mp4
+!apps/tma/img/turnir_zhivu/kreativ_video/kabriolet_za_1_den.mp4
