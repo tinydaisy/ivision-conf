@@ -103,32 +103,23 @@
 
     /* STAGES WITH VIDEO CAROUSEL */
     .stages-container{margin-top:48px;}
-    .stage-row{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:80px;position:relative;}
-    .stage-row.reverse{direction:rtl;}
-    .stage-row.reverse > *{direction:ltr;}
+    .stage-grid{display:grid;grid-template-columns:1fr;gap:32px;align-items:flex-start;}
+    @media(min-width:768px){.stage-grid{grid-template-columns:1fr 1fr;gap:60px;}}
 
     .stage-text{display:flex;flex-direction:column;}
-    .stage-number{font-size:72px;font-weight:900;color:rgba(255,207,164,.15);line-height:.8;margin-bottom:8px;}
     .stage-title{font-size:28px;font-weight:700;color:var(--text-light);margin-bottom:12px;}
-    .stage-duration{font-size:13px;color:var(--brand-peach);font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px;}
-    .stage-desc{font-size:15px;color:var(--text-muted);line-height:1.7;max-width:400px;}
+    .stage-duration{font-size:13px;color:var(--brand-peach);font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;}
+    .stage-desc{font-size:15px;color:var(--text-muted);line-height:1.7;}
 
-    .carousel-wrap{position:relative;max-width:320px;}
-    .carousel-track{display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;padding-bottom:8px;scroll-snap-type:x mandatory;}
-    .carousel-track::-webkit-scrollbar{height:4px;}
-    .carousel-track::-webkit-scrollbar-track{background:rgba(255,207,164,.1);border-radius:2px;}
-    .carousel-track::-webkit-scrollbar-thumb{background:var(--brand-peach);border-radius:2px;}
+    .video-carousel-wrap{width:100%;aspect-ratio:9/16;background:linear-gradient(135deg,rgba(25,69,93,.25),rgba(200,75,158,.15));border-radius:12px;display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden;}
+    .carousel-videos{flex:1;height:100%;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;border-radius:12px;}
+    .carousel-scroll{width:100%;height:100%;position:relative;}
+    .carousel-item{width:100%;height:100%;display:none;align-items:center;justify-content:center;}
+    .carousel-item.active{display:flex;}
+    .carousel-item video{width:100%;height:100%;object-fit:cover;background:#000;cursor:pointer;}
 
-    .video-card{width:100%;max-width:300px;aspect-ratio:9/16;border-radius:12px;overflow:hidden;border:2px solid rgba(255,207,164,.15);background:rgba(17,24,39,.7);scroll-snap-align:start;flex-shrink:0;}
-    .video-card video{width:100%;height:100%;object-fit:cover;display:block;background:#000;}
-
-    .carousel-nav{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10;}
-    .carousel-nav button{width:36px;height:36px;border-radius:50%;border:2px solid var(--brand-peach);background:rgba(8,11,18,.8);color:var(--brand-peach);font-size:16px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;}
-    .carousel-nav button:hover{background:rgba(255,207,164,.15);}
-
-    /* CONNECTOR ARROWS */
-    .stage-connector{position:absolute;left:50%;width:80px;height:80px;margin-left:-40px;bottom:-90px;z-index:5;}
-    .stage-row:last-child .stage-connector{display:none;}
+    .carousel-arrow{position:relative;width:40px;height:40px;background:var(--brand-peach);border:none;color:var(--bg-dark);font-size:24px;cursor:pointer;z-index:10;border-radius:6px;display:flex;align-items:center;justify-content:center;transition:all .2s ease;flex-shrink:0;font-weight:700;}
+    .carousel-arrow:active{transform:scale(.95);}
 
     /* BENEFITS */
     .benefits{list-style:none;margin:24px 0;}
@@ -145,13 +136,9 @@
     @media(max-width:768px){
       .hero-grid{grid-template-columns:1fr;gap:40px;}
       .hero-rings{right:auto;left:-200px;width:500px;height:500px;opacity:.3;}
-      .stage-row{grid-template-columns:1fr;gap:32px;margin-bottom:60px;}
-      .stage-row.reverse{direction:ltr;}
-      .carousel-wrap{max-width:100%;}
-      .video-card{width:100%;max-width:100%;aspect-ratio:9/16;}
-      .stage-title{font-size:20px;}
-      .stage-number{font-size:48px;}
-      .carousel-nav button{width:32px;height:32px;font-size:14px;}
+      .stage-grid{grid-template-columns:1fr;}
+      .video-carousel-wrap{aspect-ratio:9/16;}
+      .carousel-arrow{width:36px;height:36px;font-size:20px;}
     }
   </style>
 </head>
@@ -202,7 +189,7 @@
 
         <div class="hero-btns">
           <button class="btn-grad-wrap" onclick="document.location='https://t.me/margo_forbs?text=Марго!Интересен_партнерский_формат'" style="display:inline-block;">
-            <span class="btn-grad-inner">Стать жюри1</span>
+            <span class="btn-grad-inner">Стать жюри2</span>
           </button>
         </div>
 
@@ -440,106 +427,99 @@ async function loadData() {
 
   data.stages.forEach((stage, idx) => {
     const row = document.createElement('div');
-    row.className = `stage-row ${stage.position === 'right' ? 'reverse' : ''}`;
-
-    // Connector arrow (не для последней строки)
-    const connector = document.createElement('svg');
-    connector.className = 'stage-connector';
-    connector.setAttribute('viewBox', '0 0 80 80');
-    connector.innerHTML = `
-      <defs>
-        <marker id="arrow-${idx}" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-          <path d="M0,0 L0,6 L9,3 z" fill="#FFCFA4" />
-        </marker>
-      </defs>
-      <path d="M40,5 Q40,35 40,65" stroke="#FFCFA4" stroke-width="2" fill="none" marker-end="url(#arrow-${idx})" stroke-dasharray="5,5"/>
-      <circle cx="40" cy="20" r="4" fill="#FFCFA4" opacity="0.6"/>
-      <circle cx="40" cy="40" r="4" fill="#FFCFA4" opacity="0.6"/>
-    `;
+    row.className = 'stage-grid';
 
     // Text column
     const textCol = document.createElement('div');
     textCol.className = 'stage-text';
     textCol.innerHTML = `
-      <div class="stage-number">${String(stage.number).padStart(2, '0')}</div>
       <h3 class="stage-title">${stage.title}</h3>
       <p class="stage-duration">${stage.duration}</p>
       <p class="stage-desc">${stage.description}</p>
     `;
 
     // Video carousel column
-    const carouselCol = document.createElement('div');
-    carouselCol.className = 'carousel-wrap';
+    const carouselWrap = document.createElement('div');
+    carouselWrap.className = 'video-carousel-wrap';
+    carouselWrap.id = `carousel${idx + 1}`;
 
-    const track = document.createElement('div');
-    track.className = 'carousel-track';
-    track.id = `carousel-${idx}`;
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'carousel-arrow';
+    prevBtn.innerHTML = '‹';
+    prevBtn.onclick = () => window.prevVideo(idx + 1);
+
+    const videosContainer = document.createElement('div');
+    videosContainer.className = 'carousel-videos';
+    const scrollDiv = document.createElement('div');
+    scrollDiv.className = 'carousel-scroll';
 
     stage.videos.forEach((video, videoIdx) => {
-      const videoCard = document.createElement('div');
-      videoCard.className = 'video-card';
+      const item = document.createElement('div');
+      item.className = `carousel-item ${videoIdx === 0 ? 'active' : ''}`;
       const videoEl = document.createElement('video');
-      videoEl.setAttribute('muted', '');
-      videoEl.setAttribute('loop', '');
-      videoEl.setAttribute('playsinline', '');
       videoEl.setAttribute('controls', '');
+      videoEl.setAttribute('playsinline', '');
+      videoEl.setAttribute('preload', 'auto');
       const source = document.createElement('source');
       source.src = video;
       source.type = 'video/mp4';
       videoEl.appendChild(source);
-      videoCard.appendChild(videoEl);
-
-      // Auto-play on intersection
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          const vid = entry.target.querySelector('video');
-          if (entry.isIntersecting) {
-            vid.play().catch(() => {});
-          } else {
-            vid.pause();
-          }
-        });
-      }, { threshold: 0.3 });
-
-      observer.observe(videoCard);
-      track.appendChild(videoCard);
+      item.appendChild(videoEl);
+      scrollDiv.appendChild(item);
     });
 
-    // Carousel navigation
-    const nav = document.createElement('div');
-    nav.className = 'carousel-nav';
-    const prevBtn = document.createElement('button');
-    prevBtn.innerHTML = '◀';
-    prevBtn.onclick = () => {
-      track.scrollBy({ left: -300, behavior: 'smooth' });
-    };
-    const nextBtn = document.createElement('button');
-    nextBtn.innerHTML = '▶';
-    nextBtn.onclick = () => {
-      track.scrollBy({ left: 300, behavior: 'smooth' });
-    };
-    nav.appendChild(prevBtn);
-    nav.appendChild(nextBtn);
+    videosContainer.appendChild(scrollDiv);
 
-    carouselCol.appendChild(track);
-    carouselCol.appendChild(nav);
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'carousel-arrow';
+    nextBtn.innerHTML = '›';
+    nextBtn.onclick = () => window.nextVideo(idx + 1);
+
+    carouselWrap.appendChild(prevBtn);
+    carouselWrap.appendChild(videosContainer);
+    carouselWrap.appendChild(nextBtn);
 
     // Build row
     if (stage.position === 'left') {
       row.appendChild(textCol);
-      row.appendChild(carouselCol);
+      row.appendChild(carouselWrap);
     } else {
-      row.appendChild(carouselCol);
+      row.appendChild(carouselWrap);
       row.appendChild(textCol);
-    }
-
-    if (idx < data.stages.length - 1) {
-      row.appendChild(connector);
     }
 
     stagesContainer.appendChild(row);
   });
 }
+
+function prevVideo(carouselNum) {
+  const carousel = document.getElementById('carousel' + carouselNum);
+  const items = carousel.querySelectorAll('.carousel-item');
+  const active = carousel.querySelector('.carousel-item.active');
+  const activeIndex = Array.from(items).indexOf(active);
+  const prevIndex = (activeIndex - 1 + items.length) % items.length;
+
+  active.classList.remove('active');
+  items[prevIndex].classList.add('active');
+
+  const oldVideo = active.querySelector('video');
+  if (oldVideo) oldVideo.pause();
+}
+
+function nextVideo(carouselNum) {
+  const carousel = document.getElementById('carousel' + carouselNum);
+  const items = carousel.querySelectorAll('.carousel-item');
+  const active = carousel.querySelector('.carousel-item.active');
+  const activeIndex = Array.from(items).indexOf(active);
+  const nextIndex = (activeIndex + 1) % items.length;
+
+  active.classList.remove('active');
+  items[nextIndex].classList.add('active');
+
+  const oldVideo = active.querySelector('video');
+  if (oldVideo) oldVideo.pause();
+}
+
 document.addEventListener('DOMContentLoaded', loadData);
 </script>
 
