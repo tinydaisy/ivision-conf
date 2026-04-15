@@ -153,7 +153,6 @@
           </div>
         </h1>
         <p class="hero-sub">Живые <span style="color:var(--brand-peach);">·</span> Истинные <span style="color:var(--brand-peach);">·</span> Влиятельные <span style="color:var(--brand-peach);">·</span> Успешные</p>
-        <p class="hero-desc">для экспертов и предпринимателей, которые выбирают влиять не только знаниями, но и живой аутентичностью, креативом и творчеством</p>
 
         <div class="hero-btns">
           <button class="btn-grad-wrap" onclick="document.location='https://t.me/margo_forbs?text=Марго!Интересен_партнерский_формат'" style="display:inline-block;">
@@ -387,7 +386,7 @@ async function loadData() {
   document.querySelector('.hero-label').textContent = data.championship.label;
   document.querySelector('.hero-h1').innerHTML = `ЧЕМПИОНАТ<br><div class="hero-h1-line2"><span class="hero-h1-brand">iViSiON:</span> <span class="hero-h1-accent">Ж.И.В.У.</span></div>`;
   document.querySelector('.hero-sub').innerHTML = data.championship.tagline.split(', ').join(' <span style="color:var(--brand-peach);">·</span> ');
-  document.querySelector('.hero-desc').textContent = data.championship.description;
+  // Не загружаем description - оно уже на главной странице
 
   // Mission values
   const valuesContainer = document.getElementById('values-container');
