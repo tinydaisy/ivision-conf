@@ -49,37 +49,32 @@
     .mission-photo{width:100%;border-radius:var(--r-md);margin:16px 0;display:block;}
     .mission-text{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:14px;}
 
-    /* ACCORDION */
-    .accordion-item{background:rgba(17,24,39,.6);border:1px solid var(--border);border-radius:var(--r-md);margin-bottom:16px;overflow:hidden;}
-    .accordion-header{padding:20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:rgba(17,24,39,.8);transition:background .25s;}
-    .accordion-header:hover{background:rgba(17,24,39,1);}
-    .accordion-header.open{background:rgba(37,69,93,.4);}
-    .accordion-title{font-weight:700;font-size:16px;color:var(--text);}
-    .accordion-icon{font-size:20px;transition:transform .25s;color:var(--peach);}
-    .accordion-icon.open{transform:rotate(180deg);}
-    .accordion-content{max-height:0;overflow:hidden;transition:max-height .3s ease;padding:0 20px;}
-    .accordion-content.open{max-height:2000px;padding:0 20px 20px;}
-    .accordion-text{color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:12px;}
-
-    /* CAROUSEL */
-    .carousel{display:flex;overflow-x:auto;gap:12px;margin:16px 0;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;}
-    .carousel::-webkit-scrollbar{height:4px;}
-    .carousel::-webkit-scrollbar-track{background:rgba(255,207,164,.08);}
-    .carousel::-webkit-scrollbar-thumb{background:var(--peach);border-radius:2px;}
-    .carousel-item{flex:0 0 85%;border-radius:var(--r-md);overflow:hidden;}
-    .carousel-video{width:100%;height:auto;display:block;background:var(--card);}
-
-    /* GRID WITH IMAGES */
-    .image-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:16px 0;}
-    .image-item{border-radius:var(--r-md);overflow:hidden;aspect-ratio:1;position:relative;}
-    .image-item img{width:100%;height:100%;object-fit:cover;}
-    .image-item.span-2{grid-column:span 2;}
-
     /* 2-COLUMN LAYOUT */
-    .two-col{display:grid;grid-template-columns:1fr;gap:20px;margin:20px 0;}
-    @media(min-width:641px){.two-col{grid-template-columns:1fr 1fr;}}
-    .col-text{display:flex;flex-direction:column;justify-content:center;}
-    .col-media{display:flex;flex-direction:column;justify-content:center;}
+    .stage-grid{display:grid;grid-template-columns:1fr;gap:32px;margin:32px 0;align-items:center;}
+    .stage-text{display:flex;flex-direction:column;justify-content:center;}
+    .stage-title{font-size:20px;font-weight:700;color:var(--text);margin-bottom:12px;}
+    .stage-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:14px;}
+
+    /* VIDEO CAROUSEL */
+    .video-carousel-wrap{width:100%;aspect-ratio:9/16;background:linear-gradient(135deg,rgba(25,69,93,.25),rgba(200,75,158,.15));border-radius:var(--r-lg);display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden;margin:24px 0;}
+    .carousel-videos{flex:1;height:100%;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;border-radius:var(--r-lg);}
+    .carousel-scroll{width:100%;height:100%;position:relative;}
+    .carousel-item{width:100%;height:100%;display:none;align-items:center;justify-content:center;}
+    .carousel-item.active{display:flex;}
+    .carousel-item video{width:100%;height:100%;object-fit:cover;background:#000;cursor:pointer;}
+    .carousel-arrow{position:relative;width:40px;height:40px;background:var(--pink);border:none;color:#fff;font-size:24px;cursor:pointer;z-index:10;border-radius:6px;display:flex;align-items:center;justify-content:center;transition:all .2s ease;flex-shrink:0;}
+    .carousel-arrow:active{transform:scale(.95);}
+
+    /* BENEFITS LIST */
+    .benefits-list{list-style:none;margin:16px 0;}
+    .benefits-list li{font-size:13px;color:var(--muted);padding:8px 0 8px 20px;line-height:1.5;position:relative;}
+    .benefits-list li::before{content:'✓';position:absolute;left:0;color:var(--peach);font-weight:700;}
+
+    /* 2-COL MEDIA QUERIES */
+    @media(min-width:641px){
+      .stage-grid{grid-template-columns:1fr 1fr;gap:32px;}
+      .video-carousel-wrap{aspect-ratio:auto;height:400px;}
+    }
 
     /* FOOTER */
     #site-footer{background:#04060d;padding:28px 0;border-top:1px solid rgba(255,207,164,.08);}
@@ -87,9 +82,8 @@
     .footer-links a{font-size:11px;color:var(--muted);text-decoration:underline;text-underline-offset:3px;}
     .footer-legal{font-size:11px;color:var(--dim);line-height:1.6;}
 
-    @media(min-width:641px){
-      .w{max-width:1100px;padding:0 48px;}
-    }
+    video::cue{display:none;}
+    video::-webkit-media-controls-start-playback-button{display:none;}
   </style>
 </head>
 <body>
@@ -134,57 +128,86 @@
     <div class="h2">Как проходит чемпионат</div>
     <p class="mission-text" style="margin-top:20px;">Три этапа, три разных формата для усиления узнаваемости и перехода из "я один из всех" в "меня узнают, я лидер и я влияю"</p>
 
-    <!-- ЭТАП 1 -->
-    <div class="accordion-item" style="margin-top:24px;">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span class="accordion-title">ЭТАП 1: Живые авторы</span>
-        <span class="accordion-icon">▼</span>
+    <!-- ЭТАП 1: ТЕКСТ СЛЕВА | ВИДЕО СПРАВА -->
+    <div class="stage-grid" style="margin-top:32px;">
+      <div class="stage-text">
+        <div class="stage-title">Этап 1: Живые авторы</div>
+        <p class="stage-desc">Выдаём "лицензию на аутентичность" и позволяем быть нестандартными и странными в контенте.</p>
+        <ul class="benefits-list">
+          <li>Навыки пробития баннерной слепоты</li>
+          <li>Практика "Йога смеха"</li>
+          <li>Усиление маркетинга</li>
+          <li>Самопрезентация</li>
+          <li>Онлайн-нетворкинг</li>
+          <li>5 эфиров и заданий</li>
+        </ul>
       </div>
-      <div class="accordion-content">
-        <p class="accordion-text">Выдаём "лицензию на аутентичность" и позволяем быть нестандартными и странными в контенте.</p>
-        <p style="font-size:13px;color:var(--dim);margin:12px 0;">Лучшие примеры креативного маркетинга:</p>
-        <div class="carousel">
-          <video class="carousel-item carousel-video" controls><source src="/img/turnir_zhivu/kreativ_video/lichnyi_brend.mp4" type="video/mp4"></video>
-          <video class="carousel-item carousel-video" controls><source src="/img/turnir_zhivu/kreativ_video/voronki_dubtsova.MP4" type="video/mp4"></video>
-          <video class="carousel-item carousel-video" controls><source src="/img/turnir_zhivu/kreativ_video/finance_shtorm.mp4" type="video/mp4"></video>
-          <video class="carousel-item carousel-video" controls><source src="/img/chastushka_kromberger.mp4" type="video/mp4"></video>
-          <video class="carousel-item carousel-video" controls><source src="/img/turnir_zhivu/kreativ_video/ne_reklama.MP4" type="video/mp4"></video>
-          <video class="carousel-item carousel-video" controls><source src="/img/turnir_zhivu/kreativ_video/eto_zdorovo_finance.MP4" type="video/mp4"></video>
+      <div class="video-carousel-wrap" id="carousel1">
+        <button class="carousel-arrow" onclick="prevVideo(1)">‹</button>
+        <div class="carousel-videos">
+          <div class="carousel-scroll">
+            <div class="carousel-item active"><video controls playsinline preload="auto"><source src="/img/turnir_zhivu/kreativ_video/lichnyi_brend.mp4" type="video/mp4"></video></div>
+            <div class="carousel-item"><video controls playsinline preload="auto"><source src="/img/turnir_zhivu/kreativ_video/voronki_dubtsova.MP4" type="video/mp4"></video></div>
+            <div class="carousel-item"><video controls playsinline preload="auto"><source src="/img/turnir_zhivu/kreativ_video/finance_shtorm.mp4" type="video/mp4"></video></div>
+            <div class="carousel-item"><video controls playsinline preload="auto"><source src="/img/chastushka_kromberger.mp4" type="video/mp4"></video></div>
+            <div class="carousel-item"><video controls playsinline preload="auto"><source src="/img/turnir_zhivu/kreativ_video/ne_reklama.MP4" type="video/mp4"></video></div>
+            <div class="carousel-item"><video controls playsinline preload="auto"><source src="/img/turnir_zhivu/kreativ_video/eto_zdorovo_finance.MP4" type="video/mp4"></video></div>
+          </div>
         </div>
+        <button class="carousel-arrow" onclick="nextVideo(1)">›</button>
       </div>
     </div>
 
-    <!-- ЭТАП 2 -->
-    <div class="accordion-item">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span class="accordion-title">ЭТАП 2: Живые спикеры</span>
-        <span class="accordion-icon">▼</span>
-      </div>
-      <div class="accordion-content">
-        <p class="accordion-text">Разрушаем душность в выступлениях. Спикеры выходят за рамки обычных презентаций и привносят живую энергию на сцену.</p>
-        <p style="font-size:13px;color:var(--dim);margin:12px 0;">Сценический формат прямой трансляции и записи:</p>
-        <div class="carousel">
-          <video class="carousel-item carousel-video" controls><source src="/img/turnir_zhivu/kreativ_video/eto_zdorovo_finance.MP4" type="video/mp4"></video>
+    <!-- ЭТАП 2: ВИДЕО СЛЕВА | ТЕКСТ СПРАВА -->
+    <div class="stage-grid" style="margin-top:32px;">
+      <div class="video-carousel-wrap" id="carousel2">
+        <button class="carousel-arrow" onclick="prevVideo(2)">‹</button>
+        <div class="carousel-videos">
+          <div class="carousel-scroll">
+            <div class="carousel-item active"><video controls playsinline preload="auto"><source src="/img/turnir_zhivu/kreativ_video/eto_zdorovo_finance.MP4" type="video/mp4"></video></div>
+          </div>
         </div>
+        <button class="carousel-arrow" onclick="nextVideo(2)">›</button>
+      </div>
+      <div class="stage-text">
+        <div class="stage-title">Этап 2: Живые спикеры</div>
+        <p class="stage-desc">Разрушаем душность в выступлениях. Спикеры выходят за рамки обычных презентаций и привносят живую энергию на сцену.</p>
+        <ul class="benefits-list">
+          <li>Навык управлять вниманием</li>
+          <li>1-3 выступления на площадке</li>
+          <li>Записи для лид-магнита</li>
+          <li>Реклама по базе</li>
+          <li>3 формата выступлений</li>
+          <li>Новые клиенты</li>
+        </ul>
       </div>
     </div>
 
-    <!-- ЭТАП 3 -->
-    <div class="accordion-item">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span class="accordion-title">ЭТАП 3: Живые лидеры (иммерсивный выезд)</span>
-        <span class="accordion-icon">▼</span>
+    <!-- ЭТАП 3: ТЕКСТ СЛЕВА | ВИДЕО СПРАВА -->
+    <div class="stage-grid" style="margin-top:32px;">
+      <div class="stage-text">
+        <div class="stage-title">Этап 3: Живые лидеры</div>
+        <p class="stage-desc">Вызов пластиковому ИИ на иммерсивном выезде с креативными съёмками во Вьетнаме. 5 красивых локаций со съёмками в динамике: летающая доска, страус, байк, параплан, лестница в небо.</p>
+        <ul class="benefits-list">
+          <li>Выступление на iViSiON-8</li>
+          <li>Выезд во Вьетнам</li>
+          <li>Проживание в 4-5* отеле</li>
+          <li>Профессиональные съёмки</li>
+          <li>Сценический клип-визитка</li>
+          <li>Реклама (3000+ аудитория)</li>
+        </ul>
       </div>
-      <div class="accordion-content">
-        <p class="accordion-text">Вызов пластиковому ИИ на иммерсивном выезде с креативными съёмками во Вьетнаме.</p>
-        <p style="font-size:13px;color:var(--dim);margin:12px 0;">Локации и креативные форматы съёмок:</p>
-        <div class="carousel">
-          <video class="carousel-item carousel-video" controls><source src="/img/turnir_zhivu/kreativ_video/kabriolet_za_3_dnya.mp4" type="video/mp4"></video>
-          <video class="carousel-item carousel-video" controls><source src="/img/turnir_zhivu/kreativ_video/kabriolet_za_2_dnya.mp4" type="video/mp4"></video>
-          <video class="carousel-item carousel-video" controls><source src="/img/turnir_zhivu/kreativ_video/kabriolet_za_1_den.mp4" type="video/mp4"></video>
-          <video class="carousel-item carousel-video" controls><source src="/img/turnir_zhivu/kreativ_video/kabriolet.MP4" type="video/mp4"></video>
+      <div class="video-carousel-wrap" id="carousel3">
+        <button class="carousel-arrow" onclick="prevVideo(3)">‹</button>
+        <div class="carousel-videos">
+          <div class="carousel-scroll">
+            <div class="carousel-item active"><video controls playsinline preload="auto"><source src="/img/turnir_zhivu/kreativ_video/kabriolet_za_3_dnya.mp4" type="video/mp4"></video></div>
+            <div class="carousel-item"><video controls playsinline preload="auto"><source src="/img/turnir_zhivu/kreativ_video/kabriolet_za_2_dnya.mp4" type="video/mp4"></video></div>
+            <div class="carousel-item"><video controls playsinline preload="auto"><source src="/img/turnir_zhivu/kreativ_video/kabriolet_za_1_den.mp4" type="video/mp4"></video></div>
+            <div class="carousel-item"><video controls playsinline preload="auto"><source src="/img/turnir_zhivu/kreativ_video/kabriolet.MP4" type="video/mp4"></video></div>
+          </div>
         </div>
-        <p class="mission-text" style="margin-top:16px;">5 нереально красивых локаций со съёмками в динамике: летающая доска, страус, байк, параплан, лестница в небо.</p>
+        <button class="carousel-arrow" onclick="nextVideo(3)">›</button>
       </div>
     </div>
 
@@ -195,28 +218,22 @@
 <section class="sec">
   <div class="w">
     <div class="lbl">Психология успеха</div>
-    <div class="h2">Креативный маркетинг на основе аутентичности</div>
+    <div class="h2">Креативный маркетинг<br>на основе аутентичности</div>
     <p class="mission-text" style="margin-top:20px;"><strong>Эффект Илона Маска:</strong> если пьяный бомж танцует на улице — это позор. Если Илон Маск танцует на открытии завода Tesla — это демонстрация финансовой свободы.</p>
     <p class="mission-text"><strong>Идиосинкразический кредит —</strong> это "запас доверия", право на отклонение от групповых норм, которое аудитория прощает лидеру за его вклад.</p>
 
-    <div class="accordion-item" style="margin-top:24px;">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span class="accordion-title">Как это работает в маркетинге</span>
-        <span class="accordion-icon">▼</span>
-      </div>
-      <div class="accordion-content">
-        <p class="accordion-text"><strong>➤ Усиление твёрдого бэкграунда</strong></p>
-        <p class="accordion-text">Без бизнес-результата любой креатив будет выглядеть как клоунада. Мы создаём фундамент для вашего авторитета.</p>
+    <div style="margin-top:20px;">
+      <p class="mission-text"><strong>➤ Усиление твёрдого бэкграунда</strong></p>
+      <p class="mission-text">Без бизнес-результата любой креатив будет выглядеть как клоунада. Мы создаём фундамент для вашего авторитета.</p>
 
-        <p class="accordion-text" style="margin-top:16px;"><strong>➤ Пробитие баннерной слепоты</strong></p>
-        <p class="accordion-text">Участники внедряют креативно оформленные продающие смыслы: контент потребляется с интересом, а продукт прогревается органично.</p>
+      <p class="mission-text" style="margin-top:16px;"><strong>➤ Пробитие баннерной слепоты</strong></p>
+      <p class="mission-text">Участники внедряют креативно оформленные продающие смыслы: контент потребляется с интересом, а продукт прогревается органично.</p>
 
-        <p class="accordion-text" style="margin-top:16px;"><strong>➤ Запуск рычагов узнаваемости</strong></p>
-        <p class="accordion-text">Уникальные грани личности: таланты, творчество и "нелинейные" хобби выделят вас среди конкурентов.</p>
+      <p class="mission-text" style="margin-top:16px;"><strong>➤ Запуск рычагов узнаваемости</strong></p>
+      <p class="mission-text">Уникальные грани личности: таланты, творчество и "нелинейные" хобби выделят вас среди конкурентов.</p>
 
-        <p class="accordion-text" style="margin-top:16px;"><strong>➤ Финансовая свобода</strong></p>
-        <p class="accordion-text">Полнота самовыражения считывается аудиторией как финансовое изобилие. Это манит людей покупать у вас.</p>
-      </div>
+      <p class="mission-text" style="margin-top:16px;"><strong>➤ Финансовая свобода</strong></p>
+      <p class="mission-text">Полнота самовыражения считывается аудиторией как финансовое изобилие. Это манит людей покупать у вас.</p>
     </div>
 
     <img src="/img/turnir_zhivu/skriny/svetlana_mir.jpg" alt="Пример финансовой свободы" class="mission-photo" style="margin-top:24px;" loading="lazy">
@@ -230,42 +247,36 @@
     <div class="h2">Жюри чемпионата</div>
     <p class="mission-text" style="margin-top:20px;">Быть в составе жюри "iViSiON: Ж.И.В.У." — это формирование направления развития рынка будущего, где бизнес-результат неотделим от личной аутентичности.</p>
 
-    <div class="accordion-item" style="margin-top:24px;">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span class="accordion-title">Что вы получаете (WIN-WIN)</span>
-        <span class="accordion-icon">▼</span>
-      </div>
-      <div class="accordion-content">
-        <p style="font-weight:700;color:var(--peach);margin-bottom:12px;">Регалии и медийный охват</p>
-        <p class="accordion-text">✓ Статус жюри международного чемпионата</p>
-        <p class="accordion-text">✓ Благодарственное письмо от БРО "Опора России"</p>
-        <p class="accordion-text">✓ Размещение информации о вас в рекламных материалах</p>
-        <p class="accordion-text">✓ Рассылка по базе чата-бота на 3000+ человек</p>
-        <p class="accordion-text">✓ Видео-визитка для 900+ участников</p>
+    <div style="margin-top:24px;">
+      <p style="font-weight:700;color:var(--peach);margin-bottom:12px;">Регалии и медийный охват</p>
+      <ul class="benefits-list">
+        <li>Статус жюри международного чемпионата</li>
+        <li>Благодарственное письмо от БРО "Опора России"</li>
+        <li>Размещение информации о вас в рекламных материалах</li>
+        <li>Рассылка по базе чата-бота на 3000+ человек</li>
+        <li>Видео-визитка для 900+ участников</li>
+      </ul>
 
-        <p style="font-weight:700;color:var(--peach);margin:16px 0 12px;">Социальный капитал</p>
-        <p class="accordion-text">✓ Нетворкинг с лидерами рынка и членами жюри</p>
-        <p class="accordion-text">✓ 10% от продаж по вашей реферальной ссылке</p>
+      <p style="font-weight:700;color:var(--peach);margin:16px 0 12px;">Социальный капитал</p>
+      <ul class="benefits-list">
+        <li>Нетворкинг с лидерами рынка и членами жюри</li>
+        <li>10% от продаж по вашей реферальной ссылке</li>
+      </ul>
 
-        <p style="font-weight:700;color:var(--peach);margin:16px 0 12px;">Экспертные слоты</p>
-        <p class="accordion-text">✓ От 15 участников: экспертный день в чате</p>
-        <p class="accordion-text">✓ От 30 участников: размещение вашего урока/эфира</p>
-        <p class="accordion-text">✓ От 45 участников: выступление (30 мин) на конференции iViSiON-8</p>
-      </div>
+      <p style="font-weight:700;color:var(--peach);margin:16px 0 12px;">Экспертные слоты</p>
+      <ul class="benefits-list">
+        <li>От 15 участников: экспертный день в чате</li>
+        <li>От 30 участников: размещение вашего урока/эфира</li>
+        <li>От 45 участников: выступление (30 мин) на конференции iViSiON-8</li>
+      </ul>
+
+      <p style="font-weight:700;color:var(--peach);margin:16px 0 12px;">Что требуется</p>
+      <ul class="benefits-list">
+        <li>Анонсы двух этапов и конференции iViSiON-8</li>
+        <li>Участие в презентационных эфирах (после отбора)</li>
+        <li>"Асинхронное судейство": смотрите видео в удобное время и пишите кружок в чат</li>
+      </ul>
     </div>
-
-    <div class="accordion-item">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span class="accordion-title">Что требуется от вас</span>
-        <span class="accordion-icon">▼</span>
-      </div>
-      <div class="accordion-content">
-        <p class="accordion-text">✓ Анонсы двух этапов и конференции iViSiON-8</p>
-        <p class="accordion-text">✓ Участие в презентационных эфирах (после отбора)</p>
-        <p class="accordion-text">✓ "Асинхронное судейство" этапа 1: смотрите видео финалистов в удобное время и пишите кружок в чат</p>
-      </div>
-    </div>
-
   </div>
 </section>
 
@@ -276,52 +287,30 @@
     <div class="h2">Полный партнерский пакет</div>
     <p class="mission-text" style="margin-top:20px;">Все опции жюри + иммерсивный выезд во Вьетнам с полным медиа-продакшном</p>
 
-    <div class="accordion-item" style="margin-top:24px;">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span class="accordion-title">Что входит в пакет</span>
-        <span class="accordion-icon">▼</span>
-      </div>
-      <div class="accordion-content">
-        <p style="font-weight:700;color:var(--peach);margin-bottom:12px;">Выезд во Вьетнам</p>
-        <p class="accordion-text">✓ Персональный рекламный продакшн с вашим продуктом</p>
-        <p class="accordion-text">✓ Проживание в 4-5* отеле</p>
-        <p class="accordion-text">✓ 5 красивых локаций для съёмок</p>
-        <p class="accordion-text">✓ Динамичные съёмки: летающая доска, байк, параплан, лестница в небо</p>
-        <p class="accordion-text">✓ 1 сценический клип-визитка продукта/услуги</p>
+    <div style="margin-top:24px;">
+      <p style="font-weight:700;color:var(--peach);margin-bottom:12px;">Выезд во Вьетнам</p>
+      <ul class="benefits-list">
+        <li>Персональный рекламный продакшн с вашим продуктом</li>
+        <li>Проживание в 4-5* отеле</li>
+        <li>5 красивых локаций для съёмок</li>
+        <li>Динамичные съёмки: летающая доска, байк, параплан, лестница в небо</li>
+        <li>1 сценический клип-визитка продукта/услуги</li>
+      </ul>
 
-        <p style="font-weight:700;color:var(--peach);margin:16px 0 12px;">Масштаб и трафик</p>
-        <p class="accordion-text">✓ Выступление (45 мин) на iViSiON-8: Бизнес-Создатели</p>
-        <p class="accordion-text">✓ Система автоподписки участников на ваш канал</p>
-        <p class="accordion-text">✓ Реклама на всех этапах чемпионата (3000+ аудитория)</p>
+      <p style="font-weight:700;color:var(--peach);margin:16px 0 12px;">Масштаб и трафик</p>
+      <ul class="benefits-list">
+        <li>Выступление (45 мин) на iViSiON-8: Бизнес-Создатели</li>
+        <li>Система автоподписки участников на ваш канал</li>
+        <li>Реклама на всех этапах чемпионата (3000+ аудитория)</li>
+      </ul>
 
-        <p class="accordion-text" style="margin-top:16px;"><strong>Инвестиция: 190 000 руб.</strong></p>
-      </div>
-    </div>
-
-    <div class="image-grid" style="margin-top:24px;">
-      <img src="/img/turnir_zhivu/vyezd/paraplan_reklama.jpeg" alt="Параплан" class="image-item span-2">
-      <img src="/img/turnir_zhivu/vyezd/flybord_reklama.jpeg" alt="Флайборд" class="image-item">
-    </div>
-
-  </div>
-</section>
-
-<!-- ── ФОТО ВЫЕЗДА ── -->
-<section class="sec sa">
-  <div class="w">
-    <div class="lbl">Атмосфера выезда</div>
-    <div class="h2">Вьетнам 2026</div>
-    <div class="image-grid" style="margin-top:20px;">
-      <img src="/img/turnir_zhivu/vyezd/1.jpg" alt="Локация 1" class="image-item">
-      <img src="/img/turnir_zhivu/vyezd/2.jpg" alt="Локация 2" class="image-item">
-      <img src="/img/turnir_zhivu/vyezd/3.jpg" alt="Локация 3" class="image-item">
-      <img src="/img/turnir_zhivu/vyezd/4.jpg" alt="Локация 4" class="image-item">
+      <p class="mission-text" style="margin-top:20px;"><strong>Инвестиция: 190 000 руб.</strong></p>
     </div>
   </div>
 </section>
 
 <!-- ── ДЛЯ УЧАСТНИКОВ ── -->
-<section class="sec">
+<section class="sec sa">
   <div class="w">
     <div class="lbl">Регистрация</div>
     <div class="h2">Хочу быть в жюри</div>
@@ -349,10 +338,32 @@
 </footer>
 
 <script>
-function toggleAccordion(header) {
-  header.classList.toggle('open');
-  header.querySelector('.accordion-icon').classList.toggle('open');
-  header.nextElementSibling.classList.toggle('open');
+function nextVideo(carouselNum) {
+  const carousel = document.getElementById('carousel' + carouselNum);
+  const items = carousel.querySelectorAll('.carousel-item');
+  const active = carousel.querySelector('.carousel-item.active');
+  const activeIndex = Array.from(items).indexOf(active);
+  const nextIndex = (activeIndex + 1) % items.length;
+
+  active.classList.remove('active');
+  items[nextIndex].classList.add('active');
+
+  const oldVideo = active.querySelector('video');
+  if (oldVideo) oldVideo.pause();
+}
+
+function prevVideo(carouselNum) {
+  const carousel = document.getElementById('carousel' + carouselNum);
+  const items = carousel.querySelectorAll('.carousel-item');
+  const active = carousel.querySelector('.carousel-item.active');
+  const activeIndex = Array.from(items).indexOf(active);
+  const prevIndex = (activeIndex - 1 + items.length) % items.length;
+
+  active.classList.remove('active');
+  items[prevIndex].classList.add('active');
+
+  const oldVideo = active.querySelector('video');
+  if (oldVideo) oldVideo.pause();
 }
 </script>
 
