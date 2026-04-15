@@ -39,15 +39,14 @@
 
     /* HERO */
     #hero{position:relative;min-height:100vh;display:flex;align-items:center;background:linear-gradient(160deg,#25455D 0%,#080B12 60%);overflow:hidden;padding:120px 0 80px;}
-    .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:flex-start;position:relative;z-index:2;padding-top:40px;width:100%;}
-    .hero-content{min-width:0;}
+    .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:flex-start;position:relative;z-index:2;padding-top:40px;}
     .hero-label{font-family:var(--font-body);font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand-peach);margin-bottom:20px;}
     .hero-h1{font-family:var(--font-display);font-size:clamp(64px,8vw,110px);letter-spacing:.02em;line-height:.95;color:var(--text-light);margin-bottom:24px;}
     .hero-h1-line2{display:flex;align-items:baseline;gap:8px;width:fit-content;}
     .hero-h1-brand{color:var(--brand-peach);}
-    .hero-h1-accent{background:linear-gradient(180deg,#C84B9E 0%,#6B4FA0 50%,#1A3A5C 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:.08em;}
+    .hero-h1-accent{background:linear-gradient(135deg,#1A3A5C 0%,#6B4FA0 50%,#C84B9E 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:.08em;}
     .hero-sub{font-size:18px;font-weight:700;color:var(--text-light);margin-bottom:12px;line-height:1.4;}
-    .hero-desc{font-size:16px;color:var(--text-muted);line-height:1.8;margin-bottom:36px;}
+    .hero-desc{font-size:16px;color:var(--text-muted);line-height:1.8;margin-bottom:36px;max-width:480px;}
     .hero-btns{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:36px;}
 
     /* HERO PHOTO */
@@ -57,7 +56,7 @@
     .hero-deco-1{width:120px;height:120px;border:1.5px solid rgba(255,207,164,.3);border-radius:30% 70% 70% 30% / 30% 30% 70% 70%;top:10%;right:0;}
     .hero-deco-2{width:80px;height:80px;background:rgba(200,75,158,.25);bottom:15%;left:0;z-index:0;}
 
-    .hero-rings{position:absolute;right:-200px;top:50%;transform:translateY(-50%);width:700px;height:700px;opacity:.5;z-index:1;animation:rotateRings 80s linear infinite;pointer-events:none;}
+    .hero-rings{position:absolute;right:-100px;top:50%;transform:translateY(-50%);width:700px;height:700px;opacity:.5;z-index:1;animation:rotateRings 80s linear infinite;}
     @keyframes rotateRings{to{transform:translateY(-50%) rotate(360deg);}}
 
     /* MANIFEST */
@@ -103,7 +102,6 @@
     @media(max-width:768px){
       .hero-grid{grid-template-columns:1fr;gap:40px;}
       .hero-rings{right:auto;left:-200px;width:500px;height:500px;opacity:.3;}
-      .hero-photo{max-width:100%;width:100%;}
     }
   </style>
 </head>
@@ -151,7 +149,7 @@
           </div>
         </h1>
         <p class="hero-sub">Живые <span style="color:var(--brand-peach);">·</span> Истинные <span style="color:var(--brand-peach);">·</span> Влиятельные <span style="color:var(--brand-peach);">·</span> Успешные</p>
-        <p class="hero-desc">для экспертов и предпринимателей, которые выбирают быть узнаваемыми спикерами и влиять не только знаниями, но и живой аутентичностью, креативом и творчеством</p>
+        <p class="hero-desc">для экспертов и предпринимателей, которые выбирают влиять не только знаниями, но и живой аутентичностью, креативом и творчеством</p>
 
         <div class="hero-btns">
           <button class="btn-grad-wrap" onclick="document.location='https://t.me/margo_forbs?text=Марго!Интересен_партнерский_формат'" style="display:inline-block;">
@@ -380,30 +378,6 @@
     <div class="footer-legal">ИП САХИБГАРЕЕВА МАРГАРИТА ВЛАДИМИРОВНА · ИНН 890306512862</div>
   </div>
 </footer>
-
-<script>
-async function loadChampionshipData() {
-  try {
-    const response = await fetch('./kreativ_chempionat_for_jury.json');
-    const data = await response.json();
-
-    // Hero section
-    document.querySelector('.hero-label').textContent = data.championship.subtitle;
-
-    // Update h1 text content properly
-    const h1 = document.querySelector('.hero-h1');
-    h1.innerHTML = `ЧЕМПИОНАТ<br><span class="hero-h1-brand">${data.championship.title.split(': ')[0]}:</span> <span class="hero-h1-accent">${data.championship.title.split(': ')[1]}</span>`;
-
-    document.querySelector('.hero-sub').innerHTML = data.championship.tagline;
-    document.querySelector('.hero-desc').textContent = 'для экспертов и предпринимателей, которые выбирают быть узнаваемыми спикерами и влиять не только знаниями, но и живой аутентичностью, креативом и творчеством';
-
-  } catch (error) {
-    console.error('Error loading championship data:', error);
-  }
-}
-
-document.addEventListener('DOMContentLoaded', loadChampionshipData);
-</script>
 
 </body>
 </html>
