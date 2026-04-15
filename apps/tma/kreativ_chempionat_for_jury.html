@@ -39,8 +39,8 @@
 
     /* HERO */
     #hero{position:relative;min-height:100vh;display:flex;align-items:center;background:linear-gradient(160deg,#25455D 0%,#080B12 60%);overflow:hidden;padding:120px 0 80px;}
-    .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:flex-start;position:relative;z-index:2;padding-top:40px;}
-    .hero-content{max-width:550px;}
+    .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:flex-start;position:relative;z-index:2;padding-top:40px;width:100%;}
+    .hero-content{min-width:0;}
     .hero-label{font-family:var(--font-body);font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand-peach);margin-bottom:20px;}
     .hero-h1{font-family:var(--font-display);font-size:clamp(64px,8vw,110px);letter-spacing:.02em;line-height:.95;color:var(--text-light);margin-bottom:24px;}
     .hero-h1-line2{display:flex;align-items:baseline;gap:8px;width:fit-content;}
@@ -380,6 +380,30 @@
     <div class="footer-legal">ИП САХИБГАРЕЕВА МАРГАРИТА ВЛАДИМИРОВНА · ИНН 890306512862</div>
   </div>
 </footer>
+
+<script>
+async function loadChampionshipData() {
+  try {
+    const response = await fetch('./kreativ_chempionat_for_jury.json');
+    const data = await response.json();
+
+    // Hero section
+    document.querySelector('.hero-label').textContent = data.championship.subtitle;
+
+    // Update h1 text content properly
+    const h1 = document.querySelector('.hero-h1');
+    h1.innerHTML = `ЧЕМПИОНАТ<br><span class="hero-h1-brand">${data.championship.title.split(': ')[0]}:</span> <span class="hero-h1-accent">${data.championship.title.split(': ')[1]}</span>`;
+
+    document.querySelector('.hero-sub').innerHTML = data.championship.tagline;
+    document.querySelector('.hero-desc').textContent = 'для экспертов и предпринимателей, которые выбирают быть узнаваемыми спикерами и влиять не только знаниями, но и живой аутентичностью, креативом и творчеством';
+
+  } catch (error) {
+    console.error('Error loading championship data:', error);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadChampionshipData);
+</script>
 
 </body>
 </html>
