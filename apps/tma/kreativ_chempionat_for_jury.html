@@ -87,6 +87,10 @@
     .card-title{font-size:16px;font-weight:700;margin-bottom:10px;color:var(--text-light);}
     .card-desc{font-size:13px;color:var(--text-muted);line-height:1.6;}
 
+    /* VALUES PILLS */
+    .values-grid{display:flex;gap:16px;flex-wrap:wrap;margin:32px 0;}
+    .value-pill{border:2px solid rgba(255,207,164,.4);border-radius:100px;padding:12px 24px;font-size:14px;color:var(--text-light);text-align:center;background:rgba(255,207,164,.05);}
+
     /* BENEFITS */
     .benefits{list-style:none;margin:24px 0;}
     .benefits li{font-size:14px;color:var(--text-light);padding:12px 0 12px 32px;line-height:1.6;position:relative;}
@@ -182,14 +186,9 @@
   <div class="container">
     <div class="section-label">Суть чемпионата</div>
     <h2 class="h2">Почему мы это делаем?</h2>
-    <p class="desc">В мире, где можно сгенерировать почти всё</p>
+    <p class="desc" id="mission-intro">В мире, где можно сгенерировать почти всё - ценность приобретает то, что невозможно воспроизвести:</p>
 
-    <div style="background:linear-gradient(135deg,rgba(192,132,252,.15),rgba(255,207,164,.1));border:2px solid rgba(255,207,164,.2);border-radius:24px;padding:32px;margin:32px 0;text-align:center;">
-      <p style="font-size:16px;font-weight:700;color:var(--text-light);margin-bottom:16px;text-transform:uppercase;">Ценность приобретает то, что невозможно воспроизвести</p>
-      <p style="font-size:15px;color:var(--text-muted);line-height:1.8;">
-        — энергия • характер • присутствие • контекст жизни
-      </p>
-    </div>
+    <div class="values-grid" id="values-container"></div>
 
     <p class="desc">Мы задаем новое направление жизни и бизнесу - жить так масштабно и креативно по версии Форбс, чтобы люди спрашивали "Это ИИ?"</p>
 
@@ -389,6 +388,15 @@ async function loadData() {
   document.querySelector('.hero-h1').innerHTML = `ЧЕМПИОНАТ<br><div class="hero-h1-line2"><span class="hero-h1-brand">iViSiON:</span> <span class="hero-h1-accent">Ж.И.В.У.</span></div>`;
   document.querySelector('.hero-sub').innerHTML = data.championship.tagline.split(', ').join(' <span style="color:var(--brand-peach);">·</span> ');
   document.querySelector('.hero-desc').textContent = data.championship.description;
+
+  // Mission values
+  const valuesContainer = document.getElementById('values-container');
+  data.mission.values.forEach(value => {
+    const pill = document.createElement('div');
+    pill.className = 'value-pill';
+    pill.textContent = value;
+    valuesContainer.appendChild(pill);
+  });
 }
 document.addEventListener('DOMContentLoaded', loadData);
 </script>
