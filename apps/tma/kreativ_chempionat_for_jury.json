@@ -21,7 +21,8 @@
 
   "stages_intro": {
     "title": "КАК БУДЕТ ПРОХОДИТЬ ЧЕМПИОНАТ",
-    "description": "Чемпионат состоит из 3 этапов - трех разных форматов для усиления узнаваемости на разном уровне влияния. Это не просто соревнование, это переход экспертов и предпринимателей из уровня \"я один из всех\" в \"меня узнают, я лидер и я влияю\""
+    "intro": "Чемпионат состоит из 3 этапов - трех разных форматов для усиления узнаваемости на разном уровне влияния. Это не просто соревнование, это переход экспертов и предпринимателей из уровня \"я один из всех\" в \"меня узнают, я лидер и я влияю\"",
+    "description": "Видео отражают суть каждого этапа:"
   },
 
   "stages": [
@@ -29,34 +30,37 @@
       "number": 1,
       "title": "Этап 1 \"Живые авторы\"",
       "description": "Сначала мы выдаем \"лицензию на аутентичность\" и позволяем быть нестандартными и странными в контенте.",
+      "duration": "2 недели",
       "position": "left",
       "videos": [
-        "/img/turnir_zhivu/kreativ_video/lichnyi_brend.mp4",
-        "/img/turnir_zhivu/kreativ_video/voronki_dubtsova.MP4",
-        "/img/turnir_zhivu/kreativ_video/finance_shtorm.mp4"
+        "https://ivision-media.304ee19dabcf43f29412ded44fd34580.r2.dev/turnir_zhivu/kreativ_video/lichnyi_brend.mp4",
+        "https://ivision-media.304ee19dabcf43f29412ded44fd34580.r2.dev/turnir_zhivu/kreativ_video/voronki_dubtsova.mp4",
+        "https://ivision-media.304ee19dabcf43f29412ded44fd34580.r2.dev/turnir_zhivu/kreativ_video/finance_shtorm.mp4"
       ]
     },
     {
       "number": 2,
       "title": "Этап 2 \"Живые спикеры\"",
       "description": "Потом разрушаем душность в выступлениях.",
+      "duration": "3 недели",
       "position": "right",
       "videos": [
-        "/img/chastushka_kromberger.mp4",
-        "/img/turnir_zhivu/kreativ_video/ne_reklama.MP4",
-        "/img/turnir_zhivu/kreativ_video/eto_zdorovo_finance.MP4"
+        "https://ivision-media.304ee19dabcf43f29412ded44fd34580.r2.dev/turnir_zhivu/kreativ_video/chastushka_kromberger.mp4",
+        "https://ivision-media.304ee19dabcf43f29412ded44fd34580.r2.dev/turnir_zhivu/kreativ_video/ne_reklama.mp4",
+        "https://ivision-media.304ee19dabcf43f29412ded44fd34580.r2.dev/turnir_zhivu/kreativ_video/eto_zdorovo_finance.mp4"
       ]
     },
     {
       "number": 3,
       "title": "Этап 3 \"Живые лидеры\"",
       "description": "Объявляем вызов пластиковому ИИ на иммерсивном выезде с креативными съемками во Вьетнаме.",
+      "duration": "7 дней",
       "position": "left",
       "videos": [
-        "/img/turnir_zhivu/kreativ_video/kabriolet_za_3_dnya.mp4",
-        "/img/turnir_zhivu/kreativ_video/kabriolet_za_2_dnya.mp4",
-        "/img/turnir_zhivu/kreativ_video/kabriolet_za_1_den.mp4",
-        "/img/turnir_zhivu/kreativ_video/kabriolet.MP4"
+        "https://ivision-media.304ee19dabcf43f29412ded44fd34580.r2.dev/turnir_zhivu/kreativ_video/kabriolet_za_3_dnya.mp4",
+        "https://ivision-media.304ee19dabcf43f29412ded44fd34580.r2.dev/turnir_zhivu/kreativ_video/kabriolet_za_2_dnya.mp4",
+        "https://ivision-media.304ee19dabcf43f29412ded44fd34580.r2.dev/turnir_zhivu/kreativ_video/kabriolet_za_1_den.mp4",
+        "https://ivision-media.304ee19dabcf43f29412ded44fd34580.r2.dev/turnir_zhivu/kreativ_video/kabriolet.mp4"
       ]
     }
   ],
