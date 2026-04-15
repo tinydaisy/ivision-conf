@@ -405,6 +405,12 @@ async function loadData() {
     pill.textContent = value;
     valuesContainer.appendChild(pill);
   });
+
+  // Mission vision text
+  const visionTexts = document.querySelectorAll('.vision-text');
+  if (visionTexts.length > 0) {
+    visionTexts[0].textContent = data.mission.vision;
+  }
 }
 document.addEventListener('DOMContentLoaded', loadData);
 </script>
