@@ -39,10 +39,10 @@
 
     /* HERO */
     #hero{position:relative;min-height:100vh;display:flex;align-items:center;background:linear-gradient(160deg,#25455D 0%,#080B12 60%);overflow:hidden;padding:120px 0 80px;}
-    .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2;}
+    .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:flex-start;position:relative;z-index:2;padding-top:40px;}
     .hero-label{font-family:var(--font-body);font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand-peach);margin-bottom:20px;}
     .hero-h1{font-family:var(--font-display);font-size:clamp(64px,8vw,110px);letter-spacing:.02em;line-height:.95;color:var(--text-light);margin-bottom:24px;}
-    .hero-h1 .accent{color:var(--brand-peach);}
+    .hero-h1 .accent{background:linear-gradient(135deg,#1A3A5C 0%,#6B4FA0 50%,#C84B9E 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
     .hero-sub{font-size:18px;font-weight:700;color:var(--text-light);margin-bottom:12px;line-height:1.4;}
     .hero-desc{font-size:16px;color:var(--text-muted);line-height:1.8;margin-bottom:36px;max-width:480px;}
     .hero-btns{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:36px;}
@@ -141,12 +141,12 @@
     <div class="hero-grid">
       <!-- LEFT: TEXT -->
       <div class="hero-content">
-        <p class="hero-label">Авторское сопровождение креативных спикеров</p>
+        <p class="hero-label">Международный чемпионат креативных спикеров</p>
         <h1 class="hero-h1">
-          ЧЕМПИОНАТ<br><span class="accent">Ж.И.В.У.</span>
+          ЧЕМПИОНАТ<br><span class="accent">iViSiON: Ж.И.В.У.</span>
         </h1>
-        <p class="hero-sub">iViSiON: Живые, Истинные, Влиятельные, Успешные</p>
-        <p class="hero-desc">Международный чемпионат креативных спикеров для экспертов и предпринимателей, которые выбирают влиять не только знаниями, но и живой аутентичностью, креативом и творчеством</p>
+        <p class="hero-sub">Живые, Истинные, Влиятельные, Успешные</p>
+        <p class="hero-desc">для экспертов и предпринимателей, которые выбирают влиять не только знаниями, но и живой аутентичностью, креативом и творчеством</p>
 
         <div class="hero-btns">
           <button class="btn-grad-wrap" onclick="document.location='https://t.me/margo_forbs?text=Марго!Интересен_партнерский_формат'" style="display:inline-block;">
@@ -349,11 +349,11 @@
     </div>
 
     <div style="background:linear-gradient(135deg,rgba(255,207,164,.1),rgba(192,132,252,.1));border:2px solid rgba(255,207,164,.2);border-radius:24px;padding:40px;margin-top:40px;">
-      <p style="font-size:18px;color:var(--brand-peach);font-weight:700;margin-bottom:20px;">✨ Полный пакет жюри + иммерсивный выезд</p>
+      <p style="font-size:18px;color:var(--brand-peach);font-weight:700;margin-bottom:20px;">★ Полный пакет жюри + иммерсивный выезд</p>
       <p style="font-size:15px;color:var(--text-light);line-height:1.8;margin-bottom:24px;">Включает все опции жюри плюс персональный продакшн, 4-5* отель, 5 локаций, профессиональные съёмки и выступление на iViSiON-8</p>
       <p style="font-size:32px;color:var(--brand-peach);font-weight:900;">190 000 ₽</p>
       <button class="btn-grad-wrap" onclick="document.location='https://t.me/margo_forbs?text=Марго!Интересен_выезд'" style="margin-top:24px;display:inline-block;">
-        <span class="btn-grad-inner">✈️ ПОЛНЫЙ ПАКЕТ</span>
+        <span class="btn-grad-inner"><span style="color:var(--brand-peach);">◇</span> ПОЛНЫЙ ПАКЕТ</span>
       </button>
     </div>
   </div>
@@ -369,11 +369,11 @@
 
     <div style="max-width:400px;margin:32px auto;">
       <button class="btn-grad-wrap" onclick="document.location='https://t.me/margo_forbs?text=Марго!Интересен_партнерский_формат'" style="display:block;width:100%;margin-bottom:16px;">
-        <span class="btn-grad-inner" style="width:100%;">💬 НАПИСАТЬ МАРГО</span>
+        <span class="btn-grad-inner" style="width:100%;"><span style="color:var(--brand-peach);">◆</span> НАПИСАТЬ МАРГО</span>
       </button>
 
       <button class="btn-grad-wrap" onclick="document.location='https://t.me/margo_forbs?text=Марго!Интересен_выезд'" style="display:block;width:100%;">
-        <span class="btn-grad-inner" style="width:100%;">✈️ ПОЛНЫЙ ПАКЕТ (190K)</span>
+        <span class="btn-grad-inner" style="width:100%;"><span style="color:var(--brand-peach);">◇</span> ПОЛНЫЙ ПАКЕТ (190K)</span>
       </button>
     </div>
   </div>
