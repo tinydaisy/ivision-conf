@@ -21,8 +21,9 @@
       --radius-sm:8px;--radius-md:16px;--radius-lg:24px;--radius-pill:100px;
     }
     *{margin:0;padding:0;box-sizing:border-box;}
-    html{scroll-behavior:smooth;overflow-x:hidden;}
-    body{font-family:var(--font-body);background:var(--bg-dark);color:var(--text-light);line-height:1.6;overflow-x:hidden;}
+    html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%;}
+    body{font-family:var(--font-body);background:var(--bg-dark);color:var(--text-light);line-height:1.6;overflow-x:hidden;max-width:100%;}
+    section{overflow-x:hidden;position:relative;}
     img{max-width:100%;display:block;}
     a{text-decoration:none;color:inherit;}
     ul{list-style:none;}
@@ -150,8 +151,18 @@
     .footer-legal{font-size:12px;color:var(--text-dim);line-height:1.7;}
 
     @media(max-width:768px){
-      .hero-grid{grid-template-columns:1fr;gap:40px;}
-      .hero-rings{right:auto;left:-200px;width:500px;height:500px;opacity:.3;}
+      #hero{padding:80px 0 60px;min-height:auto;}
+      .hero-grid{grid-template-columns:1fr;gap:32px;padding-top:20px;}
+      .hero-rings{right:auto;left:-200px;width:500px;height:500px;opacity:.25;}
+      .hero-h1{font-size:clamp(44px,11vw,64px);margin-bottom:20px;}
+      .hero-h1-line2{flex-wrap:wrap;gap:6px;}
+      .hero-h1-accent{letter-spacing:.04em;}
+      .hero-sub{font-size:15px;}
+      .hero-photo{max-width:300px;}
+      .mission-grid{grid-template-columns:1fr;gap:40px;}
+      .values-grid{flex-wrap:wrap;gap:10px;}
+      .value-pill{padding:10px 18px;font-size:13px;}
+      .h2{font-size:clamp(28px,7vw,40px);}
       .stage-row{display:flex;flex-direction:column;gap:32px;margin-bottom:60px;}
       .stage-row.reverse{direction:ltr;}
       .stage-row .stage-text{order:1;}
@@ -164,34 +175,33 @@
 </head>
 <body>
 
-<!-- SVG rings -->
-<svg class="rings-deco hero-rings" viewBox="0 0 700 700" aria-hidden="true">
-  <defs>
-    <linearGradient id="rg1" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%"   stop-color="#1A3A5C"/>
-      <stop offset="50%"  stop-color="#6B4FA0"/>
-      <stop offset="100%" stop-color="#C84B9E"/>
-    </linearGradient>
-  </defs>
-  <circle cx="350" cy="350" r="50"  fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.7"/>
-  <circle cx="350" cy="350" r="75"  fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.62"/>
-  <circle cx="350" cy="350" r="100" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.56"/>
-  <circle cx="350" cy="350" r="125" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.50"/>
-  <circle cx="350" cy="350" r="150" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.44"/>
-  <circle cx="350" cy="350" r="175" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.38"/>
-  <circle cx="350" cy="350" r="200" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.33"/>
-  <circle cx="350" cy="350" r="225" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.28"/>
-  <circle cx="350" cy="350" r="250" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.23"/>
-  <circle cx="350" cy="350" r="275" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.18"/>
-  <circle cx="350" cy="350" r="300" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.14"/>
-  <circle cx="350" cy="350" r="325" fill="none" stroke="url(#rg1)" stroke-width="0.6" opacity="0.10"/>
-  <circle cx="350" cy="350" r="345" fill="none" stroke="url(#rg1)" stroke-width="0.5" opacity="0.07"/>
-</svg>
-
 <!-- HERO -->
 <section id="hero">
   <div class="glow-pink" style="top:-100px;left:-100px;"></div>
   <div class="glow-teal"  style="bottom:0;right:0;"></div>
+
+  <svg class="rings-deco hero-rings" viewBox="0 0 700 700" aria-hidden="true">
+    <defs>
+      <linearGradient id="rg1" x1="0%" y1="100%" x2="100%" y2="0%">
+        <stop offset="0%"   stop-color="#1A3A5C"/>
+        <stop offset="50%"  stop-color="#6B4FA0"/>
+        <stop offset="100%" stop-color="#C84B9E"/>
+      </linearGradient>
+    </defs>
+    <circle cx="350" cy="350" r="50"  fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.7"/>
+    <circle cx="350" cy="350" r="75"  fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.62"/>
+    <circle cx="350" cy="350" r="100" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.56"/>
+    <circle cx="350" cy="350" r="125" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.50"/>
+    <circle cx="350" cy="350" r="150" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.44"/>
+    <circle cx="350" cy="350" r="175" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.38"/>
+    <circle cx="350" cy="350" r="200" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.33"/>
+    <circle cx="350" cy="350" r="225" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.28"/>
+    <circle cx="350" cy="350" r="250" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.23"/>
+    <circle cx="350" cy="350" r="275" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.18"/>
+    <circle cx="350" cy="350" r="300" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.14"/>
+    <circle cx="350" cy="350" r="325" fill="none" stroke="url(#rg1)" stroke-width="0.6" opacity="0.10"/>
+    <circle cx="350" cy="350" r="345" fill="none" stroke="url(#rg1)" stroke-width="0.5" opacity="0.07"/>
+  </svg>
 
   <div class="container">
     <div class="hero-grid">
