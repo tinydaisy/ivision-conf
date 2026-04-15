@@ -113,20 +113,26 @@
     .stage-duration{font-size:13px;color:var(--brand-peach);font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px;}
     .stage-desc{font-size:15px;color:var(--text-muted);line-height:1.7;max-width:400px;}
 
-    .carousel-wrap{position:relative;}
-    .carousel-track{display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;padding-bottom:8px;scroll-snap-type:x mandatory;}
+    .carousel-wrap{position:relative;width:100%;max-width:280px;margin:0 auto;}
+    .carousel-track{display:flex;gap:0;overflow-x:auto;scroll-behavior:smooth;padding-bottom:8px;scroll-snap-type:x mandatory;}
+    .carousel-track::-webkit-scrollbar{display:none;}
+    .carousel-track{scrollbar-width:none;}
     .carousel-track::-webkit-scrollbar{height:4px;}
     .carousel-track::-webkit-scrollbar-track{background:rgba(255,207,164,.1);border-radius:2px;}
     .carousel-track::-webkit-scrollbar-thumb{background:var(--brand-peach);border-radius:2px;}
 
-    .video-card{width:220px;min-width:220px;aspect-ratio:9/16;border-radius:12px;overflow:hidden;border:2px solid rgba(255,207,164,.15);background:rgba(17,24,39,.7);scroll-snap-align:start;flex-shrink:0;position:relative;cursor:pointer;}
-    .video-card video{width:100%;height:100%;object-fit:cover;display:block;}
-    .video-card::after{content:'▶';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:rgba(8,11,18,.75);color:var(--brand-peach);display:flex;align-items:center;justify-content:center;font-size:18px;pointer-events:none;transition:opacity .2s;border:2px solid var(--brand-peach);}
+    .video-card{width:100%;min-width:100%;aspect-ratio:9/16;scroll-snap-align:center;flex-shrink:0;position:relative;cursor:pointer;}
+    .video-card video{width:100%;height:100%;object-fit:cover;display:block;border-radius:12px;border:2px solid rgba(255,207,164,.15);background:rgba(17,24,39,.7);}
+    .video-card::after{content:'▶';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:rgba(8,11,18,.75);color:var(--brand-peach);display:flex;align-items:center;justify-content:center;font-size:18px;pointer-events:none;transition:opacity .2s;border:2px solid var(--brand-peach);z-index:2;}
     .video-card.playing::after{opacity:0;}
+    .video-card::before{content:'';position:absolute;right:-10px;bottom:-10px;width:40px;height:40px;border-right:3px solid var(--brand-peach);border-bottom:3px solid var(--brand-peach);border-radius:0 0 14px 0;pointer-events:none;z-index:1;}
 
-    .carousel-nav{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10;}
-    .carousel-nav button{width:36px;height:36px;border-radius:50%;border:2px solid var(--brand-peach);background:rgba(8,11,18,.8);color:var(--brand-peach);font-size:16px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;}
+    .carousel-nav{display:flex;gap:8px;justify-content:center;align-items:center;margin-top:12px;}
+    .carousel-nav button{width:32px;height:32px;border-radius:50%;border:2px solid var(--brand-peach);background:rgba(8,11,18,.8);color:var(--brand-peach);font-size:14px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
     .carousel-nav button:hover{background:rgba(255,207,164,.15);}
+    .carousel-progress{display:flex;gap:4px;flex:1;max-width:160px;}
+    .carousel-progress .seg{flex:1;height:3px;border-radius:2px;background:rgba(255,207,164,.2);transition:background .25s;}
+    .carousel-progress .seg.active{background:var(--brand-peach);}
 
     /* CONNECTOR ARROWS */
     .stage-connector{position:absolute;left:50%;width:80px;height:80px;margin-left:-40px;bottom:-90px;z-index:5;}
@@ -149,7 +155,7 @@
       .hero-rings{right:auto;left:-200px;width:500px;height:500px;opacity:.3;}
       .stage-row{grid-template-columns:1fr;gap:32px;margin-bottom:60px;}
       .stage-row.reverse{direction:ltr;}
-      .video-card{width:160px;min-width:160px;aspect-ratio:9/16;}
+      .carousel-wrap{max-width:240px;}
       .stage-title{font-size:20px;}
       .stage-number{font-size:48px;}
       .carousel-nav button{width:32px;height:32px;font-size:14px;}
@@ -508,20 +514,46 @@ async function loadData() {
     }, { root: track, threshold: 0.6 });
     track.querySelectorAll('.video-card').forEach(c => scrollObserver.observe(c));
 
-    // Carousel navigation
+    // Carousel navigation: prev — progress — next
     const nav = document.createElement('div');
     nav.className = 'carousel-nav';
     const prevBtn = document.createElement('button');
     prevBtn.innerHTML = '◀';
-    prevBtn.onclick = () => {
-      track.scrollBy({ left: -300, behavior: 'smooth' });
-    };
+    const progress = document.createElement('div');
+    progress.className = 'carousel-progress';
+    stage.videos.forEach(() => {
+      const seg = document.createElement('div');
+      seg.className = 'seg';
+      progress.appendChild(seg);
+    });
     const nextBtn = document.createElement('button');
     nextBtn.innerHTML = '▶';
-    nextBtn.onclick = () => {
-      track.scrollBy({ left: 300, behavior: 'smooth' });
+
+    const setActive = (i) => {
+      const segs = progress.querySelectorAll('.seg');
+      segs.forEach((s, si) => s.classList.toggle('active', si === i));
     };
+    const currentIndex = () => {
+      const cards = track.querySelectorAll('.video-card');
+      if (!cards.length) return 0;
+      const cardW = cards[0].offsetWidth;
+      return Math.round(track.scrollLeft / cardW);
+    };
+    prevBtn.onclick = () => {
+      const cards = track.querySelectorAll('.video-card');
+      const i = Math.max(0, currentIndex() - 1);
+      cards[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+    };
+    nextBtn.onclick = () => {
+      const cards = track.querySelectorAll('.video-card');
+      const i = Math.min(cards.length - 1, currentIndex() + 1);
+      cards[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+    };
+    track.addEventListener('scroll', () => setActive(currentIndex()));
+    setActive(0);
+
     nav.appendChild(prevBtn);
+    nav.appendChild(progress);
     nav.appendChild(nextBtn);
 
     carouselCol.appendChild(track);
