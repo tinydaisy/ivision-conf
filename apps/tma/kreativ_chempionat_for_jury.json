@@ -33,9 +33,7 @@
       "duration": "2 недели",
       "position": "left",
       "videos": [
-        "/img/turnir_zhivu/kreativ_video/lichnyi_brend.mp4",
-        "/img/turnir_zhivu/kreativ_video/voronki_dubtsova.mp4",
-        "/img/turnir_zhivu/kreativ_video/finance_shtorm.mp4"
+        "/img/turnir_zhivu/kreativ_video/lichnyi_brend.mp4"
       ]
     },
     {
@@ -45,9 +43,7 @@
       "duration": "3 недели",
       "position": "right",
       "videos": [
-        "/img/chastushka_kromberger.mp4",
-        "/img/turnir_zhivu/kreativ_video/ne_reklama.mp4",
-        "/img/turnir_zhivu/kreativ_video/eto_zdorovo_finance.mp4"
+        "/img/chastushka_kromberger.mp4"
       ]
     },
     {
@@ -57,10 +53,7 @@
       "duration": "7 дней",
       "position": "left",
       "videos": [
-        "/img/turnir_zhivu/kreativ_video/kabriolet_za_3_dnya.mp4",
-        "/img/turnir_zhivu/kreativ_video/kabriolet_za_2_dnya.mp4",
-        "/img/turnir_zhivu/kreativ_video/kabriolet_za_1_den.mp4",
-        "/img/turnir_zhivu/kreativ_video/kabriolet.mp4"
+        "/img/turnir_zhivu/kreativ_video/kabriolet_za_1_den.mp4"
       ]
     }
   ],
