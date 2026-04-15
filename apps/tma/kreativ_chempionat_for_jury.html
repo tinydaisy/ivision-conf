@@ -103,6 +103,11 @@
     video::cue{display:none;}
     video::-webkit-media-controls-start-playback-button{display:none;}
     .divider{height:1px;background:rgba(255,207,164,.1);margin:48px 0;}
+
+    @media(max-width:768px){
+      #hero .w > div{grid-template-columns:1fr !important;}
+      #hero .w > div > div:last-child{margin-top:32px;}
+    }
   </style>
 </head>
 <body>
@@ -110,19 +115,38 @@
 <!-- HERO -->
 <section id="hero">
   <div class="w">
-    <div class="hero-logos">
-      <img src="/img/opora.png" alt="Опора России" class="hero-opora">
-      <img src="/img/logo_ivision.png" alt="iViSiON" class="hero-ivision">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
+      <!-- LEFT: Text -->
+      <div>
+        <div class="hero-logos" style="margin-bottom:24px;">
+          <img src="/img/opora.png" alt="Опора России" class="hero-opora">
+          <img src="/img/logo_ivision.png" alt="iViSiON" class="hero-ivision">
+        </div>
+        <p style="font-size:14px;color:var(--peach);font-weight:600;letter-spacing:.1em;margin-bottom:18px;text-transform:uppercase;">Международный чемпионат креативных спикеров</p>
+        <div class="h-title" style="margin-bottom:24px;font-size:clamp(52px,14vw,92px);line-height:.95;">iViSiON<br><span style="background:var(--btn-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Ж.И.В.У.</span></div>
+        <p style="font-size:clamp(15px,3.5vw,18px);color:var(--peach);font-weight:700;line-height:1.5;margin-bottom:36px;">Живые • Истинные •<br>Влиятельные • Успешные</p>
+        <a href="https://t.me/margo_forbs?text=Марго!Интересен_партнерский_формат" class="btn-grad-wrap" style="text-decoration:none;max-width:280px;">
+          <span class="btn-grad-inner">Стать жюри</span>
+        </a>
+      </div>
+
+      <!-- RIGHT: Egg with photo -->
+      <div style="display:flex;align-items:center;justify-content:center;">
+        <div style="width:100%;max-width:380px;aspect-ratio:1;background:linear-gradient(135deg,rgba(255,207,164,.2),rgba(200,75,158,.15));border:2px solid rgba(255,207,164,.3);border-radius:50%;padding:20px;display:flex;align-items:center;justify-content:center;box-shadow:0 24px 64px rgba(192,132,252,.25);">
+          <img src="https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/merch_1.png" alt="Merch" style="width:100%;height:100%;object-fit:contain;border-radius:48%;display:block;">
+        </div>
+      </div>
     </div>
-    <div class="h-title">iViSiON <span>Ж.И.В.У.</span></div>
-    <div class="h-sub">Международный чемпионат креативных спикеров. Живые, Истинные, Влиятельные, Успешные</div>
   </div>
 </section>
 
-<!-- DESCRIPTION -->
+<!-- MANIFEST -->
 <section class="sec mid">
   <div class="w">
-    <p class="desc" style="font-size:16px;font-weight:600;">Медиа узнаваемость и лидерство через энергию и креатив для экспертов и предпринимателей, которые выбирают влиять не только знаниями, но и живой аутентичностью, креативом и творчеством</p>
+    <div style="max-width:800px;">
+      <p style="font-size:clamp(28px,8vw,48px);color:var(--peach);font-weight:900;line-height:1.2;margin-bottom:24px;">Медиа узнаваемость и лидерство через энергию и креатив</p>
+      <p style="font-size:clamp(15px,3.5vw,18px);color:var(--text);font-weight:500;line-height:1.8;">для экспертов и предпринимателей, которые выбирают влиять не только знаниями, но и живой аутентичностью, креативом и творчеством</p>
+    </div>
   </div>
 </section>
 
