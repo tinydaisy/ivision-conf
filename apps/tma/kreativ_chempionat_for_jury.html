@@ -161,8 +161,9 @@
       .hero-h1-accent{letter-spacing:.04em;}
       .hero-sub{font-size:15px;}
       .hero-photo{max-width:300px;}
-      .mission-grid{grid-template-columns:1fr!important;gap:40px;}
-      .vision-egg-wrap{justify-content:center;}
+      .mission-grid{display:flex;flex-direction:column;gap:40px;}
+      .mission-content{order:1;}
+      .vision-egg-wrap{order:2;justify-content:center;}
       .vision-egg{max-width:280px;}
       .vision-egg-text{bottom:40px;font-size:14px;}
       .values-grid{flex-wrap:wrap!important;gap:10px;justify-content:center;}
@@ -504,7 +505,8 @@ async function loadData() {
     stage.videos.forEach((video, videoIdx) => {
       const videoCard = document.createElement('div');
       videoCard.className = 'video-card';
-      videoCard.innerHTML = `<video muted loop playsinline preload="metadata"><source src="${video}" type="video/mp4"></video>`;
+      const posterUrl = video.replace(/\.(mp4|MP4)$/, '_poster.jpg');
+      videoCard.innerHTML = `<video muted loop playsinline preload="metadata" poster="${posterUrl}"><source src="${video}" type="video/mp4"></video>`;
 
       const videoEl = videoCard.querySelector('video');
       videoCard.addEventListener('click', () => {
