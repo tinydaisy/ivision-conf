@@ -379,5 +379,19 @@
   </div>
 </footer>
 
+<script>
+async function loadData() {
+  const res = await fetch('./kreativ_chempionat_for_jury.json');
+  const data = await res.json();
+
+  // Hero
+  document.querySelector('.hero-label').textContent = data.championship.label;
+  document.querySelector('.hero-h1').innerHTML = `ЧЕМПИОНАТ<br><div class="hero-h1-line2"><span class="hero-h1-brand">iViSiON:</span> <span class="hero-h1-accent">Ж.И.В.У.</span></div>`;
+  document.querySelector('.hero-sub').innerHTML = data.championship.tagline.split(', ').join(' <span style="color:var(--brand-peach);">·</span> ');
+  document.querySelector('.hero-desc').textContent = data.championship.description;
+}
+document.addEventListener('DOMContentLoaded', loadData);
+</script>
+
 </body>
 </html>
