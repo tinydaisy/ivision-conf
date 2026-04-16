@@ -589,29 +589,29 @@
           <svg width="120" height="140" viewBox="0 0 120 140" style="margin:0 auto 16px;display:block;">
             <defs>
               <radialGradient id="grad1" cx="35%" cy="35%">
-                <stop offset="0%" style="stop-color:#FFDB8D;stop-opacity:1" />
-                <stop offset="50%" style="stop-color:#FFB347;stop-opacity:1" />
-                <stop offset="100%" style="stop-color:#D4860D;stop-opacity:1" />
+                <stop offset="0%" style="stop-color:#FFE8C1;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#FFCFA4;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#E8A86B;stop-opacity:1" />
               </radialGradient>
               <filter id="shadow1">
                 <feDropShadow dx="2" dy="3" stdDeviation="3" flood-opacity="0.3"/>
               </filter>
             </defs>
             <!-- Ribbon -->
-            <rect x="45" y="0" width="10" height="25" fill="#FFB347" opacity="0.9"/>
-            <rect x="65" y="0" width="10" height="25" fill="#FFB347" opacity="0.9"/>
+            <rect x="45" y="0" width="10" height="25" fill="#FFCFA4" opacity="0.95"/>
+            <rect x="65" y="0" width="10" height="25" fill="#FFCFA4" opacity="0.95"/>
             <!-- Shadow ring -->
             <circle cx="60" cy="65" r="50" fill="none" stroke="#000" stroke-width="1" opacity="0.15"/>
             <!-- Medal circle main -->
             <circle cx="60" cy="65" r="48" fill="url(#grad1)" filter="url(#shadow1)"/>
             <!-- Highlight gloss -->
-            <ellipse cx="48" cy="50" rx="18" ry="22" fill="#FFFFFF" opacity="0.35"/>
+            <ellipse cx="48" cy="50" rx="18" ry="22" fill="#FFFFFF" opacity="0.45"/>
             <!-- Inner detail ring -->
-            <circle cx="60" cy="65" r="38" fill="none" stroke="#D4860D" stroke-width="1.5" opacity="0.6"/>
+            <circle cx="60" cy="65" r="38" fill="none" stroke="#E8A86B" stroke-width="1.5" opacity="0.7"/>
             <!-- Number -->
             <text x="60" y="78" font-size="42" font-weight="900" text-anchor="middle" fill="#080B12">1</text>
             <!-- Star detail -->
-            <polygon points="60,30 64,42 77,42 68,49 72,61 60,54 48,61 52,49 43,42 56,42" fill="#FFE5B4" opacity="0.8"/>
+            <polygon points="60,30 64,42 77,42 68,49 72,61 60,54 48,61 52,49 43,42 56,42" fill="#FFF5E1" opacity="0.9"/>
           </svg>
           <div style="font-size:13px;color:var(--text-muted);margin-top:8px;">50% от фонда</div>
         </div>
@@ -651,18 +651,31 @@
         <!-- 3rd Place Medal -->
         <div style="text-align:center;">
           <svg width="120" height="140" viewBox="0 0 120 140" style="margin:0 auto 16px;display:block;">
+            <defs>
+              <radialGradient id="grad3" cx="35%" cy="35%">
+                <stop offset="0%" style="stop-color:#D4A574;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#B8956F;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#7A5D45;stop-opacity:1" />
+              </radialGradient>
+              <filter id="shadow3">
+                <feDropShadow dx="2" dy="3" stdDeviation="3" flood-opacity="0.3"/>
+              </filter>
+            </defs>
             <!-- Ribbon -->
-            <rect x="45" y="0" width="10" height="25" fill="#9D7E6F" opacity="0.55"/>
-            <rect x="65" y="0" width="10" height="25" fill="#9D7E6F" opacity="0.55"/>
-            <!-- Medal circle -->
-            <circle cx="60" cy="65" r="48" fill="#A68B7E" opacity="0.7"/>
-            <circle cx="60" cy="65" r="44" fill="#8B7355" opacity="0.6"/>
-            <!-- Inner ring -->
-            <circle cx="60" cy="65" r="38" fill="none" stroke="#9D7E6F" stroke-width="2" opacity="0.4"/>
+            <rect x="45" y="0" width="10" height="25" fill="#B8956F" opacity="0.9"/>
+            <rect x="65" y="0" width="10" height="25" fill="#B8956F" opacity="0.9"/>
+            <!-- Shadow ring -->
+            <circle cx="60" cy="65" r="50" fill="none" stroke="#000" stroke-width="1" opacity="0.15"/>
+            <!-- Medal circle main -->
+            <circle cx="60" cy="65" r="48" fill="url(#grad3)" filter="url(#shadow3)"/>
+            <!-- Highlight gloss -->
+            <ellipse cx="48" cy="50" rx="18" ry="22" fill="#FFFFFF" opacity="0.35"/>
+            <!-- Inner detail ring -->
+            <circle cx="60" cy="65" r="38" fill="none" stroke="#7A5D45" stroke-width="1.5" opacity="0.6"/>
             <!-- Number -->
             <text x="60" y="78" font-size="42" font-weight="900" text-anchor="middle" fill="#080B12">3</text>
-            <!-- Accent peach -->
-            <polygon points="60,30 64,42 77,42 68,49 72,61 60,54 48,61 52,49 43,42 56,42" fill="#E8B89D" opacity="0.15"/>
+            <!-- Accent detail -->
+            <polygon points="60,30 64,42 77,42 68,49 72,61 60,54 48,61 52,49 43,42 56,42" fill="#DDB892" opacity="0.5"/>
           </svg>
           <div style="font-size:13px;color:var(--text-muted);margin-top:8px;">20% от фонда</div>
         </div>
