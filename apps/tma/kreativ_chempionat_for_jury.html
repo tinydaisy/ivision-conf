@@ -93,10 +93,10 @@
     .value-pill{border:2px solid var(--brand-purple);border-radius:100px;padding:12px 24px;font-size:14px;color:var(--text-light);text-align:center;background:rgba(192,132,252,.05);}
 
     /* PROCESS TIMELINE */
-    .process-timeline{margin-top:60px;max-width:700px;margin-left:auto;margin-right:auto;position:relative;padding:0 80px;}
-    .process-timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,rgba(255,207,164,.4),rgba(255,207,164,.1));transform:translateX(-50%);z-index:0;}
-    .process-intro{font-size:16px;color:var(--brand-peach);font-weight:700;margin-bottom:40px;text-align:center;}
-    .process-step{display:flex;gap:40px;margin-bottom:60px;position:relative;align-items:flex-start;}
+    .process-timeline{margin-top:60px;max-width:800px;margin-left:auto;margin-right:auto;position:relative;padding:60px 100px;}
+    .process-timeline::before{content:'';position:absolute;left:50%;top:80px;bottom:0;width:2px;background:linear-gradient(to bottom,rgba(255,207,164,.4),rgba(255,207,164,.1));transform:translateX(-50%);z-index:0;}
+    .process-intro{font-size:16px;color:var(--brand-peach);font-weight:700;margin-bottom:60px;text-align:center;}
+    .process-step{display:flex;gap:60px;margin-bottom:80px;position:relative;align-items:center;}
     .process-step:nth-child(even) .process-content{order:1;}
     .process-step:nth-child(even) .process-icon-wrap{order:2;}
     .process-step:nth-child(odd) .process-icon-wrap{margin-right:auto;}
@@ -106,7 +106,7 @@
     .process-icon-ring{position:absolute;inset:0;border:2px solid var(--brand-peach);border-radius:50%;opacity:.3;animation:spinRing 8s linear infinite;}
     @keyframes spinRing{to{transform:rotate(360deg);}}
     .process-icon{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#C84B9E,#6B4FA0);display:flex;align-items:center;justify-content:center;color:var(--brand-peach);font-size:24px;font-weight:700;position:relative;z-index:1;box-shadow:0 0 20px rgba(200,75,158,.2);}
-    .process-content{flex:1;padding-top:4px;max-width:280px;}
+    .process-content{flex:0 0 300px;padding:20px;}
     .process-title{font-size:16px;font-weight:700;color:var(--text-light);margin-bottom:8px;}
     .process-desc{font-size:14px;color:var(--text-muted);line-height:1.6;}
 
