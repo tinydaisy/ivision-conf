@@ -180,8 +180,8 @@
     .collage-item.egg-inv img{object-position:top;}
 
     /* Center items - larger */
-    .collage-item.center-left{width:260px;height:300px;left:30%;top:50%;transform:translate(-50%,-50%) rotate(-8deg);}
-    .collage-item.center-right{width:260px;height:300px;left:70%;top:50%;transform:translate(-50%,-50%) rotate(8deg);}
+    .collage-item.center-left{width:260px;height:300px;left:36%;top:50%;transform:translate(-50%,-50%) rotate(-8deg);}
+    .collage-item.center-right{width:260px;height:300px;left:64%;top:50%;transform:translate(-50%,-50%) rotate(8deg);}
 
     /* Top items */
     .collage-item.top-left{width:200px;height:200px;left:8%;top:10%;transform:rotate(-12deg);}
@@ -191,9 +191,10 @@
     .collage-item.bottom-left{width:220px;height:200px;left:10%;bottom:12%;transform:rotate(10deg);}
     .collage-item.bottom-right{width:200px;height:220px;right:8%;bottom:8%;transform:rotate(-14deg);}
 
-    /* Side items */
-    .collage-item.side-left{width:180px;height:220px;left:-2%;top:45%;transform:rotate(-20deg);}
-    .collage-item.side-right{width:200px;height:200px;right:1%;top:40%;transform:rotate(18deg);}
+    /* Водопад — центр снизу */
+    .collage-item.bottom-center{width:220px;height:200px;left:50%;bottom:4%;transform:translate(-50%) rotate(5deg);}
+    /* Сердце — центр сверху */
+    .collage-item.top-center{width:200px;height:200px;left:50%;top:4%;transform:translate(-50%) rotate(-5deg);}
 
     @media(max-width:768px){
       .collage-wrap{height:700px;margin:40px 0;padding:40px 0;}
@@ -203,8 +204,6 @@
       .collage-item.top-right{width:140px;height:140px;right:3%;}
       .collage-item.bottom-left{width:150px;height:140px;left:6%;}
       .collage-item.bottom-right{width:140px;height:150px;right:5%;}
-      .collage-item.side-left{width:120px;height:150px;left:-5%;top:40%;}
-      .collage-item.side-right{width:130px;height:140px;right:-2%;top:45%;}
     }
 
     /* FOOTER */
@@ -253,14 +252,19 @@
       .process-timeline{margin-top:60px;padding:0;}
       .process-timeline::before{display:none;}
       .process-intro{font-size:18px;margin-bottom:40px;}
-      .process-step{grid-template-columns:1fr 60px;margin-bottom:40px;}
-      .process-step:nth-child(odd) .process-content{text-align:left;padding-left:20px;padding-right:0;grid-column:auto;}
-      .process-step:nth-child(odd) .process-icon-wrap{grid-column:auto;}
-      .process-step:nth-child(even) .process-content{text-align:left;padding-left:20px;padding-right:0;grid-column:auto;order:auto;}
-      .process-step:nth-child(even) .process-icon-wrap{grid-column:auto;order:auto;}
-      .process-content{flex:0 0 auto;}
+      .process-step{display:flex!important;flex-direction:row;align-items:flex-start;gap:16px;margin-bottom:40px;}
+      .process-step .process-icon-wrap{flex-shrink:0;order:-1!important;grid-column:unset!important;}
+      .process-step .process-content{flex:1!important;text-align:left!important;padding:0!important;grid-column:unset!important;order:0!important;}
       .process-title{font-size:14px;}
       .process-desc{font-size:12px;}
+
+      /* BENEFITS MOBILE - stack columns */
+      .benefits-grid-inline{grid-template-columns:1fr!important;gap:20px!important;}
+
+      /* COLLAGE MOBILE */
+      .collage-wrap{height:780px!important;}
+      .collage-item.bottom-center{width:140px!important;height:130px!important;bottom:2%!important;transform:translate(-50%) rotate(3deg)!important;}
+      .collage-item.top-center{width:140px!important;height:130px!important;top:2%!important;transform:translate(-50%) rotate(-3deg)!important;}
     }
   </style>
 </head>
@@ -472,7 +476,7 @@
     <div class="section-label">Результаты</div>
     <h2 class="h2">Что получает каждый участник</h2>
 
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:32px;">
+    <div class="benefits-grid-inline" style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:32px;">
       <div style="background:rgba(192,132,252,.1);border:1px solid rgba(255,207,164,.2);border-radius:16px;padding:28px;">
         <p style="font-size:15px;color:var(--brand-peach);font-weight:700;margin-bottom:16px;">Этап 1 — Живые авторы</p>
         <ul class="benefits">
@@ -535,10 +539,10 @@
         <div class="collage-item bottom-right egg-inv">
           <img src="https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/vyezd/stairs.png" alt="Лестница">
         </div>
-        <div class="collage-item side-left">
+        <div class="collage-item bottom-center">
           <img src="https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/vyezd/vodopad.png" alt="Водопад">
         </div>
-        <div class="collage-item side-right egg-inv">
+        <div class="collage-item top-center egg-inv">
           <img src="https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/vyezd/more_serdce.jpeg" alt="Море с сердцем">
         </div>
       </div>
