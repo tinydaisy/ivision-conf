@@ -590,10 +590,10 @@
     <!-- MEDALS SECTION -->
     <div style="margin-top:56px;margin-bottom:56px;">
       <p style="font-size:16px;color:var(--text-light);font-weight:700;margin-bottom:32px;text-align:center;">Распределение призового фонда</p>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:600px;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:100%;margin:0 auto;">
         <!-- 1st Place Medal -->
         <div style="text-align:center;">
-          <svg width="120" height="140" viewBox="0 0 120 140" style="margin:0 auto 16px;display:block;">
+          <svg width="100" height="120" viewBox="0 0 120 140" style="margin:0 auto 12px;display:block;">
             <defs>
               <radialGradient id="grad1" cx="35%" cy="35%">
                 <stop offset="0%" style="stop-color:#FFE8C1;stop-opacity:1" />
@@ -620,12 +620,12 @@
             <!-- Number (на верху) -->
             <text x="60" y="78" font-size="42" font-weight="900" text-anchor="middle" fill="#080B12">1</text>
           </svg>
-          <div style="font-size:13px;color:var(--text-muted);margin-top:8px;">50% от фонда</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">50% от фонда</div>
         </div>
 
         <!-- 2nd Place Medal -->
         <div style="text-align:center;">
-          <svg width="120" height="140" viewBox="0 0 120 140" style="margin:0 auto 16px;display:block;">
+          <svg width="100" height="120" viewBox="0 0 120 140" style="margin:0 auto 12px;display:block;">
             <defs>
               <radialGradient id="grad2" cx="35%" cy="35%">
                 <stop offset="0%" style="stop-color:#F5F5F5;stop-opacity:1" />
@@ -657,7 +657,7 @@
 
         <!-- 3rd Place Medal -->
         <div style="text-align:center;">
-          <svg width="120" height="140" viewBox="0 0 120 140" style="margin:0 auto 16px;display:block;">
+          <svg width="100" height="120" viewBox="0 0 120 140" style="margin:0 auto 12px;display:block;">
             <defs>
               <radialGradient id="grad3" cx="35%" cy="35%">
                 <stop offset="0%" style="stop-color:#D4A574;stop-opacity:1" />
@@ -831,66 +831,262 @@
 <section class="sec dark" id="jury-sec">
   <div class="container">
     <div class="section-label">Партнерское предложение</div>
-    <h2 class="h2">WIN-WIN для жюри</h2>
-    <p class="desc">Быть в составе жюри — это формирование направления развития рынка будущего</p>
+    <h2 class="h2">ВЫБЕРИТЕ ФОРМАТ ЖЮРИ ЧЕМПИОНАТА:</h2>
+    <p class="desc" style="margin-bottom:48px;">Быть в составе жюри "iViSiON: Ж.И.В.У." — это формирование направления развития рынка будущего, где бизнес-результат неотделим от личной аутентичности.</p>
 
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-title" style="color:var(--brand-peach);">◆ Регалии</div>
-        <ul class="benefits" style="font-size:13px;margin-top:12px;">
-          <li>Статус жюри международного чемпионата</li>
-          <li>Благодарственное письмо от Опоры России</li>
-        </ul>
+    <!-- JURY FORMAT 1: WIN-WIN -->
+    <div style="margin-bottom:32px;">
+      <div onclick="this.nextElementSibling.classList.toggle('open')" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:28px;background:linear-gradient(135deg,rgba(255,207,164,.12),rgba(255,207,164,.06));border:2px solid rgba(255,207,164,.25);border-radius:24px;transition:all 0.3s ease;">
+        <h3 style="font-size:22px;font-weight:700;color:var(--text-light);margin:0;display:flex;align-items:center;gap:12px;">
+          <span style="color:var(--brand-peach);font-size:28px;">◆</span>
+          WIN-WIN Жюри
+          <span style="font-size:13px;color:var(--text-muted);font-weight:500;font-style:italic;">(ПАРТНЕРСКОЕ ПРЕДЛОЖЕНИЕ ЖЮРИ)</span>
+        </h3>
+        <span style="color:var(--brand-peach);font-size:24px;transition:transform 0.3s ease;" class="accordion-arrow">▼</span>
       </div>
 
-      <div class="card">
-        <div class="card-title" style="color:var(--brand-peach);">◈ Медийный охват</div>
-        <ul class="benefits" style="font-size:13px;margin-top:12px;">
-          <li>Размещение информации в рекламных материалах</li>
-          <li>Рассылка по чат-боту на 3000+ человек</li>
-          <li>Видео-визитка для 900+ участников</li>
-          <li>Участие в презентационных эфирах</li>
-        </ul>
-      </div>
+      <div style="display:none;padding:0;overflow:hidden;max-height:0;transition:max-height 0.3s ease,padding 0.3s ease;" class="accordion-content">
+        <div style="padding:40px;background:rgba(17,24,39,.4);border-left:2px solid rgba(255,207,164,.25);border-right:2px solid rgba(255,207,164,.25);border-bottom:2px solid rgba(255,207,164,.25);">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:flex-start;">
+            <!-- Column 1 -->
+            <div>
+              <h4 style="font-size:18px;font-weight:700;color:var(--brand-peach);margin-bottom:20px;">iViSiON вам:</h4>
 
-      <div class="card">
-        <div class="card-title" style="color:var(--brand-peach);">◇ Социальный капитал</div>
-        <ul class="benefits" style="font-size:13px;margin-top:12px;">
-          <li>Нетворкинг в чате с лидерами рынка</li>
-          <li>10% от продаж по реферальной ссылке</li>
-          <li>Экспертный слот</li>
-          <li>Выступление на конференции</li>
-        </ul>
+              <div style="margin-bottom:28px;">
+                <p style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+                  <span style="color:var(--brand-peach);">◉</span> Регалии:
+                </p>
+                <ul class="benefits" style="font-size:14px;margin-left:20px;">
+                  <li>Статус жюри международного чемпионата креативных спикеров "iViSiON: Ж.И.В.У."</li>
+                  <li>Благодарственное письмо от БРО "Опора России"</li>
+                </ul>
+              </div>
+
+              <div style="margin-bottom:28px;">
+                <p style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+                  <span style="color:var(--brand-peach);">◉</span> Медийный охват и узнаваемость:
+                </p>
+                <ul class="benefits" style="font-size:14px;margin-left:20px;">
+                  <li>Размещение информации о вас в рекламных материалах чемпионата (лендинге, чат-боте)</li>
+                  <li>Рекламная рассылка по чат-боту по базе конференции на 3000+ чел</li>
+                  <li>Видео-визитка и представление в чате 900+ чел</li>
+                  <li>Участие в презентационных эфирах участников Этапа 2</li>
+                </ul>
+              </div>
+
+              <div style="margin-bottom:28px;">
+                <p style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+                  <span style="color:var(--brand-peach);">◉</span> Социальный капитал:
+                </p>
+                <ul class="benefits" style="font-size:14px;margin-left:20px;">
+                  <li>Нетворкинг в общем чате с лидерами рынка и другими членами жюри, разделяющими философию «Ж.И.В.У.»</li>
+                </ul>
+              </div>
+
+              <div style="margin-bottom:28px;">
+                <p style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+                  <span style="color:var(--brand-peach);">◉</span> Дополнительные привилегии:
+                </p>
+                <ul class="benefits" style="font-size:14px;margin-left:20px;">
+                  <li>10% от продаж мест по вашей реферальной ссылке</li>
+                </ul>
+              </div>
+
+              <div>
+                <p style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+                  <span style="color:var(--brand-peach);">◉</span> Экспертный Слот:
+                </p>
+                <ul class="benefits" style="font-size:14px;margin-left:20px;">
+                  <li>от 15 участников (продаж этапа 1) - экспертный день: ваши ответы на вопросы участников в чате Чемпионата</li>
+                  <li>от 30 участников (продаж этапа 1) - размещение вашего урока/эфира (живого или в записи) с QR кодом в базе материалов Чемпионата</li>
+                  <li>от 45 участников (продаж этапа 1) - Выступление (30 мин) на масштабной онлайн-конференции "iViSiON-8:Бизнес-Создатели" с лидерами рынка в июле 2026</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Column 2 -->
+            <div>
+              <h4 style="font-size:18px;font-weight:700;color:var(--brand-peach);margin-bottom:20px;">Что требуется от вас:</h4>
+              <ul class="benefits" style="font-size:14px;">
+                <li style="margin-bottom:16px;"><strong>Анонсы 2х этапов чемпионата и конференции iViSiON-8</strong></li>
+                <li style="margin-bottom:16px;"><strong>Участие в презентационных эфирах</strong> участников этапа 2 после 1го отбора (1-2 раза не более 2 часов)</li>
+                <li><strong>«Асинхронное судейство» этапа 1</strong> после финального отбора: вы присылаете им ссылку на пост/видео 3-5 финалистов. Они смотрят их в любое удобное время (например, в такси) и записывают один кружок в чат: «Мой фаворит — [Имя], потому что...».</li>
+              </ul>
+            </div>
+          </div>
+
+          <button class="btn-grad-wrap" onclick="document.location='https://t.me/margo_forbs?text=Марго!Интересен_формат_партнерства'" style="margin-top:32px;display:block;width:100%;">
+            <span class="btn-grad-inner" style="width:100%;"><span style="color:var(--brand-peach);">◆</span> ОСТАВИТЬ ЗАЯВКУ НА ЖЮРИ</span>
+          </button>
+        </div>
       </div>
     </div>
 
-    <div style="background:linear-gradient(135deg,rgba(255,207,164,.1),rgba(192,132,252,.1));border:2px solid rgba(255,207,164,.2);border-radius:24px;padding:40px;margin-top:40px;">
-      <p style="font-size:18px;color:var(--brand-peach);font-weight:700;margin-bottom:20px;">★ Полный пакет жюри + иммерсивный выезд</p>
-      <p style="font-size:15px;color:var(--text-light);line-height:1.8;margin-bottom:24px;">Включает все опции жюри плюс персональный продакшн, 4-5* отель, 5 локаций, профессиональные съёмки и выступление на iViSiON-8</p>
-      <p style="font-size:32px;color:var(--brand-peach);font-weight:900;">190 000 ₽</p>
-      <button class="btn-grad-wrap" onclick="document.location='https://t.me/margo_forbs?text=Марго!Интересен_выезд'" style="margin-top:24px;display:inline-block;">
-        <span class="btn-grad-inner"><span style="color:var(--brand-peach);">◇</span> ПОЛНЫЙ ПАКЕТ</span>
-      </button>
+    <!-- JURY FORMAT 2: С ВЫЕЗДОМ -->
+    <div style="margin-bottom:32px;">
+      <div onclick="this.nextElementSibling.classList.toggle('open')" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:28px;background:linear-gradient(135deg,rgba(192,132,252,.12),rgba(192,132,252,.06));border:2px solid rgba(192,132,252,.25);border-radius:24px;transition:all 0.3s ease;">
+        <h3 style="font-size:22px;font-weight:700;color:var(--text-light);margin:0;display:flex;align-items:center;gap:12px;">
+          <span style="color:var(--brand-peach);font-size:28px;">◈</span>
+          Жюри С Выездом
+          <span style="font-size:13px;color:var(--text-muted);font-weight:500;font-style:italic;">(КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ)</span>
+        </h3>
+        <span style="color:var(--brand-peach);font-size:24px;transition:transform 0.3s ease;" class="accordion-arrow">▼</span>
+      </div>
+
+      <div style="display:none;padding:0;overflow:hidden;max-height:0;transition:max-height 0.3s ease,padding 0.3s ease;" class="accordion-content">
+        <div style="padding:40px;background:rgba(17,24,39,.4);border-left:2px solid rgba(192,132,252,.25);border-right:2px solid rgba(192,132,252,.25);border-bottom:2px solid rgba(192,132,252,.25);">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:flex-start;">
+            <!-- Column 1 -->
+            <div>
+              <h4 style="font-size:18px;font-weight:700;color:var(--brand-peach);margin-bottom:20px;">iViSiON вам:</h4>
+
+              <div style="margin-bottom:28px;">
+                <p style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+                  <span style="color:var(--brand-peach);">◉</span> Полный партнерский пакет:
+                </p>
+                <ul class="benefits" style="font-size:14px;margin-left:20px;">
+                  <li>Включены все опции и привилегии статуса жюри</li>
+                </ul>
+              </div>
+
+              <div style="margin-bottom:28px;">
+                <p style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+                  <span style="color:var(--brand-peach);">◉</span> Креативный иммерсивный выезд во Вьетнам:
+                </p>
+                <ul class="benefits" style="font-size:14px;margin-left:20px;">
+                  <li>Персональный рекламный продакшн: брендированная тканевая растяжка с вашим продуктом для продающего контента в локациях выезда</li>
+                  <li>Проживание в 4-5* звёздном отеле</li>
+                  <li>Окружение твердых предпринимателей и экспертов</li>
+                  <li>5 фантастически красивых локаций во Вьетнаме</li>
+                  <li>Съемки в динамике: летающая доска, страус, байк, параплан, лестница в небо</li>
+                  <li>Профессиональные съемки видео в стиле "Угадай, ИИ или не ИИ?"</li>
+                  <li>1 сценический клип - креативная самопрезентация (визитка) продукта/услуги</li>
+                </ul>
+              </div>
+
+              <div>
+                <p style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+                  <span style="color:var(--brand-peach);">◉</span> Масштаб и трафик:
+                </p>
+                <ul class="benefits" style="font-size:14px;margin-left:20px;">
+                  <li>Выступление (45 мин) на масштабной онлайн-конференции "iViSiON-8:Бизнес-Создатели" с лидерами рынка в июле 2026</li>
+                  <li>Подписчики в канал и перелив аудитории: включение в систему автоподписки участников на ваш канал на каждом из этапов</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Column 2 -->
+            <div>
+              <h4 style="font-size:18px;font-weight:700;color:var(--brand-peach);margin-bottom:20px;">Ваша инвестиция:</h4>
+              <div style="background:linear-gradient(135deg,rgba(192,132,252,.15),rgba(200,75,158,.15));border:2px solid rgba(192,132,252,.3);border-radius:16px;padding:28px;margin-bottom:32px;text-align:center;">
+                <p style="font-size:28px;color:var(--brand-peach);font-weight:900;">190 000 ₽</p>
+                <p style="font-size:13px;color:var(--text-muted);margin-top:8px;">на покрытие расходов на проживание и локации</p>
+              </div>
+
+              <h4 style="font-size:18px;font-weight:700;color:var(--brand-peach);margin-bottom:20px;">Что требуется от вас:</h4>
+              <ul class="benefits" style="font-size:14px;">
+                <li style="margin-bottom:16px;"><strong>Анонсы 2х этапов чемпионата и конференции iViSiON-8</strong></li>
+                <li style="margin-bottom:16px;"><strong>Участие в презентационных эфирах</strong> участников этапа 2 после 1го отбора (1-2 раза не более 2 часов)</li>
+                <li><strong>«Асинхронное судейство» этапа 1</strong> после финального отбора: мы присылаем вам ссылку на пост/видео 3-5 финалистов. Вы смотрите их в любое удобное время и записываете один кружок в чат: «Мой фаворит — [Имя], потому что...».</li>
+              </ul>
+            </div>
+          </div>
+
+          <button class="btn-grad-wrap" onclick="document.location='https://t.me/margo_forbs?text=Марго!Интересен_выезд'" style="margin-top:32px;display:block;width:100%;">
+            <span class="btn-grad-inner" style="width:100%;"><span style="color:var(--brand-peach);">◈</span> ОСТАВИТЬ ЗАЯВКУ НА ВЫЕЗД</span>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="sec mid">
-  <div class="container" style="text-align:center;">
-    <p style="font-size:18px;font-weight:700;color:var(--text-light);margin-bottom:40px;">ЖИВУ — это философия продаж, где закрепляется право быть собой на фоне твердой позиции и уровня, который невозможно скопировать</p>
+<style>
+.accordion-content {
+  display: none !important;
+}
 
-    <div class="section-label" style="justify-content:center;display:inline-block;">Оставить заявку</div>
-    <h2 class="h2" style="text-align:center;">Стать жюри</h2>
+.accordion-content.open {
+  display: block !important;
+  max-height: 2000px !important;
+  padding: 0 !important;
+}
 
-    <div style="max-width:400px;margin:32px auto;">
-      <button class="btn-grad-wrap" onclick="document.location='https://t.me/margo_forbs?text=Марго!Интересен_партнерский_формат'" style="display:block;width:100%;margin-bottom:16px;">
-        <span class="btn-grad-inner" style="width:100%;"><span style="color:var(--brand-peach);">◆</span> НАПИСАТЬ МАРГО</span>
-      </button>
+.accordion-content.open + .accordion-arrow {
+  transform: rotate(180deg);
+}
+</style>
 
-      <button class="btn-grad-wrap" onclick="document.location='https://t.me/margo_forbs?text=Марго!Интересен_выезд'" style="display:block;width:100%;">
-        <span class="btn-grad-inner" style="width:100%;"><span style="color:var(--brand-peach);">◇</span> ПОЛНЫЙ ПАКЕТ (190K)</span>
-      </button>
+<script>
+// Аккордеон логика
+document.querySelectorAll('.accordion-arrow').forEach(arrow => {
+  arrow.closest('[onclick*="accordion"]')?.addEventListener('click', function() {
+    const content = this.nextElementSibling;
+    const isOpen = content.classList.contains('open');
+
+    document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('open'));
+    if (!isOpen) {
+      content.classList.add('open');
+    }
+  });
+});
+
+// Лучше сделаем через простой toggle на уровне inline-onclick
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[onclick*="nextElementSibling"]').forEach(toggle => {
+    toggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      const content = this.nextElementSibling;
+      const arrow = this.querySelector('.accordion-arrow');
+
+      // Закроем все открытые
+      document.querySelectorAll('.accordion-content.open').forEach(c => {
+        if (c !== content) {
+          c.classList.remove('open');
+          c.previousElementSibling.querySelector('.accordion-arrow').style.transform = 'rotate(0deg)';
+        }
+      });
+
+      // Переключим текущий
+      if (content.classList.contains('open')) {
+        content.classList.remove('open');
+        arrow.style.transform = 'rotate(0deg)';
+      } else {
+        content.classList.add('open');
+        arrow.style.transform = 'rotate(180deg)';
+      }
+    });
+  });
+});
+</script>
+
+<!-- CTA FINAL -->
+<section class="sec dark">
+  <div class="container">
+    <div style="background:linear-gradient(135deg,rgba(255,207,164,.1),rgba(192,132,252,.1),rgba(200,75,158,.1));border:2px solid rgba(255,207,164,.2);border-radius:32px;padding:56px 40px;text-align:center;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:-100px;right:-100px;width:300px;height:300px;background:radial-gradient(circle,rgba(255,207,164,.08),transparent);border-radius:50%;pointer-events:none;"></div>
+
+      <div style="position:relative;z-index:2;">
+        <p style="font-size:16px;font-weight:700;color:var(--brand-peach);margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;">Ж.И.В.У. — философия будущего</p>
+
+        <h2 style="font-size:32px;font-weight:700;color:var(--text-light);margin-bottom:24px;line-height:1.3;">
+          Формируй направление развития рынка своей аутентичностью
+        </h2>
+
+        <p style="font-size:15px;color:var(--text-muted);line-height:1.8;margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto;">
+          Быть в жюри — это не просто статус. Это возможность влиять на экосистему, где бизнес неотделим от личности, креатив от продаж, а успех — от аутентичности.
+        </p>
+
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:500px;margin:0 auto;">
+          <button class="btn-grad-wrap" onclick="document.location='https://t.me/margo_forbs?text=Марго!Интересен_формат_партнерства'" style="display:block;width:100%;">
+            <span class="btn-grad-inner" style="width:100%;"><span style="color:var(--brand-peach);">◆</span> WIN-WIN ЖЮРИ</span>
+          </button>
+
+          <button class="btn-grad-wrap" onclick="document.location='https://t.me/margo_forbs?text=Марго!Интересен_выезд'" style="display:block;width:100%;">
+            <span class="btn-grad-inner" style="width:100%;"><span style="color:var(--brand-peach);">◈</span> ВЫЕЗД ВО ВЬ</span>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
