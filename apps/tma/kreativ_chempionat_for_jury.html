@@ -1258,8 +1258,8 @@ async function loadData() {
     row.className = `stage-row ${stage.position === 'right' ? 'reverse' : ''}`;
 
     // Connector arrow (не для последней строки)
-    const connector = document.createElement('svg');
-    connector.className = 'stage-connector';
+    const connector = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    connector.setAttribute('class', 'stage-connector');
     connector.setAttribute('viewBox', '0 0 80 80');
     connector.innerHTML = `
       <defs>
