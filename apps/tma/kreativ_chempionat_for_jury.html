@@ -70,6 +70,9 @@
     .btn-grad-wrap:hover{transform:translateY(-2px);}
     .btn-grad-inner{display:flex;align-items:center;justify-content:center;background:var(--bg-dark);color:var(--text-light);font-family:var(--font-body);font-weight:700;font-size:15px;padding:14px 36px;border-radius:var(--radius-pill);white-space:nowrap;}
     .btn-grad-wrap:hover .btn-grad-inner{background:rgba(8,11,18,.75);}
+    @media(max-width:768px){
+      .hero-btns .btn-grad-wrap{display:block;width:100%;}
+    }
 
     /* SECTIONS */
     .sec{padding:80px 0;}
@@ -238,6 +241,7 @@
       .hero-h1-line2{flex-wrap:wrap;gap:6px;}
       .hero-h1-accent{letter-spacing:.04em;}
       .hero-sub{font-size:15px;}
+      .hero-btns{flex-direction:column;gap:12px;}
       .hero-photo{max-width:300px;}
       .mission-grid{display:flex;flex-direction:column;gap:40px;}
       .mission-content{order:1;}
