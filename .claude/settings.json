@@ -22,7 +22,9 @@
       "Bash(git lfs *)",
       "WebFetch(domain:www.margoforbs.ru)",
       "Bash(git check-ignore *)",
-      "Bash(awk '{print $5, $9}')"
+      "Bash(awk '{print $5, $9}')",
+      "Bash(git revert *)",
+      "Bash(aws s3 *)"
     ],
     "additionalDirectories": [
       "/Users/macbookair/.claude/projects/-Users-macbookair-Documents-projects-ivision-conf"
