@@ -842,17 +842,19 @@
     <p class="desc" style="margin-bottom:48px;">Быть в составе жюри "iViSiON: Ж.И.В.У." — это формирование направления развития рынка будущего, где бизнес-результат неотделим от личной аутентичности.</p>
 
     <!-- JURY FORMAT 1: WIN-WIN -->
-    <div style="margin-bottom:32px;">
-      <div onclick="this.nextElementSibling.classList.toggle('open')" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:28px;background:linear-gradient(135deg,rgba(255,207,164,.12),rgba(255,207,164,.06));border:2px solid rgba(255,207,164,.25);border-radius:24px;transition:all 0.3s ease;">
+    <div style="margin-bottom:32px;" class="jury-accordion">
+      <div class="jury-toggle" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:28px;background:linear-gradient(135deg,rgba(255,207,164,.12),rgba(255,207,164,.06));border:2px solid rgba(255,207,164,.25);border-radius:24px;transition:all 0.3s ease;">
         <h3 style="font-size:22px;font-weight:700;color:var(--text-light);margin:0;display:flex;align-items:center;gap:12px;">
           <span style="color:var(--brand-peach);font-size:28px;">◆</span>
           WIN-WIN Жюри
           <span style="font-size:13px;color:var(--text-muted);font-weight:500;font-style:italic;">(ПАРТНЕРСКОЕ ПРЕДЛОЖЕНИЕ ЖЮРИ)</span>
         </h3>
-        <span style="color:var(--brand-peach);font-size:24px;transition:transform 0.3s ease;" class="accordion-arrow">▼</span>
+        <div style="width:60px;height:60px;background:var(--brand-peach);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform 0.3s ease;" class="jury-arrow">
+          <span style="color:#080B12;font-size:32px;font-weight:700;line-height:1;">▼</span>
+        </div>
       </div>
 
-      <div style="display:none;padding:0;overflow:hidden;max-height:0;transition:max-height 0.3s ease,padding 0.3s ease;" class="accordion-content">
+      <div style="display:none;padding:0;overflow:hidden;max-height:0;transition:max-height 0.4s ease,padding 0.4s ease;" class="jury-content">
         <div style="padding:40px;background:rgba(17,24,39,.4);border-left:2px solid rgba(255,207,164,.25);border-right:2px solid rgba(255,207,164,.25);border-bottom:2px solid rgba(255,207,164,.25);">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:flex-start;">
             <!-- Column 1 -->
@@ -930,17 +932,19 @@
     </div>
 
     <!-- JURY FORMAT 2: С ВЫЕЗДОМ -->
-    <div style="margin-bottom:32px;">
-      <div onclick="this.nextElementSibling.classList.toggle('open')" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:28px;background:linear-gradient(135deg,rgba(192,132,252,.12),rgba(192,132,252,.06));border:2px solid rgba(192,132,252,.25);border-radius:24px;transition:all 0.3s ease;">
+    <div style="margin-bottom:32px;" class="jury-accordion">
+      <div class="jury-toggle" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:28px;background:linear-gradient(135deg,rgba(192,132,252,.12),rgba(192,132,252,.06));border:2px solid rgba(192,132,252,.25);border-radius:24px;transition:all 0.3s ease;">
         <h3 style="font-size:22px;font-weight:700;color:var(--text-light);margin:0;display:flex;align-items:center;gap:12px;">
           <span style="color:var(--brand-peach);font-size:28px;">◈</span>
           Жюри С Выездом
           <span style="font-size:13px;color:var(--text-muted);font-weight:500;font-style:italic;">(КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ)</span>
         </h3>
-        <span style="color:var(--brand-peach);font-size:24px;transition:transform 0.3s ease;" class="accordion-arrow">▼</span>
+        <div style="width:60px;height:60px;background:var(--brand-peach);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform 0.3s ease;" class="jury-arrow">
+          <span style="color:#080B12;font-size:32px;font-weight:700;line-height:1;">▼</span>
+        </div>
       </div>
 
-      <div style="display:none;padding:0;overflow:hidden;max-height:0;transition:max-height 0.3s ease,padding 0.3s ease;" class="accordion-content">
+      <div style="display:none;padding:0;overflow:hidden;max-height:0;transition:max-height 0.4s ease,padding 0.4s ease;" class="jury-content">
         <div style="padding:40px;background:rgba(17,24,39,.4);border-left:2px solid rgba(192,132,252,.25);border-right:2px solid rgba(192,132,252,.25);border-bottom:2px solid rgba(192,132,252,.25);">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:flex-start;">
             <!-- Column 1 -->
@@ -1009,59 +1013,37 @@
 </section>
 
 <style>
-.accordion-content {
+.jury-content {
   display: none !important;
+  max-height: 0 !important;
 }
 
-.accordion-content.open {
+.jury-accordion.active .jury-content {
   display: block !important;
   max-height: 2000px !important;
-  padding: 0 !important;
 }
 
-.accordion-content.open + .accordion-arrow {
+.jury-accordion.active .jury-arrow {
   transform: rotate(180deg);
 }
 </style>
 
 <script>
-// Аккордеон логика
-document.querySelectorAll('.accordion-arrow').forEach(arrow => {
-  arrow.closest('[onclick*="accordion"]')?.addEventListener('click', function() {
-    const content = this.nextElementSibling;
-    const isOpen = content.classList.contains('open');
-
-    document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('open'));
-    if (!isOpen) {
-      content.classList.add('open');
-    }
-  });
-});
-
-// Лучше сделаем через простой toggle на уровне inline-onclick
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('[onclick*="nextElementSibling"]').forEach(toggle => {
-    toggle.addEventListener('click', function(e) {
-      e.preventDefault();
-      const content = this.nextElementSibling;
-      const arrow = this.querySelector('.accordion-arrow');
+  document.querySelectorAll('.jury-accordion').forEach(accordion => {
+    const toggle = accordion.querySelector('.jury-toggle');
+    const content = accordion.querySelector('.jury-content');
 
-      // Закроем все открытые
-      document.querySelectorAll('.accordion-content.open').forEach(c => {
-        if (c !== content) {
-          c.classList.remove('open');
-          c.previousElementSibling.querySelector('.accordion-arrow').style.transform = 'rotate(0deg)';
+    toggle.addEventListener('click', () => {
+      // Закроем все остальные
+      document.querySelectorAll('.jury-accordion').forEach(acc => {
+        if (acc !== accordion) {
+          acc.classList.remove('active');
         }
       });
 
       // Переключим текущий
-      if (content.classList.contains('open')) {
-        content.classList.remove('open');
-        arrow.style.transform = 'rotate(0deg)';
-      } else {
-        content.classList.add('open');
-        arrow.style.transform = 'rotate(180deg)';
-      }
+      accordion.classList.toggle('active');
     });
   });
 });
