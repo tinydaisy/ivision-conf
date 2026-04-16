@@ -213,6 +213,16 @@
     .footer-links a:hover{color:var(--brand-peach);}
     .footer-legal{font-size:12px;color:var(--text-dim);line-height:1.7;}
 
+    /* STICKY NAV (скользящая навигация) */
+    #nav{position:fixed;top:12px;left:50%;transform:translateX(-50%) translateY(-120px);z-index:9999;width:calc(100% - 24px);max-width:480px;background:linear-gradient(135deg,rgba(160,50,120,.7),rgba(25,45,70,.75));backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,207,164,.2);border-radius:var(--radius-pill);padding:9px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;transition:transform .3s ease;box-shadow:0 8px 24px rgba(0,0,0,.3);pointer-events:none;visibility:hidden;}
+    #nav *{pointer-events:auto;}
+    #nav.vis{transform:translateX(-50%) translateY(0)!important;visibility:visible!important;}
+    .nav-links{display:flex;align-items:center;gap:14px;}
+    .nav-links a{font-family:var(--font-body);font-size:13px;font-weight:600;letter-spacing:.02em;color:#fff;text-decoration:none;white-space:nowrap;}
+    .nav-links a:active{color:var(--brand-peach);}
+    .nav-btn{padding:1.5px;border-radius:var(--radius-pill);background:var(--btn-grad);border:none;cursor:pointer;flex-shrink:0;}
+    .nav-btn-i{display:flex;align-items:center;background:var(--bg-dark);color:var(--text-light);font-family:var(--font-body);font-size:13px;letter-spacing:.06em;padding:7px 14px;border-radius:var(--radius-pill);white-space:nowrap;}
+
     @media(max-width:768px){
       .container{padding:0 20px;}
       .sec{padding:60px 0;}
@@ -269,6 +279,17 @@
   </style>
 </head>
 <body>
+
+<!-- STICKY NAV -->
+<nav id="nav">
+  <div class="nav-links">
+    <a href="#" data-nav="jury-sec">Партнерство</a>
+    <a href="#" data-nav="mission-sec">Концепт</a>
+  </div>
+  <button class="nav-btn" id="nav-cta-btn">
+    <span class="nav-btn-i">Стать жюри</span>
+  </button>
+</nav>
 
 <!-- HERO -->
 <section id="hero">
@@ -332,7 +353,7 @@
 
 <!-- MANIFEST -->
 <!-- MISSION -->
-<section class="sec dark">
+<section class="sec dark" id="mission-sec">
   <div class="container">
     <div class="mission-grid">
       <!-- LEFT COLUMN - EGG -->
@@ -744,7 +765,7 @@
 </section>
 
 <!-- JURY -->
-<section class="sec dark">
+<section class="sec dark" id="jury-sec">
   <div class="container">
     <div class="section-label">Партнерское предложение</div>
     <h2 class="h2">WIN-WIN для жюри</h2>
@@ -1030,6 +1051,24 @@ async function loadData() {
   });
 }
 document.addEventListener('DOMContentLoaded', loadData);
+
+// NAV: скользящая навигация
+var nav=document.getElementById('nav');
+window.addEventListener('scroll',function(){
+  if(window.scrollY>80){nav.classList.add('vis');}
+  else{nav.classList.remove('vis');}
+},{passive:true});
+
+// Клик на ссылки навигации
+document.addEventListener('click',function(ev){
+  var a=ev.target.closest('[data-nav]');
+  if(a){ev.preventDefault();var el=document.getElementById(a.dataset.nav);if(el)el.scrollIntoView({behavior:'smooth'});}
+});
+
+// Клик на кнопку "Стать жюри"
+document.getElementById('nav-cta-btn').addEventListener('click',function(){
+  var el=document.getElementById('jury-sec');if(el)el.scrollIntoView({behavior:'smooth'});
+});
 </script>
 
 </body>
