@@ -217,6 +217,7 @@
     #nav{position:fixed;top:12px;left:50%;transform:translateX(-50%) translateY(-120px);z-index:9999;width:calc(100% - 24px);max-width:480px;background:linear-gradient(135deg,rgba(160,50,120,.7),rgba(25,45,70,.75));backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,207,164,.2);border-radius:var(--radius-pill);padding:9px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;transition:transform .3s ease;box-shadow:0 8px 24px rgba(0,0,0,.3);pointer-events:none;visibility:hidden;}
     #nav *{pointer-events:auto;}
     #nav.vis{transform:translateX(-50%) translateY(0)!important;visibility:visible!important;}
+    .nav-logo{height:24px;width:auto;object-fit:contain;margin-right:4px;flex-shrink:0;}
     .nav-links{display:flex;align-items:center;gap:14px;}
     .nav-links a{font-family:var(--font-body);font-size:13px;font-weight:600;letter-spacing:.02em;color:#fff;text-decoration:none;white-space:nowrap;}
     .nav-links a:active{color:var(--brand-peach);}
@@ -282,6 +283,7 @@
 
 <!-- STICKY NAV -->
 <nav id="nav">
+  <img src="/img/logo_no_ivision_blue.png" alt="iViSiON" class="nav-logo">
   <div class="nav-links">
     <a href="#" data-nav="jury-sec">Партнерство</a>
     <a href="#" data-nav="mission-sec">Концепт</a>
