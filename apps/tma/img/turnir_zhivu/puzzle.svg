@@ -1,0 +1,19 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Пазл: 4 элемента (3 сложены в квадрате, 1 отодвинут в сторону) -->
+
+  <!-- Элемент 1 (левый верхний) -->
+  <rect x="20" y="20" width="60" height="60" fill="#FFCFA4" stroke="#C084FC" stroke-width="2" rx="4"/>
+
+  <!-- Элемент 2 (правый верхний) -->
+  <rect x="100" y="20" width="60" height="60" fill="#FFCFA4" stroke="#C084FC" stroke-width="2" rx="4"/>
+
+  <!-- Элемент 3 (левый нижний) -->
+  <rect x="20" y="100" width="60" height="60" fill="#FFCFA4" stroke="#C084FC" stroke-width="2" rx="4"/>
+
+  <!-- Элемент 4 (отодвинут вправо и вниз) -->
+  <rect x="130" y="110" width="60" height="60" fill="#C084FC" stroke="#FFCFA4" stroke-width="2" rx="4"/>
+
+  <!-- Линии, показывающие связь -->
+  <line x1="140" y1="100" x2="140" y2="110" stroke="#C084FC" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+  <line x1="100" y1="140" x2="130" y2="140" stroke="#C084FC" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+</svg>

@@ -1,0 +1,42 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Три следа идущих ног -->
+
+  <!-- След 1 (левый, вверху) -->
+  <g transform="translate(20, 40)">
+    <!-- Пятка -->
+    <circle cx="10" cy="0" r="8" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
+    <!-- Свод стопы -->
+    <ellipse cx="10" cy="18" rx="6" ry="12" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
+    <!-- Пальцы -->
+    <circle cx="5" cy="30" r="4" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
+    <circle cx="10" cy="32" r="4.5" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
+    <circle cx="15" cy="30" r="4" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
+  </g>
+
+  <!-- След 2 (центр, средняя высота) -->
+  <g transform="translate(70, 80)">
+    <!-- Пятка -->
+    <circle cx="10" cy="0" r="9" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
+    <!-- Свод стопы -->
+    <ellipse cx="10" cy="19" rx="7" ry="13" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
+    <!-- Пальцы -->
+    <circle cx="4" cy="32" r="4.5" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
+    <circle cx="10" cy="34" r="5" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
+    <circle cx="16" cy="32" r="4.5" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
+  </g>
+
+  <!-- След 3 (правый, внизу) -->
+  <g transform="translate(130, 120)">
+    <!-- Пятка -->
+    <circle cx="10" cy="0" r="8" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
+    <!-- Свод стопы -->
+    <ellipse cx="10" cy="17" rx="6" ry="11" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
+    <!-- Пальцы -->
+    <circle cx="5" cy="28" r="4" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
+    <circle cx="10" cy="30" r="4.5" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
+    <circle cx="15" cy="28" r="4" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
+  </g>
+
+  <!-- Линия движения (диагональ) -->
+  <line x1="30" y1="50" x2="140" y2="150" stroke="#C084FC" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.4"/>
+</svg>
