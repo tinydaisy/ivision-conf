@@ -92,6 +92,21 @@
     .values-grid{display:flex;gap:16px;flex-wrap:nowrap;margin:32px 0;justify-content:flex-start;}
     .value-pill{border:2px solid var(--brand-purple);border-radius:100px;padding:12px 24px;font-size:14px;color:var(--text-light);text-align:center;background:rgba(192,132,252,.05);}
 
+    /* PROCESS TIMELINE */
+    .process-timeline{margin-top:60px;max-width:500px;}
+    .process-intro{font-size:16px;color:var(--brand-peach);font-weight:700;margin-bottom:40px;}
+    .process-step{display:flex;gap:32px;margin-bottom:48px;position:relative;}
+    .process-step:last-child{margin-bottom:0;}
+    .process-step::before{content:'';position:absolute;left:24px;top:80px;width:2px;height:calc(100% + 20px);background:linear-gradient(to bottom,rgba(255,207,164,.3),transparent);z-index:0;}
+    .process-step:last-child::before{display:none;}
+    .process-icon-wrap{position:relative;width:60px;height:60px;flex-shrink:0;z-index:2;display:flex;align-items:center;justify-content:center;}
+    .process-icon-ring{position:absolute;inset:0;border:2px solid var(--brand-peach);border-radius:50%;opacity:.3;animation:spinRing 8s linear infinite;}
+    @keyframes spinRing{to{transform:rotate(360deg);}}
+    .process-icon{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#C84B9E,#6B4FA0);display:flex;align-items:center;justify-content:center;color:var(--brand-peach);font-size:24px;font-weight:700;position:relative;z-index:1;box-shadow:0 0 20px rgba(200,75,158,.2);}
+    .process-content{flex:1;padding-top:4px;}
+    .process-title{font-size:16px;font-weight:700;color:var(--text-light);margin-bottom:8px;}
+    .process-desc{font-size:14px;color:var(--text-muted);line-height:1.6;}
+
     /* MISSION GRID */
     .mission-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:80px;align-items:flex-start;}
     .mission-content{display:flex;flex-direction:column;}
@@ -320,21 +335,66 @@
 
     <div class="card-grid">
       <div class="card">
-        <div class="card-title" style="color:var(--brand-peach);">Эффект Илона Маска</div>
-        <div class="card-desc">Если пьяный бомж танцует на улице — это позор. Если Илон Маск танцует на открытии завода — это демонстрация финансовой свободы.</div>
+        <div class="card-title" style="color:var(--brand-peach);">◆ Эффект "Илона Маска"</div>
+        <div class="card-desc">Если пьяный бомж танцует на улице — это позор. Если Илон Маск танцует на открытии завода — это демонстрация финансовой свободы.<br><br>В психологии это называется <strong>"Идиосинкразический кредит"</strong> — <strong>"Запас доверия"</strong> как право на отклонение от норм, которое аудитория прощает лидеру за его вклад и авторитет.</div>
       </div>
       <div class="card">
-        <div class="card-title" style="color:var(--brand-peach);">Идиосинкразический кредит</div>
-        <div class="card-desc">"Запас доверия" — право на отклонение от норм, которое аудитория прощает лидеру за его вклад и авторитет.</div>
+        <div class="card-title" style="color:var(--brand-peach);">◈ Пробитие баннерной слепоты</div>
+        <div class="card-desc">Рынок перенасыщен либо серыми душными экспертами, либо пустым развлекательным контентом. Креативно оформленные продающие смыслы аудитория потребляет с интересом и прогревается к продукту органично.<br><br>В спикерстве на фоне десятков однотипных ораторов в памяти остается только тот, кто вызвал глубокий эмоциональный отклик и совпадение по ценностям и хобби.</div>
       </div>
       <div class="card">
-        <div class="card-title" style="color:var(--brand-peach);">Лицензия на странность</div>
-        <div class="card-desc">Мы укрепляем регалии, выдаём право быть собой, внедряем стратегии узнаваемости и финансовой свободы.</div>
+        <div class="card-title" style="color:var(--brand-peach);">◇ Считывание вашей финансовой свободы</div>
+        <div class="card-desc">Полнота самовыражения считывается аудиторией как финансовая свобода и изобилие.<br><br>Дефицитные люди зажаты и зависимы от мнения других. А состояние свободы самовыражения манит людей быть в их окружении и покупать именно у таких.</div>
       </div>
     </div>
 
-    <div style="width:100%;max-width:400px;border-radius:16px;overflow:hidden;border:2px solid rgba(255,207,164,.15);margin-top:40px;">
-      <img src="https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/skriny/svetlana_mir.jpg" alt="Финансовая свобода" style="width:100%;display:block;">
+    <!-- PROCESS TIMELINE -->
+    <div class="process-timeline">
+      <p class="process-intro">Как участники будут применять это в маркетинге для привлечения клиентов:</p>
+
+      <div class="process-step">
+        <div class="process-icon-wrap">
+          <div class="process-icon-ring"></div>
+          <div class="process-icon">1</div>
+        </div>
+        <div class="process-content">
+          <div class="process-title">Сначала мы усилим регалии и фундамент</div>
+          <div class="process-desc">Чем круче ваш бэкграунд, тем смелее и мощнее может быть рычаг узнаваемости, который выделит вас среди конкурентов.</div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-icon-wrap">
+          <div class="process-icon-ring"></div>
+          <div class="process-icon">2</div>
+        </div>
+        <div class="process-content">
+          <div class="process-title">Затем выдадим "лицензию на странность"</div>
+          <div class="process-desc">Дадим работающие инструменты чтобы креатив не был клоунадой. Создадим среду и амбициозность события — что в окружении креативить естественно и что будут инструменты.</div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-icon-wrap">
+          <div class="process-icon-ring"></div>
+          <div class="process-icon">3</div>
+        </div>
+        <div class="process-content">
+          <div class="process-title">Затем запустим рычаги узнаваемости</div>
+          <div class="process-desc">На этот фундамент наложим уникальные грани личности участников: таланты, творчество и «нелинейные» хобби.</div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-icon-wrap">
+          <div class="process-icon-ring"></div>
+          <div class="process-icon">4</div>
+        </div>
+        <div class="process-content">
+          <div class="process-title">Так участники будут становиться живым примером</div>
+          <div class="process-desc">Как можно проявляться свободно, креативить, зарабатывать и нести пользу миру.</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
