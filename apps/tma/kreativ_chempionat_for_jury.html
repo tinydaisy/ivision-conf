@@ -173,9 +173,11 @@
     .collage-item:hover{filter:brightness(1.1);}
     .collage-item img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
     /* horizontal egg: wide left, narrow right */
-    .collage-item.egg-h{border-radius:60% 40% 40% 60% / 50% 50% 50% 50%;}
+    .collage-item.egg-h{border-radius:40% 60% 60% 40% / 50% 50% 50% 50%;}
+    .collage-item.egg-h img{object-position:left;}
     /* inverted egg: wide top, narrow bottom */
     .collage-item.egg-inv{border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;}
+    .collage-item.egg-inv img{object-position:top;}
 
     /* Center items - larger */
     .collage-item.center-left{width:260px;height:300px;left:30%;top:50%;transform:translate(-50%,-50%) rotate(-8deg);}
@@ -530,7 +532,7 @@
         <div class="collage-item bottom-left">
           <img src="https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/vyezd/elephant.jpeg" alt="Слон">
         </div>
-        <div class="collage-item bottom-right">
+        <div class="collage-item bottom-right egg-inv">
           <img src="https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/vyezd/stairs.png" alt="Лестница">
         </div>
         <div class="collage-item side-left">
