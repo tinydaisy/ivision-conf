@@ -424,7 +424,9 @@
         <h2 class="h2">Почему мы это делаем?</h2>
         <p class="desc" id="mission-intro">В мире, где можно сгенерировать почти всё - ценность приобретает то, что невозможно воспроизвести:</p>
         <div class="values-grid" id="values-container"></div>
-        <p class="vision-text"></p>
+        <p class="desc" id="vision-question"></p>
+        <p class="vision-text" id="vision-highlight"></p>
+        <p class="vision-text" style="margin-top:32px;margin-bottom:0;text-transform:uppercase;font-size:15px;" id="vision-main"></p>
       </div>
     </div>
   </div>
@@ -1098,10 +1100,20 @@ async function loadData() {
     valuesContainer.appendChild(pill);
   });
 
-  // Mission vision text
-  const visionTexts = document.querySelectorAll('.vision-text');
-  if (visionTexts.length > 0) {
-    visionTexts[0].textContent = data.mission.vision;
+  // Mission vision text (split into 3 parts)
+  const visionQuestion = document.getElementById('vision-question');
+  const visionHighlight = document.getElementById('vision-highlight');
+  const visionMain = document.getElementById('vision-main');
+
+  if (visionQuestion && data.mission.vision_question) {
+    visionQuestion.textContent = data.mission.vision_question;
+  }
+  if (visionHighlight && data.mission.vision_highlight) {
+    visionHighlight.textContent = data.mission.vision_highlight;
+    visionHighlight.style.color = 'var(--brand-pink-light)';
+  }
+  if (visionMain && data.mission.vision_main) {
+    visionMain.textContent = data.mission.vision_main;
   }
 
   // Stages with videos
