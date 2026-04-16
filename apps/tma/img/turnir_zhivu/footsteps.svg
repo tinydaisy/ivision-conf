@@ -1,42 +1,57 @@
-<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-  <!-- Три следа идущих ног -->
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <!-- 3 следа идущих ног по диагонали -->
 
-  <!-- След 1 (левый, вверху) -->
-  <g transform="translate(20, 40)">
-    <!-- Пятка -->
-    <circle cx="10" cy="0" r="8" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
+  <!-- След 1 (правая нога, левый нижний) -->
+  <g transform="translate(30 135) rotate(-15)">
     <!-- Свод стопы -->
-    <ellipse cx="10" cy="18" rx="6" ry="12" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
-    <!-- Пальцы -->
-    <circle cx="5" cy="30" r="4" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
-    <circle cx="10" cy="32" r="4.5" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
-    <circle cx="15" cy="30" r="4" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
+    <path d="M 0 0
+             C -8 0, -12 10, -10 25
+             C -8 38, 2 42, 10 40
+             C 18 38, 20 28, 18 15
+             C 16 3, 8 0, 0 0 Z"
+          fill="#FFCFA4" fill-opacity="0.35" stroke="#FFCFA4" stroke-width="2" stroke-linejoin="round"/>
+    <!-- Большой палец -->
+    <ellipse cx="-4" cy="-8" rx="4" ry="5" fill="#FFCFA4" fill-opacity="0.5" stroke="#FFCFA4" stroke-width="1.5"/>
+    <!-- Остальные пальцы -->
+    <ellipse cx="3" cy="-11" rx="3" ry="4" fill="#FFCFA4" fill-opacity="0.5" stroke="#FFCFA4" stroke-width="1.5"/>
+    <ellipse cx="9" cy="-10" rx="2.5" ry="3.5" fill="#FFCFA4" fill-opacity="0.5" stroke="#FFCFA4" stroke-width="1.5"/>
+    <ellipse cx="14" cy="-8" rx="2.5" ry="3" fill="#FFCFA4" fill-opacity="0.5" stroke="#FFCFA4" stroke-width="1.5"/>
+    <ellipse cx="18" cy="-5" rx="2" ry="2.5" fill="#FFCFA4" fill-opacity="0.5" stroke="#FFCFA4" stroke-width="1.5"/>
   </g>
 
-  <!-- След 2 (центр, средняя высота) -->
-  <g transform="translate(70, 80)">
-    <!-- Пятка -->
-    <circle cx="10" cy="0" r="9" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
+  <!-- След 2 (левая нога, центр) -->
+  <g transform="translate(95 85) rotate(10) scale(-1 1)">
     <!-- Свод стопы -->
-    <ellipse cx="10" cy="19" rx="7" ry="13" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
-    <!-- Пальцы -->
-    <circle cx="4" cy="32" r="4.5" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
-    <circle cx="10" cy="34" r="5" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
-    <circle cx="16" cy="32" r="4.5" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
+    <path d="M 0 0
+             C -8 0, -12 10, -10 25
+             C -8 38, 2 42, 10 40
+             C 18 38, 20 28, 18 15
+             C 16 3, 8 0, 0 0 Z"
+          fill="#FFCFA4" fill-opacity="0.55" stroke="#FFCFA4" stroke-width="2" stroke-linejoin="round"/>
+    <!-- Большой палец -->
+    <ellipse cx="-4" cy="-8" rx="4" ry="5" fill="#FFCFA4" fill-opacity="0.7" stroke="#FFCFA4" stroke-width="1.5"/>
+    <!-- Остальные пальцы -->
+    <ellipse cx="3" cy="-11" rx="3" ry="4" fill="#FFCFA4" fill-opacity="0.7" stroke="#FFCFA4" stroke-width="1.5"/>
+    <ellipse cx="9" cy="-10" rx="2.5" ry="3.5" fill="#FFCFA4" fill-opacity="0.7" stroke="#FFCFA4" stroke-width="1.5"/>
+    <ellipse cx="14" cy="-8" rx="2.5" ry="3" fill="#FFCFA4" fill-opacity="0.7" stroke="#FFCFA4" stroke-width="1.5"/>
+    <ellipse cx="18" cy="-5" rx="2" ry="2.5" fill="#FFCFA4" fill-opacity="0.7" stroke="#FFCFA4" stroke-width="1.5"/>
   </g>
 
-  <!-- След 3 (правый, внизу) -->
-  <g transform="translate(130, 120)">
-    <!-- Пятка -->
-    <circle cx="10" cy="0" r="8" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
+  <!-- След 3 (правая нога, правый верхний) -->
+  <g transform="translate(155 35) rotate(-15)">
     <!-- Свод стопы -->
-    <ellipse cx="10" cy="17" rx="6" ry="11" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
-    <!-- Пальцы -->
-    <circle cx="5" cy="28" r="4" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
-    <circle cx="10" cy="30" r="4.5" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
-    <circle cx="15" cy="28" r="4" fill="#FFCFA4" stroke="#C084FC" stroke-width="1.5"/>
+    <path d="M 0 0
+             C -8 0, -12 10, -10 25
+             C -8 38, 2 42, 10 40
+             C 18 38, 20 28, 18 15
+             C 16 3, 8 0, 0 0 Z"
+          fill="#FFCFA4" fill-opacity="0.8" stroke="#FFCFA4" stroke-width="2" stroke-linejoin="round"/>
+    <!-- Большой палец -->
+    <ellipse cx="-4" cy="-8" rx="4" ry="5" fill="#FFCFA4" fill-opacity="0.9" stroke="#FFCFA4" stroke-width="1.5"/>
+    <!-- Остальные пальцы -->
+    <ellipse cx="3" cy="-11" rx="3" ry="4" fill="#FFCFA4" fill-opacity="0.9" stroke="#FFCFA4" stroke-width="1.5"/>
+    <ellipse cx="9" cy="-10" rx="2.5" ry="3.5" fill="#FFCFA4" fill-opacity="0.9" stroke="#FFCFA4" stroke-width="1.5"/>
+    <ellipse cx="14" cy="-8" rx="2.5" ry="3" fill="#FFCFA4" fill-opacity="0.9" stroke="#FFCFA4" stroke-width="1.5"/>
+    <ellipse cx="18" cy="-5" rx="2" ry="2.5" fill="#FFCFA4" fill-opacity="0.9" stroke="#FFCFA4" stroke-width="1.5"/>
   </g>
-
-  <!-- Линия движения (диагональ) -->
-  <line x1="30" y1="50" x2="140" y2="150" stroke="#C084FC" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.4"/>
 </svg>
