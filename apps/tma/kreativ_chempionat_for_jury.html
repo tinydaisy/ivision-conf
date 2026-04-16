@@ -850,7 +850,6 @@
     <div style="margin-bottom:32px;" class="jury-accordion">
       <div class="jury-toggle" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:28px;background:linear-gradient(135deg,rgba(255,207,164,.12),rgba(255,207,164,.06));border:2px solid rgba(255,207,164,.25);border-radius:24px;transition:all 0.3s ease;">
         <h3 style="font-size:22px;font-weight:700;color:var(--text-light);margin:0;display:flex;align-items:center;gap:12px;">
-          <span style="color:var(--brand-peach);font-size:28px;">◆</span>
           WIN-WIN Жюри
           <span style="font-size:13px;color:var(--text-muted);font-weight:500;font-style:italic;">(ПАРТНЕРСКОЕ ПРЕДЛОЖЕНИЕ ЖЮРИ)</span>
         </h3>
@@ -936,7 +935,7 @@
           </div>
 
           <button class="btn-grad-wrap" onclick="document.location='https://t.me/margo_forbs?text=Марго!Интересен_формат_партнерства'" style="margin-top:32px;display:block;width:100%;">
-            <span class="btn-grad-inner" style="width:100%;"><span style="color:var(--brand-peach);">◆</span> ОСТАВИТЬ ЗАЯВКУ НА ЖЮРИ</span>
+            <span class="btn-grad-inner" style="width:100%;">ОСТАВИТЬ ЗАЯВКУ НА ЖЮРИ</span>
           </button>
         </div>
       </div>
@@ -946,7 +945,6 @@
     <div style="margin-bottom:32px;" class="jury-accordion">
       <div class="jury-toggle" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:28px;background:linear-gradient(135deg,rgba(192,132,252,.12),rgba(192,132,252,.06));border:2px solid rgba(192,132,252,.25);border-radius:24px;transition:all 0.3s ease;">
         <h3 style="font-size:22px;font-weight:700;color:var(--text-light);margin:0;display:flex;align-items:center;gap:12px;">
-          <span style="color:var(--brand-peach);font-size:28px;">◈</span>
           Жюри С Выездом
           <span style="font-size:13px;color:var(--text-muted);font-weight:500;font-style:italic;">(КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ)</span>
         </h3>
@@ -1015,7 +1013,7 @@
           </div>
 
           <button class="btn-grad-wrap" onclick="document.location='https://t.me/margo_forbs?text=Марго!Интересен_выезд'" style="margin-top:32px;display:block;width:100%;">
-            <span class="btn-grad-inner" style="width:100%;"><span style="color:var(--brand-peach);">◈</span> ОСТАВИТЬ ЗАЯВКУ НА ВЫЕЗД</span>
+            <span class="btn-grad-inner" style="width:100%;">ОСТАВИТЬ ЗАЯВКУ НА ВЫЕЗД</span>
           </button>
         </div>
       </div>
@@ -1055,6 +1053,13 @@
 
 .pulse-glow {
   animation: pulse-glow-animation 2s ease-in-out infinite;
+}
+
+@media(max-width:768px){
+  .jury-content > div > div[style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
 }
 </style>
 
