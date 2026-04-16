@@ -424,8 +424,7 @@
         <h2 class="h2">Почему мы это делаем?</h2>
         <p class="desc" id="mission-intro">В мире, где можно сгенерировать почти всё - ценность приобретает то, что невозможно воспроизвести:</p>
         <div class="values-grid" id="values-container"></div>
-        <p class="desc" id="vision-question" style="margin-bottom:40px;"></p>
-        <p class="vision-text" id="vision-highlight"></p>
+        <p class="desc" style="margin-bottom:40px;">Что дать рынку после двух крайностей — «успешного успеха» и «парада публичного нытья»? Чистую созидательную энергию <span id="vision-highlight" style="color:var(--brand-pink-light);"></span></p>
         <p class="vision-text" style="margin-top:32px;margin-bottom:0;text-transform:uppercase;font-size:15px;" id="vision-main"></p>
       </div>
     </div>
@@ -1100,17 +1099,12 @@ async function loadData() {
     valuesContainer.appendChild(pill);
   });
 
-  // Mission vision text (split into 3 parts)
-  const visionQuestion = document.getElementById('vision-question');
+  // Mission vision text
   const visionHighlight = document.getElementById('vision-highlight');
   const visionMain = document.getElementById('vision-main');
 
-  if (visionQuestion && data.mission.vision_question) {
-    visionQuestion.textContent = data.mission.vision_question;
-  }
   if (visionHighlight && data.mission.vision_highlight) {
     visionHighlight.textContent = data.mission.vision_highlight;
-    visionHighlight.style.color = 'var(--brand-pink-light)';
   }
   if (visionMain && data.mission.vision_main) {
     visionMain.textContent = data.mission.vision_main;
