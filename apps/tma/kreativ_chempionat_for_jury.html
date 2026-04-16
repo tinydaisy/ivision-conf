@@ -346,10 +346,10 @@
         <p class="hero-label">Международный чемпионат креативных спикеров</p>
         <h1 class="hero-h1">
           ЧЕМПИОНАТ<br>
-          <div class="hero-h1-line2">
+          <span class="hero-h1-line2">
             <span class="hero-h1-brand">iViSiON:</span>
             <span class="hero-h1-accent">Ж.И.В.У.</span>
-          </div>
+          </span>
         </h1>
         <p class="hero-sub">Живые <span style="color:var(--brand-peach);">·</span> Истинные <span style="color:var(--brand-peach);">·</span> Влиятельные <span style="color:var(--brand-peach);">·</span> Успешные</p>
 
@@ -1227,7 +1227,7 @@ async function loadData() {
 
   // Hero
   document.querySelector('.hero-label').textContent = data.championship.label;
-  document.querySelector('.hero-h1').innerHTML = `ЧЕМПИОНАТ<br><div class="hero-h1-line2"><span class="hero-h1-brand">iViSiON:</span> <span class="hero-h1-accent">Ж.И.В.У.</span></div>`;
+  document.querySelector('.hero-h1').innerHTML = `ЧЕМПИОНАТ<br><span class="hero-h1-line2"><span class="hero-h1-brand">iViSiON:</span> <span class="hero-h1-accent">Ж.И.В.У.</span></span>`;
   document.querySelector('.hero-sub').innerHTML = data.championship.tagline.split(', ').join(' <span style="color:var(--brand-peach);">·</span> ');
 
   // Mission values
