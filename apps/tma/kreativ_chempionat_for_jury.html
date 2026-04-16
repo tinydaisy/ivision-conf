@@ -850,7 +850,7 @@
           WIN-WIN Жюри
           <span style="font-size:13px;color:var(--text-muted);font-weight:500;font-style:italic;">(ПАРТНЕРСКОЕ ПРЕДЛОЖЕНИЕ ЖЮРИ)</span>
         </h3>
-        <div style="width:60px;height:60px;background:var(--brand-peach);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform 0.3s ease;" class="jury-arrow">
+        <div style="width:60px;height:60px;background:linear-gradient(135deg,#FFD4A8,#FFCFA4,#FFB57F);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform 0.3s ease;box-shadow:0 0 20px rgba(255,207,164,0.5);" class="jury-arrow pulse-glow">
           <span style="color:#080B12;font-size:32px;font-weight:700;line-height:1;">▼</span>
         </div>
       </div>
@@ -916,6 +916,12 @@
 
             <!-- Column 2 -->
             <div>
+              <h4 style="font-size:18px;font-weight:700;color:var(--brand-peach);margin-bottom:20px;">Ваша инвестиция:</h4>
+              <div style="background:linear-gradient(135deg,rgba(255,207,164,.15),rgba(255,207,164,.08));border:2px solid rgba(255,207,164,.3);border-radius:16px;padding:28px;margin-bottom:32px;text-align:center;">
+                <p style="font-size:28px;color:var(--brand-peach);font-weight:900;">БЕЗ ОПЛАТНО</p>
+                <p style="font-size:13px;color:var(--text-muted);margin-top:8px;">Партнерский формат WIN-WIN</p>
+              </div>
+
               <h4 style="font-size:18px;font-weight:700;color:var(--brand-peach);margin-bottom:20px;">Что требуется от вас:</h4>
               <ul class="benefits" style="font-size:14px;">
                 <li style="margin-bottom:16px;"><strong>Анонсы 2х этапов чемпионата и конференции iViSiON-8</strong></li>
@@ -940,7 +946,7 @@
           Жюри С Выездом
           <span style="font-size:13px;color:var(--text-muted);font-weight:500;font-style:italic;">(КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ)</span>
         </h3>
-        <div style="width:60px;height:60px;background:var(--brand-peach);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform 0.3s ease;" class="jury-arrow">
+        <div style="width:60px;height:60px;background:linear-gradient(135deg,#FFD4A8,#FFCFA4,#FFB57F);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform 0.3s ease;box-shadow:0 0 20px rgba(255,207,164,0.5);" class="jury-arrow pulse-glow">
           <span style="color:#080B12;font-size:32px;font-weight:700;line-height:1;">▼</span>
         </div>
       </div>
@@ -1026,6 +1032,25 @@
 
 .jury-accordion.active .jury-arrow {
   transform: rotate(180deg);
+}
+
+@keyframes pulse-glow-animation {
+  0% {
+    box-shadow: 0 0 15px rgba(255,207,164,0.3), 0 0 30px rgba(255,207,164,0.1);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255,207,164,0.6), 0 0 50px rgba(255,207,164,0.3);
+    transform: scale(1.05);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(255,207,164,0.3), 0 0 30px rgba(255,207,164,0.1);
+    transform: scale(1);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow-animation 2s ease-in-out infinite;
 }
 </style>
 
