@@ -98,8 +98,13 @@
 
     /* VISION SECTION */
     .vision-text{color:var(--brand-peach);font-size:16px;line-height:1.8;font-weight:500;margin-top:32px;}
-    .vision-egg-wrap{position:relative;display:flex;justify-content:center;align-items:flex-start;}
-    .vision-egg{width:100%;max-width:400px;aspect-ratio:3/4;object-fit:cover;object-position:center;border-radius:50% 50% 50% 50% / 70% 70% 30% 30%;border:2px solid rgba(255,207,164,.2);position:relative;}
+    .vision-egg-wrap{position:relative;display:flex;justify-content:center;align-items:flex-start;min-height:520px;}
+    .vision-egg-rings{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:560px;height:560px;opacity:.45;pointer-events:none;user-select:none;animation:rotateRings 80s linear infinite;z-index:0;}
+    .vision-egg-deco{position:absolute;border-radius:50%;pointer-events:none;z-index:1;}
+    .vision-egg-deco-1{width:110px;height:110px;border:1.5px solid rgba(255,207,164,.3);border-radius:30% 70% 70% 30% / 30% 30% 70% 70%;top:8%;right:-10px;}
+    .vision-egg-deco-2{width:70px;height:70px;background:rgba(200,75,158,.25);bottom:12%;left:-10px;}
+    .vision-egg-deco-3{width:50px;height:50px;border:1.5px solid rgba(192,132,252,.4);border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;top:30%;left:-20px;}
+    .vision-egg{width:100%;max-width:400px;aspect-ratio:3/4;object-fit:cover;object-position:50% 15%;border-radius:50% 50% 50% 50% / 55% 55% 45% 45%;border:2px solid rgba(255,207,164,.2);position:relative;z-index:2;transform:rotate(-8deg);}
     .vision-egg-text{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);font-size:16px;font-weight:700;color:var(--brand-peach);text-align:center;width:85%;z-index:3;}
 
     /* STAGES WITH VIDEO CAROUSEL */
@@ -164,7 +169,12 @@
       .mission-grid{display:flex;flex-direction:column;gap:40px;}
       .mission-content{order:1;}
       .vision-egg-wrap{order:2;justify-content:center;}
-      .vision-egg{max-width:280px;}
+      .vision-egg-wrap{min-height:380px;}
+      .vision-egg-rings{width:400px;height:400px;opacity:.35;}
+      .vision-egg-deco-1{width:70px;height:70px;right:0;top:5%;}
+      .vision-egg-deco-2{width:50px;height:50px;left:0;bottom:10%;}
+      .vision-egg-deco-3{width:36px;height:36px;left:-6px;top:28%;}
+      .vision-egg{max-width:260px;}
       .vision-egg-text{bottom:40px;font-size:14px;}
       .values-grid{flex-wrap:wrap!important;gap:10px;justify-content:center;}
       .value-pill{padding:10px 18px;font-size:13px;}
@@ -217,7 +227,7 @@
     <div class="hero-grid">
       <!-- LEFT: TEXT -->
       <div class="hero-content">
-        <p class="hero-label">Международный чемпионат креативных спикеров1</p>
+        <p class="hero-label">Международный чемпионат креативных спикеров4</p>
         <h1 class="hero-h1">
           ЧЕМПИОНАТ<br>
           <div class="hero-h1-line2">
@@ -252,6 +262,29 @@
     <div class="mission-grid">
       <!-- LEFT COLUMN - EGG -->
       <div class="vision-egg-wrap">
+        <svg class="vision-egg-rings" viewBox="0 0 700 700" aria-hidden="true">
+          <defs>
+            <linearGradient id="vrg1" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%"   stop-color="#1A3A5C"/>
+              <stop offset="50%"  stop-color="#6B4FA0"/>
+              <stop offset="100%" stop-color="#C84B9E"/>
+            </linearGradient>
+          </defs>
+          <circle cx="350" cy="350" r="60"  fill="none" stroke="url(#vrg1)" stroke-width="0.8" opacity="0.7"/>
+          <circle cx="350" cy="350" r="90"  fill="none" stroke="url(#vrg1)" stroke-width="0.8" opacity="0.62"/>
+          <circle cx="350" cy="350" r="120" fill="none" stroke="url(#vrg1)" stroke-width="0.8" opacity="0.56"/>
+          <circle cx="350" cy="350" r="150" fill="none" stroke="url(#vrg1)" stroke-width="0.8" opacity="0.50"/>
+          <circle cx="350" cy="350" r="180" fill="none" stroke="url(#vrg1)" stroke-width="0.8" opacity="0.44"/>
+          <circle cx="350" cy="350" r="210" fill="none" stroke="url(#vrg1)" stroke-width="0.8" opacity="0.38"/>
+          <circle cx="350" cy="350" r="240" fill="none" stroke="url(#vrg1)" stroke-width="0.8" opacity="0.32"/>
+          <circle cx="350" cy="350" r="270" fill="none" stroke="url(#vrg1)" stroke-width="0.8" opacity="0.26"/>
+          <circle cx="350" cy="350" r="300" fill="none" stroke="url(#vrg1)" stroke-width="0.8" opacity="0.20"/>
+          <circle cx="350" cy="350" r="325" fill="none" stroke="url(#vrg1)" stroke-width="0.6" opacity="0.14"/>
+          <circle cx="350" cy="350" r="345" fill="none" stroke="url(#vrg1)" stroke-width="0.5" opacity="0.08"/>
+        </svg>
+        <div class="vision-egg-deco vision-egg-deco-1"></div>
+        <div class="vision-egg-deco vision-egg-deco-2"></div>
+        <div class="vision-egg-deco vision-egg-deco-3"></div>
         <img src="https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/skriny/skrin_eto_AI.png" alt="Это ИИ?" class="vision-egg">
         <div class="vision-egg-text">это не ИИ?</div>
       </div>
@@ -541,7 +574,7 @@ async function loadData() {
       const videoCard = document.createElement('div');
       videoCard.className = 'video-card';
       // Создаём видео элемент без обложки (загрузится асинхронно)
-      videoCard.innerHTML = `<video muted loop playsinline preload="metadata"><source src="${video}" type="video/mp4"></video>`;
+      videoCard.innerHTML = `<video muted loop playsinline preload="metadata"><source src="${video}#t=0.1" type="video/mp4"></video>`;
 
       const videoEl = videoCard.querySelector('video');
 
