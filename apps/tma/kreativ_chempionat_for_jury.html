@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
   <style>
     :root{
-      --brand-teal:#25455D;--brand-peach:#FFCFA4;--brand-purple:#C084FC;
+      --brand-teal:#25455D;--brand-peach:#FFCFA4;--brand-purple:#C084FC;--brand-pink:#C84B9E;
       --bg-dark:#080B12;--bg-mid:#0D111A;--bg-card:#111827;
       --text-light:#F5F0E8;--text-muted:rgba(245,240,232,.55);--text-dim:rgba(245,240,232,.32);
       --border:rgba(37,69,93,.45);--border-peach:rgba(255,207,164,.2);
@@ -42,7 +42,7 @@
     /* HERO */
     #hero{position:relative;min-height:100vh;display:flex;align-items:center;background:linear-gradient(160deg,#25455D 0%,#080B12 60%);overflow:hidden;padding:120px 0 80px;}
     .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:flex-start;position:relative;z-index:2;padding-top:40px;}
-    .hero-label{font-family:var(--font-body);font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand-peach);margin-bottom:20px;}
+    .hero-label{font-family:var(--font-body);font-weight:700;font-size:clamp(14px,3.5vw,18px);letter-spacing:.22em;text-transform:uppercase;color:var(--brand-peach);margin-bottom:20px;}
     .hero-h1{font-family:var(--font-display);font-size:clamp(64px,8vw,110px);letter-spacing:.02em;line-height:.95;color:var(--text-light);margin-bottom:24px;}
     .hero-h1-line2{display:flex;align-items:baseline;gap:8px;width:fit-content;}
     .hero-h1-brand{color:var(--brand-peach);}
@@ -344,7 +344,7 @@
     <div class="hero-grid">
       <!-- LEFT: TEXT -->
       <div class="hero-content">
-        <p class="hero-label">Международный чемпионат креативных спикеров</p>
+        <p class="hero-label">Международный чемпионат <span style="color:var(--brand-pink);">креативных</span> спикеров</p>
         <h1 class="hero-h1">
           ЧЕМПИОНАТ<br>
           <span class="hero-h1-line2">
