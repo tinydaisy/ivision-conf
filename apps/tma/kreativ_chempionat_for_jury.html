@@ -167,9 +167,15 @@
 
     /* COLLAGE */
     .collage-wrap{position:relative;width:100%;height:900px;margin:60px 0;perspective:1200px;background:rgba(200,75,158,.12);border-radius:24px;padding:60px 0;}
-    .collage-item{position:absolute;border-radius:8px;border:none;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.6);outline:2px solid rgba(255,207,164,.35);outline-offset:-2px;transition:transform .3s ease;cursor:pointer;}
-    .collage-item:hover{transform:scale(1.08);}
-    .collage-item img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;}
+    .collage-item{position:absolute;border:none;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.6);outline:2px solid rgba(255,207,164,.35);outline-offset:-2px;transition:transform .3s ease;cursor:pointer;
+      /* default egg: wide bottom, narrow top */
+      border-radius:50% 50% 50% 50% / 40% 40% 60% 60%;}
+    .collage-item:hover{filter:brightness(1.1);}
+    .collage-item img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+    /* horizontal egg: wide left, narrow right */
+    .collage-item.egg-h{border-radius:60% 40% 40% 60% / 50% 50% 50% 50%;}
+    /* inverted egg: wide top, narrow bottom */
+    .collage-item.egg-inv{border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;}
 
     /* Center items - larger */
     .collage-item.center-left{width:260px;height:300px;left:30%;top:50%;transform:translate(-50%,-50%) rotate(-8deg);}
@@ -515,7 +521,7 @@
         <div class="collage-item center-right">
           <img src="https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/vyezd/flybord_reklama.jpeg" alt="Флайборд">
         </div>
-        <div class="collage-item top-left">
+        <div class="collage-item top-left egg-h">
           <img src="https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/vyezd/bike_reklama.png" alt="Байк">
         </div>
         <div class="collage-item top-right">
@@ -530,7 +536,7 @@
         <div class="collage-item side-left">
           <img src="https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/vyezd/vodopad.png" alt="Водопад">
         </div>
-        <div class="collage-item side-right">
+        <div class="collage-item side-right egg-inv">
           <img src="https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/vyezd/more_serdce.jpeg" alt="Море с сердцем">
         </div>
       </div>
