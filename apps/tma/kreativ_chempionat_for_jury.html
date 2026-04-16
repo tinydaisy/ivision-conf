@@ -433,6 +433,41 @@
 </footer>
 
 <script>
+// Генерирует обложку видео из первого кадра на 0.1 сек
+function generateVideoThumbnail(videoUrl) {
+  return new Promise((resolve) => {
+    const video = document.createElement('video');
+    video.src = videoUrl;
+    video.muted = true;
+    video.crossOrigin = 'anonymous';
+
+    video.addEventListener('loadedmetadata', () => {
+      video.currentTime = 0.1;
+    });
+
+    video.addEventListener('seeked', () => {
+      try {
+        const canvas = document.createElement('canvas');
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0);
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+        resolve(dataUrl);
+      } catch (e) {
+        resolve(''); // Fallback если ошибка
+      }
+    });
+
+    video.addEventListener('error', () => {
+      resolve(''); // Fallback если видео не загружается
+    });
+
+    // Загрузим видео но не добавляем в DOM
+    video.style.display = 'none';
+  });
+}
+
 async function loadData() {
   const res = await fetch('./kreativ_chempionat_for_jury.json');
   const data = await res.json();
@@ -505,10 +540,18 @@ async function loadData() {
     stage.videos.forEach((video, videoIdx) => {
       const videoCard = document.createElement('div');
       videoCard.className = 'video-card';
-      const posterUrl = video.replace(/\.(mp4|MP4)$/, '_poster.jpg');
-      videoCard.innerHTML = `<video muted loop playsinline preload="metadata" poster="${posterUrl}"><source src="${video}" type="video/mp4"></video>`;
+      // Создаём видео элемент без обложки (загрузится асинхронно)
+      videoCard.innerHTML = `<video muted loop playsinline preload="metadata"><source src="${video}" type="video/mp4"></video>`;
 
       const videoEl = videoCard.querySelector('video');
+
+      // Асинхронно генерируем обложку и устанавливаем её
+      generateVideoThumbnail(video).then(posterUrl => {
+        if (posterUrl) {
+          videoEl.poster = posterUrl;
+        }
+      });
+
       videoCard.addEventListener('click', () => {
         if (videoEl.paused) {
           track.querySelectorAll('video').forEach(v => {
