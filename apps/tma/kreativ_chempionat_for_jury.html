@@ -206,6 +206,19 @@
       .carousel-wrap{max-width:240px;}
       .stage-title{font-size:20px;}
       .stage-number{font-size:48px;}
+
+      /* PROCESS TIMELINE MOBILE */
+      .process-timeline{margin-top:60px;padding:0;}
+      .process-timeline::before{display:none;}
+      .process-intro{font-size:18px;margin-bottom:40px;}
+      .process-step{grid-template-columns:1fr 60px;margin-bottom:40px;}
+      .process-step:nth-child(odd) .process-content{text-align:left;padding-left:20px;padding-right:0;grid-column:auto;}
+      .process-step:nth-child(odd) .process-icon-wrap{grid-column:auto;}
+      .process-step:nth-child(even) .process-content{text-align:left;padding-left:20px;padding-right:0;grid-column:auto;order:auto;}
+      .process-step:nth-child(even) .process-icon-wrap{grid-column:auto;order:auto;}
+      .process-content{flex:0 0 auto;}
+      .process-title{font-size:14px;}
+      .process-desc{font-size:12px;}
     }
   </style>
 </head>
