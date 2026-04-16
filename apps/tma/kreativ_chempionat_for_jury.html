@@ -78,8 +78,9 @@
 
     /* SECTIONS */
     .sec{padding:80px 0;}
-    .sec.dark{background:linear-gradient(160deg,rgba(37,69,93,.55) 0%,rgba(8,11,18,.96) 68%);}
+    .sec.dark{background:var(--bg-dark);}
     .sec.mid{background:var(--bg-mid);}
+    .sec.gradient-bg{background:linear-gradient(160deg,rgba(37,69,93,.55) 0%,rgba(8,11,18,.96) 68%) !important;}
     .h2{font-family:var(--font-body);font-weight:700;font-size:clamp(36px,4vw,56px);line-height:1.15;color:var(--text-light);margin-bottom:20px;}
     .desc{font-size:15px;color:var(--text-muted);line-height:1.7;margin-bottom:28px;max-width:700px;}
 
@@ -429,7 +430,7 @@
 </section>
 
 <!-- STAGES -->
-<section class="sec mid">
+<section class="sec mid gradient-bg">
   <div class="container">
     <div class="section-label">Формат чемпионата</div>
     <h2 class="h2">3 этапа для 3 уровней влияния</h2>
@@ -726,7 +727,7 @@
 </section>
 
 <!-- WINNER CRITERIA -->
-<section class="sec dark">
+<section class="sec dark gradient-bg">
   <div class="container">
     <div class="section-label">Оценивание</div>
     <h2 class="h2">Как определяется победитель</h2>
