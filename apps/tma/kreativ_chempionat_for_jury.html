@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Cache bust: 2026-04-17 v15 -->
+<!-- Cache bust: 2026-04-17 v16 -->
 <html lang="ru">
 <head>
   <meta charset="UTF-8"/>
@@ -1164,7 +1164,14 @@ async function loadData() {
     visionHighlight.textContent = data.mission.vision_highlight;
   }
   if (visionMain && data.mission.vision_main) {
-    visionMain.textContent = data.mission.vision_main;
+    const text = data.mission.vision_main;
+    const highlightText = '\"ЭТО ИИ?\"';
+    if (text.includes(highlightText)) {
+      const parts = text.split(highlightText);
+      visionMain.innerHTML = parts[0] + '<span style="color:var(--brand-pink-light);">' + highlightText + '</span>' + parts[1];
+    } else {
+      visionMain.textContent = text;
+    }
   }
 
   // Stages with videos
