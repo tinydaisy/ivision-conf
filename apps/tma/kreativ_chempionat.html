@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
-  <title>iViSiON: Ж.И.В.У. — Международный Чемпионат Креативных Спикеров</title>
+  <title>iViSiON: Ж.И.В.У. — Чемпионат для жюри</title>
   <link rel="icon" type="image/png" href="/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
@@ -308,11 +308,11 @@
 <nav id="nav">
   <img src="/img/logo_ivision.png" alt="iViSiON" class="nav-logo">
   <div class="nav-links">
+    <a href="#" data-nav="jury-sec">Партнерство</a>
     <a href="#" data-nav="mission-sec">Концепт</a>
-    <a href="#" data-nav="stages-sec">Этапы</a>
   </div>
   <button class="nav-btn" id="nav-cta-btn">
-    <span class="nav-btn-i">Участвовать</span>
+    <span class="nav-btn-i">Стать жюри</span>
   </button>
 </nav>
 
@@ -359,8 +359,8 @@
         <p class="hero-sub">Живые <span style="color:var(--brand-peach);">·</span> Истинные <span style="color:var(--brand-peach);">·</span> Влиятельные <span style="color:var(--brand-peach);">·</span> Успешные</p>
 
         <div class="hero-btns">
-          <button class="btn-grad-wrap" style="display:inline-block;">
-            <span class="btn-grad-inner">ОСТАВИТЬ ЗАЯВКУ НА УЧАСТИЕ</span>
+          <button class="btn-grad-wrap" onclick="document.getElementById('jury-sec').scrollIntoView({behavior:'smooth'});" style="display:inline-block;">
+            <span class="btn-grad-inner">Стать жюри</span>
           </button>
         </div>
 
@@ -380,7 +380,7 @@
 <div style="padding:80px 24px; text-align:center; position:relative; overflow:hidden; background:linear-gradient(180deg,rgba(0,0,0,.2),transparent);">
   <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 50% 0%,rgba(255,207,164,.12),transparent);pointer-events:none;"></div>
   <h2 style="font-size:32px; font-weight:700; color:var(--brand-peach); line-height:1.35; position:relative; z-index:1; letter-spacing:0.5px; text-transform:uppercase;">
-    Стань участником<br>и прокачай свой личный бренд и продажи через креатив
+    Стань жюри<br>и повысь свою узнаваемость и медийность
   </h2>
 </div>
 
@@ -821,15 +821,15 @@
   </div>
 </section>
 
-<!-- JURY (скрыто для страницы участников) -->
-<section class="sec dark" id="jury-sec" style="display:none;">
+<!-- JURY -->
+<section class="sec dark" id="jury-sec">
   <div class="container">
     <div class="section-label">Партнерское предложение</div>
     <h2 class="h2">ВЫБЕРИТЕ ФОРМАТ ЖЮРИ ЧЕМПИОНАТА:</h2>
     <p class="desc" style="margin-bottom:48px;">Быть в составе жюри "iViSiON: Ж.И.В.У." — это формирование направления развития рынка будущего, где бизнес-результат неотделим от личной аутентичности.</p>
 
     <!-- JURY FORMAT 1: WIN-WIN -->
-    <div style="margin-bottom:32px;" class="jury-accordion active">
+    <div style="margin-bottom:32px;" class="jury-accordion">
       <div class="jury-toggle" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:28px;background:linear-gradient(135deg,rgba(255,207,164,.12),rgba(255,207,164,.06));border:2px solid rgba(255,207,164,.25);border-radius:24px;transition:all 0.3s ease;">
         <h3 style="font-size:22px;font-weight:700;color:var(--text-light);margin:0;display:flex;align-items:center;gap:12px;">
           WIN-WIN Жюри
@@ -924,7 +924,7 @@
     </div>
 
     <!-- JURY FORMAT 2: С ВЫЕЗДОМ -->
-    <div style="margin-bottom:32px;" class="jury-accordion active">
+    <div style="margin-bottom:32px;" class="jury-accordion">
       <div class="jury-toggle" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:28px;background:linear-gradient(135deg,rgba(192,132,252,.12),rgba(192,132,252,.06));border:2px solid rgba(192,132,252,.25);border-radius:24px;transition:all 0.3s ease;">
         <h3 style="font-size:22px;font-weight:700;color:var(--text-light);margin:0;display:flex;align-items:center;gap:12px;">
           Жюри С Выездом
@@ -1047,32 +1047,20 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  function openAccordion(accordion) {
-    const content = accordion.querySelector('.jury-content');
-    accordion.classList.add('active');
-    content.style.display = 'block';
-    content.style.maxHeight = '2000px';
-    content.style.padding = '28px';
-  }
-
-  function closeAccordion(accordion) {
-    const content = accordion.querySelector('.jury-content');
-    accordion.classList.remove('active');
-    content.style.display = 'none';
-    content.style.maxHeight = '0';
-    content.style.padding = '0';
-  }
-
   document.querySelectorAll('.jury-accordion').forEach(accordion => {
-    openAccordion(accordion);
-
     const toggle = accordion.querySelector('.jury-toggle');
+    const content = accordion.querySelector('.jury-content');
+
     toggle.addEventListener('click', () => {
-      if (accordion.classList.contains('active')) {
-        closeAccordion(accordion);
-      } else {
-        openAccordion(accordion);
-      }
+      // Закроем все остальные
+      document.querySelectorAll('.jury-accordion').forEach(acc => {
+        if (acc !== accordion) {
+          acc.classList.remove('active');
+        }
+      });
+
+      // Переключим текущий
+      accordion.classList.toggle('active');
     });
   });
 });
@@ -1089,9 +1077,13 @@ document.addEventListener('DOMContentLoaded', () => {
           Стань частью направления, где бизнес неотделим от личности, продажи от креатива, а успех — от аутентичности
         </p>
 
-        <div style="max-width:400px;margin:0 auto;">
-          <button class="btn-grad-wrap" style="display:block;width:100%;">
-            <span class="btn-grad-inner" style="width:100%;padding:16px 32px;">ОСТАВИТЬ ЗАЯВКУ НА УЧАСТИЕ</span>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:600px;margin:0 auto;">
+          <button class="btn-grad-wrap" onclick="document.location='https://t.me/margo_forbs?text=Марго!Интересен_формат_партнерства'" style="display:block;width:100%;">
+            <span class="btn-grad-inner" style="width:100%;padding:16px 12px;white-space:normal;line-height:1.3;">WIN-WIN<br>ЖЮРИ</span>
+          </button>
+
+          <button class="btn-grad-wrap" onclick="document.location='https://t.me/margo_forbs?text=Марго!Интересен_выезд'" style="display:block;width:100%;">
+            <span class="btn-grad-inner" style="width:100%;padding:16px 12px;white-space:normal;line-height:1.3;">ЖЮРИ С<br>ВЫЕЗДОМ</span>
           </button>
         </div>
       </div>
@@ -1147,7 +1139,7 @@ function generateVideoThumbnail(videoUrl) {
 }
 
 async function loadData() {
-  const res = await fetch('./kreativ_chempionat_for_jury.json');
+  const res = await fetch('./kreativ_chempionat.json');
   const data = await res.json();
 
   // Hero
@@ -1344,12 +1336,11 @@ document.addEventListener('click',function(ev){
   if(a){ev.preventDefault();var el=document.getElementById(a.dataset.nav);if(el)el.scrollIntoView({behavior:'smooth'});}
 });
 
-// Клик на кнопку "Участвовать" в nav — открывает виджет
+// Клик на кнопку "Стать жюри"
 document.getElementById('nav-cta-btn').addEventListener('click',function(){
-  var btn=document.querySelector('.btn-grad-wrap');if(btn)btn.click();
+  var el=document.getElementById('jury-sec');if(el)el.scrollIntoView({behavior:'smooth'});
 });
 </script>
-<script id="5634992f208b036755537d4a1b2b3114dd6657cd" src="https://medialift.margoforbs.ru/pl/lite/widget/script?id=1594285"></script>
-<!-- VERSION: 2026-04-22-participants -->
+<!-- VERSION: 2026-04-16-updated -->
 </body>
 </html>
