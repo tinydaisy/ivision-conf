@@ -1047,12 +1047,32 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.jury-accordion').forEach(accordion => {
-    const toggle = accordion.querySelector('.jury-toggle');
+  function openAccordion(accordion) {
     const content = accordion.querySelector('.jury-content');
+    accordion.classList.add('active');
+    content.style.display = 'block';
+    content.style.maxHeight = '2000px';
+    content.style.padding = '28px';
+  }
 
+  function closeAccordion(accordion) {
+    const content = accordion.querySelector('.jury-content');
+    accordion.classList.remove('active');
+    content.style.display = 'none';
+    content.style.maxHeight = '0';
+    content.style.padding = '0';
+  }
+
+  document.querySelectorAll('.jury-accordion').forEach(accordion => {
+    openAccordion(accordion);
+
+    const toggle = accordion.querySelector('.jury-toggle');
     toggle.addEventListener('click', () => {
-      accordion.classList.toggle('active');
+      if (accordion.classList.contains('active')) {
+        closeAccordion(accordion);
+      } else {
+        openAccordion(accordion);
+      }
     });
   });
 });
