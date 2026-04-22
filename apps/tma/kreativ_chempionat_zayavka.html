@@ -62,6 +62,11 @@
     .btn-grad-inner{display:flex;align-items:center;justify-content:center;background:var(--bg-dark);color:var(--text-light);font-family:var(--font-body);font-weight:700;font-size:15px;padding:14px 36px;border-radius:var(--radius-pill);white-space:nowrap;}
     .btn-grad-wrap:hover .btn-grad-inner{background:rgba(8,11,18,.75);}
 
+    /* GC MODAL */
+    .gc-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.88);z-index:99999;align-items:flex-start;justify-content:center;overflow-y:auto;}
+    .gc-box{background:#16162a;border:1px solid rgba(255,207,164,.2);padding:48px 18px 28px;border-radius:var(--radius-lg);max-width:480px;width:92%;position:relative;margin:40px auto;}
+    .gc-close{position:absolute;top:12px;right:16px;background:none;border:none;color:#aaa;font-size:30px;cursor:pointer;line-height:1;}
+
     /* FOOTER */
     #site-footer{background:#04060d;padding:32px 0;border-top:1px solid rgba(255,207,164,.1);}
     .footer-links{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:16px;}
@@ -129,7 +134,7 @@
         <p class="hero-sub">Живые <span style="color:var(--brand-peach);">·</span> Истинные <span style="color:var(--brand-peach);">·</span> Влиятельные <span style="color:var(--brand-peach);">·</span> Успешные</p>
 
         <div class="hero-btns">
-          <button class="btn-grad-wrap" style="display:inline-block;">
+          <button class="btn-grad-wrap" style="display:inline-block;" onclick="openGC('gc-zayavka')">
             <span class="btn-grad-inner">ОСТАВИТЬ ЗАЯВКУ НА УЧАСТИЕ</span>
           </button>
         </div>
@@ -156,6 +161,16 @@
   </div>
 </footer>
 
-<script id="5634992f208b036755537d4a1b2b3114dd6657cd" src="https://medialift.margoforbs.ru/pl/lite/widget/script?id=1594285"></script>
+<div class="gc-modal" id="gc-zayavka" onclick="if(event.target===this)closeGC('gc-zayavka')">
+  <div class="gc-box">
+    <button class="gc-close" onclick="closeGC('gc-zayavka')">&#215;</button>
+    <script id="5634992f208b036755537d4a1b2b3114dd6657cd" src="https://medialift.margoforbs.ru/pl/lite/widget/script?id=1594285"></script>
+  </div>
+</div>
+
+<script>
+function openGC(id){document.getElementById(id).style.display='flex';document.body.style.overflow='hidden';}
+function closeGC(id){document.getElementById(id).style.display='none';document.body.style.overflow='';}
+</script>
 </body>
 </html>
