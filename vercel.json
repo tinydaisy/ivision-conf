@@ -19,8 +19,9 @@
     { "src": "^/ivision-for-speakers(\\.html)?$",       "dest": "/apps/tma/ivision-for-speakers.html" },
     { "src": "^/networking(\\.html)?$",                 "dest": "/apps/tma/networking.html" },
     { "src": "^/razbory-meet(\\.html)?$",              "dest": "/apps/tma/razbory_meet.html" },
-    { "src": "^/kreativ-chempionat-jury(\\.html)?$",   "dest": "/apps/tma/kreativ_chempionat_for_jury.html" },
-    { "src": "^/kreativ-chempionat(\\.html)?$",        "dest": "/apps/tma/kreativ_chempionat.html" },
+    { "src": "^/kreativ-chempionat-jury(\\.html)?$",    "dest": "/apps/tma/kreativ_chempionat_for_jury.html" },
+    { "src": "^/kreativ-chempionat(\\.html)?$",         "dest": "/apps/tma/kreativ_chempionat.html" },
+    { "src": "^/kreativ-chempionat-zayavka(\\.html)?$", "dest": "/apps/tma/kreativ_chempionat_zayavka.html" },
     { "src": "^/(.*)$",                                 "dest": "/apps/tma/index.html" }
   ],
   "headers": [
