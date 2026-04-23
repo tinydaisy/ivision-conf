@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Cache bust: 2026-04-22 v3 -->
+<!-- Cache bust: 2026-04-23 inline-widget -->
 <html lang="ru">
 <head>
   <meta charset="UTF-8"/>
@@ -43,8 +43,7 @@
     .hero-h1-line2{display:flex;align-items:baseline;gap:8px;width:fit-content;}
     .hero-h1-brand{color:var(--brand-peach);}
     .hero-h1-accent{background:linear-gradient(to bottom,#C84B9E 0%,#6B4FA0 50%,#1A3A5C 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:.08em;}
-    .hero-sub{font-size:18px;font-weight:700;color:var(--text-light);margin-bottom:12px;line-height:1.4;}
-    .hero-btns{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:36px;}
+    .hero-sub{font-size:18px;font-weight:700;color:var(--text-light);margin-bottom:24px;line-height:1.4;}
 
     /* HERO PHOTO */
     .hero-photo-wrap{position:relative;display:flex;justify-content:center;align-items:center;}
@@ -56,16 +55,8 @@
     .hero-rings{position:absolute;right:-100px;top:50%;transform:translateY(-50%);width:700px;height:700px;opacity:.5;z-index:1;animation:rotateRings 80s linear infinite;}
     @keyframes rotateRings{to{transform:translateY(-50%) rotate(360deg);}}
 
-    /* BUTTONS */
-    .btn-grad-wrap{display:inline-block;padding:9px;border-radius:var(--radius-pill);background:var(--btn-grad);cursor:pointer;transition:transform .25s ease;}
-    .btn-grad-wrap:hover{transform:translateY(-2px);}
-    .btn-grad-inner{display:flex;align-items:center;justify-content:center;background:var(--bg-dark);color:var(--text-light);font-family:var(--font-body);font-weight:700;font-size:15px;padding:14px 36px;border-radius:var(--radius-pill);white-space:nowrap;}
-    .btn-grad-wrap:hover .btn-grad-inner{background:rgba(8,11,18,.75);}
-
-    /* GC MODAL */
-    .gc-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.88);z-index:99999;align-items:flex-start;justify-content:center;overflow-y:auto;}
-    .gc-box{background:#16162a;border:1px solid rgba(255,207,164,.2);padding:48px 18px 28px;border-radius:var(--radius-lg);max-width:480px;width:92%;position:relative;margin:40px auto;}
-    .gc-close{position:absolute;top:12px;right:16px;background:none;border:none;color:#aaa;font-size:30px;cursor:pointer;line-height:1;}
+    /* GC INLINE WIDGET */
+    .gc-widget-inline{background:#16162a;border:1px solid rgba(255,207,164,.2);padding:24px 18px;border-radius:var(--radius-lg);margin-top:8px;}
 
     /* FOOTER */
     #site-footer{background:#04060d;padding:32px 0;border-top:1px solid rgba(255,207,164,.1);}
@@ -83,8 +74,6 @@
       .hero-h1-line2{flex-wrap:wrap;gap:6px;}
       .hero-h1-accent{letter-spacing:.04em;}
       .hero-sub{font-size:15px;}
-      .hero-btns{flex-direction:column;gap:12px;}
-      .hero-btns .btn-grad-wrap{display:block;width:100%;}
       .hero-photo{max-width:300px;}
     }
   </style>
@@ -133,10 +122,8 @@
         </h1>
         <p class="hero-sub">Живые <span style="color:var(--brand-peach);">·</span> Истинные <span style="color:var(--brand-peach);">·</span> Влиятельные <span style="color:var(--brand-peach);">·</span> Успешные</p>
 
-        <div class="hero-btns">
-          <button class="btn-grad-wrap" style="display:inline-block;" onclick="openGC('gc-zayavka')">
-            <span class="btn-grad-inner">ОСТАВИТЬ ЗАЯВКУ НА УЧАСТИЕ</span>
-          </button>
+        <div class="gc-widget-inline">
+          <script id="5634992f208b036755537d4a1b2b3114dd6657cd" src="https://medialift.margoforbs.ru/pl/lite/widget/script?id=1594285"></script>
         </div>
       </div>
 
@@ -161,16 +148,5 @@
   </div>
 </footer>
 
-<div class="gc-modal" id="gc-zayavka" onclick="if(event.target===this)closeGC('gc-zayavka')">
-  <div class="gc-box">
-    <button class="gc-close" onclick="closeGC('gc-zayavka')">&#215;</button>
-    <script id="5634992f208b036755537d4a1b2b3114dd6657cd" src="https://medialift.margoforbs.ru/pl/lite/widget/script?id=1594285"></script>
-  </div>
-</div>
-
-<script>
-function openGC(id){document.getElementById(id).style.display='flex';document.body.style.overflow='hidden';}
-function closeGC(id){document.getElementById(id).style.display='none';document.body.style.overflow='';}
-</script>
 </body>
 </html>
