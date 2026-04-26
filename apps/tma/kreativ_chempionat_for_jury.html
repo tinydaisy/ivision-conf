@@ -828,8 +828,8 @@
     <h2 class="h2">ВЫБЕРИТЕ ФОРМАТ ЖЮРИ ЧЕМПИОНАТА:</h2>
     <p class="desc" style="margin-bottom:48px;">Быть в составе жюри "iViSiON: Ж.И.В.У." — это формирование направления развития рынка будущего, где бизнес-результат неотделим от личной аутентичности.</p>
 
-    <!-- JURY FORMAT 1: WIN-WIN -->
-    <div style="margin-bottom:32px;" class="jury-accordion active">
+    <!-- JURY FORMAT 1: WIN-WIN — показывается только при ?shwp в URL -->
+    <div style="margin-bottom:32px;display:none;" class="jury-accordion active" data-partner-only>
       <div class="jury-toggle" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:28px;background:linear-gradient(135deg,rgba(255,207,164,.12),rgba(255,207,164,.06));border:2px solid rgba(255,207,164,.25);border-radius:24px;transition:all 0.3s ease;">
         <h3 style="font-size:22px;font-weight:700;color:var(--text-light);margin:0;display:flex;align-items:center;gap:12px;">
           WIN-WIN Жюри
@@ -1047,6 +1047,13 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+  // Партнёрский пакет (WIN-WIN) виден только при ?shwp в URL
+  if (new URLSearchParams(window.location.search).has('shwp')) {
+    document.querySelectorAll('[data-partner-only]').forEach(el => {
+      el.style.display = '';
+    });
+  }
+
   document.querySelectorAll('.jury-accordion').forEach(accordion => {
     const toggle = accordion.querySelector('.jury-toggle');
     const content = accordion.querySelector('.jury-content');
