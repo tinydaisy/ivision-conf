@@ -54,12 +54,13 @@
 
 | Компонент | Технология | Хостинг |
 |---|---|---|
-| Telegram Bot | Python · aiogram 3 | Railway |
-| TMA Frontend | React + Vite + @telegram-apps/sdk | Vercel |
-| Backend API | Python + FastAPI | Railway |
-| База данных | PostgreSQL (Supabase) | Supabase |
+| Лендинги (этот репо) | Статика HTML/CSS/JS | **Beget VPS 194.156.119.17** (nginx) |
+| Backend API | Python + FastAPI (`api/server.py`) | **Beget VPS 194.156.119.17** (порт 8002) |
+| Telegram Bot | Python · aiogram 3 | Beget VPS (тот же сервер) |
+| TMA Frontend (будущее) | React + Vite + @telegram-apps/sdk | PLUSSON (репо `referalka`) |
+| База данных | PostgreSQL 16 | Beget VPS (тот же сервер) |
 | Интеграция | GetCourse (вебхук регистрации) | — |
-| Медиа | S3 / Cloudflare R2 | — |
+| Медиа | Cloudflare R2 (`ivision-media`) | — |
 
 ---
 
@@ -86,7 +87,12 @@
 - Таблица `conf_promo_partners` в PLUSSON, раздел в Admin-панели
 
 ### Текущий статус (пока TMA не готов)
-- Хостинг: Vercel (`vercel.json` в корне этого репо)
+- **Хостинг: Beget VPS `194.156.119.17`** (домен `ivision.margoforbs.ru`, nginx)
+  - Корень сайта на сервере: `/home/projects/ivision-conf/repo/apps/tma` (git checkout)
+  - nginx-конфиг: `/etc/nginx/sites-enabled/ivision-conf`
+  - Бэкенд FastAPI: тот же VPS, порт 8002 (`api/server.py`), проксируется через `/api/`
+  - **Деплой после `git push`:** `ssh root@194.156.119.17 "cd /home/projects/ivision-conf/repo && git pull --ff-only"`
+  - Vercel (`vercel.json`) — устаревший, не используется
 - `apps/tma/index.html` — статичный лендинг конференции iVision-7
 - `apps/tma/ivision-7.json` — данные конференции для лендинга
 
