@@ -957,29 +957,7 @@
                 </ul>
               </div>
 
-              <div style="margin-bottom:28px;">
-                <p style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:12px;display:flex;align-items:center;gap:8px;">
-                  <span style="color:var(--brand-peach);">◉</span> Креативный иммерсивный выезд во Вьетнам:
-                </p>
-                <ul class="benefits" style="font-size:14px;margin-left:20px;">
-                  <li>Персональный рекламный продакшн с вашим продуктом</li>
-                  <li>Проживание в 4-5* отеле</li>
-                  <li>Окружение твердых предпринимателей и экспертов</li>
-                  <li>5 фантастически красивых локаций во Вьетнаме в стиле "Угадай, ИИ или не ИИ?"</li>
-                  <li>Съемки в динамике: летающая доска, страус, байк, параплан, лестница в небо</li>
-                  <li>1 сценический клип - креативная самопрезентация продукта/услуги</li>
-                </ul>
-              </div>
-
-              <div>
-                <p style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:12px;display:flex;align-items:center;gap:8px;">
-                  <span style="color:var(--brand-peach);">◉</span> Масштаб и трафик:
-                </p>
-                <ul class="benefits" style="font-size:14px;margin-left:20px;">
-                  <li>Выступление (45 мин) на масштабной онлайн-конференции "iViSiON-8:Бизнес-Создатели" с лидерами рынка в июле 2026</li>
-                  <li>Подписчики в канал и перелив аудитории: включение в систему автоподписки участников на ваш канал на каждом из этапов</li>
-                </ul>
-              </div>
+              <div id="premium-included-container"></div>
             </div>
 
             <!-- Column 2 -->
@@ -1187,6 +1165,35 @@ async function loadData() {
     } else {
       visionMain.textContent = text;
     }
+  }
+
+  // Premium package: блоки what_included (vietnam_trip, scale_and_traffic, ...)
+  const premiumContainer = document.getElementById('premium-included-container');
+  if (premiumContainer && data.premium_package && data.premium_package.what_included) {
+    const blocks = data.premium_package.what_included;
+    Object.keys(blocks).forEach((key, idx, arr) => {
+      const block = blocks[key];
+      const isLast = idx === arr.length - 1;
+      const wrap = document.createElement('div');
+      wrap.style.marginBottom = isLast ? '0' : '28px';
+
+      const title = document.createElement('p');
+      title.style.cssText = 'font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:12px;display:flex;align-items:center;gap:8px;';
+      title.innerHTML = `<span style="color:var(--brand-peach);">◉</span> ${block.title}`;
+      wrap.appendChild(title);
+
+      const ul = document.createElement('ul');
+      ul.className = 'benefits';
+      ul.style.cssText = 'font-size:14px;margin-left:20px;';
+      block.items.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        ul.appendChild(li);
+      });
+      wrap.appendChild(ul);
+
+      premiumContainer.appendChild(wrap);
+    });
   }
 
   // Stages with videos
