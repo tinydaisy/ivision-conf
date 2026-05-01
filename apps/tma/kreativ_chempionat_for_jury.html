@@ -899,6 +899,9 @@ function renderTariffs(tariffs) {
   const params = new URLSearchParams(window.location.search);
   const visible = tariffs.filter(t => {
     if (t.visibility === 'always' || !t.visibility) return true;
+    if (Array.isArray(t.visibility)) {
+      return t.visibility.some(p => params.has(p));
+    }
     return params.has(t.visibility);
   });
 
