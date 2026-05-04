@@ -517,23 +517,19 @@
   position: relative;
   z-index: 2;
   box-shadow: 0 12px 40px rgba(0,0,0,.35);
+  background: #f4ece1;
 }
 .audience-portrait img {
-  width: 130%;
-  height: 130%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  object-position: 50% 25%;
-  position: absolute;
-  top: -15%;
-  left: -15%;
+  object-position: center;
+  display: block;
 }
 /* Лёгкий разворот каждой карточки в свою сторону для динамики */
 .audience-card:nth-child(1) .audience-portrait { transform: rotate(-6deg); }
-.audience-card:nth-child(1) .audience-portrait img { transform: rotate(6deg); }
 .audience-card:nth-child(2) .audience-portrait { transform: rotate(4deg); }
-.audience-card:nth-child(2) .audience-portrait img { transform: rotate(-4deg); }
 .audience-card:nth-child(3) .audience-portrait { transform: rotate(-3deg); }
-.audience-card:nth-child(3) .audience-portrait img { transform: rotate(3deg); }
 /* Декоративные кружки вокруг портрета */
 .audience-deco {
   position: absolute;
@@ -1268,7 +1264,7 @@ async function loadData() {
               <div class="audience-portrait-wrap">
                 <span class="audience-deco audience-deco-1"></span>
                 <span class="audience-deco audience-deco-2"></span>
-                <div class="audience-portrait"><img src="${it.image}" alt="${it.title || ''}" loading="lazy"></div>
+                <div class="audience-portrait"><img src="${it.image}" alt="${it.title || ''}" loading="lazy"${it.objectPosition ? ` style="object-position:${it.objectPosition}"` : ''}></div>
               </div>
             ` : ''}
             <h3 class="audience-card-title">${it.title || ''}</h3>
