@@ -218,6 +218,11 @@
       .collage-item.bottom-right{width:140px;height:150px;right:5%;}
     }
 
+    /* SOCHI SHOWCASE */
+    .sochi-showcase{display:flex;flex-direction:column;align-items:center;}
+    .sochi-showcase-title{font-family:var(--font-body);font-size:clamp(20px,3vw,28px);font-weight:700;color:var(--brand-peach);text-align:center;line-height:1.3;margin-bottom:32px;max-width:700px;}
+    #sochi-showcase-carousel{margin:0 auto;}
+
     /* JURY TEAM CAROUSEL */
     .jury-team-track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:32px 4px 24px;margin:0 -4px;scrollbar-width:none;align-items:stretch;}
     .jury-team-track::-webkit-scrollbar{display:none;}
@@ -849,6 +854,12 @@
         <div class="collage-item top-center egg-inv">
           <img src="https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/vyezd/more_serdce.jpeg" alt="Море с сердцем">
         </div>
+      </div>
+
+      <!-- SOCHI SHOWCASE — рендерится из data.sochi_showcase -->
+      <div class="sochi-showcase" id="sochi-showcase" style="display:none;margin-top:64px;">
+        <h3 class="sochi-showcase-title" id="sochi-showcase-title"></h3>
+        <div class="carousel-wrap" id="sochi-showcase-carousel"></div>
       </div>
     </div>
   </div>
@@ -1561,6 +1572,104 @@ async function loadData() {
     stagesIntro.textContent = data.stages_intro.intro;
   }
 
+  // Рендерит карусель видео в готовый контейнер .carousel-wrap. Возвращает контейнер.
+  function buildVideoCarousel(videos, container, idSuffix) {
+    container = container || document.createElement('div');
+    container.classList.add('carousel-wrap');
+
+    const track = document.createElement('div');
+    track.className = 'carousel-track';
+    track.id = `carousel-${idSuffix}`;
+
+    videos.forEach(video => {
+      const videoCard = document.createElement('div');
+      videoCard.className = 'video-card';
+      videoCard.innerHTML = `<video loop playsinline preload="metadata"><source src="${video}#t=0.1" type="video/mp4"></video>`;
+      const videoEl = videoCard.querySelector('video');
+      generateVideoThumbnail(video).then(posterUrl => { if (posterUrl) videoEl.poster = posterUrl; });
+      videoCard.addEventListener('click', () => {
+        if (videoEl.paused) {
+          track.querySelectorAll('video').forEach(v => {
+            if (v !== videoEl) { v.pause(); v.parentElement.classList.remove('playing'); }
+          });
+          videoEl.muted = false;
+          videoEl.play().then(() => videoCard.classList.add('playing')).catch(() => {
+            videoEl.muted = true;
+            videoEl.play().then(() => videoCard.classList.add('playing')).catch(() => {});
+          });
+        } else {
+          videoEl.pause();
+          videoCard.classList.remove('playing');
+        }
+      });
+      track.appendChild(videoCard);
+    });
+
+    const scrollObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+          const v = entry.target.querySelector('video');
+          if (v && !v.paused) { v.pause(); entry.target.classList.remove('playing'); }
+        }
+      });
+    }, { root: track, threshold: 0.6 });
+    track.querySelectorAll('.video-card').forEach(c => scrollObserver.observe(c));
+
+    const nav = document.createElement('div');
+    nav.className = 'carousel-nav';
+    const prevBtn = document.createElement('button');
+    prevBtn.innerHTML = '◀';
+    const progress = document.createElement('div');
+    progress.className = 'carousel-progress';
+    videos.forEach(() => {
+      const seg = document.createElement('div');
+      seg.className = 'seg';
+      progress.appendChild(seg);
+    });
+    const nextBtn = document.createElement('button');
+    nextBtn.innerHTML = '▶';
+
+    const setActive = i => {
+      progress.querySelectorAll('.seg').forEach((s, si) => s.classList.toggle('active', si === i));
+    };
+    const currentIndex = () => {
+      const cards = track.querySelectorAll('.video-card');
+      if (!cards.length) return 0;
+      return Math.round(track.scrollLeft / cards[0].offsetWidth);
+    };
+    prevBtn.onclick = () => {
+      const cards = track.querySelectorAll('.video-card');
+      const i = Math.max(0, currentIndex() - 1);
+      cards[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+    };
+    nextBtn.onclick = () => {
+      const cards = track.querySelectorAll('.video-card');
+      const i = Math.min(cards.length - 1, currentIndex() + 1);
+      cards[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+    };
+    track.addEventListener('scroll', () => setActive(currentIndex()));
+    setActive(0);
+
+    nav.appendChild(prevBtn);
+    nav.appendChild(progress);
+    nav.appendChild(nextBtn);
+    container.appendChild(track);
+    container.appendChild(nav);
+    return container;
+  }
+
+  // SOCHI SHOWCASE — карусель с видео-визитками из Сочи под коллажем выезда
+  if (data.sochi_showcase && Array.isArray(data.sochi_showcase.videos) && data.sochi_showcase.videos.length) {
+    const sec = document.getElementById('sochi-showcase');
+    const ttl = document.getElementById('sochi-showcase-title');
+    const car = document.getElementById('sochi-showcase-carousel');
+    if (sec && ttl && car) {
+      ttl.textContent = data.sochi_showcase.title || '';
+      buildVideoCarousel(data.sochi_showcase.videos, car, 'sochi');
+      sec.style.display = 'flex';
+    }
+  }
+
   data.stages.forEach((stage, idx) => {
     const row = document.createElement('div');
     row.className = `stage-row ${stage.position === 'right' ? 'reverse' : ''}`;
@@ -1590,111 +1699,24 @@ async function loadData() {
       <p class="stage-desc">${stage.description}</p>
     `;
 
-    // Video carousel column
-    const carouselCol = document.createElement('div');
-    carouselCol.className = 'carousel-wrap';
+    const hasVideos = Array.isArray(stage.videos) && stage.videos.length > 0;
 
-    const track = document.createElement('div');
-    track.className = 'carousel-track';
-    track.id = `carousel-${idx}`;
-
-    stage.videos.forEach((video, videoIdx) => {
-      const videoCard = document.createElement('div');
-      videoCard.className = 'video-card';
-      // Создаём видео элемент без обложки (загрузится асинхронно). Звук включаем при клике.
-      videoCard.innerHTML = `<video loop playsinline preload="metadata"><source src="${video}#t=0.1" type="video/mp4"></video>`;
-
-      const videoEl = videoCard.querySelector('video');
-
-      // Асинхронно генерируем обложку и устанавливаем её
-      generateVideoThumbnail(video).then(posterUrl => {
-        if (posterUrl) {
-          videoEl.poster = posterUrl;
-        }
-      });
-
-      videoCard.addEventListener('click', () => {
-        if (videoEl.paused) {
-          track.querySelectorAll('video').forEach(v => {
-            if (v !== videoEl) { v.pause(); v.parentElement.classList.remove('playing'); }
-          });
-          videoEl.muted = false;
-          videoEl.play().then(() => videoCard.classList.add('playing')).catch(() => {
-            // Если браузер заблокировал autoplay со звуком — играем без звука
-            videoEl.muted = true;
-            videoEl.play().then(() => videoCard.classList.add('playing')).catch(() => {});
-          });
-        } else {
-          videoEl.pause();
-          videoCard.classList.remove('playing');
-        }
-      });
-
-      track.appendChild(videoCard);
-    });
-
-    // Pause cards that scroll out of the track's horizontal viewport
-    const scrollObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) {
-          const v = entry.target.querySelector('video');
-          if (v && !v.paused) { v.pause(); entry.target.classList.remove('playing'); }
-        }
-      });
-    }, { root: track, threshold: 0.6 });
-    track.querySelectorAll('.video-card').forEach(c => scrollObserver.observe(c));
-
-    // Carousel navigation: prev — progress — next
-    const nav = document.createElement('div');
-    nav.className = 'carousel-nav';
-    const prevBtn = document.createElement('button');
-    prevBtn.innerHTML = '◀';
-    const progress = document.createElement('div');
-    progress.className = 'carousel-progress';
-    stage.videos.forEach(() => {
-      const seg = document.createElement('div');
-      seg.className = 'seg';
-      progress.appendChild(seg);
-    });
-    const nextBtn = document.createElement('button');
-    nextBtn.innerHTML = '▶';
-
-    const setActive = (i) => {
-      const segs = progress.querySelectorAll('.seg');
-      segs.forEach((s, si) => s.classList.toggle('active', si === i));
-    };
-    const currentIndex = () => {
-      const cards = track.querySelectorAll('.video-card');
-      if (!cards.length) return 0;
-      const cardW = cards[0].offsetWidth;
-      return Math.round(track.scrollLeft / cardW);
-    };
-    prevBtn.onclick = () => {
-      const cards = track.querySelectorAll('.video-card');
-      const i = Math.max(0, currentIndex() - 1);
-      cards[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-    };
-    nextBtn.onclick = () => {
-      const cards = track.querySelectorAll('.video-card');
-      const i = Math.min(cards.length - 1, currentIndex() + 1);
-      cards[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-    };
-    track.addEventListener('scroll', () => setActive(currentIndex()));
-    setActive(0);
-
-    nav.appendChild(prevBtn);
-    nav.appendChild(progress);
-    nav.appendChild(nextBtn);
-
-    carouselCol.appendChild(track);
-    carouselCol.appendChild(nav);
-
-    // Build row
-    if (stage.position === 'left') {
-      row.appendChild(textCol);
-      row.appendChild(carouselCol);
+    if (hasVideos) {
+      const carouselCol = buildVideoCarousel(stage.videos, null, String(idx));
+      if (stage.position === 'left') {
+        row.appendChild(textCol);
+        row.appendChild(carouselCol);
+      } else {
+        row.appendChild(carouselCol);
+        row.appendChild(textCol);
+      }
     } else {
-      row.appendChild(carouselCol);
+      // Этап без видео — текст занимает всю ширину строки, центрируется
+      row.style.gridTemplateColumns = '1fr';
+      row.style.maxWidth = '720px';
+      row.style.margin = '0 auto 80px';
+      textCol.style.alignItems = 'center';
+      textCol.style.textAlign = 'center';
       row.appendChild(textCol);
     }
 
