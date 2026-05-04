@@ -41,20 +41,20 @@
         "image": "/img/Slon.jpg",
         "objectFit": "contain",
         "objectPosition": "center 55%",
-        "zoom": 1.5,
+        "zoom": 2.0,
         "offsetX": 0,
-        "offsetY": 0,
+        "offsetY": -30,
         "borderRadius": "50% 50% 50% 50% / 55% 55% 45% 45%"
       },
       {
-        "title": "Творческая личность, загнанная в рамки серьёзности",
-        "description": "У вас есть таланты, аутентичность и «капелька безумия» — но всё это потерялось под слоями «надо быть серьёзным», «надо демонстрировать кейсы».",
+        "title": "Творческая личность, загнанная в рамки",
+        "description": "У вас есть таланты, аутентичность и «капелька безумия» — но всё потерялось под слоями «надо быть серьёзным», «надо демонстрировать кейсы».",
         "image": "/img/freken-bok.JPG",
         "objectFit": "contain",
         "objectPosition": "center",
         "zoom": 1.2,
-        "offsetX": 0,
-        "offsetY": 0,
+        "offsetX": 15,
+        "offsetY": -30,
         "borderRadius": "55% 55% 45% 45% / 50% 50% 50% 50%"
       },
       {
@@ -63,10 +63,10 @@
         "image": "/img/ya_v_potoke_momente_resurse.jpeg",
         "objectFit": "contain",
         "objectPosition": "center",
-        "zoom": 1.2,
+        "zoom": 1.1,
         "offsetX": 0,
-        "offsetY": 0,
-        "borderRadius": "100% 60% 55% 55% / 40% 40% 40% 40%"
+        "offsetY": -30,
+        "borderRadius": "120% 100% 100% 100% / 120% 100% 100% 100%"
       }
     ]
   },
