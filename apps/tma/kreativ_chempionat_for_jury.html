@@ -139,8 +139,7 @@
     /* STAGES WITH VIDEO CAROUSEL */
     .stages-container{margin-top:48px;}
     .stage-row{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:80px;position:relative;}
-    .stage-row.reverse{direction:rtl;}
-    .stage-row.reverse > *{direction:ltr;}
+    .stage-image{display:block;width:100%;max-width:560px;margin:32px auto 0;border-radius:20px;}
 
     .stage-text{display:flex;flex-direction:column;}
     .stage-number{font-size:72px;font-weight:900;color:var(--brand-peach);line-height:.8;margin-bottom:8px;}
@@ -334,7 +333,6 @@
       .card{padding:20px;}
       .benefits li{font-size:13px;padding:10px 0 10px 28px;}
       .stage-row{display:flex;flex-direction:column;gap:32px;margin-bottom:60px;}
-      .stage-row.reverse{direction:ltr;}
       .stage-row .stage-text{order:1;}
       .stage-row .carousel-wrap{order:2;}
       .carousel-wrap{max-width:240px;}
@@ -1672,7 +1670,7 @@ async function loadData() {
 
   data.stages.forEach((stage, idx) => {
     const row = document.createElement('div');
-    row.className = `stage-row ${stage.position === 'right' ? 'reverse' : ''}`;
+    row.className = 'stage-row';
 
     // Connector arrow (не для последней строки)
     const connector = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -1718,6 +1716,14 @@ async function loadData() {
       textCol.style.alignItems = 'center';
       textCol.style.textAlign = 'center';
       row.appendChild(textCol);
+      if (stage.image) {
+        const img = document.createElement('img');
+        img.src = stage.image;
+        img.alt = stage.title || '';
+        img.className = 'stage-image';
+        img.loading = 'lazy';
+        row.appendChild(img);
+      }
     }
 
     if (idx < data.stages.length - 1) {
