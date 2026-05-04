@@ -230,9 +230,15 @@
     .jury-team-egg img{width:100%;height:100%;object-fit:cover;object-position:center top;transform:rotate(4deg) scale(1.1);}
     .jury-team-name{font-size:16px;font-weight:700;color:var(--brand-peach);margin-bottom:6px;line-height:1.25;}
     .jury-team-title{font-size:12px;color:var(--text-light);font-weight:600;line-height:1.4;margin-bottom:14px;padding:0 4px;}
-    .jury-team-regalia{list-style:none;text-align:left;font-size:11px;color:var(--text-muted);line-height:1.5;width:100%;}
+    .jury-team-regalia-wrap{position:relative;width:100%;}
+    .jury-team-regalia{list-style:none;text-align:left;font-size:11px;color:var(--text-muted);line-height:1.5;width:100%;max-height:180px;overflow:hidden;transition:max-height .5s ease;}
+    .jury-team-regalia.expanded{max-height:2000px;}
     .jury-team-regalia li{padding:5px 0 5px 14px;position:relative;}
     .jury-team-regalia li::before{content:'◆';position:absolute;left:0;color:var(--brand-peach);font-size:8px;top:7px;}
+    .jury-team-fade{position:absolute;bottom:0;left:0;right:0;height:54px;background:linear-gradient(to bottom,transparent,var(--bg-dark) 85%);pointer-events:none;transition:opacity .3s ease;}
+    .jury-team-fade.hidden{opacity:0;}
+    .jury-team-more{margin-top:14px;background:none;border:1px solid rgba(255,207,164,.35);color:var(--brand-peach);border-radius:100px;padding:7px 16px;font-size:10px;cursor:pointer;font-family:var(--font-body);letter-spacing:.08em;text-transform:uppercase;font-weight:700;transition:all .2s ease;align-self:center;}
+    .jury-team-more:hover{background:rgba(255,207,164,.08);border-color:var(--brand-peach);transform:translateY(-1px);}
 
     .jury-team-nav{display:flex;align-items:center;gap:16px;justify-content:center;margin-top:24px;}
     .jury-team-nav button{padding:4px 8px;border:none;background:none;color:var(--brand-peach);font-size:18px;cursor:pointer;transition:opacity .2s;}
@@ -248,15 +254,19 @@
 
     /* PARTNERS */
     .partners-grid{display:flex;flex-wrap:wrap;gap:40px 32px;justify-content:center;align-items:flex-start;margin-top:48px;}
-    .partner-card{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:220px;}
-    .partner-circle{width:148px;height:148px;border-radius:50%;padding:3px;background:linear-gradient(135deg,var(--brand-purple) 0%,var(--brand-pink) 60%,var(--brand-pink-light) 100%);margin-bottom:18px;transition:transform .3s ease,box-shadow .3s ease;box-shadow:0 0 0 0 rgba(200,75,158,0);position:relative;}
+    .partner-card{display:flex;flex-direction:column;align-items:center;text-align:center;}
+    .partner-card.partner-card-circle{max-width:200px;}
+    .partner-card.partner-card-pill{max-width:280px;}
+    .partner-logo-slot{height:148px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+
+    .partner-circle{width:148px;height:148px;border-radius:50%;padding:3px;background:linear-gradient(135deg,var(--brand-purple) 0%,var(--brand-pink) 60%,var(--brand-pink-light) 100%);transition:transform .3s ease,box-shadow .3s ease;position:relative;}
     .partner-circle::before{content:'';position:absolute;inset:-6px;border-radius:50%;background:radial-gradient(circle,rgba(192,132,252,.25),transparent 70%);z-index:-1;opacity:0;transition:opacity .3s;}
     .partner-circle:hover{transform:translateY(-4px);box-shadow:0 0 32px rgba(200,75,158,.35);}
     .partner-circle:hover::before{opacity:1;}
     .partner-circle-inner{width:100%;height:100%;border-radius:50%;background:var(--bg-dark);display:flex;align-items:center;justify-content:center;overflow:hidden;}
     .partner-circle-inner img{width:88%;height:88%;object-fit:contain;}
 
-    .partner-pill{width:300px;height:130px;border-radius:80px;padding:3px;background:linear-gradient(135deg,var(--brand-purple) 0%,var(--brand-pink) 60%,var(--brand-pink-light) 100%);margin-bottom:18px;transition:transform .3s ease,box-shadow .3s ease;position:relative;}
+    .partner-pill{width:260px;height:148px;border-radius:80px;padding:3px;background:linear-gradient(135deg,var(--brand-purple) 0%,var(--brand-pink) 60%,var(--brand-pink-light) 100%);transition:transform .3s ease,box-shadow .3s ease;position:relative;}
     .partner-pill::before{content:'';position:absolute;inset:-6px;border-radius:90px;background:radial-gradient(ellipse,rgba(192,132,252,.25),transparent 70%);z-index:-1;opacity:0;transition:opacity .3s;}
     .partner-pill:hover{transform:translateY(-4px);box-shadow:0 0 32px rgba(200,75,158,.35);}
     .partner-pill:hover::before{opacity:1;}
@@ -264,13 +274,16 @@
     .partner-pill-inner img{max-width:100%;max-height:100%;object-fit:contain;}
 
     .partner-name{font-size:14px;font-weight:700;color:var(--text-light);margin-bottom:6px;letter-spacing:.02em;}
-    .partner-desc{font-size:12px;color:var(--text-muted);line-height:1.5;}
+    .partner-desc{font-size:12px;color:var(--text-muted);line-height:1.5;max-width:200px;}
 
     @media(max-width:768px){
-      .partners-grid{gap:32px 24px;}
+      .partners-grid{gap:28px 20px;}
+      .partner-logo-slot{height:120px;margin-bottom:14px;}
       .partner-circle{width:120px;height:120px;}
-      .partner-pill{width:260px;height:110px;}
-      .partner-pill-inner{padding:14px 22px;}
+      .partner-pill{width:220px;height:120px;}
+      .partner-pill-inner{padding:12px 20px;border-radius:70px;}
+      .partner-card.partner-card-circle{max-width:160px;}
+      .partner-card.partner-card-pill{max-width:240px;}
     }
 
     /* FOOTER */
@@ -1415,7 +1428,9 @@ async function loadData() {
       data.jury_team.members.forEach((person, i) => {
         const card = document.createElement('div');
         card.className = 'jury-team-card';
-        const regalia = (person.achievements || []).map(a => `<li>${a}</li>`).join('');
+        const achievements = person.achievements || [];
+        const regalia = achievements.map(a => `<li>${a}</li>`).join('');
+        const totalCount = achievements.length;
         card.innerHTML = `
           <div class="jury-team-egg-wrap">
             <span class="jury-team-egg-deco jury-team-egg-deco-1"></span>
@@ -1424,8 +1439,35 @@ async function loadData() {
           </div>
           <div class="jury-team-name">${person.name}</div>
           <div class="jury-team-title">${person.title || ''}</div>
-          <ul class="jury-team-regalia">${regalia}</ul>
+          <div class="jury-team-regalia-wrap">
+            <ul class="jury-team-regalia">${regalia}</ul>
+            <div class="jury-team-fade"></div>
+          </div>
+          <button class="jury-team-more" type="button">Все регалии (${totalCount})</button>
         `;
+
+        const list = card.querySelector('.jury-team-regalia');
+        const fade = card.querySelector('.jury-team-fade');
+        const btn = card.querySelector('.jury-team-more');
+
+        // Скрываем кнопку и затухание, если контент помещается без обрезки
+        const checkOverflow = () => {
+          if (list.scrollHeight <= list.clientHeight + 2) {
+            btn.style.display = 'none';
+            fade.classList.add('hidden');
+          }
+        };
+        // Дожидаемся загрузки шрифта/изображений
+        if (document.readyState === 'complete') checkOverflow();
+        else window.addEventListener('load', checkOverflow);
+        setTimeout(checkOverflow, 300);
+
+        btn.addEventListener('click', () => {
+          const isExpanded = list.classList.toggle('expanded');
+          fade.classList.toggle('hidden', isExpanded);
+          btn.textContent = isExpanded ? 'Свернуть' : `Все регалии (${totalCount})`;
+        });
+
         jtTrack.appendChild(card);
         const seg = document.createElement('div');
         seg.className = 'seg' + (i === 0 ? ' active' : '');
@@ -1474,13 +1516,15 @@ async function loadData() {
     if (grid) {
       data.partners.items.forEach(p => {
         const card = document.createElement('div');
-        card.className = 'partner-card';
         const isPill = p.shape === 'pill';
+        card.className = 'partner-card ' + (isPill ? 'partner-card-pill' : 'partner-card-circle');
         const wrapClass = isPill ? 'partner-pill' : 'partner-circle';
         const innerClass = isPill ? 'partner-pill-inner' : 'partner-circle-inner';
         card.innerHTML = `
-          <div class="${wrapClass}">
-            <div class="${innerClass}"><img src="${p.logo}" alt="${p.name}" loading="lazy"></div>
+          <div class="partner-logo-slot">
+            <div class="${wrapClass}">
+              <div class="${innerClass}"><img src="${p.logo}" alt="${p.name}" loading="lazy"></div>
+            </div>
           </div>
           <div class="partner-name">${p.name}</div>
           <div class="partner-desc">${p.description || ''}</div>
