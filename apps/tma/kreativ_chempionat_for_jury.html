@@ -480,20 +480,73 @@
 .audience-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 48px;
+  gap: 32px;
+  margin-top: 64px;
+  align-items: stretch;
 }
 .audience-card {
-  padding: 32px 28px;
-  background: linear-gradient(135deg, rgba(255,207,164,.08), rgba(192,132,252,.05));
+  padding: 36px 28px 32px;
+  background: linear-gradient(135deg, rgba(255,207,164,.06), rgba(192,132,252,.04));
   border: 2px solid rgba(255,207,164,.2);
-  border-radius: 20px;
+  border-radius: 24px;
   transition: transform 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 .audience-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(255,207,164,.45);
+  transform: translateY(-6px);
+  border-color: rgba(255,207,164,.5);
 }
+.audience-portrait-wrap {
+  position: relative;
+  width: 200px;
+  height: 260px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.audience-portrait {
+  width: 100%;
+  height: 100%;
+  border-radius: 50% 50% 50% 50% / 55% 55% 45% 45%;
+  border: 2px solid rgba(255,207,164,.3);
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 12px 40px rgba(0,0,0,.35);
+}
+.audience-portrait img {
+  width: 130%;
+  height: 130%;
+  object-fit: cover;
+  object-position: 50% 25%;
+  position: absolute;
+  top: -15%;
+  left: -15%;
+}
+/* Лёгкий разворот каждой карточки в свою сторону для динамики */
+.audience-card:nth-child(1) .audience-portrait { transform: rotate(-6deg); }
+.audience-card:nth-child(1) .audience-portrait img { transform: rotate(6deg); }
+.audience-card:nth-child(2) .audience-portrait { transform: rotate(4deg); }
+.audience-card:nth-child(2) .audience-portrait img { transform: rotate(-4deg); }
+.audience-card:nth-child(3) .audience-portrait { transform: rotate(-3deg); }
+.audience-card:nth-child(3) .audience-portrait img { transform: rotate(3deg); }
+/* Декоративные кружки вокруг портрета */
+.audience-deco {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+.audience-card:nth-child(1) .audience-deco-1 { width: 56px; height: 56px; background: rgba(255,207,164,.22); top: -12px; right: -14px; }
+.audience-card:nth-child(1) .audience-deco-2 { width: 36px; height: 36px; border: 1.5px solid rgba(192,132,252,.45); bottom: 16px; left: -18px; }
+.audience-card:nth-child(2) .audience-deco-1 { width: 48px; height: 48px; background: rgba(192,132,252,.22); top: -10px; left: -16px; }
+.audience-card:nth-child(2) .audience-deco-2 { width: 32px; height: 32px; background: rgba(200,75,158,.28); bottom: 18px; right: -14px; }
+.audience-card:nth-child(3) .audience-deco-1 { width: 50px; height: 50px; border: 1.5px solid rgba(255,207,164,.45); top: -14px; right: -10px; }
+.audience-card:nth-child(3) .audience-deco-2 { width: 38px; height: 38px; background: rgba(192,132,252,.22); bottom: 12px; left: -20px; }
 .audience-card-title {
   font-size: 18px;
   font-weight: 700;
@@ -508,8 +561,9 @@
   margin: 0;
 }
 @media (max-width:900px) {
-  .audience-grid { grid-template-columns: 1fr; gap: 16px; }
-  .audience-card { padding: 24px 20px; }
+  .audience-grid { grid-template-columns: 1fr; gap: 24px; margin-top: 40px; }
+  .audience-card { padding: 28px 22px; }
+  .audience-portrait-wrap { width: 180px; height: 230px; margin-bottom: 22px; }
   .audience-card-title { font-size: 17px; }
   .audience-card-desc { font-size: 14px; }
 }
@@ -1210,6 +1264,13 @@ async function loadData() {
       audItems.innerHTML = data.audience.items
         .map(it => `
           <div class="audience-card">
+            ${it.image ? `
+              <div class="audience-portrait-wrap">
+                <span class="audience-deco audience-deco-1"></span>
+                <span class="audience-deco audience-deco-2"></span>
+                <div class="audience-portrait"><img src="${it.image}" alt="${it.title || ''}" loading="lazy"></div>
+              </div>
+            ` : ''}
             <h3 class="audience-card-title">${it.title || ''}</h3>
             <p class="audience-card-desc">${it.description || ''}</p>
           </div>
