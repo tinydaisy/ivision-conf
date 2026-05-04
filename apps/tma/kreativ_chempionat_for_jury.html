@@ -384,6 +384,42 @@
   </h2>
 </div>
 
+<!-- GOAL — рендерится из data.goal -->
+<section class="sec dark" id="goal-sec">
+  <div class="container">
+    <div class="section-label" id="goal-label"></div>
+    <h2 class="h2" id="goal-title"></h2>
+    <ul class="goal-list" id="goal-items"></ul>
+  </div>
+</section>
+
+<style>
+.goal-list { list-style: none; padding: 0; margin: 32px 0 0 0; max-width: 900px; }
+.goal-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--text-light);
+  padding: 18px 22px;
+  margin-bottom: 14px;
+  background: rgba(255,207,164,.05);
+  border-left: 3px solid var(--brand-peach);
+  border-radius: 10px;
+}
+.goal-list .goal-arrow {
+  color: var(--brand-peach);
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.3;
+  flex-shrink: 0;
+}
+@media (max-width:768px) {
+  .goal-list li { font-size: 15px; padding: 14px 16px; }
+}
+</style>
+
 <!-- MANIFEST -->
 <!-- MISSION -->
 <section class="sec dark" id="mission-sec">
@@ -421,7 +457,7 @@
       <!-- RIGHT COLUMN - TEXT -->
       <div class="mission-content">
         <div class="section-label">Суть чемпионата</div>
-        <h2 class="h2">Концепт Чемпионата</h2>
+        <h2 class="h2" id="mission-title">Концепт Чемпионата</h2>
         <p class="desc" id="mission-intro">В мире, где можно сгенерировать почти всё - ценность приобретает то, что невозможно воспроизвести:</p>
         <div class="values-grid" id="values-container"></div>
         <p class="desc" style="margin-bottom:40px;">Что дать рынку после двух крайностей — «успешного успеха» и «парада публичного нытья»? Чистую созидательную энергию <span id="vision-highlight" style="color:var(--brand-pink-light);"></span></p>
@@ -430,6 +466,54 @@
     </div>
   </div>
 </section>
+
+<!-- AUDIENCE — рендерится из data.audience -->
+<section class="sec dark" id="audience-sec">
+  <div class="container">
+    <div class="section-label" id="audience-label"></div>
+    <h2 class="h2" id="audience-title"></h2>
+    <div class="audience-grid" id="audience-items"></div>
+  </div>
+</section>
+
+<style>
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.audience-card {
+  padding: 32px 28px;
+  background: linear-gradient(135deg, rgba(255,207,164,.08), rgba(192,132,252,.05));
+  border: 2px solid rgba(255,207,164,.2);
+  border-radius: 20px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.audience-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,207,164,.45);
+}
+.audience-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--brand-peach);
+  margin: 0 0 14px 0;
+  line-height: 1.35;
+}
+.audience-card-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-light);
+  margin: 0;
+}
+@media (max-width:900px) {
+  .audience-grid { grid-template-columns: 1fr; gap: 16px; }
+  .audience-card { padding: 24px 20px; }
+  .audience-card-title { font-size: 17px; }
+  .audience-card-desc { font-size: 14px; }
+}
+</style>
 
 <!-- STATISTICS / ЦИФРЫ ЧЕМПИОНАТА -->
 <section class="sec dark">
@@ -1086,6 +1170,26 @@ async function loadData() {
   document.querySelector('.hero-h1').innerHTML = `ЧЕМПИОНАТ<br><span class="hero-h1-line2"><span class="hero-h1-brand">iViSiON:</span> <span class="hero-h1-accent">Ж.И.В.У.</span></span>`;
   document.querySelector('.hero-sub').innerHTML = data.championship.tagline.split(', ').join(' <span style="color:var(--brand-peach);">·</span> ');
 
+  // GOAL — секция "Цель Чемпионата"
+  if (data.goal) {
+    const goalLabel = document.getElementById('goal-label');
+    const goalTitle = document.getElementById('goal-title');
+    const goalItems = document.getElementById('goal-items');
+    if (goalLabel) goalLabel.textContent = data.goal.label || '';
+    if (goalTitle) goalTitle.textContent = data.goal.title || '';
+    if (goalItems && Array.isArray(data.goal.items)) {
+      goalItems.innerHTML = data.goal.items
+        .map(item => `<li><span class="goal-arrow">→</span> <span>${item}</span></li>`)
+        .join('');
+    }
+  }
+
+  // Mission title (заголовок раздела "Концепт/Почему мы это делаем")
+  const missionTitle = document.getElementById('mission-title');
+  if (missionTitle && data.mission && data.mission.title) {
+    missionTitle.textContent = data.mission.title;
+  }
+
   // Mission values
   const valuesContainer = document.getElementById('values-container');
   data.mission.values.forEach(value => {
@@ -1094,6 +1198,25 @@ async function loadData() {
     pill.textContent = value;
     valuesContainer.appendChild(pill);
   });
+
+  // AUDIENCE — секция "ДЛЯ КОГО?"
+  if (data.audience) {
+    const audLabel = document.getElementById('audience-label');
+    const audTitle = document.getElementById('audience-title');
+    const audItems = document.getElementById('audience-items');
+    if (audLabel) audLabel.textContent = data.audience.label || '';
+    if (audTitle) audTitle.textContent = data.audience.title || '';
+    if (audItems && Array.isArray(data.audience.items)) {
+      audItems.innerHTML = data.audience.items
+        .map(it => `
+          <div class="audience-card">
+            <h3 class="audience-card-title">${it.title || ''}</h3>
+            <p class="audience-card-desc">${it.description || ''}</p>
+          </div>
+        `)
+        .join('');
+    }
+  }
 
   // Mission vision text
   const visionHighlight = document.getElementById('vision-highlight');
