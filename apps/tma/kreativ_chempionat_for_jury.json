@@ -45,13 +45,15 @@
         "title": "Творческая личность, загнанная в рамки серьёзности",
         "description": "У вас есть таланты, аутентичность и «капелька безумия» — но всё это потерялось под слоями «надо быть серьёзным», «надо демонстрировать кейсы».",
         "image": "/img/freken-bok.JPG",
-        "objectPosition": "60% 40%"
+        "objectFit": "contain",
+        "objectPosition": "center"
       },
       {
         "title": "Системщик, которому надоело быть душным",
         "description": "Вся энергия уходит на выстраивание процессов, систем и воронок — а до лёгкости, творчества и кайфа от продаж руки так и не доходят.",
         "image": "/img/ya_v_potoke_momente_resurse.jpeg",
-        "objectPosition": "center 60%"
+        "objectFit": "contain",
+        "objectPosition": "center"
       }
     ]
   },
