@@ -402,21 +402,42 @@
   font-size: 17px;
   line-height: 1.55;
   color: var(--text-light);
-  padding: 18px 22px;
-  margin-bottom: 14px;
-  background: rgba(255,207,164,.05);
-  border-left: 3px solid var(--brand-peach);
-  border-radius: 10px;
+  padding: 22px 26px;
+  margin-bottom: 16px;
+  border: 2px solid;
+  border-left-width: 4px;
+  border-radius: 14px;
+  transition: transform .25s ease;
 }
+.goal-list li:hover { transform: translateX(4px); }
 .goal-list .goal-arrow {
-  color: var(--brand-peach);
   font-weight: 700;
   font-size: 22px;
   line-height: 1.3;
   flex-shrink: 0;
 }
+
+/* Разноцветные плашки для каждого пункта цели */
+.goal-list li:nth-child(1) {
+  background: linear-gradient(135deg, rgba(255,207,164,.14), rgba(255,207,164,.04));
+  border-color: rgba(255,207,164,.35);
+}
+.goal-list li:nth-child(1) .goal-arrow { color: var(--brand-peach); }
+
+.goal-list li:nth-child(2) {
+  background: linear-gradient(135deg, rgba(192,132,252,.14), rgba(192,132,252,.04));
+  border-color: rgba(192,132,252,.35);
+}
+.goal-list li:nth-child(2) .goal-arrow { color: var(--brand-purple); }
+
+.goal-list li:nth-child(3) {
+  background: linear-gradient(135deg, rgba(200,75,158,.14), rgba(200,75,158,.04));
+  border-color: rgba(200,75,158,.35);
+}
+.goal-list li:nth-child(3) .goal-arrow { color: var(--brand-pink); }
+
 @media (max-width:768px) {
-  .goal-list li { font-size: 15px; padding: 14px 16px; }
+  .goal-list li { font-size: 15px; padding: 16px 18px; }
 }
 </style>
 
