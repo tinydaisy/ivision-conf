@@ -1710,10 +1710,12 @@ async function loadData() {
     } else {
       // Этап без видео — текст занимает всю ширину строки, центрируется
       row.style.gridTemplateColumns = '1fr';
-      row.style.maxWidth = '720px';
+      row.style.maxWidth = '900px';
       row.style.margin = '0 auto 80px';
       textCol.style.alignItems = 'center';
       textCol.style.textAlign = 'center';
+      const descEl = textCol.querySelector('.stage-desc');
+      if (descEl) descEl.style.maxWidth = '820px';
       row.appendChild(textCol);
       if (stage.image) {
         const img = document.createElement('img');
