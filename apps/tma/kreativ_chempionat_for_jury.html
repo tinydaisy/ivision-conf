@@ -221,13 +221,12 @@
     .medals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:100%;margin:48px auto 0;align-items:stretch;}
     .medal-card{display:flex;flex-direction:column;align-items:center;text-align:center;padding:8px 4px;}
     .medal-place{font-family:var(--font-body);font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--brand-peach);margin-top:8px;margin-bottom:18px;}
-    .medal-stage-line{font-size:14px;color:var(--text-light);line-height:1.55;font-weight:500;margin-bottom:18px;max-width:280px;flex:1;display:flex;align-items:center;justify-content:center;}
+    .medal-stage-line{font-size:14px;color:var(--text-light);line-height:1.55;font-weight:500;margin-bottom:18px;max-width:280px;flex:1;text-align:center;}
     .medal-stage-grand{color:var(--brand-peach);font-weight:700;}
     .medal-fund{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--brand-peach);padding:8px 14px;border:1px solid rgba(255,207,164,.4);border-radius:100px;background:rgba(255,207,164,.05);letter-spacing:.04em;margin-top:auto;}
 
     @media(max-width:768px){
       .medals-grid{grid-template-columns:1fr;gap:28px;align-items:start;}
-      .medal-stage-line{flex:0 0 auto;}
       .medal-fund{margin-top:0;}
     }
 
