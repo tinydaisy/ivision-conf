@@ -218,23 +218,17 @@
     }
 
     /* MEDAL CARDS — нумерованные призы под медалями (место × сцена × фонд) */
-    .medals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:100%;margin:48px auto 0;align-items:flex-start;}
-    .medal-card{display:flex;flex-direction:column;align-items:center;text-align:center;padding:24px 16px;background:linear-gradient(180deg,rgba(255,207,164,.04) 0%,rgba(17,24,39,.5) 35%);border:1px solid rgba(255,207,164,.12);border-radius:20px;transition:transform .3s ease,border-color .3s ease;}
-    .medal-card:hover{transform:translateY(-4px);border-color:rgba(255,207,164,.3);}
-    .medal-place{font-family:var(--font-body);font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--brand-peach);margin-top:4px;margin-bottom:18px;}
-    .medal-stage{width:100%;text-align:left;margin-bottom:18px;flex:1;}
-    .medal-stage-title{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-peach);font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
-    .medal-stage-title::before{content:'◆';color:var(--brand-peach);font-size:9px;}
-    .medal-stage-text{font-size:13px;color:var(--text-light);line-height:1.55;font-weight:500;}
-    .medal-stage-platforms{margin-top:8px;list-style:none;font-size:12px;color:var(--text-muted);line-height:1.5;}
-    .medal-stage-platforms li{padding:3px 0 3px 14px;position:relative;}
-    .medal-stage-platforms li::before{content:'◇';position:absolute;left:0;color:var(--brand-peach);font-size:8px;top:5px;}
-    .medal-fund{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--brand-peach);padding:8px 14px;border:1px solid rgba(255,207,164,.4);border-radius:100px;background:rgba(255,207,164,.05);letter-spacing:.04em;}
+    .medals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:100%;margin:48px auto 0;align-items:stretch;}
+    .medal-card{display:flex;flex-direction:column;align-items:center;text-align:center;padding:8px 4px;}
+    .medal-place{font-family:var(--font-body);font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--brand-peach);margin-top:8px;margin-bottom:18px;}
+    .medal-stage-line{font-size:14px;color:var(--text-light);line-height:1.55;font-weight:500;margin-bottom:18px;max-width:280px;flex:1;display:flex;align-items:center;justify-content:center;}
+    .medal-stage-grand{color:var(--brand-peach);font-weight:700;}
+    .medal-fund{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--brand-peach);padding:8px 14px;border:1px solid rgba(255,207,164,.4);border-radius:100px;background:rgba(255,207,164,.05);letter-spacing:.04em;margin-top:auto;}
 
     @media(max-width:768px){
-      .medals-grid{grid-template-columns:1fr;gap:20px;}
-      .medal-card{padding:22px 18px;}
-      .medal-stage-text{font-size:13px;}
+      .medals-grid{grid-template-columns:1fr;gap:28px;align-items:start;}
+      .medal-stage-line{flex:0 0 auto;}
+      .medal-fund{margin-top:0;}
     }
 
     /* SOCHI SHOWCASE */
@@ -917,15 +911,7 @@
           <text x="60" y="78" font-size="42" font-weight="900" text-anchor="middle" fill="#080B12">1</text>
         </svg>
         <div class="medal-place">1 место</div>
-        <div class="medal-stage">
-          <div class="medal-stage-title">Сцена</div>
-          <div class="medal-stage-text">Пакет из 3 спикерских выступлений:</div>
-          <ul class="medal-stage-platforms">
-            <li>iViSiON-8 «Бизнес-Создатели» — 30 мин</li>
-            <li>Конференция FREEDOM</li>
-            <li>Конференция КОС</li>
-          </ul>
-        </div>
+        <div class="medal-stage-line"><span class="medal-stage-grand">Grand-Сцена:</span> Пакет из 3 спикерских выступлений (iViSiON, FREEDOM, КОС)</div>
         <span class="medal-fund">50% призового фонда</span>
       </div>
 
@@ -950,10 +936,7 @@
           <polygon points="60,30 64,42 77,42 68,49 72,61 60,54 48,61 52,49 43,42 56,42" fill="#FFB347" opacity="0.4"/>
         </svg>
         <div class="medal-place">2 место</div>
-        <div class="medal-stage">
-          <div class="medal-stage-title">Сцена</div>
-          <div class="medal-stage-text">Выступление на конференции iViSiON-8 «Бизнес-Создатели»</div>
-        </div>
+        <div class="medal-stage-line"><span class="medal-stage-grand">Big-Сцена:</span> 1 выступление на iViSiON</div>
         <span class="medal-fund">30% призового фонда</span>
       </div>
 
@@ -978,10 +961,7 @@
           <polygon points="60,30 64,42 77,42 68,49 72,61 60,54 48,61 52,49 43,42 56,42" fill="#DDB892" opacity="0.5"/>
         </svg>
         <div class="medal-place">3 место</div>
-        <div class="medal-stage">
-          <div class="medal-stage-title">Сцена</div>
-          <div class="medal-stage-text">Выступление на нетворкинге iViSiON или эфир на партнёрской площадке (FREEDOM/КОС)</div>
-        </div>
+        <div class="medal-stage-line"><span class="medal-stage-grand">Мини-Сцена:</span> 1 выступление на нетворкинге/эфире iViSiON</div>
         <span class="medal-fund">20% призового фонда</span>
       </div>
 
