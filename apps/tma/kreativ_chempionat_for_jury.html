@@ -477,7 +477,7 @@
 
       <!-- RIGHT COLUMN - TEXT -->
       <div class="mission-content">
-        <div class="section-label">Суть чемпионата</div>
+        <div class="section-label">Концепт чемпионата</div>
         <h2 class="h2" id="mission-title">Концепт Чемпионата</h2>
         <p class="desc" id="mission-intro">В мире, где можно сгенерировать почти всё - ценность приобретает то, что невозможно воспроизвести:</p>
         <div class="values-grid" id="values-container"></div>
@@ -590,7 +590,7 @@
 <section class="sec dark">
   <div class="container">
     <div class="section-label">Масштаб</div>
-    <h2 class="h2">Цифры Чемпионата</h2>
+    <h2 class="h2">Особенности Чемпионата</h2>
 
     <!-- STATS BARS -->
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-items:flex-end;margin-top:80px;margin-bottom:80px;max-width:100%;margin-left:auto;margin-right:auto;padding:0 8px;">
@@ -647,7 +647,7 @@
 <section class="sec mid gradient-bg">
   <div class="container">
     <div class="section-label">Формат чемпионата</div>
-    <h2 class="h2">3 этапа для участников - из 3 уровней влияния</h2>
+    <h2 class="h2">2 этапа для участников - из 2 уровней влияния</h2>
     <p class="desc" id="stages-intro-text">Чемпионат состоит из 3 этапов - трех разных форматов для усиления узнаваемости на разном уровне влияния</p>
 
     <div class="stages-container" id="stages-container"></div>
@@ -1373,8 +1373,8 @@ async function loadData() {
     stage.videos.forEach((video, videoIdx) => {
       const videoCard = document.createElement('div');
       videoCard.className = 'video-card';
-      // Создаём видео элемент без обложки (загрузится асинхронно)
-      videoCard.innerHTML = `<video muted loop playsinline preload="metadata"><source src="${video}#t=0.1" type="video/mp4"></video>`;
+      // Создаём видео элемент без обложки (загрузится асинхронно). Звук включаем при клике.
+      videoCard.innerHTML = `<video loop playsinline preload="metadata"><source src="${video}#t=0.1" type="video/mp4"></video>`;
 
       const videoEl = videoCard.querySelector('video');
 
@@ -1390,7 +1390,12 @@ async function loadData() {
           track.querySelectorAll('video').forEach(v => {
             if (v !== videoEl) { v.pause(); v.parentElement.classList.remove('playing'); }
           });
-          videoEl.play().then(() => videoCard.classList.add('playing')).catch(() => {});
+          videoEl.muted = false;
+          videoEl.play().then(() => videoCard.classList.add('playing')).catch(() => {
+            // Если браузер заблокировал autoplay со звуком — играем без звука
+            videoEl.muted = true;
+            videoEl.play().then(() => videoCard.classList.add('playing')).catch(() => {});
+          });
         } else {
           videoEl.pause();
           videoCard.classList.remove('playing');

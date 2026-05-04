@@ -1464,8 +1464,8 @@ async function loadData() {
     stage.videos.forEach((video, videoIdx) => {
       const videoCard = document.createElement('div');
       videoCard.className = 'video-card';
-      // Создаём видео элемент без обложки (загрузится асинхронно)
-      videoCard.innerHTML = `<video muted loop playsinline preload="metadata"><source src="${video}#t=0.1" type="video/mp4"></video>`;
+      // Создаём видео элемент без обложки (загрузится асинхронно). Звук включаем при клике.
+      videoCard.innerHTML = `<video loop playsinline preload="metadata"><source src="${video}#t=0.1" type="video/mp4"></video>`;
 
       const videoEl = videoCard.querySelector('video');
 
@@ -1481,7 +1481,12 @@ async function loadData() {
           track.querySelectorAll('video').forEach(v => {
             if (v !== videoEl) { v.pause(); v.parentElement.classList.remove('playing'); }
           });
-          videoEl.play().then(() => videoCard.classList.add('playing')).catch(() => {});
+          videoEl.muted = false;
+          videoEl.play().then(() => videoCard.classList.add('playing')).catch(() => {
+            // Если браузер заблокировал autoplay со звуком — играем без звука
+            videoEl.muted = true;
+            videoEl.play().then(() => videoCard.classList.add('playing')).catch(() => {});
+          });
         } else {
           videoEl.pause();
           videoCard.classList.remove('playing');
