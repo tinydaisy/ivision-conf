@@ -1260,13 +1260,19 @@ async function loadData() {
       audItems.innerHTML = data.audience.items
         .map(it => `
           <div class="audience-card">
-            ${it.image ? `
+            ${it.image ? (() => {
+              const tx = it.offsetX || 0, ty = it.offsetY || 0, zoom = it.zoom || 1;
+              const transform = (tx || ty || zoom !== 1)
+                ? `transform:translate(${tx}px, ${ty}px) scale(${zoom});`
+                : '';
+              const imgStyle = `${it.objectFit ? `object-fit:${it.objectFit};` : ''}${it.objectPosition ? `object-position:${it.objectPosition};` : ''}${transform}`;
+              return `
               <div class="audience-portrait-wrap">
                 <span class="audience-deco audience-deco-1"></span>
                 <span class="audience-deco audience-deco-2"></span>
-                <div class="audience-portrait"${it.borderRadius ? ` style="border-radius:${it.borderRadius}"` : ''}><img src="${it.image}" alt="${it.title || ''}" loading="lazy" style="${it.objectFit ? `object-fit:${it.objectFit};` : ''}${it.objectPosition ? `object-position:${it.objectPosition};` : ''}${it.zoom && it.zoom !== 1 ? `transform:scale(${it.zoom});` : ''}"></div>
-              </div>
-            ` : ''}
+                <div class="audience-portrait"${it.borderRadius ? ` style="border-radius:${it.borderRadius}"` : ''}><img src="${it.image}" alt="${it.title || ''}" loading="lazy" style="${imgStyle}"></div>
+              </div>`;
+            })() : ''}
             <h3 class="audience-card-title">${it.title || ''}</h3>
             <p class="audience-card-desc">${it.description || ''}</p>
           </div>

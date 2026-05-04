@@ -8,7 +8,7 @@
   },
 
   "goal": {
-    "label": "Цель",
+
     "title": "Цель Чемпионата",
     "items": [
       "Содействовать экспертам и предпринимателям становиться узнаваемыми на рынке и пробивать баннерную слепоту",
@@ -32,7 +32,7 @@
   },
 
   "audience": {
-    "label": "Для кого",
+
     "title": "ДЛЯ КОГО?",
     "items": [
       {
@@ -41,7 +41,9 @@
         "image": "/img/Slon.jpg",
         "objectFit": "contain",
         "objectPosition": "center 55%",
-        "zoom": 1,
+        "zoom": 1.5,
+        "offsetX": 0,
+        "offsetY": 0,
         "borderRadius": "50% 50% 50% 50% / 55% 55% 45% 45%"
       },
       {
@@ -50,7 +52,9 @@
         "image": "/img/freken-bok.JPG",
         "objectFit": "contain",
         "objectPosition": "center",
-        "zoom": 1,
+        "zoom": 1.2,
+        "offsetX": 0,
+        "offsetY": 0,
         "borderRadius": "55% 55% 45% 45% / 50% 50% 50% 50%"
       },
       {
@@ -59,8 +63,10 @@
         "image": "/img/ya_v_potoke_momente_resurse.jpeg",
         "objectFit": "contain",
         "objectPosition": "center",
-        "zoom": 1,
-        "borderRadius": "55% 55% 45% 45% / 50% 50% 50% 50%"
+        "zoom": 1.2,
+        "offsetX": 0,
+        "offsetY": 0,
+        "borderRadius": "100% 60% 55% 55% / 40% 40% 40% 40%"
       }
     ]
   },
