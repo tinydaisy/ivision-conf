@@ -217,6 +217,26 @@
       .collage-item.bottom-right{width:140px;height:150px;right:5%;}
     }
 
+    /* MEDAL CARDS — нумерованные призы под медалями (место × сцена × фонд) */
+    .medals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:100%;margin:48px auto 0;align-items:flex-start;}
+    .medal-card{display:flex;flex-direction:column;align-items:center;text-align:center;padding:24px 16px;background:linear-gradient(180deg,rgba(255,207,164,.04) 0%,rgba(17,24,39,.5) 35%);border:1px solid rgba(255,207,164,.12);border-radius:20px;transition:transform .3s ease,border-color .3s ease;}
+    .medal-card:hover{transform:translateY(-4px);border-color:rgba(255,207,164,.3);}
+    .medal-place{font-family:var(--font-body);font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--brand-peach);margin-top:4px;margin-bottom:18px;}
+    .medal-stage{width:100%;text-align:left;margin-bottom:18px;flex:1;}
+    .medal-stage-title{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-peach);font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+    .medal-stage-title::before{content:'◆';color:var(--brand-peach);font-size:9px;}
+    .medal-stage-text{font-size:13px;color:var(--text-light);line-height:1.55;font-weight:500;}
+    .medal-stage-platforms{margin-top:8px;list-style:none;font-size:12px;color:var(--text-muted);line-height:1.5;}
+    .medal-stage-platforms li{padding:3px 0 3px 14px;position:relative;}
+    .medal-stage-platforms li::before{content:'◇';position:absolute;left:0;color:var(--brand-peach);font-size:8px;top:5px;}
+    .medal-fund{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--brand-peach);padding:8px 14px;border:1px solid rgba(255,207,164,.4);border-radius:100px;background:rgba(255,207,164,.05);letter-spacing:.04em;}
+
+    @media(max-width:768px){
+      .medals-grid{grid-template-columns:1fr;gap:20px;}
+      .medal-card{padding:22px 18px;}
+      .medal-stage-text{font-size:13px;}
+    }
+
     /* SOCHI SHOWCASE */
     .sochi-showcase{display:flex;flex-direction:column;align-items:center;}
     .sochi-showcase-title{font-family:var(--font-body);font-size:clamp(20px,3vw,28px);font-weight:700;color:var(--brand-peach);text-align:center;line-height:1.3;margin-bottom:32px;max-width:700px;}
@@ -871,109 +891,100 @@
 <section class="sec mid">
   <div class="container">
     <div class="section-label">Награждение</div>
-    <h2 class="h2">Главные призы</h2>
-    <p class="desc">Растущий призовой фонд: стартовый объём — 20.000 рублей. И 20% от всех продаж этапов 1 и 2 увеличивают денежный призовой фонд</p>
+    <h2 class="h2">Главный приз — пакет медийности</h2>
+    <p class="desc">Спикерские места на крупнейших онлайн-конференциях рынка и денежный призовой фонд (стартовый объём — 20.000 ₽, +10% от всех продаж этапов 1 и 2)</p>
 
-    <!-- MEDALS SECTION -->
-    <div style="margin-top:56px;margin-bottom:56px;">
-      <p style="font-size:16px;color:var(--text-light);font-weight:700;margin-bottom:32px;text-align:center;">Распределение призового фонда</p>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:100%;margin:0 auto;">
-        <!-- 1st Place Medal -->
-        <div style="text-align:center;">
-          <svg width="100" height="120" viewBox="0 0 120 140" style="margin:0 auto 12px;display:block;">
-            <defs>
-              <radialGradient id="grad1" cx="35%" cy="35%">
-                <stop offset="0%" style="stop-color:#FFE8C1;stop-opacity:1" />
-                <stop offset="50%" style="stop-color:#FFCFA4;stop-opacity:1" />
-                <stop offset="100%" style="stop-color:#E8A86B;stop-opacity:1" />
-              </radialGradient>
-              <filter id="shadow1">
-                <feDropShadow dx="2" dy="3" stdDeviation="3" flood-opacity="0.3"/>
-              </filter>
-            </defs>
-            <!-- Ribbon -->
-            <rect x="45" y="0" width="10" height="25" fill="#FFCFA4" opacity="0.95"/>
-            <rect x="65" y="0" width="10" height="25" fill="#FFCFA4" opacity="0.95"/>
-            <!-- Shadow ring -->
-            <circle cx="60" cy="65" r="50" fill="none" stroke="#000" stroke-width="1" opacity="0.15"/>
-            <!-- Medal circle main -->
-            <circle cx="60" cy="65" r="48" fill="url(#grad1)" filter="url(#shadow1)"/>
-            <!-- Highlight gloss -->
-            <ellipse cx="48" cy="50" rx="18" ry="22" fill="#FFFFFF" opacity="0.45"/>
-            <!-- Inner detail ring -->
-            <circle cx="60" cy="65" r="38" fill="none" stroke="#E8A86B" stroke-width="1.5" opacity="0.7"/>
-            <!-- Star detail -->
-            <polygon points="60,30 64,42 77,42 68,49 72,61 60,54 48,61 52,49 43,42 56,42" fill="#FFF5E1" opacity="0.9"/>
-            <!-- Number (на верху) -->
-            <text x="60" y="78" font-size="42" font-weight="900" text-anchor="middle" fill="#080B12">1</text>
-          </svg>
-          <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">50% от фонда</div>
-        </div>
+    <div class="medals-grid">
 
-        <!-- 2nd Place Medal -->
-        <div style="text-align:center;">
-          <svg width="100" height="120" viewBox="0 0 120 140" style="margin:0 auto 12px;display:block;">
-            <defs>
-              <radialGradient id="grad2" cx="35%" cy="35%">
-                <stop offset="0%" style="stop-color:#F5F5F5;stop-opacity:1" />
-                <stop offset="50%" style="stop-color:#D3D3D3;stop-opacity:1" />
-                <stop offset="100%" style="stop-color:#808080;stop-opacity:1" />
-              </radialGradient>
-              <filter id="shadow2">
-                <feDropShadow dx="2" dy="3" stdDeviation="3" flood-opacity="0.3"/>
-              </filter>
-            </defs>
-            <!-- Ribbon -->
-            <rect x="45" y="0" width="10" height="25" fill="#C0C0C0" opacity="0.9"/>
-            <rect x="65" y="0" width="10" height="25" fill="#C0C0C0" opacity="0.9"/>
-            <!-- Shadow ring -->
-            <circle cx="60" cy="65" r="50" fill="none" stroke="#000" stroke-width="1" opacity="0.12"/>
-            <!-- Medal circle main -->
-            <circle cx="60" cy="65" r="48" fill="url(#grad2)" filter="url(#shadow2)"/>
-            <!-- Highlight gloss -->
-            <ellipse cx="48" cy="50" rx="18" ry="22" fill="#FFFFFF" opacity="0.4"/>
-            <!-- Inner detail ring -->
-            <circle cx="60" cy="65" r="38" fill="none" stroke="#808080" stroke-width="1.5" opacity="0.5"/>
-            <!-- Number -->
-            <text x="60" y="78" font-size="42" font-weight="900" text-anchor="middle" fill="#080B12">2</text>
-            <!-- Accent star -->
-            <polygon points="60,30 64,42 77,42 68,49 72,61 60,54 48,61 52,49 43,42 56,42" fill="#FFB347" opacity="0.4"/>
-          </svg>
-          <div style="font-size:13px;color:var(--text-muted);margin-top:8px;">30% от фонда</div>
+      <!-- 1 МЕСТО -->
+      <div class="medal-card">
+        <svg width="100" height="120" viewBox="0 0 120 140" style="display:block;">
+          <defs>
+            <radialGradient id="grad1" cx="35%" cy="35%">
+              <stop offset="0%" style="stop-color:#FFE8C1;stop-opacity:1"/>
+              <stop offset="50%" style="stop-color:#FFCFA4;stop-opacity:1"/>
+              <stop offset="100%" style="stop-color:#E8A86B;stop-opacity:1"/>
+            </radialGradient>
+            <filter id="shadow1"><feDropShadow dx="2" dy="3" stdDeviation="3" flood-opacity="0.3"/></filter>
+          </defs>
+          <rect x="45" y="0" width="10" height="25" fill="#FFCFA4" opacity="0.95"/>
+          <rect x="65" y="0" width="10" height="25" fill="#FFCFA4" opacity="0.95"/>
+          <circle cx="60" cy="65" r="50" fill="none" stroke="#000" stroke-width="1" opacity="0.15"/>
+          <circle cx="60" cy="65" r="48" fill="url(#grad1)" filter="url(#shadow1)"/>
+          <ellipse cx="48" cy="50" rx="18" ry="22" fill="#FFFFFF" opacity="0.45"/>
+          <circle cx="60" cy="65" r="38" fill="none" stroke="#E8A86B" stroke-width="1.5" opacity="0.7"/>
+          <polygon points="60,30 64,42 77,42 68,49 72,61 60,54 48,61 52,49 43,42 56,42" fill="#FFF5E1" opacity="0.9"/>
+          <text x="60" y="78" font-size="42" font-weight="900" text-anchor="middle" fill="#080B12">1</text>
+        </svg>
+        <div class="medal-place">1 место</div>
+        <div class="medal-stage">
+          <div class="medal-stage-title">Сцена</div>
+          <div class="medal-stage-text">Пакет из 3 спикерских выступлений:</div>
+          <ul class="medal-stage-platforms">
+            <li>iViSiON-8 «Бизнес-Создатели» — 30 мин</li>
+            <li>Конференция FREEDOM</li>
+            <li>Конференция КОС</li>
+          </ul>
         </div>
-
-        <!-- 3rd Place Medal -->
-        <div style="text-align:center;">
-          <svg width="100" height="120" viewBox="0 0 120 140" style="margin:0 auto 12px;display:block;">
-            <defs>
-              <radialGradient id="grad3" cx="35%" cy="35%">
-                <stop offset="0%" style="stop-color:#D4A574;stop-opacity:1" />
-                <stop offset="50%" style="stop-color:#B8956F;stop-opacity:1" />
-                <stop offset="100%" style="stop-color:#7A5D45;stop-opacity:1" />
-              </radialGradient>
-              <filter id="shadow3">
-                <feDropShadow dx="2" dy="3" stdDeviation="3" flood-opacity="0.3"/>
-              </filter>
-            </defs>
-            <!-- Ribbon -->
-            <rect x="45" y="0" width="10" height="25" fill="#B8956F" opacity="0.9"/>
-            <rect x="65" y="0" width="10" height="25" fill="#B8956F" opacity="0.9"/>
-            <!-- Shadow ring -->
-            <circle cx="60" cy="65" r="50" fill="none" stroke="#000" stroke-width="1" opacity="0.15"/>
-            <!-- Medal circle main -->
-            <circle cx="60" cy="65" r="48" fill="url(#grad3)" filter="url(#shadow3)"/>
-            <!-- Highlight gloss -->
-            <ellipse cx="48" cy="50" rx="18" ry="22" fill="#FFFFFF" opacity="0.35"/>
-            <!-- Inner detail ring -->
-            <circle cx="60" cy="65" r="38" fill="none" stroke="#7A5D45" stroke-width="1.5" opacity="0.6"/>
-            <!-- Number -->
-            <text x="60" y="78" font-size="42" font-weight="900" text-anchor="middle" fill="#080B12">3</text>
-            <!-- Accent detail -->
-            <polygon points="60,30 64,42 77,42 68,49 72,61 60,54 48,61 52,49 43,42 56,42" fill="#DDB892" opacity="0.5"/>
-          </svg>
-          <div style="font-size:13px;color:var(--text-muted);margin-top:8px;">20% от фонда</div>
-        </div>
+        <span class="medal-fund">50% призового фонда</span>
       </div>
+
+      <!-- 2 МЕСТО -->
+      <div class="medal-card">
+        <svg width="100" height="120" viewBox="0 0 120 140" style="display:block;">
+          <defs>
+            <radialGradient id="grad2" cx="35%" cy="35%">
+              <stop offset="0%" style="stop-color:#F5F5F5;stop-opacity:1"/>
+              <stop offset="50%" style="stop-color:#D3D3D3;stop-opacity:1"/>
+              <stop offset="100%" style="stop-color:#808080;stop-opacity:1"/>
+            </radialGradient>
+            <filter id="shadow2"><feDropShadow dx="2" dy="3" stdDeviation="3" flood-opacity="0.3"/></filter>
+          </defs>
+          <rect x="45" y="0" width="10" height="25" fill="#C0C0C0" opacity="0.9"/>
+          <rect x="65" y="0" width="10" height="25" fill="#C0C0C0" opacity="0.9"/>
+          <circle cx="60" cy="65" r="50" fill="none" stroke="#000" stroke-width="1" opacity="0.12"/>
+          <circle cx="60" cy="65" r="48" fill="url(#grad2)" filter="url(#shadow2)"/>
+          <ellipse cx="48" cy="50" rx="18" ry="22" fill="#FFFFFF" opacity="0.4"/>
+          <circle cx="60" cy="65" r="38" fill="none" stroke="#808080" stroke-width="1.5" opacity="0.5"/>
+          <text x="60" y="78" font-size="42" font-weight="900" text-anchor="middle" fill="#080B12">2</text>
+          <polygon points="60,30 64,42 77,42 68,49 72,61 60,54 48,61 52,49 43,42 56,42" fill="#FFB347" opacity="0.4"/>
+        </svg>
+        <div class="medal-place">2 место</div>
+        <div class="medal-stage">
+          <div class="medal-stage-title">Сцена</div>
+          <div class="medal-stage-text">Выступление на конференции iViSiON-8 «Бизнес-Создатели»</div>
+        </div>
+        <span class="medal-fund">30% призового фонда</span>
+      </div>
+
+      <!-- 3 МЕСТО -->
+      <div class="medal-card">
+        <svg width="100" height="120" viewBox="0 0 120 140" style="display:block;">
+          <defs>
+            <radialGradient id="grad3" cx="35%" cy="35%">
+              <stop offset="0%" style="stop-color:#D4A574;stop-opacity:1"/>
+              <stop offset="50%" style="stop-color:#B8956F;stop-opacity:1"/>
+              <stop offset="100%" style="stop-color:#7A5D45;stop-opacity:1"/>
+            </radialGradient>
+            <filter id="shadow3"><feDropShadow dx="2" dy="3" stdDeviation="3" flood-opacity="0.3"/></filter>
+          </defs>
+          <rect x="45" y="0" width="10" height="25" fill="#B8956F" opacity="0.9"/>
+          <rect x="65" y="0" width="10" height="25" fill="#B8956F" opacity="0.9"/>
+          <circle cx="60" cy="65" r="50" fill="none" stroke="#000" stroke-width="1" opacity="0.15"/>
+          <circle cx="60" cy="65" r="48" fill="url(#grad3)" filter="url(#shadow3)"/>
+          <ellipse cx="48" cy="50" rx="18" ry="22" fill="#FFFFFF" opacity="0.35"/>
+          <circle cx="60" cy="65" r="38" fill="none" stroke="#7A5D45" stroke-width="1.5" opacity="0.6"/>
+          <text x="60" y="78" font-size="42" font-weight="900" text-anchor="middle" fill="#080B12">3</text>
+          <polygon points="60,30 64,42 77,42 68,49 72,61 60,54 48,61 52,49 43,42 56,42" fill="#DDB892" opacity="0.5"/>
+        </svg>
+        <div class="medal-place">3 место</div>
+        <div class="medal-stage">
+          <div class="medal-stage-title">Сцена</div>
+          <div class="medal-stage-text">Выступление на нетворкинге iViSiON или эфир на партнёрской площадке (FREEDOM/КОС)</div>
+        </div>
+        <span class="medal-fund">20% призового фонда</span>
+      </div>
+
     </div>
 
     <div class="prizes-grid" style="display:grid;grid-template-columns:1fr;gap:40px;margin-top:48px;">
