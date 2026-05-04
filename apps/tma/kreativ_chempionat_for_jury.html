@@ -520,19 +520,14 @@
   background: #f4ece1;
 }
 .audience-portrait img {
-  width: 100%;
-  height: 100%;
+  width: 130%;
+  height: 130%;
   object-fit: cover;
   object-position: center;
   display: block;
 }
-/* Лёгкий разворот каждой карточки в свою сторону для динамики */
+/* Лёгкие развороты яиц для динамики. Форма (border-radius) задаётся в JSON через item.borderRadius */
 .audience-card:nth-child(1) .audience-portrait { transform: rotate(-6deg); }
-/* Перевёрнутое яйцо: широкая макушка сверху, узкое сужение снизу */
-.audience-card:nth-child(2) .audience-portrait,
-.audience-card:nth-child(3) .audience-portrait {
-  border-radius: 60% 60% 25% 25% / 25% 25% 25% 25%;
-}
 .audience-card:nth-child(2) .audience-portrait { transform: rotate(4deg); }
 .audience-card:nth-child(3) .audience-portrait { transform: rotate(-3deg); }
 /* Декоративные кружки вокруг портрета */
@@ -1269,7 +1264,7 @@ async function loadData() {
               <div class="audience-portrait-wrap">
                 <span class="audience-deco audience-deco-1"></span>
                 <span class="audience-deco audience-deco-2"></span>
-                <div class="audience-portrait"><img src="${it.image}" alt="${it.title || ''}" loading="lazy" style="${it.objectFit ? `object-fit:${it.objectFit};` : ''}${it.objectPosition ? `object-position:${it.objectPosition};` : ''}"></div>
+                <div class="audience-portrait"${it.borderRadius ? ` style="border-radius:${it.borderRadius}"` : ''}><img src="${it.image}" alt="${it.title || ''}" loading="lazy" style="${it.objectFit ? `object-fit:${it.objectFit};` : ''}${it.objectPosition ? `object-position:${it.objectPosition};` : ''}${it.zoom && it.zoom !== 1 ? `transform:scale(${it.zoom});` : ''}"></div>
               </div>
             ` : ''}
             <h3 class="audience-card-title">${it.title || ''}</h3>

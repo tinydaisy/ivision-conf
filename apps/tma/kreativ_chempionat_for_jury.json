@@ -39,22 +39,28 @@
         "title": "Эксперт с опытом, которого не видно",
         "description": "Работаете давно, результаты есть — но не удаётся быть магнитом аудитории и рынок не считывает вашего авторитета.",
         "image": "/img/Slon.jpg",
-         "objectFit": "contain",
-        "objectPosition": "center 55%"
+        "objectFit": "contain",
+        "objectPosition": "center 55%",
+        "zoom": 1,
+        "borderRadius": "50% 50% 50% 50% / 55% 55% 45% 45%"
       },
       {
         "title": "Творческая личность, загнанная в рамки серьёзности",
         "description": "У вас есть таланты, аутентичность и «капелька безумия» — но всё это потерялось под слоями «надо быть серьёзным», «надо демонстрировать кейсы».",
         "image": "/img/freken-bok.JPG",
         "objectFit": "contain",
-        "objectPosition": "center"
+        "objectPosition": "center",
+        "zoom": 1,
+        "borderRadius": "55% 55% 45% 45% / 50% 50% 50% 50%"
       },
       {
         "title": "Системщик, которому надоело быть душным",
         "description": "Вся энергия уходит на выстраивание процессов, систем и воронок — а до лёгкости, творчества и кайфа от продаж руки так и не доходят.",
         "image": "/img/ya_v_potoke_momente_resurse.jpeg",
         "objectFit": "contain",
-        "objectPosition": "center"
+        "objectPosition": "center",
+        "zoom": 1,
+        "borderRadius": "55% 55% 45% 45% / 50% 50% 50% 50%"
       }
     ]
   },
