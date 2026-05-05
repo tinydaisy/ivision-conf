@@ -782,12 +782,14 @@ async function loadData() {
 
   // Mission values
   const valuesContainer = document.getElementById('values-container');
-  data.mission.values.forEach(value => {
-    const pill = document.createElement('div');
-    pill.className = 'value-pill';
-    pill.textContent = value;
-    valuesContainer.appendChild(pill);
-  });
+  if (valuesContainer && data.mission && Array.isArray(data.mission.values)) {
+    data.mission.values.forEach(value => {
+      const pill = document.createElement('div');
+      pill.className = 'value-pill';
+      pill.textContent = value;
+      valuesContainer.appendChild(pill);
+    });
+  }
 
   // AUDIENCE — секция "ДЛЯ КОГО?"
   if (data.audience) {
@@ -944,9 +946,10 @@ async function loadData() {
   const stagesContainer = document.getElementById('stages-container');
   const stagesIntro = document.getElementById('stages-intro-text');
 
-  if (data.stages_intro && data.stages_intro.intro) {
+  if (stagesIntro && data.stages_intro && data.stages_intro.intro) {
     stagesIntro.textContent = data.stages_intro.intro;
   }
+  if (!stagesContainer) return;
 
   // Рендерит карусель видео в готовый контейнер .carousel-wrap. Возвращает контейнер.
   function buildVideoCarousel(videos, container, idSuffix) {
