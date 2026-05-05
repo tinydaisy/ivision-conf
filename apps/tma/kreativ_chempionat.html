@@ -1153,7 +1153,7 @@
         <div class="ptariff-title">Живой Спикер</div>
         <div class="ptariff-prices">
           <span class="ptariff-old">14 000 ₽</span>
-          <span class="ptariff-new">9 000 ₽</span>
+          <span class="ptariff-new">9 900 ₽</span>
         </div>
         <ul class="ptariff-list">
           <li>Всё из этапа 1</li>
@@ -1479,7 +1479,7 @@ async function loadData() {
   if (data.bottom_cta) {
     const introEl = document.getElementById('bottom-cta-intro');
     const btnsEl = document.getElementById('bottom-cta-buttons');
-    if (introEl) introEl.textContent = data.bottom_cta.intro || '';
+    if (introEl) introEl.innerHTML = data.bottom_cta.intro || '';
     if (btnsEl && Array.isArray(data.bottom_cta.buttons)) {
       const visible = data.bottom_cta.buttons.filter(b => {
         if (!b.visibility || b.visibility === 'always') return true;

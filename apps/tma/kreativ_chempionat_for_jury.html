@@ -1364,7 +1364,7 @@ async function loadData() {
   if (data.bottom_cta) {
     const introEl = document.getElementById('bottom-cta-intro');
     const btnsEl = document.getElementById('bottom-cta-buttons');
-    if (introEl) introEl.textContent = data.bottom_cta.intro || '';
+    if (introEl) introEl.innerHTML = data.bottom_cta.intro || '';
     if (btnsEl && Array.isArray(data.bottom_cta.buttons)) {
       const visible = data.bottom_cta.buttons.filter(b => {
         if (!b.visibility || b.visibility === 'always') return true;
