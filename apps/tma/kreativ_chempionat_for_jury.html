@@ -1689,7 +1689,7 @@ async function loadData() {
     const textCol = document.createElement('div');
     textCol.className = 'stage-text';
     textCol.innerHTML = `
-      <div class="stage-number">${String(stage.number).padStart(2, '0')}</div>
+      ${stage.number != null ? `<div class="stage-number">${String(stage.number).padStart(2, '0')}</div>` : ''}
       <h3 class="stage-title">${stage.title}</h3>
       <p class="stage-duration">${stage.duration}</p>
       <p class="stage-desc">${stage.description}</p>
