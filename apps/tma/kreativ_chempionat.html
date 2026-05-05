@@ -402,6 +402,22 @@
     .ptariff-list li::before{content:"✓";color:var(--brand-peach);font-weight:700;flex-shrink:0;}
     .ptariff-btn{margin-top:auto;padding:1.5px;border-radius:100px;background:var(--btn-grad);border:none;cursor:pointer;}
     .ptariff-btn-i{display:flex;align-items:center;justify-content:center;background:rgba(255,207,164,.12);color:var(--text-light);font-family:var(--font-body);font-weight:700;font-size:15px;letter-spacing:.04em;padding:14px 24px;border-radius:100px;}
+
+    /* PRICE COUNTDOWN TIMER (над тарифами) */
+    .price-timer{display:none;max-width:720px;margin:0 auto 48px;padding:24px 20px;background:linear-gradient(160deg,rgba(200,75,158,.10),rgba(192,132,252,.06));border:1px solid rgba(200,75,158,.35);border-radius:20px;text-align:center;}
+    .price-timer.visible{display:block;}
+    .price-timer-label{font-family:var(--font-body);font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--brand-peach);margin-bottom:14px;}
+    .price-timer-units{display:flex;justify-content:center;align-items:flex-start;gap:8px;flex-wrap:nowrap;}
+    .price-timer-unit{display:flex;flex-direction:column;align-items:center;min-width:64px;padding:10px 6px;background:rgba(8,11,18,.55);border:1px solid rgba(255,207,164,.18);border-radius:14px;}
+    .price-timer-num{font-family:var(--font-display);font-size:32px;font-weight:800;color:var(--text-light);line-height:1;letter-spacing:.02em;}
+    .price-timer-cap{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);margin-top:6px;}
+    .price-timer-sep{font-family:var(--font-display);font-size:28px;font-weight:800;color:var(--brand-peach);line-height:1;padding-top:8px;opacity:.6;}
+    @media(max-width:520px){
+      .price-timer-unit{min-width:54px;padding:8px 4px;}
+      .price-timer-num{font-size:26px;}
+      .price-timer-cap{font-size:9px;}
+      .price-timer-sep{font-size:22px;}
+    }
   </style>
 </head>
 <body>
@@ -479,6 +495,11 @@
           </span>
         </h1>
         <p class="hero-sub">Живые <span style="color:var(--brand-peach);">·</span> Истинные <span style="color:var(--brand-peach);">·</span> Влиятельные <span style="color:var(--brand-peach);">·</span> Успешные</p>
+
+        <p class="hero-date" style="font-family:var(--font-body);font-weight:700;font-size:16px;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-peach);margin:24px 0 24px;display:flex;align-items:center;gap:10px;">
+          <span style="display:inline-block;width:28px;height:1px;background:var(--brand-peach);"></span>
+          С 15 июня 2026
+        </p>
 
         <div class="hero-btns">
           <button class="btn-grad-wrap" id="hero-cta-btn" style="display:inline-block;">
@@ -1134,6 +1155,20 @@
     <h2 class="h2" id="tariffs-section-title">ВЫБЕРИТЕ ФОРМАТ УЧАСТИЯ:</h2>
     <p class="desc" id="tariffs-section-intro" style="margin-bottom:48px;"></p>
 
+    <!-- PRICE COUNTDOWN TIMER — отображается, если задан price_deadline в JSON -->
+    <div class="price-timer" id="price-timer" data-deadline="">
+      <div class="price-timer-label" id="price-timer-label">До повышения цены осталось:</div>
+      <div class="price-timer-units">
+        <div class="price-timer-unit"><span class="price-timer-num" id="pt-days">00</span><span class="price-timer-cap">дней</span></div>
+        <div class="price-timer-sep">:</div>
+        <div class="price-timer-unit"><span class="price-timer-num" id="pt-hours">00</span><span class="price-timer-cap">часов</span></div>
+        <div class="price-timer-sep">:</div>
+        <div class="price-timer-unit"><span class="price-timer-num" id="pt-mins">00</span><span class="price-timer-cap">минут</span></div>
+        <div class="price-timer-sep">:</div>
+        <div class="price-timer-unit"><span class="price-timer-num" id="pt-secs">00</span><span class="price-timer-cap">секунд</span></div>
+      </div>
+    </div>
+
     <div class="ptariffs">
 
       <!-- Тариф 1 — Живой Автор -->
@@ -1475,7 +1510,7 @@ async function loadData() {
     }
   }
 
-  // TARIFFS SECTION — заголовок и интро над тарифами
+  // TARIFFS SECTION — заголовок, интро и таймер обратного отсчёта над тарифами
   if (data.tariffs_section) {
     const tsLabel = document.getElementById('tariffs-section-label');
     const tsTitle = document.getElementById('tariffs-section-title');
@@ -1483,6 +1518,42 @@ async function loadData() {
     if (tsLabel) tsLabel.textContent = data.tariffs_section.label || '';
     if (tsTitle) tsTitle.textContent = data.tariffs_section.title || '';
     if (tsIntro) tsIntro.textContent = data.tariffs_section.intro || '';
+
+    // PRICE COUNTDOWN — рендерится, если задан price_deadline (ISO 8601)
+    const deadline = data.tariffs_section.price_deadline;
+    if (deadline) {
+      const timerEl = document.getElementById('price-timer');
+      const labelEl = document.getElementById('price-timer-label');
+      if (labelEl && data.tariffs_section.timer_label) {
+        labelEl.textContent = data.tariffs_section.timer_label;
+      }
+      const target = new Date(deadline).getTime();
+      const tDays = document.getElementById('pt-days');
+      const tHours = document.getElementById('pt-hours');
+      const tMins = document.getElementById('pt-mins');
+      const tSecs = document.getElementById('pt-secs');
+      const pad = (n) => String(n).padStart(2, '0');
+      function tick() {
+        const diff = target - Date.now();
+        if (diff <= 0) {
+          if (timerEl) timerEl.classList.remove('visible');
+          return false;
+        }
+        const days = Math.floor(diff / 86400000);
+        const hours = Math.floor((diff % 86400000) / 3600000);
+        const mins = Math.floor((diff % 3600000) / 60000);
+        const secs = Math.floor((diff % 60000) / 1000);
+        if (tDays) tDays.textContent = pad(days);
+        if (tHours) tHours.textContent = pad(hours);
+        if (tMins) tMins.textContent = pad(mins);
+        if (tSecs) tSecs.textContent = pad(secs);
+        return true;
+      }
+      if (tick() && timerEl) {
+        timerEl.classList.add('visible');
+        setInterval(() => { if (!tick()) {/* остановится сам по visible=false */} }, 1000);
+      }
+    }
   }
 
   // BOTTOM CTA — финальная секция с кнопками (роль-специфично, фильтр по visibility)
