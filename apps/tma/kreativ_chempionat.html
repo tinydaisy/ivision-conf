@@ -388,7 +388,10 @@
 
     /* Participant tariff cards (3 columns) */
     .ptariffs{display:grid;grid-template-columns:1fr;gap:20px;max-width:1100px;margin:0 auto;}
-    @media(min-width:900px){.ptariffs{grid-template-columns:repeat(3,1fr);align-items:stretch;gap:18px;}}
+    @media(min-width:900px){
+      .ptariffs{grid-template-columns:repeat(3,1fr);align-items:stretch;gap:18px;}
+      .ptariffs.ptariffs-2col{grid-template-columns:repeat(2,minmax(0,1fr));max-width:780px;}
+    }
     .ptariff{background:linear-gradient(160deg,rgba(255,207,164,.06),rgba(255,255,255,.02));border:1px solid rgba(255,207,164,.2);border-radius:24px;padding:32px 24px;display:flex;flex-direction:column;gap:18px;}
     .ptariff.featured{border-color:rgba(192,132,252,.5);background:linear-gradient(160deg,rgba(192,132,252,.08),rgba(200,75,158,.05));}
     .ptariff-stage{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-peach);}
@@ -1171,8 +1174,8 @@
 
     <div class="ptariffs">
 
-      <!-- Тариф 1 — Живой Автор -->
-      <div class="ptariff">
+      <!-- Тариф 1 — Живой Автор (скрыт; показывается только при ?shw1 в URL) -->
+      <div class="ptariff" id="ptariff-1" style="display:none;">
         <div class="ptariff-stage">Тариф 1 · Этап 1</div>
         <div class="ptariff-title">Живой Автор</div>
         <div class="ptariff-prices">
@@ -1930,6 +1933,20 @@ async function loadData() {
   });
 }
 document.addEventListener('DOMContentLoaded', loadData);
+
+// Тариф 1 показывается только при наличии ?shw1 в URL.
+// Если параметра нет — у .ptariffs остаётся 2 видимые карточки, выравниваем сетку в 2 колонки.
+(function applyTariff1Visibility() {
+  const params = new URLSearchParams(window.location.search);
+  const showT1 = params.has('shw1');
+  const t1 = document.getElementById('ptariff-1');
+  const grid = document.querySelector('.ptariffs');
+  if (showT1 && t1) {
+    t1.style.display = '';
+  } else if (grid) {
+    grid.classList.add('ptariffs-2col');
+  }
+})();
 
 // NAV: скользящая навигация
 var nav=document.getElementById('nav');
