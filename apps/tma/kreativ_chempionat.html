@@ -929,6 +929,33 @@
       .nt-block-img.shape-stilyagi:hover{transform:rotate(-3.5deg) scale(1.02);}
       .nt-block-img.shape-stage:hover{transform:rotate(-1.2deg) scale(1.02);}
       .nt-block-img.shape-stage,.nt-block-img.shape-stilyagi{transition:transform .35s ease;}
+
+      /* Вертикальное яйцо — для фото особняка (Проживание) и Мальдив */
+      .nt-block-img.shape-egg{
+        border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+        aspect-ratio: 3/4;
+        overflow: hidden;
+        outline: 2px solid rgba(255,207,164,.32);
+        outline-offset: -2px;
+        box-shadow: 0 18px 50px rgba(0,0,0,.45);
+      }
+      .nt-block-img.shape-egg img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+      }
+      /* Одиночное яйцо (Мальдивы) — ограничиваем ширину, чтобы не было слишком крупным */
+      .nt-block-img.shape-egg.shape-egg-solo{
+        max-width: 380px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      /* Лёгкие повороты для динамики у трио в Проживании */
+      .nt-photos-grid .nt-block-img.shape-egg:nth-child(1){transform:rotate(-2deg);}
+      .nt-photos-grid .nt-block-img.shape-egg:nth-child(2){transform:rotate(1.5deg);}
+      .nt-photos-grid .nt-block-img.shape-egg:nth-child(3){transform:rotate(-1deg);}
       .nt-block-caption{font-size:13px;color:var(--text-muted);font-style:italic;margin-top:10px;text-align:center;}
       .nt-photos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;}
       .nt-photos-grid .nt-block-img{margin-top:0;}
@@ -960,9 +987,9 @@
       </div>
       <p class="nt-block-text"><strong>Золотой дворец у моря</strong> — именно так это выглядит.</p>
       <div class="nt-photos-grid">
-        <div class="nt-block-img"><img src="/img/nha_trang/photo2.jpg" alt="Терраса со стеклянным полом"></div>
-        <div class="nt-block-img"><img src="/img/nha_trang/photo5.jpg" alt="Фасад дворца"></div>
-        <div class="nt-block-img"><img src="/img/nha_trang/photo1.jpg" alt="Внутренний бассейн с колоннами"></div>
+        <div class="nt-block-img shape-egg"><img src="/img/nha_trang/photo2.jpg" alt="Терраса со стеклянным полом"></div>
+        <div class="nt-block-img shape-egg"><img src="/img/nha_trang/photo5.jpg" alt="Фасад дворца"></div>
+        <div class="nt-block-img shape-egg"><img src="/img/nha_trang/photo1.jpg" alt="Внутренний бассейн с колоннами"></div>
       </div>
     </div>
 
@@ -996,7 +1023,7 @@
         <h3 class="nt-block-title">И бонус после выезда</h3>
       </div>
       <p class="nt-block-text"><strong>3 дня на Мальдивах за счёт организаторов</strong> — для каждого участника выезда.</p>
-      <div class="nt-block-img">
+      <div class="nt-block-img shape-egg shape-egg-solo">
         <img src="/img/nha_trang/maldivy.webp" alt="Мальдивы">
       </div>
     </div>
@@ -1060,16 +1087,11 @@
         <div class="org-role">Основатель и идейный вдохновитель</div>
         <ul class="org-list">
           <li>Нелинейный стратег в маркетинге и продажах</li>
-          <li>Создатель бизнес-конференции «ВИДЕНИЕ / iViSiON» для продвижения предпринимателей и экспертов</li>
-          <li>Провела 7 конференций, объединила 50+ лидеров рынка и 3 600+ участников (Настасья Белочкина, Павел Лебедев, Вероника Кромбергер, Сергей Бекренев и др.)</li>
-          <li>Несёт культуру проявления аутентичности и творчества: пишет и поёт на гиталеле музыкальные портреты лидерам рынка</li>
+          <li>Создатель ВИДЕНИЕ / iViSiON · 7 конференций · 50+ лидеров рынка · 3 600+ участников</li>
+          <li>Несёт культуру аутентичности: пишет и поёт музыкальные портреты лидерам рынка</li>
           <li>Чемпион смеха Приволжского округа 2025</li>
           <li>Зам. председателя комитета по личному бренду БРО «Опора России»</li>
-          <li>Кандидат физ-мат наук</li>
-          <li>Независимый финансовый консультант</li>
-          <li>Спикер Сколково, ЭКСПО и эксперт СМИ</li>
-          <li>Разработчик реферальной платформы для привлечения 15–50% лидов руками самой аудитории</li>
-          <li>7 лет практики йоги и исследований возможностей духа и тела (ходила по разбитым стеклам, стоит на гвоздях, стояла на коне и верблюде, осваивает стойки на руках, прыгала с 207 м банджи)</li>
+          <li>Спикер Сколково, ЭКСПО · Кандидат физ-мат наук</li>
         </ul>
       </div>
 
