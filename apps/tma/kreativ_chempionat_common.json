@@ -250,7 +250,7 @@
     "criteria": [
       {
         "name": "Системность",
-        "description": "Выполнение заданий и регулярность проявления",
+        "description": "Баллы за выполнение заданий и регулярность проявления",
         "icon": "https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/pazl.png"
       },
       {
