@@ -908,6 +908,27 @@
       .nt-block-text strong{color:var(--brand-peach);font-weight:700;}
       .nt-block-img{width:100%;border-radius:18px;overflow:hidden;margin-top:18px;}
       .nt-block-img img{width:100%;display:block;}
+
+      /* Живая сцена — асимметричный blob с лёгким наклоном (сценический "плавник") */
+      .nt-block-img.shape-stage{
+        border-radius: 32% 68% 41% 59% / 56% 38% 62% 44%;
+        transform: rotate(-1.2deg);
+        box-shadow: 0 24px 60px rgba(255,207,164,.18), 0 8px 24px rgba(0,0,0,.4);
+        outline: 2px solid rgba(255,207,164,.35);
+        outline-offset: -2px;
+      }
+
+      /* Стиляги — броская асимметричная "капля-зефир" с поворотом (характер, ретро-vibe) */
+      .nt-block-img.shape-stilyagi{
+        border-radius: 71% 29% 56% 44% / 30% 70% 30% 70%;
+        transform: rotate(-3.5deg);
+        box-shadow: 0 24px 60px rgba(200,75,158,.22), 0 8px 24px rgba(0,0,0,.4);
+        outline: 2px solid rgba(200,75,158,.4);
+        outline-offset: -2px;
+      }
+      .nt-block-img.shape-stilyagi:hover{transform:rotate(-3.5deg) scale(1.02);}
+      .nt-block-img.shape-stage:hover{transform:rotate(-1.2deg) scale(1.02);}
+      .nt-block-img.shape-stage,.nt-block-img.shape-stilyagi{transition:transform .35s ease;}
       .nt-block-caption{font-size:13px;color:var(--text-muted);font-style:italic;margin-top:10px;text-align:center;}
       .nt-photos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;}
       .nt-photos-grid .nt-block-img{margin-top:0;}
@@ -926,7 +947,7 @@
         <h3 class="nt-block-title">Живая сцена</h3>
       </div>
       <p class="nt-block-text">Выступление в профессиональном конференц-зале Нячанга перед живой аудиторией — экспаты, предприниматели, те, кто работает в Telegram и на международном рынке. <strong>Новые люди, новые связи, новые клиенты.</strong></p>
-      <div class="nt-block-img">
+      <div class="nt-block-img shape-stage">
         <img src="/img/nha_trang/zal_nha_trang.jpg" alt="Конференц-зал в Нячанге">
       </div>
     </div>
@@ -952,7 +973,7 @@
         <h3 class="nt-block-title">Съёмки в стиле стиляг</h3>
       </div>
       <p class="nt-block-text">Забудьте про белый фон и деловой пиджак. Снимаем в золотом дворце и на улицах Нячанга — ярко, с характером, в образе. <strong>Видеоклип-визитка и брендированные фото, которые останавливают прокрутку и притягивают клиентов.</strong></p>
-      <div class="nt-block-img">
+      <div class="nt-block-img shape-stilyagi">
         <img src="/img/nha_trang/stilyagi.jpg" alt="Референс стиля съёмки — стиляги">
       </div>
       <p class="nt-block-caption">Референс стиля съёмки</p>
