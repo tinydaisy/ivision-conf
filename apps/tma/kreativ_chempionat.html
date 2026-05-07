@@ -192,8 +192,8 @@
     .collage-item.egg-inv{border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;}
     .collage-item.egg-inv img{object-position:top;}
 
-    /* Center item - large hero of the collage */
-    .collage-item.center-big{width:400px;height:460px;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-3deg);z-index:3;box-shadow:0 30px 70px rgba(0,0,0,.7);outline:3px solid rgba(255,207,164,.5);}
+    /* Center item - large hero of the collage (horizontal oval) */
+    .collage-item.center-big{width:540px;height:340px;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-3deg);z-index:3;box-shadow:0 30px 70px rgba(0,0,0,.7);outline:3px solid rgba(255,207,164,.5);border-radius:50%!important;}
 
     /* Top items */
     .collage-item.top-left{width:200px;height:200px;left:8%;top:10%;transform:rotate(-12deg);}
@@ -210,7 +210,7 @@
 
     @media(max-width:768px){
       .collage-wrap{height:700px;margin:40px 0;padding:40px 0;}
-      .collage-item.center-big{width:240px;height:280px;}
+      .collage-item.center-big{width:300px;height:200px;}
       .collage-item.top-right{width:140px;height:140px;right:3%;}
       .collage-item.bottom-left{width:150px;height:140px;left:6%;}
       .collage-item.bottom-right{width:140px;height:150px;right:5%;}
@@ -877,6 +877,9 @@
     <div class="collage-wrap">
       <div class="collage-item center-big">
         <img src="/img/nha_trang/yahta.webp" alt="Яхта">
+      </div>
+      <div class="collage-item top-left egg-h">
+        <img src="https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/vyezd/bike_reklama.png" alt="Байк">
       </div>
       <div class="collage-item top-right">
         <img src="https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/vyezd/Straus2.jpeg" alt="Страус">
