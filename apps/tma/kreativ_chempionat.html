@@ -399,6 +399,7 @@
     .ptariff-old{font-size:14px;color:var(--text-muted);text-decoration:line-through;}
     .ptariff-new{font-size:24px;font-weight:800;color:var(--brand-peach);}
     .ptariff-meta{font-size:12px;color:var(--text-muted);font-weight:500;}
+    .ptariff-places{display:inline-block;align-self:flex-start;font-family:var(--font-body);font-size:15px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#FFFFFF;background:linear-gradient(135deg,#C84B9E 0%,#FF4757 100%);padding:10px 18px;border-radius:100px;margin-top:2px;box-shadow:0 0 20px rgba(200,75,158,.5);animation:pulse-deadline 2.4s ease-in-out infinite;}
     .ptariff-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
     .ptariff-list li{font-size:14px;color:var(--text-light);line-height:1.5;display:flex;gap:8px;align-items:flex-start;}
     .ptariff-list li::before{content:"✓";color:var(--brand-peach);font-weight:700;flex-shrink:0;}
@@ -1373,7 +1374,7 @@
   <div class="container">
     <div class="section-label" id="tariffs-section-label">Пакеты участия</div>
     <h2 class="h2" id="tariffs-section-title">ВЫБЕРИТЕ ФОРМАТ УЧАСТИЯ:</h2>
-    <p class="desc" id="tariffs-section-intro" style="margin-bottom:24px;"></p>
+    <p class="desc" id="tariffs-section-intro" style="margin-bottom:24px;color:var(--brand-peach);font-weight:600;"></p>
 
     <!-- DEADLINE BANNER -->
     <div style="display:flex;justify-content:center;margin-bottom:32px;">
@@ -1427,7 +1428,7 @@
           <span class="ptariff-old">14 000 ₽</span>
           <span class="ptariff-new">9 900 ₽</span>
         </div>
-        <div class="ptariff-meta" style="margin-top:-6px;">Всего 50 мест</div>
+        <div class="ptariff-places">Всего 50 мест</div>
 
         <div style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-peach);margin-top:6px;margin-bottom:-4px;">Этап 1 · Живой Автор</div>
         <ul class="ptariff-list">
@@ -1460,8 +1461,8 @@
         <div class="ptariff-title">Тариф: "Иммерсивный выезд"</div>
         <div class="ptariff-prices">
           <span class="ptariff-new">190 000 ₽</span>
-          <span class="ptariff-meta">15 мест</span>
         </div>
+        <div class="ptariff-places">15 мест</div>
 
         <div style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-peach);margin-top:6px;margin-bottom:-4px;">Этап 1 · Живой Автор</div>
         <ul class="ptariff-list">
