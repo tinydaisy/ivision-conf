@@ -112,24 +112,20 @@
         },
         {
           "type": "list",
-          "title": "Креативный иммерсивный выезд во Вьетнам:",
+          "title": "Выезд · Вьетнам + Мальдивы:",
           "items": [
-            "Персональный рекламный продакшн с вашим продуктом",
-            "Проживание в 4-5* отеле",
-            "Окружение твердых предпринимателей и экспертов",
-            "5 фантастически красивых локаций во Вьетнаме в стиле \"Угадай, ИИ или не ИИ?\"",
-            "Съемки в динамике: летающая доска, страус, байк, параплан, лестница в небо",
-            "1 сценический клип - креативная самопрезентация продукта/услуги"
+            "Гарантированное выступление 30 минут на конференции iViSiON-8",
+            "Гарантированное выступление на живой сцене во Вьетнаме — Нячанг",
+            "Съёмка брендированного клипа-визитки в стиле стиляг",
+            "Размещение рекламы в открытой базе чемпионата",
+            "7 дней во Вьетнаме — проживание в золотом дворце у моря",
+            "Круиз на яхте и экскурсии",
+            "3 дня на Мальдивах"
           ]
         },
         {
-          "type": "list",
-          "title": "Масштаб и трафик:",
-          "items": [
-            "Экспертный день: ваши ответы на вопросы участников в чате Чемпионата",
-            "Гарантированное выступление (30 мин) на конференции iViSiОN-8: Бизнес-Создатели в июле 2026",
-            "Гарантировано включение в систему автоподписки на каждом из этапов (подписчики в канал и перелив аудитории)"
-          ]
+          "type": "html",
+          "content": "<div style=\"padding:18px 18px 16px;background:linear-gradient(160deg,rgba(192,132,252,.10),rgba(255,207,164,.06));border:1px solid rgba(192,132,252,.28);border-radius:14px;\"><div style=\"font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--brand-peach);margin-bottom:14px;\">Выберите условия участия:</div><div style=\"font-size:14px;font-weight:700;color:var(--brand-peach);margin-bottom:10px;\">Проживание</div><div style=\"margin-bottom:14px;font-size:14px;line-height:1.55;\"><div style=\"margin-bottom:10px;\"><div style=\"font-weight:700;color:var(--text-light);\">Дворцовые покои</div><div style=\"color:var(--text-light);\">— комната на двоих</div></div><div><div style=\"font-weight:700;color:var(--text-light);\">Королевские апартаменты</div><div style=\"color:var(--text-light);\">— отдельная комната во дворце <span style=\"color:var(--brand-peach);font-weight:700;\">(+ доплата)</span></div></div></div><div style=\"font-size:14px;font-weight:700;color:var(--brand-peach);margin-bottom:10px;\">Формат выступления</div><div style=\"margin-bottom:8px;font-size:14px;line-height:1.55;\"><div style=\"margin-bottom:10px;\"><div style=\"font-weight:700;color:var(--text-light);\">Стол на мастермайнде</div><div style=\"color:var(--text-light);\">— живой обмен в малой группе</div></div><div><div style=\"font-weight:700;color:var(--text-light);\">Сцена перед аудиторией 50+ зрителей</div><div style=\"color:var(--text-light);\">— 20 минут сольного выступления <span style=\"color:var(--brand-peach);font-weight:700;\">(+ доплата)</span></div></div></div><p style=\"margin:14px 0 0;font-size:12.5px;color:var(--text-muted);line-height:1.55;font-style:italic;\">Перелёт не входит. Итоговая стоимость зависит от выбранных опций. Уточните детали в Telegram.</p></div>"
         }
       ],
       "investment": {

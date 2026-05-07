@@ -629,6 +629,9 @@ function renderBlock(b, isLast) {
       </div>
     `;
   }
+  if (b.type === 'html') {
+    return `<div style="${mb}">${b.content || ''}</div>`;
+  }
   if (b.type === 'strikethrough') {
     const noteHtml = b.note
       ? `<p style="font-size:13px;color:var(--text-muted);margin-left:20px;font-style:italic;">${b.note}</p>`
