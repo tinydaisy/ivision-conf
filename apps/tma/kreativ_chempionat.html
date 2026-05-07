@@ -147,6 +147,7 @@
     .stage-title{font-size:28px;font-weight:700;color:var(--text-light);margin-bottom:12px;}
     .stage-duration{font-size:13px;color:var(--brand-peach);font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px;}
     .stage-desc{font-size:15px;color:var(--text-muted);line-height:1.7;max-width:400px;}
+    @media(max-width:768px){.final-circles{grid-template-columns:1fr!important;gap:14px!important;}}
 
     .carousel-wrap{position:relative;width:100%;max-width:280px;margin:0 auto;}
     .carousel-track{display:flex;gap:0;overflow-x:auto;scroll-behavior:smooth;padding-bottom:8px;scroll-snap-type:x mandatory;}
@@ -2111,7 +2112,7 @@ async function loadData() {
       ${stage.number != null ? `<div class="stage-number">${String(stage.number).padStart(2, '0')}</div>` : ''}
       <h3 class="stage-title">${stage.title}</h3>
       <p class="stage-duration">${stage.duration}</p>
-      <p class="stage-desc">${stage.description}</p>
+      <div class="stage-desc">${stage.description}</div>
     `;
 
     const hasVideos = Array.isArray(stage.videos) && stage.videos.length > 0;
