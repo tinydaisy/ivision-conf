@@ -365,13 +365,6 @@
         "shape": "circle"
       },
       {
-        "name": "МАЛЬДИВЫ",
-        "description": "Авторские туры от Евгении Романовской",
-        "logo": "img/jury/maldivy.JPG",
-        "shape": "circle",
-        "imageScale": 70
-      },
-      {
         "name": "БРО «Опора России»",
         "description": "Башкирское региональное отделение «Опоры России»",
         "logo": "img/jury/opora.png",
