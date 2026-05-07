@@ -41,6 +41,7 @@
 
     /* HERO */
     #hero{position:relative;min-height:100vh;display:flex;align-items:center;background:linear-gradient(160deg,#25455D 0%,#080B12 60%);overflow:hidden;padding:120px 0 80px;}
+    @keyframes pulse-deadline{0%,100%{box-shadow:0 0 20px rgba(200,75,158,.45);}50%{box-shadow:0 0 32px rgba(200,75,158,.75);}}
     .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:flex-start;position:relative;z-index:2;padding-top:40px;}
     .hero-label{font-family:var(--font-body);font-weight:700;font-size:clamp(13px,3vw,15px);letter-spacing:.22em;text-transform:uppercase;color:var(--brand-peach);margin-bottom:20px;}
     .hero-h1{font-family:var(--font-display);font-size:clamp(64px,8vw,110px);letter-spacing:.02em;line-height:.95;color:var(--text-light);margin-bottom:24px;}
@@ -497,11 +498,16 @@
             <span class="hero-h1-accent">Ж.И.В.У.</span>
           </span>
         </h1>
-        <p class="hero-sub">Живые <span style="color:var(--brand-peach);">·</span> Истинные <span style="color:var(--brand-peach);">·</span> Влиятельные <span style="color:var(--brand-peach);">·</span> Успешные</p>
+        <p class="hero-sub">Онлайн + офлайн во <span style="color:var(--brand-peach);">Вьетнаме</span> и на <span style="color:var(--brand-peach);">Мальдивах</span></p>
+        <p class="hero-sub" style="margin-top:6px;">Живые <span style="color:var(--brand-peach);">·</span> Истинные <span style="color:var(--brand-peach);">·</span> Влиятельные <span style="color:var(--brand-peach);">·</span> Успешные</p>
 
-        <p class="hero-date" style="font-family:var(--font-body);font-weight:700;font-size:16px;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-peach);margin:24px 0 24px;display:flex;align-items:center;gap:10px;">
+        <p class="hero-date" style="font-family:var(--font-body);font-weight:700;font-size:16px;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-peach);margin:24px 0 16px;display:flex;align-items:center;gap:10px;">
           <span style="display:inline-block;width:28px;height:1px;background:var(--brand-peach);"></span>
           С 15 июня 2026
+        </p>
+
+        <p class="hero-deadline" style="font-family:var(--font-body);font-weight:800;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:#FFFFFF;background:linear-gradient(135deg,#C84B9E 0%,#FF4757 100%);padding:8px 14px;border-radius:8px;display:inline-block;margin:0 0 24px;box-shadow:0 0 20px rgba(200,75,158,.45);animation:pulse-deadline 2s ease-in-out infinite;">
+          Приём заявок до 25 мая
         </p>
 
         <div class="hero-btns">
@@ -629,6 +635,10 @@
         <div class="values-grid" id="values-container"></div>
         <p class="desc" style="margin-bottom:40px;">Что дать рынку после двух крайностей — «успешного успеха» и «парада публичного нытья»? Чистую созидательную энергию <span id="vision-highlight" style="color:var(--brand-pink-light);"></span></p>
         <p class="vision-text" style="margin-top:32px;margin-bottom:0;text-transform:uppercase;font-size:15px;" id="vision-main"></p>
+
+        <p style="margin-top:32px;font-size:17px;line-height:1.7;color:var(--text-light);padding:20px 24px;background:linear-gradient(135deg,rgba(255,207,164,.12),rgba(192,132,252,.08));border-left:3px solid var(--brand-peach);border-radius:12px;">
+          Именно это мы выводим на международный уровень — с живой сценой <span style="color:var(--brand-peach);font-weight:700;">онлайн</span> и <span style="color:var(--brand-peach);font-weight:700;">офлайн во Вьетнаме и на Мальдивах</span>
+        </p>
       </div>
     </div>
   </div>
@@ -646,11 +656,12 @@
 <style>
 .audience-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
   margin-top: 64px;
   align-items: stretch;
 }
+@media (max-width:1200px) { .audience-grid { grid-template-columns: repeat(2, 1fr); gap: 28px; } }
 .audience-card {
   padding: 36px 28px 32px;
   background: linear-gradient(135deg, rgba(255,207,164,.06), rgba(192,132,252,.04));
@@ -697,6 +708,7 @@
 .audience-card:nth-child(1) .audience-portrait { transform: rotate(-6deg); }
 .audience-card:nth-child(2) .audience-portrait { transform: rotate(4deg); }
 .audience-card:nth-child(3) .audience-portrait { transform: rotate(-3deg); }
+.audience-card:nth-child(4) .audience-portrait { transform: rotate(5deg); }
 /* Декоративные кружки вокруг портрета */
 .audience-deco {
   position: absolute;
@@ -710,6 +722,8 @@
 .audience-card:nth-child(2) .audience-deco-2 { width: 32px; height: 32px; background: rgba(200,75,158,.28); bottom: 18px; right: -14px; }
 .audience-card:nth-child(3) .audience-deco-1 { width: 50px; height: 50px; border: 1.5px solid rgba(255,207,164,.45); top: -14px; right: -10px; }
 .audience-card:nth-child(3) .audience-deco-2 { width: 38px; height: 38px; background: rgba(192,132,252,.22); bottom: 12px; left: -20px; }
+.audience-card:nth-child(4) .audience-deco-1 { width: 52px; height: 52px; background: rgba(200,75,158,.22); top: -12px; left: -14px; }
+.audience-card:nth-child(4) .audience-deco-2 { width: 34px; height: 34px; border: 1.5px solid rgba(255,207,164,.45); bottom: 18px; right: -16px; }
 .audience-card-title {
   font-size: 18px;
   font-weight: 700;
@@ -768,6 +782,10 @@
         <li>аудитория, которая вас уже видела и прогрелась</li>
         <li>и шанс выиграть титулы «Лидер Вовлечения» и «Лидер Сцены»</li>
       </ul>
+
+      <p style="margin-top:28px;font-size:16px;line-height:1.65;color:var(--text-light);padding:18px 22px;background:linear-gradient(135deg,rgba(192,132,252,.12),rgba(255,207,164,.08));border-left:3px solid var(--brand-peach);border-radius:10px;font-weight:500;">
+        А в финале — живая сцена <span style="color:var(--brand-peach);font-weight:700;">офлайн во Вьетнаме</span> и <span style="color:var(--brand-peach);font-weight:700;">онлайн рядом с лидерами рынка</span>
+      </p>
     </div>
   </div>
 </section>
@@ -779,7 +797,7 @@
     <h2 class="h2">Особенности Чемпионата</h2>
 
     <!-- STATS BARS -->
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-items:flex-end;margin-top:80px;margin-bottom:80px;max-width:100%;margin-left:auto;margin-right:auto;padding:0 8px;">
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;align-items:flex-end;margin-top:80px;margin-bottom:80px;max-width:100%;margin-left:auto;margin-right:auto;padding:0 8px;">
 
       <!-- Stat 1: 300+ участников -->
       <div style="text-align:center;">
@@ -825,7 +843,35 @@
         <p style="font-size:13px;color:var(--text-muted);">iViSiON-комьюнити</p>
       </div>
 
+      <!-- Stat 5: 2 страны -->
+      <div style="text-align:center;">
+        <div style="position:relative;height:280px;margin-bottom:20px;display:flex;align-items:flex-end;justify-content:center;">
+          <div style="width:60px;height:80px;background:linear-gradient(180deg,#FFCFA4 0%,#C84B9E 100%);border-radius:12px 12px 0 0;position:relative;box-shadow:0 10px 40px rgba(200,75,158,.3);">
+            <div style="position:absolute;top:-40px;left:50%;transform:translateX(-50%);font-size:28px;font-weight:900;color:#FFCFA4;white-space:nowrap;">2</div>
+          </div>
+        </div>
+        <p style="font-size:15px;color:var(--text-light);font-weight:600;margin-bottom:8px;">Страны</p>
+        <p style="font-size:13px;color:var(--text-muted);">Вьетнам + Мальдивы</p>
+      </div>
+
+      <!-- Stat 6: 8 000+ охват сцен победителей -->
+      <div style="text-align:center;">
+        <div style="position:relative;height:280px;margin-bottom:20px;display:flex;align-items:flex-end;justify-content:center;">
+          <div style="width:60px;height:280px;background:linear-gradient(180deg,#C084FC 0%,#FFCFA4 100%);border-radius:12px 12px 0 0;position:relative;box-shadow:0 10px 40px rgba(192,132,252,.35);">
+            <div style="position:absolute;top:-40px;left:50%;transform:translateX(-50%);font-size:24px;font-weight:900;color:var(--brand-purple);white-space:nowrap;">8 000+</div>
+          </div>
+        </div>
+        <p style="font-size:15px;color:var(--text-light);font-weight:600;margin-bottom:8px;">Охват сцен</p>
+        <p style="font-size:13px;color:var(--text-muted);">Победителей</p>
+      </div>
+
     </div>
+
+    <style>
+      @media(max-width:900px){
+        section .container > div[style*="grid-template-columns:repeat(6"]{grid-template-columns:repeat(3,1fr)!important;gap:16px!important;}
+      }
+    </style>
   </div>
 </section>
 
@@ -846,9 +892,10 @@
     <div class="stage-row" style="grid-template-columns:1fr;max-width:900px;margin:0 auto 48px;">
       <div class="stage-text" style="align-items:center;text-align:center;">
 
-        <h3 class="stage-title">Иммерсивный выезд во Вьетнам с брендированными съёмками</h3>
-        <p class="stage-duration">6 дней, август</p>
-        <p class="stage-desc" style="max-width:820px;">Мы объявим вызов пластиковому ИИ на иммерсивном выезде с креативными съёмками во Вьетнаме. Каждый участник получает авторские съёмки в нестандартных локациях: креативный контент для соцсетей и видео-визитка, которая поднимает статус, пробивает баннерную слепоту и привлекает клиентов</p>
+        <h3 class="stage-title">Иммерсивный выезд · Вьетнам, Нячанг</h3>
+        <p class="stage-duration">7 ночей · середина августа</p>
+        <p class="stage-desc" style="max-width:820px;font-size:18px;font-style:italic;color:var(--brand-peach);font-weight:600;">В мире, где можно сгенерировать всё — побеждает тот, кого невозможно скопировать.</p>
+        <p class="stage-desc" style="max-width:820px;">6 дней в Нячанге — чтобы создать контент, который работает на вас годами, выйти на живую сцену и показать рынку, кто вы есть на самом деле.</p>
       </div>
     </div>
 
@@ -876,6 +923,79 @@
       </div>
       <div class="collage-item top-center egg-inv">
         <img src="https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/vyezd/more_serdce.jpeg" alt="Море с сердцем">
+      </div>
+    </div>
+
+    <!-- NHA TRANG SUB-BLOCKS: Живая сцена, Стиляги, Проживание, Мальдивы -->
+    <style>
+      .nt-block{max-width:980px;margin:64px auto 0;padding:32px;background:linear-gradient(160deg,rgba(255,207,164,.06),rgba(192,132,252,.04));border:1px solid rgba(255,207,164,.2);border-radius:24px;}
+      .nt-block-head{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+      .nt-block-icon{font-size:22px;color:var(--brand-peach);flex-shrink:0;}
+      .nt-block-title{font-family:var(--font-body);font-size:22px;font-weight:800;color:var(--text-light);letter-spacing:.02em;line-height:1.3;}
+      .nt-block-text{font-size:16px;line-height:1.7;color:var(--text-light);margin:0 0 18px;}
+      .nt-block-text strong{color:var(--brand-peach);font-weight:700;}
+      .nt-block-img{width:100%;border-radius:18px;overflow:hidden;margin-top:18px;}
+      .nt-block-img img{width:100%;display:block;}
+      .nt-block-caption{font-size:13px;color:var(--text-muted);font-style:italic;margin-top:10px;text-align:center;}
+      .nt-photos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;}
+      .nt-photos-grid .nt-block-img{margin-top:0;}
+      @media(max-width:768px){
+        .nt-block{padding:24px 20px;}
+        .nt-block-title{font-size:19px;}
+        .nt-block-text{font-size:15px;}
+        .nt-photos-grid{grid-template-columns:1fr;}
+      }
+    </style>
+
+    <!-- Sub-block 1: Живая сцена -->
+    <div class="nt-block">
+      <div class="nt-block-head">
+        <span class="nt-block-icon">◆</span>
+        <h3 class="nt-block-title">Живая сцена</h3>
+      </div>
+      <p class="nt-block-text">Выступление в профессиональном конференц-зале Нячанга перед живой аудиторией — экспаты, предприниматели, те, кто работает в Telegram и на международном рынке. <strong>Новые люди, новые связи, новые клиенты.</strong></p>
+      <div class="nt-block-img">
+        <img src="/img/nha_trang/zal_nha_trang.jpg" alt="Конференц-зал в Нячанге">
+      </div>
+    </div>
+
+    <!-- Sub-block 2: Съёмки в стиле стиляг -->
+    <div class="nt-block">
+      <div class="nt-block-head">
+        <span class="nt-block-icon">◈</span>
+        <h3 class="nt-block-title">Съёмки в стиле стиляг</h3>
+      </div>
+      <p class="nt-block-text">Забудьте про белый фон и деловой пиджак. Снимаем в золотом дворце и на улицах Нячанга — ярко, с характером, в образе. <strong>Видеоклип-визитка и брендированные фото, которые останавливают прокрутку и притягивают клиентов.</strong></p>
+      <div class="nt-block-img">
+        <img src="/img/nha_trang/stilyagi.jpg" alt="Референс стиля съёмки — стиляги">
+      </div>
+      <p class="nt-block-caption">Референс стиля съёмки</p>
+      <p class="nt-block-text" style="margin-top:24px;">На каждом выезде — своя тема и свой образ. В Сочи снимали в стиле рэп. В этот раз Нячанг — и мы берём <strong>стиляг</strong>. Яркие цвета, характер, эпоха. Контент, который запоминается.</p>
+    </div>
+
+    <!-- Sub-block 3: Проживание -->
+    <div class="nt-block">
+      <div class="nt-block-head">
+        <span class="nt-block-icon">◉</span>
+        <h3 class="nt-block-title">Проживание</h3>
+      </div>
+      <p class="nt-block-text"><strong>Золотой дворец у моря</strong> — именно так это выглядит.</p>
+      <div class="nt-photos-grid">
+        <div class="nt-block-img"><img src="/img/nha_trang/photo5.jpg" alt="Фасад дворца"></div>
+        <div class="nt-block-img"><img src="/img/nha_trang/photo2.jpg" alt="Терраса со стеклянным полом"></div>
+        <div class="nt-block-img"><img src="/img/nha_trang/photo1.jpg" alt="Внутренний бассейн с колоннами"></div>
+      </div>
+    </div>
+
+    <!-- Sub-block 4: Бонус Мальдивы -->
+    <div class="nt-block">
+      <div class="nt-block-head">
+        <span class="nt-block-icon">★</span>
+        <h3 class="nt-block-title">И бонус после выезда</h3>
+      </div>
+      <p class="nt-block-text"><strong>3 дня на Мальдивах за счёт организаторов</strong> — для каждого участника выезда.</p>
+      <div class="nt-block-img">
+        <img src="/img/nha_trang/maldivy.jpeg" alt="Мальдивы">
       </div>
     </div>
 
@@ -911,6 +1031,68 @@
     <p class="desc" id="partners-intro"></p>
 
     <div class="partners-grid" id="partners-grid"></div>
+  </div>
+</section>
+
+<!-- ORGANIZERS — Марго Форбс + Евгения Романовская -->
+<section class="sec dark" id="organizers-sec">
+  <style>
+    .org-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin-top:48px;max-width:1100px;margin-left:auto;margin-right:auto;}
+    .org-card{background:linear-gradient(160deg,rgba(255,207,164,.08),rgba(192,132,252,.04));border:1px solid rgba(255,207,164,.22);border-radius:24px;padding:32px 28px;display:flex;flex-direction:column;}
+    .org-photo-wrap{display:flex;justify-content:center;margin-bottom:24px;}
+    .org-photo{width:200px;height:240px;object-fit:cover;object-position:center;border-radius:50% 50% 50% 50% / 55% 55% 45% 45%;border:2px solid rgba(255,207,164,.3);box-shadow:0 12px 40px rgba(0,0,0,.35);}
+    .org-name{font-family:var(--font-body);font-size:24px;font-weight:800;color:var(--brand-peach);text-align:center;margin-bottom:8px;letter-spacing:.02em;}
+    .org-role{font-size:14px;color:var(--text-muted);text-align:center;margin-bottom:24px;font-style:italic;}
+    .org-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
+    .org-list li{font-size:14.5px;color:var(--text-light);line-height:1.55;padding-left:18px;position:relative;}
+    .org-list li::before{content:"•";color:var(--brand-peach);position:absolute;left:0;top:0;font-size:18px;line-height:1;font-weight:700;}
+    @media(max-width:900px){.org-grid{grid-template-columns:1fr;gap:24px;}.org-card{padding:24px 22px;}.org-name{font-size:20px;}.org-photo{width:170px;height:210px;}}
+  </style>
+  <div class="container">
+    <div class="section-label">Организаторы</div>
+    <h2 class="h2">Кто стоит за чемпионатом</h2>
+
+    <div class="org-grid">
+
+      <!-- Марго Форбс -->
+      <div class="org-card">
+        <div class="org-photo-wrap">
+          <img class="org-photo" src="/img/forbs_margo.jpg" alt="Марго Форбс">
+        </div>
+        <div class="org-name">Марго Форбс</div>
+        <div class="org-role">Основатель и идейный вдохновитель</div>
+        <ul class="org-list">
+          <li>Нелинейный стратег в маркетинге и продажах</li>
+          <li>Создатель бизнес-конференции «ВИДЕНИЕ / iViSiON» для продвижения предпринимателей и экспертов</li>
+          <li>Провела 7 конференций, объединила 50+ лидеров рынка и 3 600+ участников (Настасья Белочкина, Павел Лебедев, Вероника Кромбергер, Сергей Бекренев и др.)</li>
+          <li>Несёт культуру проявления аутентичности и творчества: пишет и поёт на гиталеле музыкальные портреты лидерам рынка</li>
+          <li>Чемпион смеха Приволжского округа 2025</li>
+          <li>Зам. председателя комитета по личному бренду БРО «Опора России»</li>
+          <li>Кандидат физ-мат наук</li>
+          <li>Независимый финансовый консультант</li>
+          <li>Спикер Сколково, ЭКСПО и эксперт СМИ</li>
+          <li>Разработчик реферальной платформы для привлечения 15–50% лидов руками самой аудитории</li>
+          <li>7 лет практики йоги и исследований возможностей духа и тела (ходила по разбитым стеклам, стоит на гвоздях, стояла на коне и верблюде, осваивает стойки на руках, прыгала с 207 м банджи)</li>
+        </ul>
+      </div>
+
+      <!-- Евгения Романовская -->
+      <div class="org-card">
+        <div class="org-photo-wrap">
+          <img class="org-photo" src="/img/nha_trang/romanovskaya_ebg.JPG" alt="Евгения Романовская">
+        </div>
+        <div class="org-name">Евгения Романовская</div>
+        <div class="org-role">Продюсер проектов · PR и продвижение</div>
+        <ul class="org-list">
+          <li>Соединяет людей, проекты и возможности по всему миру</li>
+          <li>Председатель комитета по личному бренду в ОПОРА РОССИИ</li>
+          <li>5 лет постоянных выездов · более 300 довольных людей</li>
+          <li>Конференции • Медиа • Авторские туры</li>
+          <li>География работы: Москва • Вьетнам • Мальдивы</li>
+        </ul>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -1017,7 +1199,15 @@
           <text x="60" y="78" font-size="42" font-weight="900" text-anchor="middle" fill="#080B12">1</text>
         </svg>
         <div class="medal-place">1 место</div>
-        <div class="medal-stage-line"><span class="medal-stage-grand">Grand-Сцена:</span> Пакет из 3 спикерских выступлений (iViSiON, FREEDOM, КОС)</div>
+        <div class="medal-stage-line">
+          <div style="margin-bottom:10px;"><span class="medal-stage-grand">Титул «Лидер Сцены»</span></div>
+          <ul style="list-style:none;padding:0;margin:0;text-align:left;font-size:13px;line-height:1.55;">
+            <li style="margin-bottom:6px;">➤ 1 выступление на живой сцене во Вьетнаме на иммерсивном выезде iViSiON</li>
+            <li style="margin-bottom:6px;">➤ 1 выступление на онлайн-конференции ВИДЕНИЕ / iViSiON</li>
+            <li style="margin-bottom:6px;">➤ 2 онлайн-выступления на федеральных площадках партнёров</li>
+            <li style="margin-bottom:6px;color:var(--brand-peach);font-weight:700;">➤ Суммарный охват — 8 000 человек</li>
+          </ul>
+        </div>
         <span class="medal-fund">50% призового фонда</span>
       </div>
 
@@ -1042,7 +1232,13 @@
           <polygon points="60,30 64,42 77,42 68,49 72,61 60,54 48,61 52,49 43,42 56,42" fill="#FFB347" opacity="0.4"/>
         </svg>
         <div class="medal-place">2 место</div>
-        <div class="medal-stage-line"><span class="medal-stage-grand">Big-Сцена:</span> 1 выступление на iViSiON</div>
+        <div class="medal-stage-line">
+          <div style="margin-bottom:10px;"><span class="medal-stage-grand">Титул «Лидер Сцены»</span></div>
+          <ul style="list-style:none;padding:0;margin:0;text-align:left;font-size:13px;line-height:1.55;">
+            <li style="margin-bottom:6px;">➤ 1 выступление на онлайн-конференции ВИДЕНИЕ / iViSiON</li>
+            <li style="margin-bottom:6px;">➤ 1 онлайн-выступление на федеральной площадке партнёра</li>
+          </ul>
+        </div>
         <span class="medal-fund">30% призового фонда</span>
       </div>
 
@@ -1067,7 +1263,12 @@
           <polygon points="60,30 64,42 77,42 68,49 72,61 60,54 48,61 52,49 43,42 56,42" fill="#DDB892" opacity="0.5"/>
         </svg>
         <div class="medal-place">3 место</div>
-        <div class="medal-stage-line"><span class="medal-stage-grand">Мини-Сцена:</span> 1 выступление на нетворкинге/эфире iViSiON</div>
+        <div class="medal-stage-line">
+          <div style="margin-bottom:10px;"><span class="medal-stage-grand">Титул «Лидер Сцены»</span></div>
+          <ul style="list-style:none;padding:0;margin:0;text-align:left;font-size:13px;line-height:1.55;">
+            <li style="margin-bottom:6px;">➤ 1 выступление на онлайн-конференции ВИДЕНИЕ / iViSiON</li>
+          </ul>
+        </div>
         <span class="medal-fund">20% призового фонда</span>
       </div>
 
@@ -1156,7 +1357,14 @@
   <div class="container">
     <div class="section-label" id="tariffs-section-label">Пакеты участия</div>
     <h2 class="h2" id="tariffs-section-title">ВЫБЕРИТЕ ФОРМАТ УЧАСТИЯ:</h2>
-    <p class="desc" id="tariffs-section-intro" style="margin-bottom:48px;"></p>
+    <p class="desc" id="tariffs-section-intro" style="margin-bottom:24px;"></p>
+
+    <!-- DEADLINE BANNER -->
+    <div style="display:flex;justify-content:center;margin-bottom:32px;">
+      <div style="font-family:var(--font-body);font-weight:800;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:#FFFFFF;background:linear-gradient(135deg,#C84B9E 0%,#FF4757 100%);padding:12px 22px;border-radius:10px;box-shadow:0 0 24px rgba(200,75,158,.45);animation:pulse-deadline 2s ease-in-out infinite;">
+        Приём заявок до 25 мая
+      </div>
+    </div>
 
     <!-- PRICE COUNTDOWN TIMER — отображается, если задан price_deadline в JSON -->
     <div class="price-timer" id="price-timer" data-deadline="">
@@ -1203,14 +1411,28 @@
           <span class="ptariff-old">14 000 ₽</span>
           <span class="ptariff-new">9 900 ₽</span>
         </div>
+        <div class="ptariff-meta" style="margin-top:-6px;">Всего 50 мест</div>
+
+        <div style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-peach);margin-top:6px;margin-bottom:-4px;">Этап 1 · Живой Автор</div>
         <ul class="ptariff-list">
-          <li>Всё из этапа 1</li>
-          <li>От 1 до 3 выступлений на площадке iViSiON (по мере прохождения этапа)</li>
-          <li>Персональная реклама по базе 2500+ человек</li>
-          <li>Запись выступления для использования в качестве лид-магнита</li>
+          <li>7 заданий с материалами и примерами по креативному маркетингу</li>
+          <li>Практика йоги смеха для запуска творческой энергии</li>
+          <li>Доступ к сообществу из 900+ экспертов и предпринимателей</li>
+          <li>Участие в финальном онлайн-нетворкинге</li>
+          <li>Шанс на денежный приз этапа 1</li>
+          <li>Шанс на выигрыш титула «Лидер Вовлечения»</li>
+        </ul>
+
+        <div style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-peach);margin-top:8px;margin-bottom:-4px;">Этап 2 · Живой Спикер</div>
+        <ul class="ptariff-list">
+          <li>От 1 до 3 выступлений на площадке ВИДЕНИЕ / iViSiON</li>
+          <li>Персональная реклама по базе 2 500+ человек</li>
+          <li>Запись выступления как лид-магнит</li>
           <li>Шанс на денежный приз этапа 2</li>
           <li>Шанс на выигрыш титула «Лидер Сцены»</li>
+          <li>Шанс выиграть главный приз — выступление на живой сцене во Вьетнаме с суммарным охватом 8 000 человек</li>
         </ul>
+
         <button class="ptariff-btn" onclick="openGC('gc-modal-t2')">
           <span class="ptariff-btn-i">Оплатить</span>
         </button>
@@ -1218,22 +1440,42 @@
 
       <!-- Тариф 3 — Иммерсивный выезд -->
       <div class="ptariff">
-        <div class="ptariff-stage">Тариф 3 · Этапы 1 + 2 + Выезд</div>
-        <div class="ptariff-title">Иммерсивный выезд</div>
+        <div class="ptariff-stage">Этапы 1 + 2 + Выезд</div>
+        <div class="ptariff-title">Тариф: "Иммерсивный выезд"</div>
         <div class="ptariff-prices">
           <span class="ptariff-new">190 000 ₽</span>
-          <span class="ptariff-meta">10 мест</span>
+          <span class="ptariff-meta">15 мест</span>
         </div>
+
+        <div style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-peach);margin-top:6px;margin-bottom:-4px;">Этап 1 · Живой Автор</div>
         <ul class="ptariff-list">
-          <li>Всё из этапа 1</li>
-          <li>Всё из этапа 2</li>
-          <li>Гарантированное выступление 30 мин на конференции iViSiON-8</li>
+          <li>7 заданий с материалами и примерами по креативному маркетингу</li>
+          <li>Практика йоги смеха для запуска творческой энергии</li>
+          <li>Доступ к сообществу из 900+ экспертов и предпринимателей</li>
+          <li>Участие в финальном онлайн-нетворкинге</li>
+          <li>Шанс на денежный приз этапа 1</li>
+          <li>Шанс на выигрыш титула «Лидер Вовлечения»</li>
+        </ul>
+
+        <div style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-peach);margin-top:8px;margin-bottom:-4px;">Этап 2 · Живой Спикер</div>
+        <ul class="ptariff-list">
+          <li>От 1 до 3 выступлений на площадке ВИДЕНИЕ / iViSiON</li>
+          <li>Персональная реклама по базе 2 500+ человек</li>
+          <li>Запись выступления как лид-магнит</li>
+          <li>Шанс на денежный приз этапа 2</li>
+          <li>Шанс на выигрыш титула «Лидер Сцены»</li>
+          <li>Шанс выиграть главный приз — выступление на живой сцене во Вьетнаме с суммарным охватом 8 000 человек</li>
+        </ul>
+
+        <div style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-peach);margin-top:8px;margin-bottom:-4px;">Выезд · Вьетнам + Мальдивы</div>
+        <ul class="ptariff-list">
+          <li>Гарантированное выступление 30 минут на конференции iViSiON-8</li>
+          <li>Гарантированное выступление на живой сцене во Вьетнаме — Нячанг</li>
+          <li>Съёмка брендированного клипа-визитки в стиле стиляг</li>
           <li>Подключение к системе подписки на канал</li>
-          <li>Размещение рекламного материала в открытой базе Чемпионата</li>
-          <li>6 дней во Вьетнаме (Нячанг)</li>
-          <li>Размещение в двух локациях: отель 5★ у моря и бунгало среди водопадов и термальных источников</li>
-          <li>Персональные брендированные съёмки с именным баннером в 5 локациях</li>
-          <li>Съёмки сценического клипа-визитки</li>
+          <li>Размещение рекламы в открытой базе чемпионата</li>
+          <li>7 дней во Вьетнаме — проживание в золотом дворце у моря</li>
+          <li>3 дня на Мальдивах</li>
         </ul>
         <button class="ptariff-btn" onclick="openGC('gc-modal-t3')">
           <span class="ptariff-btn-i">Оставить заявку</span>
