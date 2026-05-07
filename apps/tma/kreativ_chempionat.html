@@ -192,9 +192,8 @@
     .collage-item.egg-inv{border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;}
     .collage-item.egg-inv img{object-position:top;}
 
-    /* Center items - larger */
-    .collage-item.center-left{width:260px;height:300px;left:36%;top:50%;transform:translate(-50%,-50%) rotate(-8deg);}
-    .collage-item.center-right{width:260px;height:300px;left:64%;top:50%;transform:translate(-50%,-50%) rotate(8deg);}
+    /* Center item - large hero of the collage */
+    .collage-item.center-big{width:400px;height:460px;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-3deg);z-index:3;box-shadow:0 30px 70px rgba(0,0,0,.7);outline:3px solid rgba(255,207,164,.5);}
 
     /* Top items */
     .collage-item.top-left{width:200px;height:200px;left:8%;top:10%;transform:rotate(-12deg);}
@@ -211,9 +210,7 @@
 
     @media(max-width:768px){
       .collage-wrap{height:700px;margin:40px 0;padding:40px 0;}
-      .collage-item.center-left{width:180px;height:220px;left:28%;}
-      .collage-item.center-right{width:180px;height:220px;left:72%;}
-      .collage-item.top-left{width:140px;height:140px;left:5%;}
+      .collage-item.center-big{width:240px;height:280px;}
       .collage-item.top-right{width:140px;height:140px;right:3%;}
       .collage-item.bottom-left{width:150px;height:140px;left:6%;}
       .collage-item.bottom-right{width:140px;height:150px;right:5%;}
@@ -878,13 +875,7 @@
     </div>
 
     <div class="collage-wrap">
-      <div class="collage-item center-left">
-        <img src="https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/vyezd/paraplan_reklama.jpeg" alt="Паралет">
-      </div>
-      <div class="collage-item center-right">
-        <img src="https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/vyezd/flybord_reklama.jpeg" alt="Флайборд">
-      </div>
-      <div class="collage-item top-left egg-h">
+      <div class="collage-item center-big">
         <img src="https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/vyezd/bike_reklama.png" alt="Байк">
       </div>
       <div class="collage-item top-right">
@@ -937,7 +928,21 @@
       </div>
     </div>
 
-    <!-- Sub-block 2: Съёмки в стиле стиляг -->
+    <!-- Sub-block 2: Проживание -->
+    <div class="nt-block">
+      <div class="nt-block-head">
+        <span class="nt-block-icon">◉</span>
+        <h3 class="nt-block-title">Проживание · 7 ночей у моря</h3>
+      </div>
+      <p class="nt-block-text"><strong>Золотой дворец у моря</strong> — именно так это выглядит.</p>
+      <div class="nt-photos-grid">
+        <div class="nt-block-img"><img src="/img/nha_trang/photo2.jpg" alt="Терраса со стеклянным полом"></div>
+        <div class="nt-block-img"><img src="/img/nha_trang/photo5.jpg" alt="Фасад дворца"></div>
+        <div class="nt-block-img"><img src="/img/nha_trang/photo1.jpg" alt="Внутренний бассейн с колоннами"></div>
+      </div>
+    </div>
+
+    <!-- Sub-block 3: Съёмки в стиле стиляг -->
     <div class="nt-block">
       <div class="nt-block-head">
         <span class="nt-block-icon">◈</span>
@@ -958,20 +963,6 @@
       </div>
 
       <p class="nt-block-text" style="margin-top:28px;">В этот раз Нячанг — и мы берём <strong>стиляг</strong>. Яркие цвета, характер, эпоха. Контент, который запоминается.</p>
-    </div>
-
-    <!-- Sub-block 3: Проживание -->
-    <div class="nt-block">
-      <div class="nt-block-head">
-        <span class="nt-block-icon">◉</span>
-        <h3 class="nt-block-title">Проживание</h3>
-      </div>
-      <p class="nt-block-text"><strong>Золотой дворец у моря</strong> — именно так это выглядит.</p>
-      <div class="nt-photos-grid">
-        <div class="nt-block-img"><img src="/img/nha_trang/photo5.jpg" alt="Фасад дворца"></div>
-        <div class="nt-block-img"><img src="/img/nha_trang/photo2.jpg" alt="Терраса со стеклянным полом"></div>
-        <div class="nt-block-img"><img src="/img/nha_trang/photo1.jpg" alt="Внутренний бассейн с колоннами"></div>
-      </div>
     </div>
 
     <!-- Sub-block 4: Бонус Мальдивы -->
