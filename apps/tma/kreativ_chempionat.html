@@ -1065,6 +1065,7 @@
 <section class="sec dark" id="organizers-sec">
   <style>
     .org-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin-top:48px;max-width:1100px;margin-left:auto;margin-right:auto;}
+    .org-grid.org-grid-1col{grid-template-columns:1fr;max-width:560px;}
     .org-card{background:linear-gradient(160deg,rgba(255,207,164,.08),rgba(192,132,252,.04));border:1px solid rgba(255,207,164,.22);border-radius:24px;padding:32px 28px;display:flex;flex-direction:column;}
     .org-photo-wrap{display:flex;justify-content:center;margin-bottom:24px;}
     .org-photo{width:200px;height:240px;object-fit:cover;object-position:center;border-radius:50% 50% 50% 50% / 55% 55% 45% 45%;border:2px solid rgba(255,207,164,.3);box-shadow:0 12px 40px rgba(0,0,0,.35);}
@@ -1099,7 +1100,7 @@
       </div>
 
       <!-- Евгения Романовская -->
-      <div class="org-card">
+      <div class="org-card" id="org-evgenia">
         <div class="org-photo-wrap">
           <img class="org-photo" src="/img/nha_trang/romanovskaya_ebg.JPG" alt="Евгения Романовская">
         </div>
@@ -2264,6 +2265,16 @@ async function loadData() {
   });
 }
 document.addEventListener('DOMContentLoaded', loadData);
+
+// Евгения Романовская скрывается при наличии ?hder в URL (по умолчанию — видна).
+(function applyEvgeniaVisibility() {
+  const params = new URLSearchParams(window.location.search);
+  if (!params.has('hder')) return;
+  const ev = document.getElementById('org-evgenia');
+  const grid = ev && ev.closest('.org-grid');
+  if (ev) ev.style.display = 'none';
+  if (grid) grid.classList.add('org-grid-1col');
+})();
 
 // Тариф 1 показывается только при наличии ?shw1 в URL.
 // Если параметра нет — у .ptariffs остаётся 2 видимые карточки, выравниваем сетку в 2 колонки.
