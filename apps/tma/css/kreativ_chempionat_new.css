@@ -289,12 +289,12 @@ body, p, li, span, div, .desc, .hero-desc, .hero-sub,
 /* Убираем поворот jury-team-egg, чтобы фото стояли ровно */
 .jury-team-egg { width: 170px !important; height: 200px !important; }
 
-/* ===== 7. КОЛЛАЖ ВЫЕЗДА — 3 колонки, плотный flex =====
-   Колонки:  ЛЕВАЯ        ЦЕНТР           ПРАВАЯ
-             [дверь]      [байк]          [страус]
-                          [яхта]          [лестница]
-                          [кокос]
-   Все фото в исходных пропорциях, без обрезки и без пустот. */
+/* ===== 7. КОЛЛАЖ ВЫЕЗДА — яхта сверху на всю ширину + 3 колонки под ней =====
+   Структура:
+     [============ ЯХТА (большая, на всю ширину) ============]
+     [дверь]   [байк   ]   [страус   ]
+               [кокос  ]   [лестница ]
+   Все фото в исходных пропорциях, без обрезки. */
 .collage-wrap {
   background: rgba(255, 207, 164, 0.04) !important;
   border: 1px solid rgba(255, 207, 164, 0.12);
@@ -305,15 +305,28 @@ body, p, li, span, div, .desc, .hero-desc, .hero-sub,
   margin: 60px auto !important;
   padding: 22px !important;
   display: flex !important;
-  flex-direction: row !important;
+  flex-direction: column !important;
   align-items: stretch !important;
-  justify-content: center !important;
-  gap: 16px !important;
+  gap: 18px !important;
   perspective: none !important;
-  /* Сбрасываем grid-наследие */
   grid-template-columns: none !important;
   grid-template-rows: none !important;
   grid-template-areas: none !important;
+}
+
+/* Геро-блок с яхтой — занимает всю ширину коллажа */
+.collage-hero {
+  width: 100% !important;
+  display: block !important;
+}
+
+/* Сетка под яхтой — 3 равные колонки */
+.collage-grid {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: stretch !important;
+  gap: 16px !important;
+  width: 100% !important;
 }
 
 .collage-col {
@@ -324,19 +337,9 @@ body, p, li, span, div, .desc, .hero-desc, .hero-sub,
   min-width: 0 !important;
 }
 
-/* Левая колонка с одной дверью — центрируется по вертикали относительно соседних */
+/* Левая колонка с одной дверью — центрируется по вертикали */
 .collage-col-left {
   justify-content: center !important;
-  flex: 0.85 1 0 !important;
-}
-
-/* Центральная колонка с яхтой — чуть шире */
-.collage-col-center {
-  flex: 1.45 1 0 !important;
-}
-
-.collage-col-right {
-  flex: 0.85 1 0 !important;
 }
 
 .collage-item {
@@ -351,12 +354,10 @@ body, p, li, span, div, .desc, .hero-desc, .hero-sub,
   overflow: hidden !important;
   display: block !important;
   border-radius: 18px !important;
-  /* Сбрасываем grid-наследие */
   grid-area: auto !important;
   align-self: auto !important;
 }
 
-/* Изображения — в исходных пропорциях, без обрезки */
 .collage-item img {
   width: 100% !important;
   height: auto !important;
@@ -365,30 +366,35 @@ body, p, li, span, div, .desc, .hero-desc, .hero-sub,
   display: block !important;
 }
 
+/* Яхта — максимально большая, акцентная рамка */
 .collage-item.slot-yacht {
-  outline: 2px solid rgba(255, 207, 164, 0.45) !important;
-  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.6) !important;
+  outline: 2px solid rgba(255, 207, 164, 0.55) !important;
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.65) !important;
+  border-radius: 22px !important;
 }
 
 @media (max-width: 768px) {
   .collage-wrap {
-    flex-direction: column !important;
-    padding: 16px !important;
+    padding: 14px !important;
     gap: 12px !important;
     margin: 32px auto !important;
+  }
+  .collage-grid {
+    flex-direction: column !important;
+    gap: 12px !important;
   }
   .collage-col {
     flex: none !important;
     flex-direction: row !important;
-    flex-wrap: wrap !important;
     gap: 12px !important;
   }
   .collage-col-left { justify-content: flex-start !important; }
   .collage-col-left .collage-item { width: 100% !important; }
-  .collage-col-center .collage-item:nth-child(2) { width: 100% !important; }
-  .collage-col-center .collage-item:nth-child(1),
-  .collage-col-center .collage-item:nth-child(3) { width: calc(50% - 6px) !important; flex: 1 1 calc(50% - 6px) !important; }
-  .collage-col-right .collage-item { width: calc(50% - 6px) !important; flex: 1 1 calc(50% - 6px) !important; }
+  .collage-col-center .collage-item,
+  .collage-col-right .collage-item {
+    width: calc(50% - 6px) !important;
+    flex: 1 1 calc(50% - 6px) !important;
+  }
 }
 
 /* ===== 8. КАРТОЧКИ — лёгкая полупрозрачность поверх градиента ===== */
