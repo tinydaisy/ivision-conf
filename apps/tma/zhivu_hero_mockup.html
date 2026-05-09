@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
+<title>IVISION Ж.И.В.У. · мокап главной</title>
+<link rel="icon" type="image/png" href="/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --peach:#FFCFA4;
+  --peach-light:#FFE0B8;
+  --peach-dark:#E0A878;
+  --purple:#C084FC;
+  --purple-deep:#6B3FA0;
+  --purple-mid:#4A2868;
+  --purple-dark:#2D1A45;
+  --pink:#C84B9E;
+  --teal:#25455D;
+  --dark:#080B12;
+  --white-warm:#F5F0E8;
+  --font-display:'Bebas Neue',Impact,sans-serif;
+  --font-body:'Roboto',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--font-body);
+  background:var(--dark);
+  color:var(--white-warm);
+  line-height:1.5;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;}
+
+/* ───────────── HERO «Ж.И.В.У.» ───────────── */
+.hero-zhivu{
+  position:relative;
+  min-height:100vh;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(192,132,252,0.35) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 80%, rgba(200,75,158,0.25) 0%, transparent 50%),
+    linear-gradient(160deg,#6B3FA0 0%,#4A2868 35%,#2D1A45 70%,#1A0F2E 100%);
+  overflow:hidden;
+  padding:24px 16px 56px;
+  display:flex;
+  flex-direction:column;
+}
+
+/* верхний лейбл */
+.hero-label{
+  font-size:10px;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  color:var(--peach);
+  font-weight:700;
+  text-align:center;
+  margin-bottom:8px;
+  position:relative;
+  z-index:5;
+  opacity:.9;
+}
+
+/* ───────── ПОВТОРЯЮЩИЙСЯ ТЕКСТ-ФОН ───────── */
+.text-pattern{
+  position:absolute;
+  top:60px;
+  left:-10%;
+  right:-10%;
+  bottom:0;
+  pointer-events:none;
+  z-index:1;
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  overflow:hidden;
+  padding-top:20px;
+}
+.text-row{
+  font-family:var(--font-display);
+  font-size:clamp(56px,17vw,108px);
+  letter-spacing:.02em;
+  white-space:nowrap;
+  line-height:.92;
+  font-weight:400;
+  text-transform:uppercase;
+}
+/* варианты строк */
+.text-row.ghost  { color:rgba(245,240,232,0.10); }
+.text-row.faint  { color:rgba(245,240,232,0.18); }
+.text-row.peach  { color:rgba(255,207,164,0.85); }
+.text-row.peach-soft { color:rgba(255,207,164,0.30); }
+.text-row.bright { color:var(--white-warm); }
+
+/* смещения для «живого» эффекта */
+.text-row.s-1 { transform:translateX(-40px); }
+.text-row.s-2 { transform:translateX(30px); }
+.text-row.s-3 { transform:translateX(-80px); }
+.text-row.s-4 { transform:translateX(60px); }
+.text-row.s-5 { transform:translateX(-20px); }
+
+/* лёгкая анимация дыхания */
+@keyframes drift {
+  0%,100% { transform: translateX(var(--shift,0)) translateY(0); }
+  50%     { transform: translateX(calc(var(--shift,0) + 6px)) translateY(-2px); }
+}
+.text-row.anim-1 { --shift:-40px; animation: drift 9s ease-in-out infinite; }
+.text-row.anim-2 { --shift:30px;  animation: drift 11s ease-in-out infinite reverse; }
+.text-row.anim-3 { --shift:-80px; animation: drift 13s ease-in-out infinite; }
+
+/* ───────── ЦИТАТЫ ПО УГЛАМ ───────── */
+.quote{
+  position:absolute;
+  max-width:130px;
+  font-size:9px;
+  line-height:1.55;
+  letter-spacing:.05em;
+  color:rgba(245,240,232,0.78);
+  text-transform:uppercase;
+  z-index:4;
+  font-weight:500;
+}
+.quote::before{
+  content:'';
+  display:block;
+  width:18px;
+  height:1px;
+  background:var(--peach);
+  margin-bottom:6px;
+  opacity:.7;
+}
+.quote.right::before{ margin-left:auto; }
+.quote.tl{ top:96px;  left:14px; }
+.quote.tr{ top:96px;  right:14px; text-align:right; }
+.quote.bl{ bottom:230px; left:14px; }
+.quote.br{ bottom:230px; right:14px; text-align:right; }
+
+/* ───────── ФИГУРА ─────────  */
+.figure-wrap{
+  position:relative;
+  z-index:3;
+  width:78%;
+  max-width:300px;
+  margin:36px auto 0;
+  aspect-ratio:4 / 5.2;
+  filter:drop-shadow(0 28px 40px rgba(0,0,0,0.55));
+}
+.figure-wrap svg{ width:100%; height:auto; display:block; }
+
+/* блик/гало за фигурой */
+.figure-wrap::before{
+  content:'';
+  position:absolute;
+  inset:-20px -10% auto -10%;
+  height:60%;
+  background:radial-gradient(ellipse at 50% 30%, rgba(255,207,164,0.25) 0%, transparent 65%);
+  z-index:-1;
+  pointer-events:none;
+}
+
+/* ───────── ОРНАМЕНТ ВНИЗУ (как на референсе) ───────── */
+.ornament-mark{
+  position:absolute;
+  bottom:18px;
+  right:18px;
+  width:32px;
+  height:32px;
+  z-index:5;
+  opacity:.7;
+}
+
+/* ───────── ФУТЕР HERO: дата + CTA ───────── */
+.hero-footer{
+  position:relative;
+  z-index:5;
+  text-align:center;
+  margin-top:auto;
+  padding:36px 12px 0;
+}
+.hero-footer .meta{
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:rgba(245,240,232,0.7);
+  margin-bottom:18px;
+}
+.hero-footer .meta b{
+  color:var(--peach);
+  font-weight:700;
+}
+.hero-footer .cta{
+  display:inline-block;
+  padding:16px 42px;
+  font-weight:800;
+  font-size:13px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--dark);
+  background:linear-gradient(135deg,#FFCFA4 0%,#C084FC 50%,#25455D 100%);
+  border-radius:999px;
+  text-decoration:none;
+  box-shadow:0 14px 32px rgba(192,132,252,0.45),0 4px 12px rgba(0,0,0,0.35);
+  transition:transform .2s ease;
+}
+.hero-footer .cta:hover{ transform:translateY(-2px); }
+
+.hero-footer .deadline{
+  display:block;
+  margin-top:14px;
+  font-size:10px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:rgba(255,207,164,0.85);
+  font-weight:700;
+}
+
+/* ───────── ИНФО О МОКАПЕ (под HERO) ───────── */
+.mock-info{
+  background:var(--dark);
+  padding:36px 16px 56px;
+  text-align:center;
+  border-top:1px solid rgba(255,207,164,0.18);
+}
+.mock-info .tag{
+  display:inline-block;
+  font-size:10px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--peach);
+  font-weight:700;
+  padding:6px 14px;
+  border:1px solid rgba(255,207,164,0.3);
+  border-radius:999px;
+  margin-bottom:14px;
+}
+.mock-info h3{
+  font-family:var(--font-display);
+  font-size:28px;
+  letter-spacing:.04em;
+  color:var(--white-warm);
+  margin-bottom:12px;
+}
+.mock-info p{
+  color:rgba(245,240,232,0.65);
+  font-size:13px;
+  max-width:520px;
+  margin:0 auto 22px;
+  line-height:1.65;
+}
+.mock-info .palette-row{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:18px;
+}
+.mock-info .swatch{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:11px;
+  color:rgba(245,240,232,0.7);
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,207,164,0.18);
+  border-radius:999px;
+  padding:6px 12px;
+}
+.mock-info .swatch i{
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  display:inline-block;
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<section class="hero-zhivu">
+
+  <div class="hero-label">международный чемпионат креативных спикеров</div>
+
+  <!-- БОЛЬШОЙ ПОВТОРЯЮЩИЙСЯ ТЕКСТ -->
+  <div class="text-pattern" aria-hidden="true">
+    <div class="text-row faint  s-1 anim-1">IVISION&nbsp;&nbsp;Ж.И.В.У.</div>
+    <div class="text-row peach-soft s-2 anim-2">IVISION&nbsp;&nbsp;Ж.И.В.У.</div>
+    <div class="text-row bright s-3 anim-3">IVISION&nbsp;&nbsp;Ж.И.В.У.</div>
+    <div class="text-row peach  s-4 anim-1">IVISION&nbsp;&nbsp;Ж.И.В.У.</div>
+    <div class="text-row faint  s-5 anim-2">IVISION&nbsp;&nbsp;Ж.И.В.У.</div>
+    <div class="text-row ghost  s-2 anim-3">IVISION&nbsp;&nbsp;Ж.И.В.У.</div>
+    <div class="text-row peach-soft s-3 anim-1">IVISION&nbsp;&nbsp;Ж.И.В.У.</div>
+    <div class="text-row faint  s-1 anim-2">IVISION&nbsp;&nbsp;Ж.И.В.У.</div>
+  </div>
+
+  <!-- УГЛОВЫЕ ЦИТАТЫ -->
+  <div class="quote tl">это голос,<br>который знает,<br>о чём говорит</div>
+  <div class="quote tr right">это сцена,<br>на которой живут —<br>не играют</div>
+  <div class="quote bl">это образ,<br>который читают<br>с первого взгляда</div>
+  <div class="quote br right">белый силуэт,<br>который не просит<br>внимания — он его<br>забирает</div>
+
+  <!-- ФИГУРА: кокошник (персик) + пиджак (белый) -->
+  <div class="figure-wrap">
+    <svg viewBox="0 0 320 420" xmlns="http://www.w3.org/2000/svg" aria-label="Силуэт девушки с кокошником в белом пиджаке">
+      <defs>
+        <linearGradient id="kokoGrad" x1="50%" y1="0%" x2="50%" y2="100%">
+          <stop offset="0%"  stop-color="#FFE7C8"/>
+          <stop offset="50%" stop-color="#FFCFA4"/>
+          <stop offset="100%" stop-color="#D89968"/>
+        </linearGradient>
+        <linearGradient id="kokoEdge" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%"  stop-color="#FFCFA4"/>
+          <stop offset="100%" stop-color="#B8854A"/>
+        </linearGradient>
+        <linearGradient id="jacketGrad" x1="50%" y1="0%" x2="50%" y2="100%">
+          <stop offset="0%"  stop-color="#FFFFFF"/>
+          <stop offset="60%" stop-color="#F2EEE4"/>
+          <stop offset="100%" stop-color="#D8D2C2"/>
+        </linearGradient>
+        <linearGradient id="skinGrad" x1="50%" y1="0%" x2="50%" y2="100%">
+          <stop offset="0%"  stop-color="#EBC2A6"/>
+          <stop offset="100%" stop-color="#B88E72"/>
+        </linearGradient>
+      </defs>
+
+      <!-- КОКОШНИК (большая арка-нимб) -->
+      <path d="M 50 140
+               C 50 20, 270 20, 270 140
+               L 252 162
+               C 240 70, 80 70, 68 162 Z"
+            fill="url(#kokoGrad)"
+            stroke="url(#kokoEdge)" stroke-width="2"/>
+
+      <!-- внутренние орнаменты на кокошнике -->
+      <path d="M 70 130 Q 160 90 250 130" stroke="#A86A2C" stroke-width="1.4" fill="none" opacity=".55"/>
+      <path d="M 80 110 Q 160 75 240 110" stroke="#A86A2C" stroke-width="1" fill="none" opacity=".4"/>
+      <circle cx="160" cy="48" r="6" fill="#A86A2C" opacity=".55"/>
+      <circle cx="160" cy="48" r="2.5" fill="#FFE7C8"/>
+      <circle cx="115" cy="68" r="3.5" fill="#A86A2C" opacity=".55"/>
+      <circle cx="205" cy="68" r="3.5" fill="#A86A2C" opacity=".55"/>
+      <circle cx="92"  cy="100" r="2.8" fill="#A86A2C" opacity=".55"/>
+      <circle cx="228" cy="100" r="2.8" fill="#A86A2C" opacity=".55"/>
+      <circle cx="78"  cy="125" r="2" fill="#A86A2C" opacity=".55"/>
+      <circle cx="242" cy="125" r="2" fill="#A86A2C" opacity=".55"/>
+      <!-- центральный «лучик» -->
+      <path d="M 160 30 L 165 70 L 160 90 L 155 70 Z" fill="#FFE7C8" opacity=".7"/>
+
+      <!-- волосы под кокошником -->
+      <path d="M 122 150 C 130 138 190 138 198 150 L 198 192 L 122 192 Z" fill="#3A2540"/>
+
+      <!-- ЛИЦО (овал) -->
+      <ellipse cx="160" cy="172" rx="34" ry="44" fill="url(#skinGrad)"/>
+
+      <!-- лёгкие черты лица (минимально, силуэт) -->
+      <ellipse cx="148" cy="172" rx="2" ry="3" fill="#3A2540" opacity=".85"/>
+      <ellipse cx="172" cy="172" rx="2" ry="3" fill="#3A2540" opacity=".85"/>
+      <path d="M 152 192 Q 160 196 168 192" stroke="#C84B9E" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+      <!-- шея -->
+      <path d="M 148 210 L 150 232 L 170 232 L 172 210 Z" fill="url(#skinGrad)"/>
+
+      <!-- БЕЛЫЙ ПИДЖАК (плечи + торс) -->
+      <path d="M 56 246
+               C 70 224, 105 218, 130 226
+               L 160 240
+               L 190 226
+               C 215 218, 250 224, 264 246
+               L 278 410
+               L 42 410 Z"
+            fill="url(#jacketGrad)"
+            stroke="rgba(0,0,0,0.08)" stroke-width="1"/>
+
+      <!-- лацканы V -->
+      <path d="M 130 226 L 160 296 L 190 226 L 178 232 L 160 280 L 142 232 Z"
+            fill="#E8E2D0" opacity=".85"/>
+      <!-- центральная линия пиджака -->
+      <line x1="160" y1="296" x2="160" y2="408" stroke="#D8D2C2" stroke-width="1.2"/>
+
+      <!-- пуговицы (персик) -->
+      <circle cx="160" cy="312" r="3.2" fill="url(#kokoGrad)" stroke="#A86A2C" stroke-width=".6"/>
+      <circle cx="160" cy="346" r="3.2" fill="url(#kokoGrad)" stroke="#A86A2C" stroke-width=".6"/>
+      <circle cx="160" cy="380" r="3.2" fill="url(#kokoGrad)" stroke="#A86A2C" stroke-width=".6"/>
+
+      <!-- лёгкая складка на лацкане -->
+      <path d="M 132 232 L 158 286" stroke="rgba(0,0,0,0.08)" stroke-width="1" fill="none"/>
+      <path d="M 188 232 L 162 286" stroke="rgba(0,0,0,0.08)" stroke-width="1" fill="none"/>
+    </svg>
+  </div>
+
+  <!-- ОРНАМЕНТ-МАРКЕР (как на референсе, угловой) -->
+  <svg class="ornament-mark" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#FFCFA4" stroke-width="1.4">
+      <rect x="6" y="6" width="20" height="20" transform="rotate(45 16 16)"/>
+      <circle cx="16" cy="16" r="3"/>
+      <line x1="16" y1="2"  x2="16" y2="8"/>
+      <line x1="16" y1="24" x2="16" y2="30"/>
+      <line x1="2"  y1="16" x2="8"  y2="16"/>
+      <line x1="24" y1="16" x2="30" y2="16"/>
+    </g>
+  </svg>
+
+  <!-- ФУТЕР HERO -->
+  <div class="hero-footer">
+    <div class="meta">с <b>15 июня</b> · онлайн · финал во Вьетнаме и на Мальдивах</div>
+    <a href="#" class="cta">Подать заявку</a>
+    <span class="deadline">успеть до 25 мая</span>
+  </div>
+
+</section>
+
+<!-- ============ ИНФО О МОКАПЕ ============ -->
+<section class="mock-info">
+  <span class="tag">мокап · концепт</span>
+  <h3>IVISION Ж.И.В.У. — главная</h3>
+  <p>
+    Большие повторяющиеся буквы названия чемпионата создают «кинетическую типографику»
+    как на референсе «Русского кода». Силуэт с кокошником в персиковом и пиджаком в белом
+    встаёт по центру, текст проходит за ним и над ним. Фон — наш фирменный фиолетовый,
+    переделывать не пришлось. SVG-фигура — заглушка, в финале её заменит фотосессия модели.
+  </p>
+  <div class="palette-row">
+    <span class="swatch"><i style="background:#FFCFA4"></i> кокошник · персик</span>
+    <span class="swatch"><i style="background:#FFFFFF"></i> пиджак · белый</span>
+    <span class="swatch"><i style="background:#6B3FA0"></i> фон · фиолетовый</span>
+    <span class="swatch"><i style="background:#F5F0E8"></i> текст · светлый</span>
+  </div>
+</section>
+
+</body>
+</html>
