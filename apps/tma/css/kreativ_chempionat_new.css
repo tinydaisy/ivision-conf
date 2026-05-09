@@ -289,12 +289,10 @@ body, p, li, span, div, .desc, .hero-desc, .hero-sub,
 /* Убираем поворот jury-team-egg, чтобы фото стояли ровно */
 .jury-team-egg { width: 170px !important; height: 200px !important; }
 
-/* ===== 7. КОЛЛАЖ ВЫЕЗДА — яхта сверху на всю ширину + 3 колонки под ней =====
-   Структура:
-     [============ ЯХТА (большая, на всю ширину) ============]
-     [дверь]   [байк   ]   [страус   ]
-               [кокос  ]   [лестница ]
-   Все фото в исходных пропорциях, без обрезки. */
+/* ===== 7. КОЛЛАЖ ВЫЕЗДА — 2 ряда, фото в каждом ряду одной высоты =====
+   Верхний ряд:  [ страус ] [ яхта ]                       (одна высота)
+   Нижний ряд:   [ дверь ]  [ кокос / байк ]  [ лестница ] (одна высота)
+   Чтобы фото в ряду совпадали по высоте, используем object-fit: cover. */
 .collage-wrap {
   background: rgba(255, 207, 164, 0.04) !important;
   border: 1px solid rgba(255, 207, 164, 0.12);
@@ -314,14 +312,7 @@ body, p, li, span, div, .desc, .hero-desc, .hero-sub,
   grid-template-areas: none !important;
 }
 
-/* Геро-блок с яхтой — занимает всю ширину коллажа */
-.collage-hero {
-  width: 100% !important;
-  display: block !important;
-}
-
-/* Сетка под яхтой — 3 равные колонки */
-.collage-grid {
+.collage-row {
   display: flex !important;
   flex-direction: row !important;
   align-items: stretch !important;
@@ -329,23 +320,29 @@ body, p, li, span, div, .desc, .hero-desc, .hero-sub,
   width: 100% !important;
 }
 
+.collage-row-top    { height: 340px; }
+.collage-row-bottom { height: 480px; }
+
 .collage-col {
   display: flex !important;
   flex-direction: column !important;
   gap: 16px !important;
   flex: 1 1 0 !important;
   min-width: 0 !important;
+  min-height: 0 !important;
+  justify-content: stretch !important;
 }
 
-/* Левая колонка с одной дверью — центрируется по вертикали */
-.collage-col-left {
-  justify-content: center !important;
+/* Колонка с двумя фото друг под другом (кокос + байк) — поделят высоту поровну */
+.collage-col-stack > .collage-item {
+  flex: 1 1 0 !important;
+  min-height: 0 !important;
 }
 
 .collage-item {
   position: static !important;
   width: 100% !important;
-  height: auto !important;
+  height: 100% !important;
   margin: 0 !important;
   transform: none !important;
   outline: 1px solid rgba(255, 207, 164, 0.25) !important;
@@ -356,21 +353,34 @@ body, p, li, span, div, .desc, .hero-desc, .hero-sub,
   border-radius: 18px !important;
   grid-area: auto !important;
   align-self: auto !important;
+  flex: 1 1 0 !important;
+  min-height: 0 !important;
 }
 
 .collage-item img {
   width: 100% !important;
-  height: auto !important;
-  object-fit: unset !important;
-  object-position: unset !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
   display: block !important;
 }
 
-/* Яхта — максимально большая, акцентная рамка */
+/* Яхта — акцентная рамка */
 .collage-item.slot-yacht {
   outline: 2px solid rgba(255, 207, 164, 0.55) !important;
   box-shadow: 0 28px 60px rgba(0, 0, 0, 0.65) !important;
   border-radius: 22px !important;
+}
+
+/* Лестница вертикальная — показываем верх кадра */
+.collage-item.slot-lest img,
+.collage-item.slot-dver img {
+  object-position: center top !important;
+}
+
+@media (max-width: 1024px) {
+  .collage-row-top    { height: 280px; }
+  .collage-row-bottom { height: 420px; }
 }
 
 @media (max-width: 768px) {
@@ -379,22 +389,16 @@ body, p, li, span, div, .desc, .hero-desc, .hero-sub,
     gap: 12px !important;
     margin: 32px auto !important;
   }
-  .collage-grid {
-    flex-direction: column !important;
+  .collage-row {
     gap: 12px !important;
   }
-  .collage-col {
-    flex: none !important;
-    flex-direction: row !important;
-    gap: 12px !important;
-  }
-  .collage-col-left { justify-content: flex-start !important; }
-  .collage-col-left .collage-item { width: 100% !important; }
-  .collage-col-center .collage-item,
-  .collage-col-right .collage-item {
-    width: calc(50% - 6px) !important;
-    flex: 1 1 calc(50% - 6px) !important;
-  }
+  .collage-row-top    { height: 200px; }
+  .collage-row-bottom { height: 320px; }
+}
+
+@media (max-width: 480px) {
+  .collage-row-top    { height: 160px; }
+  .collage-row-bottom { height: 260px; }
 }
 
 /* ===== 8. КАРТОЧКИ — лёгкая полупрозрачность поверх градиента ===== */
