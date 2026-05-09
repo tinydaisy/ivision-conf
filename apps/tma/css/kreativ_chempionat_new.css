@@ -30,6 +30,12 @@
   --btn-grad: var(--btn-peach-grad);
   --ring-grad: linear-gradient(135deg, #25455D 0%, #6B4F3C 50%, #FFCFA4 100%);
 
+  /* Розовый и фиолетовый — переписываем на золото/персик/бронзу.
+     Покрывает все inline-стили color:var(--brand-pink) / --brand-purple etc. */
+  --brand-purple: #FFCFA4;        /* был #C084FC (фиолетовый) */
+  --brand-pink: #B8896A;          /* был #C84B9E (розовый) */
+  --brand-pink-light: #FFE4C9;    /* был #DD85B8 (светло-розовый) */
+
   --venec-svg: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 32' fill='none'><path d='M2 26 Q10 22 20 22 Q30 22 38 26' stroke='%23FFCFA4' stroke-width='1.6' stroke-linecap='round'/><path d='M20 4 L26 14 L20 22 L14 14 Z' fill='%23FFCFA4' stroke='%23FFE4C9' stroke-width='0.6'/><path d='M20 8 L22.5 14 L20 12 Z' fill='%23FFE4C9'/><circle cx='6' cy='25' r='1.5' fill='%23FFCFA4'/><circle cx='34' cy='25' r='1.5' fill='%23FFCFA4'/></svg>");
 }
 
@@ -79,25 +85,36 @@ section[class*="sec"] {
 }
 
 @media (max-width: 768px) {
-  /* На мобиле фото — полосой сверху-справа, видно целиком; текст ниже на тёмном фоне.
-     Высота фото = 130% ширины экрана / aspect, прикреплено к top right — туфля справа. */
+  /* На мобиле — тот же layout что на десктопе:
+     фото слева как фон секции, текст в правой колонке grid.
+     Высота фото = высота текстового блока (cover). */
   #hero {
     background-color: #080B12 !important;
     background-image:
-      linear-gradient(180deg,
-        rgba(8, 11, 18, 0) 0%,
-        rgba(8, 11, 18, 0) 28%,
-        rgba(8, 11, 18, 0.55) 38%,
-        rgba(8, 11, 18, 0.95) 50%,
-        rgba(8, 11, 18, 1) 60%),
-      url('/img/nha_trang/hero3.png?v=10') !important;
-    background-size: 100% 100%, 135% auto !important;
-    background-position: center center, top right !important;
-    background-repeat: no-repeat, no-repeat !important;
-    padding-top: 240px !important;
+      linear-gradient(265deg,
+        rgba(8, 11, 18, 0.95) 0%,
+        rgba(8, 11, 18, 0.78) 35%,
+        rgba(8, 11, 18, 0.25) 65%,
+        rgba(8, 11, 18, 0) 100%),
+      url('/img/nha_trang/hero3.png?v=11') !important;
+    background-size: cover !important;
+    background-position: 110% center !important;
+    background-repeat: no-repeat !important;
+    padding-top: 60px !important;
+    padding-bottom: 50px !important;
   }
-  /* На мобиле — одна колонка, контент во всю ширину */
-  #hero .hero-content { grid-column: auto !important; }
+  /* Grid 2 колонки: фото слева ~35%, текст справа ~65% */
+  #hero .hero-grid {
+    grid-template-columns: 0.35fr 0.65fr !important;
+    gap: 14px !important;
+    padding-top: 0 !important;
+  }
+  #hero .hero-content { grid-column: 2 !important; }
+  /* Уменьшаем заголовок на мобиле, чтобы влез в правую колонку */
+  .hero-title-big { font-size: clamp(15px, 5vw, 22px) !important; }
+  .hero-sub { font-size: 12px !important; }
+  .hero-date { font-size: 12px !important; }
+  .hero-btns .btn-grad-inner { font-size: 13px !important; padding: 12px 24px !important; }
 }
 
 /* Главный заголовок hero — Oswald (поддержка кириллицы, «й» с бреве) */
