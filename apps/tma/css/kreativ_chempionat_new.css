@@ -1,0 +1,415 @@
+/* ============================================================
+   kreativ_chempionat_new.css
+   Новый стиль чемпионата: единый тёмно-бирюзовый градиент,
+   персиковый металлик на заголовках, иконка-венец на подзаголовках.
+   Подключается ПОСЛЕ inline-блока <style> в kreativ_chempionat.html
+   и переопределяет всё необходимое.
+   ============================================================ */
+
+:root {
+  --new-bg-grad: linear-gradient(160deg, #25455D 0%, #080B12 70%);
+
+  /* Металлический персик: светлый блик → персик → бронза → персик → блик */
+  --metal-peach: linear-gradient(135deg,
+      #FFE4C9 0%,
+      #FFCFA4 22%,
+      #B8896A 50%,
+      #FFCFA4 78%,
+      #FFE4C9 100%);
+
+  /* Кнопочный персик: чуть более бронзовый, для бордеров и контура */
+  --btn-peach-grad: linear-gradient(135deg, #C99775 0%, #FFCFA4 50%, #C99775 100%);
+
+  /* Перекрываем старые переменные — используются по всему файлу */
+  --bg-dark: transparent;
+  --bg-mid: transparent;
+  --bg-card: rgba(17, 24, 39, 0.55);
+  --text-light: #FFFFFF;
+  --text-muted: rgba(255, 255, 255, 0.72);
+  --text-dim: rgba(255, 255, 255, 0.45);
+  --btn-grad: var(--btn-peach-grad);
+  --ring-grad: linear-gradient(135deg, #25455D 0%, #6B4F3C 50%, #FFCFA4 100%);
+
+  --venec-svg: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 32' fill='none'><path d='M2 26 Q10 22 20 22 Q30 22 38 26' stroke='%23FFCFA4' stroke-width='1.6' stroke-linecap='round'/><path d='M20 4 L26 14 L20 22 L14 14 Z' fill='%23FFCFA4' stroke='%23FFE4C9' stroke-width='0.6'/><path d='M20 8 L22.5 14 L20 12 Z' fill='%23FFE4C9'/><circle cx='6' cy='25' r='1.5' fill='%23FFCFA4'/><circle cx='34' cy='25' r='1.5' fill='%23FFCFA4'/></svg>");
+}
+
+/* ===== 1. ФОН — единый градиент на весь документ ===== */
+html, body {
+  background: var(--new-bg-grad) !important;
+  background-attachment: fixed !important;
+  color: #FFFFFF !important;
+}
+
+/* Все секции делаем прозрачными — пусть просвечивает body */
+.sec,
+.sec.dark,
+.sec.mid,
+.sec.gradient-bg,
+.sec.dark.gradient-bg,
+.sec.mid.gradient-bg,
+.manifest-sec,
+#hero,
+#site-footer,
+section[class*="sec"] {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+/* Декоративные радиальные glow убираем (они «дёргают» фон) */
+.glow-pink,
+.glow-teal {
+  display: none !important;
+}
+
+/* Тонкие разделители между секциями вместо смены фона */
+.sec.mid,
+.manifest-sec {
+  border-top: 1px solid rgba(255, 207, 164, 0.08);
+}
+
+/* Декоративные блоки с полу-инлайн фоном — тоже прозрачные */
+[style*="background:linear-gradient(180deg,rgba(0,0,0,.2)"],
+[style*="background:linear-gradient(180deg, rgba(0,0,0,.2)"] {
+  background: transparent !important;
+}
+
+/* ===== 2. ЗАГОЛОВКИ — персик с металлическим отливом ===== */
+.hero-h1,
+.hero-h1-line1,
+.hero-h1-brand,
+.h2,
+.manifest-title,
+.stage-title,
+.stage-number,
+.process-intro,
+.nt-block-title,
+.ptariff-title,
+.partner-name,
+.sochi-showcase-title,
+.medal-stage-grand,
+section h1,
+section h2,
+section h3,
+section h4 {
+  background: var(--metal-peach) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.45))
+          drop-shadow(0 0 18px rgba(255, 207, 164, 0.18));
+}
+
+/* Hero-акцент Ж.И.В.У. — был розово-фиолетовый, теперь обратный металлик */
+.hero-h1-accent {
+  background: linear-gradient(180deg,
+      #FFE4C9 0%,
+      #FFCFA4 30%,
+      #B8896A 60%,
+      #FFCFA4 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+/* Подзаголовочные надписи (section-label, hero-label) — однотонный персик */
+.section-label,
+.hero-label,
+.stage-duration,
+.ptariff-stage,
+.medal-place,
+.price-timer-label {
+  color: #FFCFA4 !important;
+  background: none !important;
+  -webkit-text-fill-color: #FFCFA4 !important;
+}
+
+/* ===== 3. ОСНОВНОЙ ТЕКСТ — белый/приглушённо-белый ===== */
+body, p, li, span, div, .desc, .hero-desc, .hero-sub,
+.stage-desc, .nt-block-text, .card-desc, .card-title,
+.partner-desc, .footer-legal, .ptariff-list li,
+.value-pill, .benefits li, .process-title, .process-desc,
+.medal-stage-line, .jury-team-name, .jury-team-title, .jury-team-regalia li {
+  color: #FFFFFF;
+}
+
+.desc, .hero-desc, .stage-desc, .card-desc, .partner-desc,
+.footer-legal, .process-desc, .jury-team-regalia li, .jury-team-title {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+/* Отдельный nt-block-text strong — был персик, оставим */
+.nt-block-text strong { color: #FFCFA4 !important; }
+
+/* ===== 4. КНОПКИ — переход с розового на персик-металлик ===== */
+
+/* Главная кнопка (внешний градиентный «обвод») */
+.btn-grad-wrap,
+.ptariff-btn,
+.nav-btn {
+  background: var(--btn-peach-grad) !important;
+  box-shadow: 0 6px 20px rgba(255, 207, 164, 0.18) !important;
+}
+
+/* Внутренняя плашка — тёмный фон, белый текст */
+.btn-grad-inner,
+.ptariff-btn-i,
+.nav-btn-i {
+  background: rgba(8, 11, 18, 0.92) !important;
+  color: #FFFFFF !important;
+}
+
+.btn-grad-wrap:hover .btn-grad-inner {
+  background: rgba(8, 11, 18, 0.78) !important;
+}
+
+/* Sticky-нав — был розово-бирюзовый */
+#nav {
+  background: linear-gradient(135deg,
+      rgba(37, 69, 93, 0.85),
+      rgba(8, 11, 18, 0.9)) !important;
+  border: 1px solid rgba(255, 207, 164, 0.28) !important;
+}
+
+/* Срочные плашки/badges (deadline, ptariff-places) — были красно-розовые */
+.hero-deadline,
+.ptariff-places {
+  background: var(--metal-peach) !important;
+  color: #080B12 !important;
+  text-shadow: none !important;
+  box-shadow: 0 0 22px rgba(255, 207, 164, 0.35) !important;
+}
+
+/* Pulse-анимация для deadline — переопределяем тень на персиковую */
+@keyframes pulse-deadline {
+  0%, 100% { box-shadow: 0 0 18px rgba(255, 207, 164, 0.35); }
+  50%      { box-shadow: 0 0 32px rgba(255, 207, 164, 0.65); }
+}
+
+/* Таймер цены — был розово-фиолетовый */
+.price-timer {
+  background: linear-gradient(135deg,
+      rgba(255, 207, 164, 0.18),
+      rgba(184, 137, 106, 0.12) 60%,
+      rgba(255, 207, 164, 0.18)) !important;
+  border: 1.5px solid rgba(255, 207, 164, 0.55) !important;
+  box-shadow: 0 0 28px rgba(255, 207, 164, 0.22),
+              inset 0 0 24px rgba(255, 207, 164, 0.08) !important;
+}
+.price-timer-label { color: #FFE4C9 !important; text-shadow: none !important; }
+.price-timer-num   { color: #FFFFFF !important; }
+.price-timer-cap   { color: #FFCFA4 !important; }
+.price-timer-sep   { color: #FFCFA4 !important; opacity: .7 !important; }
+.price-timer-unit  {
+  background: rgba(8, 11, 18, 0.7) !important;
+  border: 1px solid rgba(255, 207, 164, 0.4) !important;
+}
+
+/* Process-icon (timeline кружки) — были розово-фиолетовые */
+.process-icon {
+  background: var(--btn-peach-grad) !important;
+  color: #080B12 !important;
+  box-shadow: 0 0 20px rgba(255, 207, 164, 0.25) !important;
+}
+
+/* Партнёрские кружки/пилюли — были фиолетово-розовые */
+.partner-circle,
+.partner-pill {
+  background: var(--btn-peach-grad) !important;
+}
+.partner-circle:hover,
+.partner-pill:hover {
+  box-shadow: 0 0 32px rgba(255, 207, 164, 0.4) !important;
+}
+
+/* Голос/арки в hero (svg rings) — оставляем как есть, но затемняем */
+.hero-rings, .vision-egg-rings { opacity: 0.35 !important; }
+
+/* ===== 5. ИКОНКИ-ВЕНЕЦ для подзаголовков sub-блоков ===== */
+.nt-block-icon {
+  display: inline-block !important;
+  width: 36px !important;
+  height: 28px !important;
+  font-size: 0 !important;       /* прячем ◆ из HTML */
+  color: transparent !important;
+  background-image: var(--venec-svg) !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: contain !important;
+  flex-shrink: 0;
+}
+
+/* Тот же венец — для маркеров целей (goal-arrow), пунктов жюри и benefits */
+.goal-list .goal-arrow {
+  width: 26px;
+  height: 22px;
+  font-size: 0;
+  background-image: var(--venec-svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  margin-top: 4px;
+}
+
+/* ===== 6. ФОРМЫ ИЗОБРАЖЕНИЙ — убираем «яйца», делаем плавные прямоугольники ===== */
+.hero-photo,
+.vision-egg,
+.jury-team-egg,
+.collage-item,
+.collage-item.center-big,
+.collage-item.egg-h,
+.collage-item.egg-inv,
+.nt-block-img.shape-egg,
+.nt-block-img.shape-stage,
+.nt-block-img.shape-stilyagi {
+  border-radius: 18px !important;
+  transform: none !important;
+}
+
+.vision-egg img,
+.jury-team-egg img,
+.collage-item img,
+.nt-block-img.shape-egg img {
+  position: static !important;
+  width: 100% !important;
+  height: 100% !important;
+  transform: none !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+/* Деко-кружки вокруг hero-фото и vision-фото — убираем, чтобы не создавали «яичный» силуэт */
+.hero-deco-circle,
+.vision-egg-deco,
+.jury-team-egg-deco {
+  display: none !important;
+}
+
+/* Убираем поворот jury-team-egg, чтобы фото стояли ровно */
+.jury-team-egg { width: 170px !important; height: 200px !important; }
+
+/* ===== 7. КОЛЛАЖ ВЫЕЗДА (Vietnam → Vyezd) ===== */
+.collage-wrap {
+  background: rgba(255, 207, 164, 0.04) !important;
+  border: 1px solid rgba(255, 207, 164, 0.12);
+  height: auto !important;
+  min-height: 720px;
+  padding: 40px 24px !important;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 18px;
+  perspective: none !important;
+}
+
+.collage-item {
+  position: static !important;
+  width: 100% !important;
+  height: 240px !important;
+  margin: 0 !important;
+  transform: none !important;
+  outline: 1px solid rgba(255, 207, 164, 0.25) !important;
+  outline-offset: -1px !important;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* Яхта — большая, по центру, занимает весь центральный столбец */
+.collage-item.center-big {
+  grid-column: 2 / 3 !important;
+  grid-row: 1 / 3 !important;
+  height: auto !important;
+  min-height: 100% !important;
+  outline: 2px solid rgba(255, 207, 164, 0.45) !important;
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Размещение по сетке: 5 фото вокруг яхты */
+.collage-item.top-left     { grid-column: 1; grid-row: 1; }
+.collage-item.top-right    { grid-column: 3; grid-row: 1; }
+.collage-item.bottom-left  { grid-column: 1; grid-row: 2; }
+.collage-item.bottom-right { grid-column: 3; grid-row: 2; }
+.collage-item.top-center,
+.collage-item.bottom-center {
+  /* В новом коллаже центр занят яхтой — резервный слот опускаем под коллаж */
+  grid-column: 1 / 4;
+  grid-row: 3;
+  height: 200px !important;
+}
+
+@media (max-width: 768px) {
+  .collage-wrap {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    min-height: auto;
+    padding: 24px 16px !important;
+  }
+  .collage-item { height: 160px !important; }
+  .collage-item.center-big {
+    grid-column: 1 / 3 !important;
+    grid-row: 1 !important;
+    height: 220px !important;
+    min-height: 220px !important;
+  }
+  .collage-item.top-left     { grid-column: 1; grid-row: 2; }
+  .collage-item.top-right    { grid-column: 2; grid-row: 2; }
+  .collage-item.bottom-left  { grid-column: 1; grid-row: 3; }
+  .collage-item.bottom-right { grid-column: 2; grid-row: 3; }
+  .collage-item.top-center,
+  .collage-item.bottom-center {
+    grid-column: 1 / 3;
+    grid-row: 4;
+  }
+}
+
+/* ===== 8. КАРТОЧКИ — лёгкая полупрозрачность поверх градиента ===== */
+.card,
+.ptariff,
+.jury-team-card,
+.nt-block {
+  background: rgba(17, 24, 39, 0.55) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(255, 207, 164, 0.18) !important;
+}
+
+.ptariff.featured {
+  background: rgba(255, 207, 164, 0.08) !important;
+  border-color: rgba(255, 207, 164, 0.35) !important;
+}
+
+/* Карточкам убираем розовые свечения */
+.card::before,
+.card:nth-child(2)::before,
+.card:nth-child(3)::before {
+  background: radial-gradient(circle, rgba(255, 207, 164, 0.12), transparent) !important;
+}
+
+/* Цели — все плашки в персик, без розовых/фиолетовых */
+.goal-list li,
+.goal-list li:nth-child(1),
+.goal-list li:nth-child(2),
+.goal-list li:nth-child(3) {
+  background: linear-gradient(135deg,
+      rgba(255, 207, 164, 0.12),
+      rgba(255, 207, 164, 0.03)) !important;
+  border-color: rgba(255, 207, 164, 0.32) !important;
+}
+.goal-list li .goal-arrow,
+.goal-list li:nth-child(1) .goal-arrow,
+.goal-list li:nth-child(2) .goal-arrow,
+.goal-list li:nth-child(3) .goal-arrow {
+  color: transparent !important; /* фон — SVG-венец */
+}
+
+/* Vision-highlight (был розовый) — теперь персиковый */
+#vision-highlight,
+[id="vision-highlight"] {
+  color: #FFCFA4 !important;
+}
+
+/* Footer */
+#site-footer {
+  border-top: 1px solid rgba(255, 207, 164, 0.12) !important;
+}
+.footer-links a:hover { color: #FFE4C9 !important; }
