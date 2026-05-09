@@ -289,9 +289,11 @@ body, p, li, span, div, .desc, .hero-desc, .hero-sub,
 /* Убираем поворот jury-team-egg, чтобы фото стояли ровно */
 .jury-team-egg { width: 170px !important; height: 200px !important; }
 
-/* ===== 7. КОЛЛАЖ ВЫЕЗДА (Vietnam → Vyezd) =====
-   Фото в исходных пропорциях — НЕ обрезаются.
-   Высоты ячеек авто, выравнивание по верху. */
+/* ===== 7. КОЛЛАЖ ВЫЕЗДА — крест вокруг яхты =====
+   Раскладка:  .       байк      страус
+               дверь   яхта      лестница
+               .       кокос     .
+   Фото в исходных пропорциях, без обрезки. */
 .collage-wrap {
   background: rgba(255, 207, 164, 0.04) !important;
   border: 1px solid rgba(255, 207, 164, 0.12);
@@ -302,11 +304,12 @@ body, p, li, span, div, .desc, .hero-desc, .hero-sub,
   grid-template-columns: 1fr 1.5fr 1fr !important;
   grid-template-rows: auto !important;
   grid-template-areas:
-    "tl  yacht  tr"
-    "bl  yacht  br"
-    "bc  bc     bc" !important;
+    ".       bike      straus"
+    "dver    yacht     lest"
+    ".       kokos     ." !important;
   gap: 18px !important;
-  align-items: start !important;
+  align-items: center !important;
+  justify-items: center !important;
   perspective: none !important;
 }
 
@@ -321,6 +324,7 @@ body, p, li, span, div, .desc, .hero-desc, .hero-sub,
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45) !important;
   overflow: hidden !important;
   display: block !important;
+  border-radius: 18px !important;
 }
 
 /* Изображения — в исходных пропорциях, без обрезки */
@@ -332,33 +336,27 @@ body, p, li, span, div, .desc, .hero-desc, .hero-sub,
   display: block !important;
 }
 
-/* Яхта — по центру, две ряды, выравнивается по своему естественному размеру */
-.collage-item.center-big {
-  grid-area: yacht !important;
-  outline: 2px solid rgba(255, 207, 164, 0.45) !important;
-  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.6) !important;
-  align-self: center !important;
-}
-
-.collage-item.top-left     { grid-area: tl !important; }
-.collage-item.top-right    { grid-area: tr !important; }
-.collage-item.bottom-left  { grid-area: bl !important; }
-.collage-item.bottom-right { grid-area: br !important; }
-.collage-item.top-center,
-.collage-item.bottom-center { grid-area: bc !important; }
+/* Привязка фото к ячейкам сетки */
+.collage-item.slot-yacht  { grid-area: yacht !important;
+                            outline: 2px solid rgba(255, 207, 164, 0.45) !important;
+                            box-shadow: 0 22px 50px rgba(0, 0, 0, 0.6) !important; }
+.collage-item.slot-bike   { grid-area: bike !important; }
+.collage-item.slot-dver   { grid-area: dver !important; }
+.collage-item.slot-lest   { grid-area: lest !important; }
+.collage-item.slot-kokos  { grid-area: kokos !important; }
+.collage-item.slot-straus { grid-area: straus !important; }
 
 @media (max-width: 768px) {
   .collage-wrap {
     grid-template-columns: 1fr 1fr !important;
     grid-template-areas:
-      "yacht yacht"
-      "tl    tr"
-      "bl    br"
-      "bc    bc" !important;
+      "bike    straus"
+      "yacht   yacht"
+      "dver    lest"
+      "kokos   kokos" !important;
     padding: 20px 14px !important;
     gap: 14px !important;
   }
-  .collage-item.center-big { align-self: stretch !important; }
 }
 
 /* ===== 8. КАРТОЧКИ — лёгкая полупрозрачность поверх градиента ===== */
