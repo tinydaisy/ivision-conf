@@ -70,9 +70,9 @@ section[class*="sec"] {
   background-repeat: no-repeat !important;
 }
 
-/* Текст в правой колонке grid, сдвинут на 20% влево (правая колонка шире) */
+/* Текст в правой колонке grid, сдвинут на 20% вправо (левая колонка шире) */
 #hero .hero-grid {
-  grid-template-columns: 0.6fr 1.4fr !important;
+  grid-template-columns: 1.4fr 0.6fr !important;
 }
 #hero .hero-content {
   grid-column: 2 !important;
