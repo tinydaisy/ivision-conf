@@ -7,7 +7,7 @@
    ============================================================ */
 
 :root {
-  --new-bg-grad: linear-gradient(160deg, #25455D 0%, #080B12 70%);
+  --new-bg-grad: linear-gradient(135deg, #25455D 0%, #080B12 70%);
 
   /* Металлический персик: светлый блик → персик → бронза → персик → блик */
   --metal-peach: linear-gradient(135deg,
@@ -39,11 +39,25 @@
   --venec-svg: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 32' fill='none'><path d='M2 26 Q10 22 20 22 Q30 22 38 26' stroke='%23FFCFA4' stroke-width='1.6' stroke-linecap='round'/><path d='M20 4 L26 14 L20 22 L14 14 Z' fill='%23FFCFA4' stroke='%23FFE4C9' stroke-width='0.6'/><path d='M20 8 L22.5 14 L20 12 Z' fill='%23FFE4C9'/><circle cx='6' cy='25' r='1.5' fill='%23FFCFA4'/><circle cx='34' cy='25' r='1.5' fill='%23FFCFA4'/></svg>");
 }
 
-/* ===== 1. ФОН — единый градиент на весь документ ===== */
+/* ===== 1. ФОН — единый градиент на весь документ =====
+   На iOS Safari background-attachment: fixed часто игнорируется и градиент
+   растягивается на всю высоту body (тёмная часть видна только в самом низу).
+   Решение: фиксированный псевдо-элемент за всем содержимым. */
 html, body {
-  background: var(--new-bg-grad) !important;
-  background-attachment: fixed !important;
+  background: transparent !important;
   color: #FFFFFF !important;
+}
+
+body::before {
+  content: '' !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: var(--new-bg-grad) !important;
+  z-index: -1 !important;
+  pointer-events: none !important;
 }
 
 /* Все секции делаем прозрачными — пусть просвечивает body */
@@ -91,7 +105,7 @@ section[class*="sec"] {
     background-color: transparent !important;
     background-image: url('/img/nha_trang/hero3.png?v=13') !important;
     background-size: 255% auto !important;
-    background-position: top center !important;
+    background-position: 60% top !important;
     background-repeat: no-repeat !important;
     padding-top: calc(255vw / 2.812 + 12px) !important;
     padding-bottom: 30px !important;
