@@ -63,7 +63,7 @@ section[class*="sec"] {
 /* HERO — фото слева, текст справа.
    Градиент 265deg = тёмная маска справа (за текстом), прозрачная слева (фото видно). */
 #hero {
-  background-color: #080B12 !important;
+  background-color: transparent !important;
   background-image:
     linear-gradient(265deg,
       rgba(8, 11, 18, 0.92) 0%,
@@ -88,7 +88,7 @@ section[class*="sec"] {
   /* Mobile: фото х3 — занимает 300% ширины (зум на центральную часть с девушкой и туфлей).
      Высота = 300vw / 2.812 ≈ 106.7vw. Текст компактно под фото. */
   #hero {
-    background-color: #080B12 !important;
+    background-color: transparent !important;
     background-image: url('/img/nha_trang/hero3.png?v=13') !important;
     background-size: 255% auto !important;
     background-position: top center !important;
@@ -107,7 +107,7 @@ section[class*="sec"] {
 
   /* Компактные размеры — чтобы всё влезло на один экран */
   .hero-title-big {
-    font-size: clamp(34px, 11vw, 56px) !important;
+    font-size: clamp(39px, 12.65vw, 64px) !important;
     line-height: 0.96 !important;
     margin: 0 0 14px !important;
   }
