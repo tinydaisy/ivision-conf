@@ -320,7 +320,25 @@ body, p, li, span, div, .desc, .hero-desc, .hero-sub,
   width: 100% !important;
 }
 
-.collage-row-top    { height: 340px; }
+/* Верхний ряд — авто-высота, страус не обрезается, яхта крупная */
+.collage-row-top {
+  height: auto !important;
+  align-items: flex-start !important;
+}
+.collage-row-top .collage-col:nth-child(1) { flex: 1 1 0 !important; }   /* страус */
+.collage-row-top .collage-col:nth-child(2) { flex: 2.6 1 0 !important; } /* яхта — крупнее */
+
+.collage-row-top .collage-item {
+  height: auto !important;
+  flex: 0 1 auto !important;
+}
+.collage-row-top .collage-item img {
+  height: auto !important;
+  object-fit: unset !important;
+  object-position: unset !important;
+}
+
+/* Нижний ряд — фиксированная высота, фото подгоняются */
 .collage-row-bottom { height: 480px; }
 
 .collage-col {
@@ -379,7 +397,6 @@ body, p, li, span, div, .desc, .hero-desc, .hero-sub,
 }
 
 @media (max-width: 1024px) {
-  .collage-row-top    { height: 280px; }
   .collage-row-bottom { height: 420px; }
 }
 
@@ -392,12 +409,10 @@ body, p, li, span, div, .desc, .hero-desc, .hero-sub,
   .collage-row {
     gap: 12px !important;
   }
-  .collage-row-top    { height: 200px; }
   .collage-row-bottom { height: 320px; }
 }
 
 @media (max-width: 480px) {
-  .collage-row-top    { height: 160px; }
   .collage-row-bottom { height: 260px; }
 }
 
