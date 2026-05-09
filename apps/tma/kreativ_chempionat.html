@@ -2223,7 +2223,7 @@ async function loadData() {
     textCol.innerHTML = `
       ${stage.number != null ? `<div class="stage-number">${String(stage.number).padStart(2, '0')}</div>` : ''}
       <h3 class="stage-title">${stage.title}</h3>
-      <p class="stage-duration">${stage.duration}</p>
+      ${stage.duration ? `<p class="stage-duration">${stage.duration}</p>` : ''}
       <div class="stage-desc">${stage.description}</div>
     `;
 
