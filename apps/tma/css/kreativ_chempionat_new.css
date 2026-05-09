@@ -64,9 +64,9 @@ section[class*="sec"] {
       rgba(8, 11, 18, 0.7) 32%,
       rgba(8, 11, 18, 0.2) 60%,
       rgba(8, 11, 18, 0) 100%),
-    url('/img/nha_trang/hero3.png?v=8') !important;
+    url('/img/nha_trang/hero3.png?v=9') !important;
   background-size: cover !important;
-  background-position: 10% center !important;
+  background-position: 110% center !important;
   background-repeat: no-repeat !important;
 }
 
@@ -86,8 +86,8 @@ section[class*="sec"] {
         rgba(8, 11, 18, 0.55) 35%,
         rgba(8, 11, 18, 0.15) 70%,
         rgba(8, 11, 18, 0) 100%),
-      url('/img/nha_trang/hero3.png?v=8') !important;
-    background-position: 10% center !important;
+      url('/img/nha_trang/hero3.png?v=9') !important;
+    background-position: 110% center !important;
     background-size: cover !important;
   }
   /* На мобиле — одна колонка, контент во всю ширину */
