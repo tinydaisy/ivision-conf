@@ -90,10 +90,10 @@ section[class*="sec"] {
   #hero {
     background-color: #080B12 !important;
     background-image: url('/img/nha_trang/hero3.png?v=13') !important;
-    background-size: 300% auto !important;
+    background-size: 255% auto !important;
     background-position: top center !important;
     background-repeat: no-repeat !important;
-    padding-top: calc(300vw / 2.812 + 12px) !important;
+    padding-top: calc(255vw / 2.812 + 12px) !important;
     padding-bottom: 30px !important;
     min-height: auto !important;
   }
