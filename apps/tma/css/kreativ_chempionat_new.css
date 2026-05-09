@@ -85,15 +85,15 @@ section[class*="sec"] {
 }
 
 @media (max-width: 768px) {
-  /* Mobile: фото горизонтальной полосой сверху на всю ширину (aspect 2.812 → высота ~36% ширины),
-     текст компактно под фото, всё в один экран без скролла. */
+  /* Mobile: фото х3 — занимает 300% ширины (зум на центральную часть с девушкой и туфлей).
+     Высота = 300vw / 2.812 ≈ 106.7vw. Текст компактно под фото. */
   #hero {
     background-color: #080B12 !important;
-    background-image: url('/img/nha_trang/hero3.png?v=12') !important;
-    background-size: 100% auto !important;
+    background-image: url('/img/nha_trang/hero3.png?v=13') !important;
+    background-size: 300% auto !important;
     background-position: top center !important;
     background-repeat: no-repeat !important;
-    padding-top: calc(100vw / 2.812 + 12px) !important;
+    padding-top: calc(300vw / 2.812 + 12px) !important;
     padding-bottom: 30px !important;
     min-height: auto !important;
   }
