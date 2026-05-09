@@ -137,7 +137,7 @@ img{max-width:100%;display:block;}
 .quote.bl{ bottom:230px; left:14px; }
 .quote.br{ bottom:230px; right:14px; text-align:right; }
 
-/* ───────── ФИГУРА ─────────  */
+/* ───────── ПЛЕЙСХОЛДЕР ФОТО ─────────  */
 .figure-wrap{
   position:relative;
   z-index:3;
@@ -145,20 +145,80 @@ img{max-width:100%;display:block;}
   max-width:300px;
   margin:36px auto 0;
   aspect-ratio:4 / 5.2;
-  filter:drop-shadow(0 28px 40px rgba(0,0,0,0.55));
 }
-.figure-wrap svg{ width:100%; height:auto; display:block; }
 
-/* блик/гало за фигурой */
+/* блик/гало за плейсхолдером */
 .figure-wrap::before{
   content:'';
   position:absolute;
-  inset:-20px -10% auto -10%;
-  height:60%;
-  background:radial-gradient(ellipse at 50% 30%, rgba(255,207,164,0.25) 0%, transparent 65%);
+  inset:-30px -15% -10% -15%;
+  background:radial-gradient(ellipse at 50% 40%, rgba(255,207,164,0.22) 0%, transparent 65%);
   z-index:-1;
   pointer-events:none;
 }
+
+.photo-stub{
+  position:relative;
+  width:100%;
+  height:100%;
+  background:
+    linear-gradient(160deg, rgba(255,207,164,0.06) 0%, rgba(0,0,0,0.30) 100%);
+  border:1.5px dashed rgba(255,207,164,0.55);
+  border-radius:20px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:32px 22px;
+  text-align:center;
+  gap:18px;
+  box-shadow:
+    0 24px 48px rgba(0,0,0,0.35),
+    inset 0 0 60px rgba(255,207,164,0.05);
+}
+/* угловые «уголки» рамки */
+.photo-stub::before,
+.photo-stub::after{
+  content:'';
+  position:absolute;
+  width:22px;height:22px;
+  border:2px solid var(--peach);
+  opacity:.85;
+}
+.photo-stub::before{ top:-2px;left:-2px;border-right:none;border-bottom:none;border-top-left-radius:20px; }
+.photo-stub::after { bottom:-2px;right:-2px;border-left:none;border-top:none;border-bottom-right-radius:20px; }
+
+.koko-icon{
+  width:88px;
+  height:auto;
+  opacity:.95;
+}
+.ps-tag{
+  font-size:9px;
+  letter-spacing:.3em;
+  color:var(--peach);
+  text-transform:uppercase;
+  font-weight:700;
+  border:1px solid rgba(255,207,164,0.45);
+  border-radius:999px;
+  padding:5px 14px;
+}
+.ps-title{
+  font-family:var(--font-display);
+  font-size:26px;
+  letter-spacing:.04em;
+  color:var(--white-warm);
+  text-transform:uppercase;
+  line-height:1;
+}
+.ps-desc{
+  font-size:11px;
+  letter-spacing:.08em;
+  color:rgba(245,240,232,0.7);
+  text-transform:uppercase;
+  line-height:1.75;
+}
+.ps-desc b{ color:var(--peach); font-weight:700; }
 
 /* ───────── ОРНАМЕНТ ВНИЗУ (как на референсе) ───────── */
 .ornament-mark{
@@ -300,92 +360,27 @@ img{max-width:100%;display:block;}
   <div class="quote bl">это образ,<br>который читают<br>с первого взгляда</div>
   <div class="quote br right">белый силуэт,<br>который не просит<br>внимания — он его<br>забирает</div>
 
-  <!-- ФИГУРА: кокошник (персик) + пиджак (белый) -->
+  <!-- ПЛЕЙСХОЛДЕР под фотосессию: кокошник (персик) + белый пиджак -->
   <div class="figure-wrap">
-    <svg viewBox="0 0 320 420" xmlns="http://www.w3.org/2000/svg" aria-label="Силуэт девушки с кокошником в белом пиджаке">
-      <defs>
-        <linearGradient id="kokoGrad" x1="50%" y1="0%" x2="50%" y2="100%">
-          <stop offset="0%"  stop-color="#FFE7C8"/>
-          <stop offset="50%" stop-color="#FFCFA4"/>
-          <stop offset="100%" stop-color="#D89968"/>
-        </linearGradient>
-        <linearGradient id="kokoEdge" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%"  stop-color="#FFCFA4"/>
-          <stop offset="100%" stop-color="#B8854A"/>
-        </linearGradient>
-        <linearGradient id="jacketGrad" x1="50%" y1="0%" x2="50%" y2="100%">
-          <stop offset="0%"  stop-color="#FFFFFF"/>
-          <stop offset="60%" stop-color="#F2EEE4"/>
-          <stop offset="100%" stop-color="#D8D2C2"/>
-        </linearGradient>
-        <linearGradient id="skinGrad" x1="50%" y1="0%" x2="50%" y2="100%">
-          <stop offset="0%"  stop-color="#EBC2A6"/>
-          <stop offset="100%" stop-color="#B88E72"/>
-        </linearGradient>
-      </defs>
+    <div class="photo-stub">
+      <!-- иконка кокошника (только контур, без лица) -->
+      <svg class="koko-icon" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M 8 56 C 8 6, 92 6, 92 56" stroke="#FFCFA4" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+        <path d="M 18 56 C 18 16, 82 16, 82 56" stroke="#FFCFA4" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".55"/>
+        <path d="M 28 56 C 28 26, 72 26, 72 56" stroke="#FFCFA4" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".30"/>
+        <line x1="50" y1="0" x2="50" y2="14" stroke="#FFCFA4" stroke-width="1.4" stroke-linecap="round" opacity=".75"/>
+        <circle cx="50" cy="22" r="3" fill="#FFCFA4"/>
+        <circle cx="32" cy="32" r="1.6" fill="#FFCFA4" opacity=".7"/>
+        <circle cx="68" cy="32" r="1.6" fill="#FFCFA4" opacity=".7"/>
+      </svg>
 
-      <!-- КОКОШНИК (большая арка-нимб) -->
-      <path d="M 50 140
-               C 50 20, 270 20, 270 140
-               L 252 162
-               C 240 70, 80 70, 68 162 Z"
-            fill="url(#kokoGrad)"
-            stroke="url(#kokoEdge)" stroke-width="2"/>
-
-      <!-- внутренние орнаменты на кокошнике -->
-      <path d="M 70 130 Q 160 90 250 130" stroke="#A86A2C" stroke-width="1.4" fill="none" opacity=".55"/>
-      <path d="M 80 110 Q 160 75 240 110" stroke="#A86A2C" stroke-width="1" fill="none" opacity=".4"/>
-      <circle cx="160" cy="48" r="6" fill="#A86A2C" opacity=".55"/>
-      <circle cx="160" cy="48" r="2.5" fill="#FFE7C8"/>
-      <circle cx="115" cy="68" r="3.5" fill="#A86A2C" opacity=".55"/>
-      <circle cx="205" cy="68" r="3.5" fill="#A86A2C" opacity=".55"/>
-      <circle cx="92"  cy="100" r="2.8" fill="#A86A2C" opacity=".55"/>
-      <circle cx="228" cy="100" r="2.8" fill="#A86A2C" opacity=".55"/>
-      <circle cx="78"  cy="125" r="2" fill="#A86A2C" opacity=".55"/>
-      <circle cx="242" cy="125" r="2" fill="#A86A2C" opacity=".55"/>
-      <!-- центральный «лучик» -->
-      <path d="M 160 30 L 165 70 L 160 90 L 155 70 Z" fill="#FFE7C8" opacity=".7"/>
-
-      <!-- волосы под кокошником -->
-      <path d="M 122 150 C 130 138 190 138 198 150 L 198 192 L 122 192 Z" fill="#3A2540"/>
-
-      <!-- ЛИЦО (овал) -->
-      <ellipse cx="160" cy="172" rx="34" ry="44" fill="url(#skinGrad)"/>
-
-      <!-- лёгкие черты лица (минимально, силуэт) -->
-      <ellipse cx="148" cy="172" rx="2" ry="3" fill="#3A2540" opacity=".85"/>
-      <ellipse cx="172" cy="172" rx="2" ry="3" fill="#3A2540" opacity=".85"/>
-      <path d="M 152 192 Q 160 196 168 192" stroke="#C84B9E" stroke-width="2" fill="none" stroke-linecap="round"/>
-
-      <!-- шея -->
-      <path d="M 148 210 L 150 232 L 170 232 L 172 210 Z" fill="url(#skinGrad)"/>
-
-      <!-- БЕЛЫЙ ПИДЖАК (плечи + торс) -->
-      <path d="M 56 246
-               C 70 224, 105 218, 130 226
-               L 160 240
-               L 190 226
-               C 215 218, 250 224, 264 246
-               L 278 410
-               L 42 410 Z"
-            fill="url(#jacketGrad)"
-            stroke="rgba(0,0,0,0.08)" stroke-width="1"/>
-
-      <!-- лацканы V -->
-      <path d="M 130 226 L 160 296 L 190 226 L 178 232 L 160 280 L 142 232 Z"
-            fill="#E8E2D0" opacity=".85"/>
-      <!-- центральная линия пиджака -->
-      <line x1="160" y1="296" x2="160" y2="408" stroke="#D8D2C2" stroke-width="1.2"/>
-
-      <!-- пуговицы (персик) -->
-      <circle cx="160" cy="312" r="3.2" fill="url(#kokoGrad)" stroke="#A86A2C" stroke-width=".6"/>
-      <circle cx="160" cy="346" r="3.2" fill="url(#kokoGrad)" stroke="#A86A2C" stroke-width=".6"/>
-      <circle cx="160" cy="380" r="3.2" fill="url(#kokoGrad)" stroke="#A86A2C" stroke-width=".6"/>
-
-      <!-- лёгкая складка на лацкане -->
-      <path d="M 132 232 L 158 286" stroke="rgba(0,0,0,0.08)" stroke-width="1" fill="none"/>
-      <path d="M 188 232 L 162 286" stroke="rgba(0,0,0,0.08)" stroke-width="1" fill="none"/>
-    </svg>
+      <span class="ps-tag">плейсхолдер</span>
+      <div class="ps-title">фотосессия<br>модели</div>
+      <div class="ps-desc">
+        кокошник · <b>персик / золото</b><br>
+        пиджак · <b>белый</b>
+      </div>
+    </div>
   </div>
 
   <!-- ОРНАМЕНТ-МАРКЕР (как на референсе, угловой) -->
