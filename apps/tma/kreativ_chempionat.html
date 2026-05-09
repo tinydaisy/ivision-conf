@@ -1817,10 +1817,13 @@ async function loadData() {
   const data = Object.assign({}, common, role);
   const params = new URLSearchParams(window.location.search);
 
-  // Hero
-  document.querySelector('.hero-label').textContent = data.championship.label;
-  document.querySelector('.hero-h1').innerHTML = `ЧЕМПИОНАТ<br><span class="hero-h1-line2"><span class="hero-h1-brand">iViSiON:</span> <span class="hero-h1-accent">Ж.И.В.У.</span></span>`;
-  document.querySelector('.hero-sub').innerHTML = data.championship.tagline.split(', ').join(' <span style="color:var(--brand-peach);">·</span> ');
+  // Hero — узлы могут отсутствовать (новый дизайн), поэтому null-safe
+  const heroLabelEl = document.querySelector('.hero-label');
+  if (heroLabelEl) heroLabelEl.textContent = data.championship.label;
+  const heroH1El = document.querySelector('.hero-h1');
+  if (heroH1El) heroH1El.innerHTML = `ЧЕМПИОНАТ<br><span class="hero-h1-line2"><span class="hero-h1-brand">iViSiON:</span> <span class="hero-h1-accent">Ж.И.В.У.</span></span>`;
+  const heroSubEl = document.querySelector('.hero-sub');
+  if (heroSubEl) heroSubEl.innerHTML = data.championship.tagline.split(', ').join(' <span style="color:var(--brand-peach);">·</span> ');
 
   // HERO CTA — кнопка на главном экране (роль-специфично)
   if (data.hero_cta) {
