@@ -625,3 +625,118 @@ body, p, li, span, div, .desc, .hero-desc, .hero-sub,
 
 /* На hero дым не нужен — там картинка с настоящим туманом */
 #hero::before, #hero::after { display: none !important; }
+
+/* ===== 10. ОЧИСТКА: остатки розового и фиолетового → персик / бронза =====
+   Жёстко прописанные цвета в исходном CSS не перекрываются через
+   переопределение переменных. Перебиваем точечно. */
+
+/* SVG-градиенты в hero-rings и других местах — заменяем stop-color */
+stop[stop-color="#C84B9E"] { stop-color: #FFCFA4 !important; }
+stop[stop-color="#6B4FA0"] { stop-color: #B8896A !important; }
+stop[stop-color="#C084FC"] { stop-color: #FFCFA4 !important; }
+stop[stop-color="#1A3A5C"] { stop-color: #25455D !important; }
+
+/* Card hover-glow (radial-gradients были розово-фиолетовые) */
+.card:nth-child(2)::before {
+  background: radial-gradient(circle, rgba(255, 207, 164, 0.12), transparent) !important;
+}
+.card:nth-child(3)::before {
+  background: radial-gradient(circle, rgba(184, 137, 106, 0.12), transparent) !important;
+}
+
+/* Plate "value-pill" — был фиолетовый фон */
+.value-pill {
+  background: rgba(255, 207, 164, 0.06) !important;
+  border-color: rgba(255, 207, 164, 0.4) !important;
+}
+
+/* Price-timer был розово-фиолетовый */
+.price-timer {
+  background: linear-gradient(135deg,
+      rgba(255, 207, 164, 0.18),
+      rgba(184, 137, 106, 0.12) 60%,
+      rgba(255, 207, 164, 0.18)) !important;
+  border-color: rgba(255, 207, 164, 0.55) !important;
+  box-shadow: 0 0 28px rgba(255, 207, 164, 0.22),
+              inset 0 0 24px rgba(255, 207, 164, 0.08) !important;
+}
+.price-timer-unit {
+  background: rgba(8, 11, 18, 0.7) !important;
+  border-color: rgba(255, 207, 164, 0.4) !important;
+}
+.price-timer-label { text-shadow: 0 1px 8px rgba(255, 207, 164, 0.3) !important; }
+
+/* Partner-circle/pill hover-glow */
+.partner-circle::before,
+.partner-pill::before {
+  background: radial-gradient(circle, rgba(255, 207, 164, 0.25), transparent 70%) !important;
+}
+
+/* Pulse-deadline (анимация tariff-places и hero-deadline) — переопределена выше,
+   но ключевые кадры в основном CSS используют rgba(200,75,158). Перекрываем. */
+@keyframes pulse-deadline {
+  0%, 100% { box-shadow: 0 0 18px rgba(255, 207, 164, 0.35); }
+  50%      { box-shadow: 0 0 32px rgba(255, 207, 164, 0.65); }
+}
+
+/* ptariff-places — был жёсткий розово-красный градиент */
+.ptariff-places {
+  background: linear-gradient(135deg, #FFCFA4 0%, #B8896A 100%) !important;
+  color: #080B12 !important;
+  box-shadow: 0 0 20px rgba(255, 207, 164, 0.45) !important;
+}
+
+/* ptariff.featured — был фиолетово-розовый */
+.ptariff.featured {
+  border-color: rgba(255, 207, 164, 0.45) !important;
+  background: linear-gradient(160deg,
+      rgba(255, 207, 164, 0.08),
+      rgba(184, 137, 106, 0.05)) !important;
+}
+
+/* Video-card — был с фиолетовым акцентом */
+.video-card {
+  background: linear-gradient(135deg,
+      rgba(255, 207, 164, 0.1),
+      rgba(184, 137, 106, 0.1)) !important;
+}
+
+/* Collage-wrap раньше был с розовым фоном — у меня уже перекрыт, но на всякий */
+.collage-wrap {
+  background: rgba(255, 207, 164, 0.04) !important;
+}
+
+/* Jury-team-egg градиент */
+.jury-team-egg {
+  background: linear-gradient(135deg,
+      rgba(255, 207, 164, 0.08),
+      rgba(184, 137, 106, 0.08)) !important;
+}
+
+/* Декоративные deco-кружки — у меня display:none, но если где осталось */
+.vision-egg-deco-2,
+.jury-team-egg-deco-2 {
+  background: rgba(255, 207, 164, 0.18) !important;
+}
+.vision-egg-deco-3 {
+  border-color: rgba(255, 207, 164, 0.4) !important;
+}
+
+/* Hero-h1-accent (если ещё есть в DOM) — цвет был розово-фиолетовый */
+.hero-h1-accent {
+  background: linear-gradient(180deg, #FFE4C9, #FFCFA4 50%, #B8896A) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+/* Глобальный отлов: любые inline-стили color/background с розово-фиолетовыми
+   значениями переменных уже перекрыты через --brand-purple/pink/pink-light.
+   Прямые hex-стили в inline (#C84B9E, #C084FC) — точечно перекрываем через [style] */
+[style*="#C84B9E"],
+[style*="#C084FC"],
+[style*="#DD85B8"],
+[style*="#6B4FA0"] {
+  color: #FFCFA4 !important;
+}
