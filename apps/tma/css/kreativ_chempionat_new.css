@@ -48,11 +48,40 @@ html, body {
 .sec.dark.gradient-bg,
 .sec.mid.gradient-bg,
 .manifest-sec,
-#hero,
 #site-footer,
 section[class*="sec"] {
   background: transparent !important;
   background-image: none !important;
+}
+
+/* HERO — отдельная фоновая картинка hero3 + градиент-маска для читаемости текста */
+#hero {
+  background-color: #080B12 !important;
+  background-image:
+    linear-gradient(95deg,
+      rgba(8, 11, 18, 0.92) 0%,
+      rgba(8, 11, 18, 0.7) 35%,
+      rgba(8, 11, 18, 0.25) 60%,
+      rgba(8, 11, 18, 0) 100%),
+    url('/img/nha_trang/hero3.png') !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* На мобильной — фон сдвинут вправо, чтобы в кадр попала девушка */
+@media (max-width: 768px) {
+  #hero {
+    background-image:
+      linear-gradient(180deg,
+        rgba(8, 11, 18, 0.85) 0%,
+        rgba(8, 11, 18, 0.55) 35%,
+        rgba(8, 11, 18, 0.15) 70%,
+        rgba(8, 11, 18, 0) 100%),
+      url('/img/nha_trang/hero3.png') !important;
+    background-position: right center !important;
+    background-size: cover !important;
+  }
 }
 
 /* Декоративные радиальные glow убираем (они «дёргают» фон) */
