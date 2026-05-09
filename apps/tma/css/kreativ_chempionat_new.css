@@ -60,27 +60,44 @@ section[class*="sec"] {
   background-image:
     linear-gradient(95deg,
       rgba(8, 11, 18, 0.92) 0%,
-      rgba(8, 11, 18, 0.7) 35%,
-      rgba(8, 11, 18, 0.25) 60%,
+      rgba(8, 11, 18, 0.7) 32%,
+      rgba(8, 11, 18, 0.2) 60%,
       rgba(8, 11, 18, 0) 100%),
-    url('/img/nha_trang/hero3.png') !important;
+    url('/img/nha_trang/hero3.png?v=4') !important;
   background-size: cover !important;
   background-position: center center !important;
   background-repeat: no-repeat !important;
 }
 
-/* На мобильной — фон сдвинут вправо, чтобы в кадр попала девушка */
+/* На мобильной — фон сдвинут так, чтобы в кадр попала девушка */
 @media (max-width: 768px) {
   #hero {
     background-image:
       linear-gradient(180deg,
-        rgba(8, 11, 18, 0.85) 0%,
+        rgba(8, 11, 18, 0.88) 0%,
         rgba(8, 11, 18, 0.55) 35%,
         rgba(8, 11, 18, 0.15) 70%,
         rgba(8, 11, 18, 0) 100%),
-      url('/img/nha_trang/hero3.png') !important;
-    background-position: right center !important;
+      url('/img/nha_trang/hero3.png?v=4') !important;
+    background-position: 60% center !important;
     background-size: cover !important;
+  }
+}
+
+/* Главный заголовок hero — шрифт Bebas Neue, крупно, по левому краю */
+.hero-title-big {
+  font-family: var(--font-display) !important;
+  font-size: clamp(56px, 9vw, 112px) !important;
+  letter-spacing: 0.02em !important;
+  line-height: 0.95 !important;
+  text-transform: uppercase !important;
+  text-align: left !important;
+  margin: 0 0 26px !important;
+  /* Металлический персик подтянется через общее правило `section h1` */
+}
+@media (max-width: 768px) {
+  .hero-title-big {
+    font-size: clamp(44px, 13vw, 72px) !important;
   }
 }
 
