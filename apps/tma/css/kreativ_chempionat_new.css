@@ -63,10 +63,10 @@ section[class*="sec"] {
       rgba(8, 11, 18, 0.7) 32%,
       rgba(8, 11, 18, 0.2) 60%,
       rgba(8, 11, 18, 0) 100%),
-    url('/img/nha_trang/hero3.png?v=5') !important;
+    url('/img/nha_trang/hero3.png?v=6') !important;
   background-size: cover !important;
-  /* Сдвиг вправо — туфля упирается в правый край секции */
-  background-position: right center !important;
+  /* Фон смещается вправо — видна левая часть фото с девушкой и туфлёй */
+  background-position: left center !important;
   background-repeat: no-repeat !important;
 }
 
@@ -78,8 +78,8 @@ section[class*="sec"] {
         rgba(8, 11, 18, 0.55) 35%,
         rgba(8, 11, 18, 0.15) 70%,
         rgba(8, 11, 18, 0) 100%),
-      url('/img/nha_trang/hero3.png?v=5') !important;
-    background-position: right center !important;
+      url('/img/nha_trang/hero3.png?v=6') !important;
+    background-position: left center !important;
     background-size: cover !important;
   }
 }
