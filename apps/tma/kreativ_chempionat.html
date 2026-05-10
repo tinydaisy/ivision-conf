@@ -454,7 +454,6 @@
   <img src="/img/logo_ivision.png" alt="iViSiON" class="nav-logo">
   <div class="nav-links">
     <a href="#" data-nav="jury-sec">Форматы участия</a>
-    <a href="#" data-nav="mission-sec">Концепт</a>
   </div>
   <button class="nav-btn" id="nav-cta-btn">
     <span class="nav-btn-i" id="nav-cta-label">Стать жюри</span>
@@ -702,53 +701,6 @@
   .goal-list li { font-size: 15px; padding: 16px 18px; }
 }
 </style>
-
-<!-- MANIFEST -->
-<!-- MISSION -->
-<section class="sec dark" id="mission-sec">
-  <div class="container">
-    <div class="mission-grid">
-      <!-- LEFT COLUMN - EGG -->
-      <div class="vision-egg-wrap">
-        <svg class="vision-egg-rings" viewBox="0 0 700 700" aria-hidden="true">
-          <defs>
-            <linearGradient id="vrg1" x1="0%" y1="100%" x2="100%" y2="0%">
-              <stop offset="0%"   stop-color="#1A3A5C"/>
-              <stop offset="50%"  stop-color="#6B4FA0"/>
-              <stop offset="100%" stop-color="#C84B9E"/>
-            </linearGradient>
-          </defs>
-          <circle cx="350" cy="350" r="60"  fill="none" stroke="url(#vrg1)" stroke-width="0.8" opacity="0.7"/>
-          <circle cx="350" cy="350" r="90"  fill="none" stroke="url(#vrg1)" stroke-width="0.8" opacity="0.62"/>
-          <circle cx="350" cy="350" r="120" fill="none" stroke="url(#vrg1)" stroke-width="0.8" opacity="0.56"/>
-          <circle cx="350" cy="350" r="150" fill="none" stroke="url(#vrg1)" stroke-width="0.8" opacity="0.50"/>
-          <circle cx="350" cy="350" r="180" fill="none" stroke="url(#vrg1)" stroke-width="0.8" opacity="0.44"/>
-          <circle cx="350" cy="350" r="210" fill="none" stroke="url(#vrg1)" stroke-width="0.8" opacity="0.38"/>
-          <circle cx="350" cy="350" r="240" fill="none" stroke="url(#vrg1)" stroke-width="0.8" opacity="0.32"/>
-          <circle cx="350" cy="350" r="270" fill="none" stroke="url(#vrg1)" stroke-width="0.8" opacity="0.26"/>
-          <circle cx="350" cy="350" r="300" fill="none" stroke="url(#vrg1)" stroke-width="0.8" opacity="0.20"/>
-          <circle cx="350" cy="350" r="325" fill="none" stroke="url(#vrg1)" stroke-width="0.6" opacity="0.14"/>
-          <circle cx="350" cy="350" r="345" fill="none" stroke="url(#vrg1)" stroke-width="0.5" opacity="0.08"/>
-        </svg>
-        <div class="vision-egg-deco vision-egg-deco-1"></div>
-        <div class="vision-egg-deco vision-egg-deco-2"></div>
-        <div class="vision-egg-deco vision-egg-deco-3"></div>
-        <div class="vision-egg"><img src="https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/skriny/skrin_eto_AI.png" alt="Это ИИ?"></div>
-        <div class="vision-egg-text">это не ИИ?</div>
-      </div>
-
-      <!-- RIGHT COLUMN - TEXT -->
-      <div class="mission-content">
-        <div class="section-label">Концепт чемпионата</div>
-        <h2 class="h2" id="mission-title">Концепт Чемпионата</h2>
-        <p class="desc" id="mission-intro">В мире, где можно сгенерировать почти всё - ценность приобретает то, что невозможно воспроизвести:</p>
-        <div class="values-grid" id="values-container"></div>
-        <p class="desc" style="margin-bottom:40px;">Что дать рынку после двух крайностей — «успешного успеха» и «парада публичного нытья»? Чистую созидательную энергию <span id="vision-highlight" style="color:var(--brand-pink-light);"></span></p>
-        <p class="vision-text" style="margin-top:32px;margin-bottom:0;text-transform:uppercase;font-size:15px;" id="vision-main"></p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- AUDIENCE — рендерится из data.audience -->
 <section class="sec dark" id="audience-sec">
@@ -2045,21 +1997,6 @@ async function loadData() {
     }
   }
 
-  // Mission title (заголовок раздела "Концепт/Почему мы это делаем")
-  const missionTitle = document.getElementById('mission-title');
-  if (missionTitle && data.mission && data.mission.title) {
-    missionTitle.textContent = data.mission.title;
-  }
-
-  // Mission values
-  const valuesContainer = document.getElementById('values-container');
-  data.mission.values.forEach(value => {
-    const pill = document.createElement('div');
-    pill.className = 'value-pill';
-    pill.textContent = value;
-    valuesContainer.appendChild(pill);
-  });
-
   // AUDIENCE — секция "ДЛЯ КОГО?"
   if (data.audience) {
     const audLabel = document.getElementById('audience-label');
@@ -2089,24 +2026,6 @@ async function loadData() {
           </div>
         `)
         .join('');
-    }
-  }
-
-  // Mission vision text
-  const visionHighlight = document.getElementById('vision-highlight');
-  const visionMain = document.getElementById('vision-main');
-
-  if (visionHighlight && data.mission.vision_highlight) {
-    visionHighlight.textContent = data.mission.vision_highlight;
-  }
-  if (visionMain && data.mission.vision_main) {
-    const text = data.mission.vision_main;
-    const highlightText = '\"ЭТО ИИ?\"';
-    if (text.includes(highlightText)) {
-      const parts = text.split(highlightText);
-      visionMain.innerHTML = parts[0] + '<span style="color:var(--brand-pink-light);">' + highlightText + '</span>' + parts[1];
-    } else {
-      visionMain.textContent = text;
     }
   }
 
