@@ -764,33 +764,135 @@
 
 <!-- Живое невозможно подделать -->
 <section class="sec dark" id="alive" style="padding:60px 24px 80px;">
-  <div class="container" style="max-width:920px;">
-    <h2 style="font-family:var(--font-display);font-size:clamp(34px,5vw,56px);font-weight:400;color:var(--brand-peach);text-align:center;line-height:1.1;letter-spacing:.02em;text-transform:uppercase;margin-bottom:32px;">
-      Живое невозможно подделать
-    </h2>
+  <div class="container" style="max-width:1200px;">
+    <div class="alive-grid">
+      <div class="alive-left">
+        <h2 class="alive-title">
+          Живое невозможно подделать
+        </h2>
+        <div class="alive-gif-wrap">
+          <img src="/img/nha_trang/smeh.gif" alt="Живой смех" loading="lazy">
+        </div>
+      </div>
 
-    <p style="text-align:center;color:#FFFFFF;font-size:17px;line-height:1.7;margin:0 auto 12px;max-width:780px;">
-      ИИ может создать текст. Но не может создать <strong style="color:var(--brand-peach);">аутентичность, энергетику, харизму</strong>.
-    </p>
-    <p style="text-align:center;color:#FFFFFF;font-size:17px;line-height:1.7;margin:0 auto 48px;max-width:780px;">
-      ИИ может собрать картинку. Но не может передать <strong style="color:var(--brand-peach);">масштаб личности и контекст жизни</strong>.
-    </p>
+      <div class="alive-right">
+        <p class="alive-p">
+          ИИ может создать текст. Но не может создать <strong>аутентичность, энергетику, харизму</strong>.
+        </p>
+        <p class="alive-p">
+          ИИ может собрать картинку. Но не может передать <strong>масштаб личности и контекст жизни</strong>.
+        </p>
 
-    <h3 style="text-align:center;color:#FFFFFF;font-size:19px;font-weight:700;margin-bottom:24px;line-height:1.4;">
-      В чемпионате iViSiON вы найдёте свою:
-    </h3>
+        <h3 class="alive-h3">
+          В чемпионате iViSiON вы найдёте свою:
+        </h3>
 
-    <div class="values-grid" style="justify-content:center;margin:0 auto;">
-      <div class="value-pill">узнаваемую подачу</div>
-      <div class="value-pill">лидерскую харизму</div>
-      <div class="value-pill">аудиторию и клиентов</div>
+        <div class="values-grid alive-pills">
+          <div class="value-pill">узнаваемую подачу</div>
+          <div class="value-pill">лидерскую харизму</div>
+          <div class="value-pill">аудиторию и клиентов</div>
+        </div>
+
+        <p class="alive-cta">
+          Именно это мы выводим на международный уровень — с живой сценой <span>онлайн</span> и <span>офлайн во Вьетнаме</span>
+        </p>
+      </div>
     </div>
-
-    <p style="margin:40px auto 0;max-width:780px;font-size:17px;line-height:1.7;color:#FFFFFF;font-weight:500;padding:22px 26px;background:linear-gradient(135deg,rgba(255,207,164,.45) 0%,rgba(184,137,106,.30) 60%,rgba(255,207,164,.40) 100%);border:1.5px solid rgba(255,207,164,.55);border-radius:14px;box-shadow:0 0 24px rgba(255,207,164,.22);text-align:center;">
-      Именно это мы выводим на международный уровень — с живой сценой <span style="color:var(--brand-peach);font-weight:800;">онлайн</span> и <span style="color:var(--brand-peach);font-weight:800;">офлайн во Вьетнаме</span>
-    </p>
   </div>
 </section>
+
+<style>
+  #alive .alive-grid{
+    display:grid;
+    grid-template-columns:1fr 1.15fr;
+    gap:64px;
+    align-items:start;
+  }
+  #alive .alive-left{
+    position:sticky;
+    top:100px;
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+  }
+  #alive .alive-title{
+    font-family:var(--font-display);
+    font-size:clamp(40px,5.4vw,72px);
+    font-weight:400;
+    color:var(--brand-peach);
+    line-height:1.02;
+    letter-spacing:.02em;
+    text-transform:uppercase;
+    margin:0;
+  }
+  #alive .alive-gif-wrap{
+    border-radius:18px;
+    overflow:hidden;
+    border:1.5px solid rgba(255,207,164,.28);
+    box-shadow:0 0 40px rgba(255,207,164,.18);
+    background:rgba(13,17,26,.6);
+  }
+  #alive .alive-gif-wrap img{
+    display:block;
+    width:100%;
+    height:auto;
+  }
+  #alive .alive-right{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+    text-align:left;
+  }
+  #alive .alive-p{
+    color:#FFFFFF;
+    font-size:17px;
+    line-height:1.7;
+    margin:0 0 14px;
+    text-align:left;
+  }
+  #alive .alive-p strong{ color:var(--brand-peach); font-weight:700; }
+  #alive .alive-p:last-of-type{ margin-bottom:36px; }
+  #alive .alive-h3{
+    color:#FFFFFF;
+    font-size:19px;
+    font-weight:700;
+    line-height:1.4;
+    text-align:left;
+    margin:0 0 20px;
+  }
+  #alive .alive-pills{
+    justify-content:flex-start;
+    flex-wrap:wrap;
+    margin:0 0 32px;
+  }
+  #alive .alive-cta{
+    margin:0;
+    font-size:17px;
+    line-height:1.7;
+    color:#FFFFFF;
+    font-weight:500;
+    padding:22px 26px;
+    background:linear-gradient(135deg,rgba(255,207,164,.45) 0%,rgba(184,137,106,.30) 60%,rgba(255,207,164,.40) 100%);
+    border:1.5px solid rgba(255,207,164,.55);
+    border-radius:14px;
+    box-shadow:0 0 24px rgba(255,207,164,.22);
+    text-align:left;
+  }
+  #alive .alive-cta span{ color:var(--brand-peach); font-weight:800; }
+
+  @media(max-width:900px){
+    #alive .alive-grid{
+      grid-template-columns:1fr;
+      gap:36px;
+    }
+    #alive .alive-left{
+      position:static;
+      top:auto;
+    }
+    #alive .alive-title{ text-align:center; }
+    #alive .alive-gif-wrap{ max-width:480px; margin:0 auto; }
+  }
+</style>
 
 <!-- GOAL — рендерится из data.goal -->
 <section class="sec dark" id="goal-sec">
