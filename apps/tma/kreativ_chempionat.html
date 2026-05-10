@@ -766,16 +766,17 @@
 <section class="sec dark" id="alive" style="padding:60px 24px 80px;">
   <div class="container" style="max-width:1200px;">
     <div class="alive-grid">
-      <div class="alive-left">
-        <h2 class="alive-title">
-          Живое невозможно подделать
-        </h2>
+      <h2 class="alive-title">
+        Живое невозможно подделать
+      </h2>
+
+      <div class="alive-video">
         <div class="alive-gif-wrap">
           <video src="/img/nha_trang/smeh.mp4" autoplay loop muted playsinline preload="metadata" aria-label="Живой смех"></video>
         </div>
       </div>
 
-      <div class="alive-right">
+      <div class="alive-content">
         <p class="alive-p">
           ИИ может создать текст. Но не может создать <strong>аутентичность, энергетику, харизму</strong>.
         </p>
@@ -805,17 +806,15 @@
   #alive .alive-grid{
     display:grid;
     grid-template-columns:1fr 1.15fr;
-    gap:64px;
+    grid-template-areas:
+      "video title"
+      "video content";
+    grid-template-rows:auto 1fr;
+    gap:24px 64px;
     align-items:start;
   }
-  #alive .alive-left{
-    position:sticky;
-    top:100px;
-    display:flex;
-    flex-direction:column;
-    gap:28px;
-  }
   #alive .alive-title{
+    grid-area:title;
     font-family:var(--font-display);
     font-size:clamp(40px,5.4vw,72px);
     font-weight:400;
@@ -824,6 +823,12 @@
     letter-spacing:.02em;
     text-transform:uppercase;
     margin:0;
+  }
+  #alive .alive-video{
+    grid-area:video;
+    position:sticky;
+    top:100px;
+    align-self:start;
   }
   #alive .alive-gif-wrap{
     border-radius:18px;
@@ -838,7 +843,8 @@
     width:100%;
     height:auto;
   }
-  #alive .alive-right{
+  #alive .alive-content{
+    grid-area:content;
     display:flex;
     flex-direction:column;
     gap:0;
@@ -884,14 +890,21 @@
   @media(max-width:900px){
     #alive .alive-grid{
       grid-template-columns:1fr;
-      gap:36px;
+      grid-template-areas:
+        "title"
+        "video"
+        "content";
+      grid-template-rows:auto;
+      gap:24px;
     }
-    #alive .alive-left{
+    #alive .alive-video{
       position:static;
       top:auto;
+      max-width:480px;
+      margin:0 auto;
+      width:100%;
     }
     #alive .alive-title{ text-align:center; }
-    #alive .alive-gif-wrap{ max-width:480px; margin:0 auto; }
   }
 </style>
 
