@@ -606,6 +606,13 @@
       <li style="position:relative;padding:14px 0 14px 32px;border-bottom:1px solid rgba(255,207,164,.15);"><span style="position:absolute;left:0;top:16px;color:var(--brand-peach);font-size:14px;">◆</span>запоминается и удерживает внимание,</li>
       <li style="position:relative;padding:14px 0 14px 32px;"><span style="position:absolute;left:0;top:16px;color:var(--brand-peach);font-size:14px;">◆</span>воспринимается как лидер и авторитет, который собирает вокруг себя людей.</li>
     </ul>
+
+    <!-- AUDIENCE — рендерится из data.audience -->
+    <div id="audience-sec" style="margin-top:80px;">
+      <div class="section-label" id="audience-label"></div>
+      <h2 class="h2" id="audience-title"></h2>
+      <div class="audience-grid" id="audience-items"></div>
+    </div>
   </div>
 </section>
 
@@ -701,15 +708,6 @@
   .goal-list li { font-size: 15px; padding: 16px 18px; }
 }
 </style>
-
-<!-- AUDIENCE — рендерится из data.audience -->
-<section class="sec dark" id="audience-sec">
-  <div class="container">
-    <div class="section-label" id="audience-label"></div>
-    <h2 class="h2" id="audience-title"></h2>
-    <div class="audience-grid" id="audience-items"></div>
-  </div>
-</section>
 
 <style>
 .audience-grid {
