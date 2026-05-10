@@ -573,28 +573,93 @@
 <!-- Почему сегодня недостаточно быть просто экспертом -->
 <section class="sec dark" id="why-not-enough" style="padding:80px 24px;">
   <div class="container">
-    <h2 style="font-family:var(--font-display);font-size:clamp(32px,4.8vw,52px);font-weight:400;color:var(--brand-peach);text-align:center;line-height:1.1;letter-spacing:.02em;text-transform:uppercase;margin-bottom:48px;">
-      Почему сегодня недостаточно быть просто экспертом
-    </h2>
-
-    <div class="why-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1000px;margin:0 auto 64px;">
-      <div style="padding:28px;background:linear-gradient(135deg,rgba(212,212,212,.10),rgba(212,212,212,.04));border:1.5px solid rgba(212,212,212,.32);border-radius:16px;">
-        <h3 style="font-size:18px;font-weight:700;color:#D4D4D4;margin-bottom:16px;line-height:1.35;">Рынок переполнен:</h3>
-        <ul style="list-style:none;padding:0;margin:0;color:#FFFFFF;font-size:15px;line-height:1.85;">
-          <li style="position:relative;padding-left:18px;"><span style="position:absolute;left:0;color:#D4D4D4;">·</span>одинаковыми постами,</li>
-          <li style="position:relative;padding-left:18px;"><span style="position:absolute;left:0;color:#D4D4D4;">·</span>одинаковыми эфирами,</li>
-          <li style="position:relative;padding-left:18px;"><span style="position:absolute;left:0;color:#D4D4D4;">·</span>одинаковыми экспертами.</li>
-        </ul>
+    <div class="why-top-grid">
+      <div class="why-meme">
+        <div class="why-meme-frame">
+          <img src="/img/turnir_zhivu/vyezd/stat_i_poroda.png" alt="Стать и порода" loading="lazy">
+        </div>
       </div>
-      <div style="padding:28px;background:linear-gradient(135deg,rgba(205,127,50,.10),rgba(205,127,50,.04));border:1.5px solid rgba(205,127,50,.32);border-radius:16px;">
-        <h3 style="font-size:18px;font-weight:700;color:#CD7F32;margin-bottom:16px;line-height:1.35;">Люди перестали реагировать на:</h3>
-        <ul style="list-style:none;padding:0;margin:0;color:#FFFFFF;font-size:15px;line-height:1.85;">
-          <li style="position:relative;padding-left:18px;"><span style="position:absolute;left:0;color:#CD7F32;">·</span>пользу ради пользы,</li>
-          <li style="position:relative;padding-left:18px;"><span style="position:absolute;left:0;color:#CD7F32;">·</span>шаблонные самопрезентации,</li>
-          <li style="position:relative;padding-left:18px;"><span style="position:absolute;left:0;color:#CD7F32;">·</span>ИИ-шный контент.</li>
-        </ul>
+
+      <div class="why-content">
+        <h2 class="why-title">
+          Почему сегодня недостаточно быть просто экспертом
+        </h2>
+
+        <div class="why-grid" style="display:grid;grid-template-columns:1fr;gap:18px;">
+          <div style="padding:24px;background:linear-gradient(135deg,rgba(212,212,212,.10),rgba(212,212,212,.04));border:1.5px solid rgba(212,212,212,.32);border-radius:16px;">
+            <h3 style="font-size:18px;font-weight:700;color:#D4D4D4;margin-bottom:14px;line-height:1.35;">Рынок переполнен:</h3>
+            <ul style="list-style:none;padding:0;margin:0;color:#FFFFFF;font-size:15px;line-height:1.8;">
+              <li style="position:relative;padding-left:18px;"><span style="position:absolute;left:0;color:#D4D4D4;">·</span>одинаковыми постами,</li>
+              <li style="position:relative;padding-left:18px;"><span style="position:absolute;left:0;color:#D4D4D4;">·</span>одинаковыми эфирами,</li>
+              <li style="position:relative;padding-left:18px;"><span style="position:absolute;left:0;color:#D4D4D4;">·</span>одинаковыми экспертами.</li>
+            </ul>
+          </div>
+          <div style="padding:24px;background:linear-gradient(135deg,rgba(205,127,50,.10),rgba(205,127,50,.04));border:1.5px solid rgba(205,127,50,.32);border-radius:16px;">
+            <h3 style="font-size:18px;font-weight:700;color:#CD7F32;margin-bottom:14px;line-height:1.35;">Люди перестали реагировать на:</h3>
+            <ul style="list-style:none;padding:0;margin:0;color:#FFFFFF;font-size:15px;line-height:1.8;">
+              <li style="position:relative;padding-left:18px;"><span style="position:absolute;left:0;color:#CD7F32;">·</span>пользу ради пользы,</li>
+              <li style="position:relative;padding-left:18px;"><span style="position:absolute;left:0;color:#CD7F32;">·</span>шаблонные самопрезентации,</li>
+              <li style="position:relative;padding-left:18px;"><span style="position:absolute;left:0;color:#CD7F32;">·</span>ИИ-шный контент.</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
+
+    <style>
+      #why-not-enough .why-top-grid{
+        display:grid;
+        grid-template-columns:1fr 1.05fr;
+        gap:48px;
+        align-items:center;
+        max-width:1100px;
+        margin:0 auto 64px;
+      }
+      #why-not-enough .why-title{
+        font-family:var(--font-display);
+        font-size:clamp(30px,4.2vw,48px);
+        font-weight:400;
+        color:var(--brand-peach);
+        line-height:1.08;
+        letter-spacing:.02em;
+        text-transform:uppercase;
+        margin:0 0 24px;
+      }
+      #why-not-enough .why-meme{
+        display:flex;
+        justify-content:center;
+      }
+      #why-not-enough .why-meme-frame{
+        position:relative;
+        width:100%;
+        max-width:440px;
+        aspect-ratio:1/1;
+        border-radius:22px;
+        overflow:hidden;
+        border:2px solid rgba(255,207,164,.32);
+        box-shadow:0 18px 60px rgba(0,0,0,.45), 0 0 32px rgba(255,207,164,.18);
+        transform:rotate(-2.4deg);
+        transition:transform .35s ease;
+        background:rgba(13,17,26,.6);
+      }
+      #why-not-enough .why-meme-frame:hover{
+        transform:rotate(-2.4deg) scale(1.02);
+      }
+      #why-not-enough .why-meme-frame img{
+        display:block;
+        width:100%;
+        height:100%;
+        object-fit:cover;
+      }
+      @media(max-width:900px){
+        #why-not-enough .why-top-grid{
+          grid-template-columns:1fr;
+          gap:28px;
+        }
+        #why-not-enough .why-title{ text-align:center; }
+        #why-not-enough .why-meme-frame{ max-width:360px; transform:rotate(-2deg); }
+      }
+    </style>
 
     <div class="grow-schema">
       <div class="grow-title">
