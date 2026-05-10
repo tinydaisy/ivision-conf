@@ -599,27 +599,82 @@
     <div class="sun-schema">
       <svg class="sun-rays-svg" viewBox="0 0 1000 800" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
         <defs>
-          <linearGradient id="sunRayGrad" x1="120" y1="0" x2="380" y2="0" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#FFCFA4" stop-opacity="0.6"/>
+          <linearGradient id="sunRayGrad" x1="130" y1="0" x2="400" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#FFCFA4" stop-opacity="0.55"/>
+            <stop offset="55%" stop-color="#C084FC" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#C084FC" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="sunRayEdge" x1="130" y1="0" x2="400" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#FFCFA4" stop-opacity="0.85"/>
             <stop offset="100%" stop-color="#FFCFA4" stop-opacity="0"/>
           </linearGradient>
         </defs>
         <g transform="translate(500,400)">
-          <polygon class="sun-ray" data-ray="0" points="120,-22 380,-100 380,100 120,22" fill="url(#sunRayGrad)" transform="rotate(-90)"/>
-          <polygon class="sun-ray" data-ray="1" points="120,-22 380,-100 380,100 120,22" fill="url(#sunRayGrad)" transform="rotate(-18)"/>
-          <polygon class="sun-ray" data-ray="2" points="120,-22 380,-100 380,100 120,22" fill="url(#sunRayGrad)" transform="rotate(54)"/>
-          <polygon class="sun-ray" data-ray="3" points="120,-22 380,-100 380,100 120,22" fill="url(#sunRayGrad)" transform="rotate(126)"/>
-          <polygon class="sun-ray" data-ray="4" points="120,-22 380,-100 380,100 120,22" fill="url(#sunRayGrad)" transform="rotate(198)"/>
+          <g class="sun-ray-group" data-ray="0" transform="rotate(-90)">
+            <polygon points="130,-24 400,-110 400,110 130,24" fill="url(#sunRayGrad)" class="sun-ray-cone"/>
+            <line x1="130" y1="-24" x2="400" y2="-110" stroke="url(#sunRayEdge)" stroke-width="1.4" class="sun-ray-edge"/>
+            <line x1="130" y1="24"  x2="400" y2="110"  stroke="url(#sunRayEdge)" stroke-width="1.4" class="sun-ray-edge"/>
+          </g>
+          <g class="sun-ray-group" data-ray="1" transform="rotate(-18)">
+            <polygon points="130,-24 400,-110 400,110 130,24" fill="url(#sunRayGrad)" class="sun-ray-cone"/>
+            <line x1="130" y1="-24" x2="400" y2="-110" stroke="url(#sunRayEdge)" stroke-width="1.4" class="sun-ray-edge"/>
+            <line x1="130" y1="24"  x2="400" y2="110"  stroke="url(#sunRayEdge)" stroke-width="1.4" class="sun-ray-edge"/>
+          </g>
+          <g class="sun-ray-group" data-ray="2" transform="rotate(54)">
+            <polygon points="130,-24 400,-110 400,110 130,24" fill="url(#sunRayGrad)" class="sun-ray-cone"/>
+            <line x1="130" y1="-24" x2="400" y2="-110" stroke="url(#sunRayEdge)" stroke-width="1.4" class="sun-ray-edge"/>
+            <line x1="130" y1="24"  x2="400" y2="110"  stroke="url(#sunRayEdge)" stroke-width="1.4" class="sun-ray-edge"/>
+          </g>
+          <g class="sun-ray-group" data-ray="3" transform="rotate(126)">
+            <polygon points="130,-24 400,-110 400,110 130,24" fill="url(#sunRayGrad)" class="sun-ray-cone"/>
+            <line x1="130" y1="-24" x2="400" y2="-110" stroke="url(#sunRayEdge)" stroke-width="1.4" class="sun-ray-edge"/>
+            <line x1="130" y1="24"  x2="400" y2="110"  stroke="url(#sunRayEdge)" stroke-width="1.4" class="sun-ray-edge"/>
+          </g>
+          <g class="sun-ray-group" data-ray="4" transform="rotate(198)">
+            <polygon points="130,-24 400,-110 400,110 130,24" fill="url(#sunRayGrad)" class="sun-ray-cone"/>
+            <line x1="130" y1="-24" x2="400" y2="-110" stroke="url(#sunRayEdge)" stroke-width="1.4" class="sun-ray-edge"/>
+            <line x1="130" y1="24"  x2="400" y2="110"  stroke="url(#sunRayEdge)" stroke-width="1.4" class="sun-ray-edge"/>
+          </g>
         </g>
       </svg>
 
-      <div class="sun-center">Сегодня<br>растут<br>те, кто</div>
+      <div class="sun-center">
+        <div class="sun-orbit"></div>
+        <div class="sun-core">
+          <span class="sun-core-text">Сегодня<br>растут<br>те, кто</span>
+        </div>
+      </div>
 
-      <div class="sun-circle sun-c1"><span class="sun-mark">◆</span><span>умеет пробивать баннерную слепоту</span></div>
-      <div class="sun-circle sun-c2"><span class="sun-mark">◆</span><span>вызывает эмоциональный отклик</span></div>
-      <div class="sun-circle sun-c3"><span class="sun-mark">◆</span><span>запоминается и удерживает внимание</span></div>
-      <div class="sun-circle sun-c4"><span class="sun-mark">◆</span><span>воспринимается как лидер и авторитет</span></div>
-      <div class="sun-circle sun-c5"><span class="sun-mark">◆</span><span>собирает вокруг себя людей</span></div>
+      <div class="sun-circle sun-c1">
+        <div class="sun-circle-inner">
+          <div class="sun-num">01</div>
+          <div class="sun-text">пробивает баннерную слепоту</div>
+        </div>
+      </div>
+      <div class="sun-circle sun-c2">
+        <div class="sun-circle-inner">
+          <div class="sun-num">02</div>
+          <div class="sun-text">вызывает эмоциональный отклик</div>
+        </div>
+      </div>
+      <div class="sun-circle sun-c3">
+        <div class="sun-circle-inner">
+          <div class="sun-num">03</div>
+          <div class="sun-text">запоминается и удерживает внимание</div>
+        </div>
+      </div>
+      <div class="sun-circle sun-c4">
+        <div class="sun-circle-inner">
+          <div class="sun-num">04</div>
+          <div class="sun-text">воспринимается как лидер и авторитет</div>
+        </div>
+      </div>
+      <div class="sun-circle sun-c5">
+        <div class="sun-circle-inner">
+          <div class="sun-num">05</div>
+          <div class="sun-text">собирает вокруг себя людей</div>
+        </div>
+      </div>
     </div>
 
     <!-- AUDIENCE — рендерится из data.audience -->
@@ -637,8 +692,8 @@
     position:relative;
     width:100%;
     max-width:980px;
-    margin:48px auto 0;
-    aspect-ratio:1.25/1;
+    margin:56px auto 0;
+    aspect-ratio:1.3/1;
   }
   .sun-rays-svg{
     position:absolute;
@@ -648,82 +703,153 @@
     pointer-events:none;
     z-index:1;
   }
-  .sun-ray{
-    opacity:.45;
-    transition:opacity .9s ease, filter .9s ease;
+  .sun-ray-group{
+    opacity:.4;
+    transition:opacity 1s ease, filter 1s ease;
   }
-  .sun-ray.is-active{
+  .sun-ray-group.is-active{
     opacity:1;
-    filter:drop-shadow(0 0 22px rgba(255,207,164,.75));
+    filter:drop-shadow(0 0 22px rgba(255,207,164,.85));
   }
+  .sun-ray-edge{
+    transition:stroke-width 1s ease;
+  }
+  .sun-ray-group.is-active .sun-ray-edge{
+    stroke-width:2.4;
+  }
+
+  /* CENTER — солнце с орбитой */
   .sun-center{
     position:absolute;
     top:50%;
     left:50%;
+    width:260px;
+    height:260px;
     transform:translate(-50%,-50%);
-    width:210px;
-    height:210px;
+    z-index:3;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .sun-orbit{
+    position:absolute;
+    inset:-6px;
     border-radius:50%;
-    background:radial-gradient(circle at 32% 30%, #FFE6CC 0%, #FFCFA4 40%, #C84B9E 95%);
+    border:1px dashed rgba(255,207,164,.45);
+    animation:sun-orbit-spin 38s linear infinite;
+  }
+  .sun-orbit::before,
+  .sun-orbit::after{
+    content:'';
+    position:absolute;
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:var(--brand-peach);
+    box-shadow:0 0 14px rgba(255,207,164,.95), 0 0 30px rgba(255,207,164,.5);
+  }
+  .sun-orbit::before{ top:-5px; left:50%; transform:translateX(-50%); }
+  .sun-orbit::after{ bottom:-5px; left:50%; transform:translateX(-50%); }
+  .sun-core{
+    position:relative;
+    width:230px;
+    height:230px;
+    border-radius:50%;
+    background:
+      radial-gradient(circle at 30% 26%, #FFE9D4 0%, #FFCFA4 28%, #C084FC 70%, #25455D 100%);
     display:flex;
     align-items:center;
     justify-content:center;
     text-align:center;
+    padding:30px;
+    box-shadow:
+      0 0 70px rgba(255,207,164,.6),
+      0 0 150px rgba(192,132,252,.35),
+      inset 0 -14px 36px rgba(0,0,0,.28),
+      inset 0 14px 26px rgba(255,255,255,.22);
+    animation:sun-core-pulse 4.2s ease-in-out infinite;
+  }
+  .sun-core-text{
     font-family:var(--font-body);
-    font-weight:800;
-    font-size:18px;
+    font-weight:900;
+    font-size:21px;
     text-transform:uppercase;
     color:#080B12;
-    padding:24px;
-    letter-spacing:.5px;
-    line-height:1.18;
-    z-index:3;
-    box-shadow:
-      0 0 60px rgba(255,207,164,.55),
-      0 0 120px rgba(200,75,158,.25),
-      inset 0 0 30px rgba(0,0,0,.18);
+    letter-spacing:.8px;
+    line-height:1.16;
   }
+
+  @keyframes sun-orbit-spin{
+    to{ transform:rotate(360deg); }
+  }
+  @keyframes sun-core-pulse{
+    0%,100%{ box-shadow:0 0 70px rgba(255,207,164,.6), 0 0 150px rgba(192,132,252,.35), inset 0 -14px 36px rgba(0,0,0,.28), inset 0 14px 26px rgba(255,255,255,.22); }
+    50%{ box-shadow:0 0 90px rgba(255,207,164,.78), 0 0 200px rgba(192,132,252,.45), inset 0 -14px 36px rgba(0,0,0,.28), inset 0 14px 26px rgba(255,255,255,.28); }
+  }
+
+  /* CIRCLES — нумерованные карточки */
   .sun-circle{
     position:absolute;
-    width:172px;
-    height:172px;
+    width:188px;
+    height:188px;
     border-radius:50%;
-    background:rgba(13,17,26,.78);
-    border:2px solid rgba(255,207,164,.4);
-    display:flex;
-    flex-direction:column;
-    gap:6px;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:18px;
-    font-size:13px;
-    line-height:1.35;
-    color:#fff;
+    padding:1.8px;
+    background:linear-gradient(135deg, rgba(255,207,164,.5) 0%, rgba(192,132,252,.18) 50%, rgba(255,207,164,.35) 100%);
     z-index:2;
     transform:translate(-50%,-50%) scale(1);
-    transition:transform .8s cubic-bezier(.4,.0,.2,1), box-shadow .8s ease, background .8s ease, border-color .8s ease;
+    transition:transform .85s cubic-bezier(.4,0,.2,1), box-shadow .85s ease, background .85s ease;
+  }
+  .sun-circle-inner{
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    background:radial-gradient(circle at 50% 28%, rgba(20,28,45,.92) 0%, rgba(8,11,18,.96) 75%);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:20px 18px;
+    text-align:center;
+    gap:8px;
+    transition:background .85s ease;
     backdrop-filter:blur(6px);
   }
-  .sun-circle .sun-mark{
-    color:var(--brand-peach);
-    font-size:14px;
+  .sun-num{
+    font-family:var(--font-body);
+    font-size:30px;
+    font-weight:900;
+    background:linear-gradient(135deg,#FFCFA4 0%,#C084FC 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    letter-spacing:.04em;
     line-height:1;
-    transition:color .8s ease, transform .8s ease;
+    transition:transform .85s ease;
+  }
+  .sun-text{
+    font-family:var(--font-body);
+    font-size:13px;
+    font-weight:700;
+    color:#fff;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    line-height:1.28;
   }
   .sun-circle.is-active{
-    transform:translate(-50%,-50%) scale(1.16);
-    background:linear-gradient(135deg, rgba(255,207,164,.28), rgba(192,132,252,.18));
-    border-color:var(--brand-peach);
+    transform:translate(-50%,-50%) scale(1.18);
+    background:linear-gradient(135deg, #FFCFA4 0%, #C084FC 50%, #C84B9E 100%);
     box-shadow:
-      0 0 40px rgba(255,207,164,.7),
-      0 0 100px rgba(255,207,164,.32),
-      inset 0 0 24px rgba(255,207,164,.18);
+      0 0 0 1px rgba(255,207,164,.4),
+      0 0 50px rgba(255,207,164,.7),
+      0 0 130px rgba(200,75,158,.4);
   }
-  .sun-circle.is-active .sun-mark{
-    color:#fff;
-    transform:scale(1.2);
+  .sun-circle.is-active .sun-circle-inner{
+    background:radial-gradient(circle at 50% 28%, rgba(255,207,164,.18) 0%, rgba(13,17,26,.88) 70%);
   }
+  .sun-circle.is-active .sun-num{
+    transform:scale(1.08);
+  }
+
   .sun-c1{ top:8%;  left:50%; }
   .sun-c2{ top:37%; left:86%; }
   .sun-c3{ top:84%; left:72%; }
@@ -731,10 +857,15 @@
   .sun-c5{ top:37%; left:14%; }
 
   @media(max-width:900px){
-    .sun-schema{ max-width:760px; aspect-ratio:1.1/1; }
-    .sun-center{ width:170px; height:170px; font-size:16px; padding:18px; }
-    .sun-circle{ width:140px; height:140px; font-size:12px; padding:14px; }
+    .sun-schema{ max-width:760px; aspect-ratio:1.15/1; margin-top:40px; }
+    .sun-center{ width:210px; height:210px; }
+    .sun-core{ width:184px; height:184px; padding:22px; }
+    .sun-core-text{ font-size:17px; }
+    .sun-circle{ width:152px; height:152px; }
+    .sun-num{ font-size:24px; }
+    .sun-text{ font-size:11.5px; }
   }
+
   @media(max-width:768px){
     .why-grid{grid-template-columns:1fr!important;}
 
@@ -745,32 +876,50 @@
       display:flex;
       flex-direction:column;
       align-items:center;
-      gap:14px;
-      margin-top:32px;
+      gap:12px;
+      margin-top:36px;
     }
     .sun-rays-svg{ display:none; }
     .sun-center{
       position:relative;
       top:auto; left:auto;
       transform:none;
-      width:180px; height:180px;
-      font-size:16px;
-      margin:0 0 8px;
+      width:200px; height:200px;
+      margin:0 0 14px;
     }
+    .sun-core{ width:184px; height:184px; padding:24px; }
+    .sun-core-text{ font-size:17px; }
+
     .sun-circle{
       position:relative;
       top:auto; left:auto;
       transform:scale(1);
       width:100%;
-      max-width:340px;
       height:auto;
-      border-radius:18px;
-      padding:16px 22px;
-      font-size:14px;
-      flex-direction:row;
-      gap:12px;
+      border-radius:20px;
+      padding:1.5px;
     }
-    .sun-circle .sun-mark{ font-size:16px; }
+    .sun-circle-inner{
+      border-radius:18.5px;
+      flex-direction:row;
+      justify-content:flex-start;
+      align-items:center;
+      padding:18px 22px;
+      gap:18px;
+      text-align:left;
+    }
+    .sun-num{
+      font-size:38px;
+      flex-shrink:0;
+      width:62px;
+      text-align:center;
+    }
+    .sun-text{
+      font-size:14px;
+      letter-spacing:.03em;
+      line-height:1.32;
+      flex:1;
+    }
     .sun-circle.is-active{
       transform:scale(1.04);
     }
@@ -2462,7 +2611,7 @@ document.addEventListener('DOMContentLoaded', loadData);
 (function startSunSchemaCycle(){
   function init(){
     const circles = document.querySelectorAll('.sun-circle');
-    const rays = document.querySelectorAll('.sun-ray');
+    const rays = document.querySelectorAll('.sun-ray-group');
     if (!circles.length) return;
     let i = 0;
     function tick(){
@@ -2471,7 +2620,7 @@ document.addEventListener('DOMContentLoaded', loadData);
       i = (i + 1) % circles.length;
     }
     tick();
-    setInterval(tick, 1600);
+    setInterval(tick, 1700);
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
