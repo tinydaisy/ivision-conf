@@ -586,7 +586,8 @@
         </h2>
 
         <div class="why-grid" style="display:grid;grid-template-columns:1fr;gap:18px;">
-          <div style="padding:24px;background:linear-gradient(135deg,rgba(212,212,212,.10),rgba(212,212,212,.04));border:1.5px solid rgba(212,212,212,.32);border-radius:16px;">
+          <div class="why-card">
+            <img class="why-stamp" src="/img/turnir_zhivu/vyezd/pechat.png" alt="" aria-hidden="true">
             <h3 style="font-size:18px;font-weight:700;color:#D4D4D4;margin-bottom:14px;line-height:1.35;">Рынок переполнен:</h3>
             <ul style="list-style:none;padding:0;margin:0;color:#FFFFFF;font-size:15px;line-height:1.8;">
               <li style="position:relative;padding-left:18px;"><span style="position:absolute;left:0;color:#D4D4D4;">·</span>одинаковыми постами,</li>
@@ -594,7 +595,8 @@
               <li style="position:relative;padding-left:18px;"><span style="position:absolute;left:0;color:#D4D4D4;">·</span>одинаковыми экспертами.</li>
             </ul>
           </div>
-          <div style="padding:24px;background:linear-gradient(135deg,rgba(205,127,50,.10),rgba(205,127,50,.04));border:1.5px solid rgba(205,127,50,.32);border-radius:16px;">
+          <div class="why-card">
+            <img class="why-stamp" src="/img/turnir_zhivu/vyezd/pechat.png" alt="" aria-hidden="true">
             <h3 style="font-size:18px;font-weight:700;color:#CD7F32;margin-bottom:14px;line-height:1.35;">Люди перестали реагировать на:</h3>
             <ul style="list-style:none;padding:0;margin:0;color:#FFFFFF;font-size:15px;line-height:1.8;">
               <li style="position:relative;padding-left:18px;"><span style="position:absolute;left:0;color:#CD7F32;">·</span>пользу ради пользы,</li>
@@ -647,6 +649,26 @@
         width:100%;
         height:100%;
         object-fit:contain;
+      }
+      #why-not-enough .why-card{
+        position:relative;
+        padding:24px 28px;
+      }
+      #why-not-enough .why-stamp{
+        position:absolute;
+        top:-16px;
+        right:-12px;
+        width:96px;
+        height:96px;
+        object-fit:contain;
+        pointer-events:none;
+        transform:rotate(8deg);
+        filter:drop-shadow(0 4px 10px rgba(0,0,0,.4));
+        opacity:.95;
+      }
+      @media(max-width:900px){
+        #why-not-enough .why-card{ padding:20px 22px; }
+        #why-not-enough .why-stamp{ width:76px; height:76px; top:-12px; right:-8px; }
       }
       @media(max-width:900px){
         #why-not-enough .why-top-grid{
