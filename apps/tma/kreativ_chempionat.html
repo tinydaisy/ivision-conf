@@ -634,12 +634,13 @@
         width:100%;
         max-width:460px;
         aspect-ratio:1/1;
-        transform:rotate(-2.4deg);
+        border:1px solid var(--brand-teal);
+        border-radius:18px;
         transition:transform .35s ease;
-        filter:drop-shadow(0 18px 36px rgba(0,0,0,.55)) drop-shadow(0 0 28px rgba(255,207,164,.22));
+        box-shadow:0 18px 36px rgba(0,0,0,.45);
       }
       #why-not-enough .why-meme-frame:hover{
-        transform:rotate(-2.4deg) scale(1.02);
+        transform:scale(1.02);
       }
       #why-not-enough .why-meme-frame img{
         display:block;
@@ -653,7 +654,7 @@
           gap:28px;
         }
         #why-not-enough .why-title{ text-align:center; }
-        #why-not-enough .why-meme-frame{ max-width:360px; transform:rotate(-2deg); }
+        #why-not-enough .why-meme-frame{ max-width:360px; }
       }
     </style>
   </div>
@@ -736,7 +737,7 @@
     gap:0;
     font-family:var(--font-display);
     font-weight:400;
-    font-size:clamp(64px, 8.6vw, 124px);
+    font-size:clamp(58px, 7.7vw, 112px);
     line-height:.92;
     text-transform:uppercase;
     color:var(--brand-peach);
@@ -821,7 +822,7 @@
     .grow-title{
       text-align:center;
       align-items:center;
-      font-size:clamp(56px, 13vw, 88px);
+      font-size:clamp(50px, 11.7vw, 80px);
       text-shadow:0 0 30px rgba(255,207,164,.22);
     }
   }
