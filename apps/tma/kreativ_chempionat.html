@@ -596,16 +596,31 @@
       </div>
     </div>
 
-    <h2 style="font-family:var(--font-body);font-size:clamp(28px,4.2vw,46px);font-weight:800;color:var(--brand-peach);text-align:center;line-height:1.2;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:32px;">
-      Сегодня выигрывают те, кто:
-    </h2>
+    <div class="sun-schema">
+      <svg class="sun-rays-svg" viewBox="0 0 1000 800" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <defs>
+          <linearGradient id="sunRayGrad" x1="120" y1="0" x2="380" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#FFCFA4" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#FFCFA4" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <g transform="translate(500,400)">
+          <polygon class="sun-ray" data-ray="0" points="120,-22 380,-100 380,100 120,22" fill="url(#sunRayGrad)" transform="rotate(-90)"/>
+          <polygon class="sun-ray" data-ray="1" points="120,-22 380,-100 380,100 120,22" fill="url(#sunRayGrad)" transform="rotate(-18)"/>
+          <polygon class="sun-ray" data-ray="2" points="120,-22 380,-100 380,100 120,22" fill="url(#sunRayGrad)" transform="rotate(54)"/>
+          <polygon class="sun-ray" data-ray="3" points="120,-22 380,-100 380,100 120,22" fill="url(#sunRayGrad)" transform="rotate(126)"/>
+          <polygon class="sun-ray" data-ray="4" points="120,-22 380,-100 380,100 120,22" fill="url(#sunRayGrad)" transform="rotate(198)"/>
+        </g>
+      </svg>
 
-    <ul style="list-style:none;padding:0;margin:0 auto;max-width:780px;color:#FFFFFF;font-size:17px;line-height:1.65;">
-      <li style="position:relative;padding:14px 0 14px 32px;border-bottom:1px solid rgba(255,207,164,.15);"><span style="position:absolute;left:0;top:16px;color:var(--brand-peach);font-size:14px;">◆</span>умеет пробивать баннерную слепоту,</li>
-      <li style="position:relative;padding:14px 0 14px 32px;border-bottom:1px solid rgba(255,207,164,.15);"><span style="position:absolute;left:0;top:16px;color:var(--brand-peach);font-size:14px;">◆</span>вызывает эмоциональный отклик,</li>
-      <li style="position:relative;padding:14px 0 14px 32px;border-bottom:1px solid rgba(255,207,164,.15);"><span style="position:absolute;left:0;top:16px;color:var(--brand-peach);font-size:14px;">◆</span>запоминается и удерживает внимание,</li>
-      <li style="position:relative;padding:14px 0 14px 32px;"><span style="position:absolute;left:0;top:16px;color:var(--brand-peach);font-size:14px;">◆</span>воспринимается как лидер и авторитет, который собирает вокруг себя людей.</li>
-    </ul>
+      <div class="sun-center">Сегодня<br>растут<br>те, кто</div>
+
+      <div class="sun-circle sun-c1"><span class="sun-mark">◆</span><span>умеет пробивать баннерную слепоту</span></div>
+      <div class="sun-circle sun-c2"><span class="sun-mark">◆</span><span>вызывает эмоциональный отклик</span></div>
+      <div class="sun-circle sun-c3"><span class="sun-mark">◆</span><span>запоминается и удерживает внимание</span></div>
+      <div class="sun-circle sun-c4"><span class="sun-mark">◆</span><span>воспринимается как лидер и авторитет</span></div>
+      <div class="sun-circle sun-c5"><span class="sun-mark">◆</span><span>собирает вокруг себя людей</span></div>
+    </div>
 
     <!-- AUDIENCE — рендерится из data.audience -->
     <div id="audience-sec" style="margin-top:80px;">
@@ -617,8 +632,148 @@
 </section>
 
 <style>
+  /* SUN SCHEMA — «Сегодня растут те, кто» */
+  .sun-schema{
+    position:relative;
+    width:100%;
+    max-width:980px;
+    margin:48px auto 0;
+    aspect-ratio:1.25/1;
+  }
+  .sun-rays-svg{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    z-index:1;
+  }
+  .sun-ray{
+    opacity:.45;
+    transition:opacity .9s ease, filter .9s ease;
+  }
+  .sun-ray.is-active{
+    opacity:1;
+    filter:drop-shadow(0 0 22px rgba(255,207,164,.75));
+  }
+  .sun-center{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:210px;
+    height:210px;
+    border-radius:50%;
+    background:radial-gradient(circle at 32% 30%, #FFE6CC 0%, #FFCFA4 40%, #C84B9E 95%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-family:var(--font-body);
+    font-weight:800;
+    font-size:18px;
+    text-transform:uppercase;
+    color:#080B12;
+    padding:24px;
+    letter-spacing:.5px;
+    line-height:1.18;
+    z-index:3;
+    box-shadow:
+      0 0 60px rgba(255,207,164,.55),
+      0 0 120px rgba(200,75,158,.25),
+      inset 0 0 30px rgba(0,0,0,.18);
+  }
+  .sun-circle{
+    position:absolute;
+    width:172px;
+    height:172px;
+    border-radius:50%;
+    background:rgba(13,17,26,.78);
+    border:2px solid rgba(255,207,164,.4);
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:18px;
+    font-size:13px;
+    line-height:1.35;
+    color:#fff;
+    z-index:2;
+    transform:translate(-50%,-50%) scale(1);
+    transition:transform .8s cubic-bezier(.4,.0,.2,1), box-shadow .8s ease, background .8s ease, border-color .8s ease;
+    backdrop-filter:blur(6px);
+  }
+  .sun-circle .sun-mark{
+    color:var(--brand-peach);
+    font-size:14px;
+    line-height:1;
+    transition:color .8s ease, transform .8s ease;
+  }
+  .sun-circle.is-active{
+    transform:translate(-50%,-50%) scale(1.16);
+    background:linear-gradient(135deg, rgba(255,207,164,.28), rgba(192,132,252,.18));
+    border-color:var(--brand-peach);
+    box-shadow:
+      0 0 40px rgba(255,207,164,.7),
+      0 0 100px rgba(255,207,164,.32),
+      inset 0 0 24px rgba(255,207,164,.18);
+  }
+  .sun-circle.is-active .sun-mark{
+    color:#fff;
+    transform:scale(1.2);
+  }
+  .sun-c1{ top:8%;  left:50%; }
+  .sun-c2{ top:37%; left:86%; }
+  .sun-c3{ top:84%; left:72%; }
+  .sun-c4{ top:84%; left:28%; }
+  .sun-c5{ top:37%; left:14%; }
+
+  @media(max-width:900px){
+    .sun-schema{ max-width:760px; aspect-ratio:1.1/1; }
+    .sun-center{ width:170px; height:170px; font-size:16px; padding:18px; }
+    .sun-circle{ width:140px; height:140px; font-size:12px; padding:14px; }
+  }
   @media(max-width:768px){
     .why-grid{grid-template-columns:1fr!important;}
+
+    .sun-schema{
+      max-width:420px;
+      aspect-ratio:auto;
+      height:auto;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:14px;
+      margin-top:32px;
+    }
+    .sun-rays-svg{ display:none; }
+    .sun-center{
+      position:relative;
+      top:auto; left:auto;
+      transform:none;
+      width:180px; height:180px;
+      font-size:16px;
+      margin:0 0 8px;
+    }
+    .sun-circle{
+      position:relative;
+      top:auto; left:auto;
+      transform:scale(1);
+      width:100%;
+      max-width:340px;
+      height:auto;
+      border-radius:18px;
+      padding:16px 22px;
+      font-size:14px;
+      flex-direction:row;
+      gap:12px;
+    }
+    .sun-circle .sun-mark{ font-size:16px; }
+    .sun-circle.is-active{
+      transform:scale(1.04);
+    }
   }
 </style>
 
@@ -2302,6 +2457,28 @@ async function loadData() {
   });
 }
 document.addEventListener('DOMContentLoaded', loadData);
+
+// SUN SCHEMA — циклическая подсветка кругов с лучами
+(function startSunSchemaCycle(){
+  function init(){
+    const circles = document.querySelectorAll('.sun-circle');
+    const rays = document.querySelectorAll('.sun-ray');
+    if (!circles.length) return;
+    let i = 0;
+    function tick(){
+      circles.forEach((el, idx) => el.classList.toggle('is-active', idx === i));
+      rays.forEach((el, idx) => el.classList.toggle('is-active', idx === i));
+      i = (i + 1) % circles.length;
+    }
+    tick();
+    setInterval(tick, 1600);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
 
 // Евгения Романовская скрывается при наличии ?hder в URL (по умолчанию — видна).
 (function applyEvgeniaVisibility() {
