@@ -2506,14 +2506,13 @@
           <img class="org-photo" src="/img/nha_trang/romanovskaya_ebg.JPG" alt="Евгения Романовская">
         </div>
         <div class="org-name">Евгения Романовская</div>
-        <div class="org-role">Авторские туры, пиар и продвижение</div>
+        <div class="org-role">Предприниматель со стажем 20 лет</div>
         <ul class="org-list">
-          <li>Продюсер проектов</li>
-          <li>Соединяет людей, проекты и возможности по всему миру</li>
+          <li>Продюсер проектов и сильных коллабораций</li>
+          <li>Личный бренд • PR • Конференции • Медиа • Авторские туры</li>
           <li>Председатель комитета по личному бренду в ОПОРА РОССИИ</li>
-          <li>5 лет постоянных выездов · более 300 довольных людей</li>
-          <li>Конференции • Медиа • Авторские туры</li>
-          <li>География работы: Москва • Вьетнам • Мальдивы</li>
+          <li>Член клуба продюсеров и Женщины бизнеса</li>
+          <li>Соединяю нужных людей в нужной точке мира</li>
         </ul>
       </div>
 
@@ -2569,6 +2568,22 @@
       <div class="speaker-case"><img src="/img/speakers/speaker_11.png" alt="" loading="lazy"></div>
       <div class="speaker-case"><img src="/img/speakers/speaker_12.png" alt="" loading="lazy"></div>
     </div>
+
+    <!-- ЧАСТУШКИ — карусель видео -->
+    <h3 class="h2" style="text-align:center;font-size:clamp(26px,3.4vw,40px);margin-top:96px;color:var(--brand-peach);max-width:980px;margin-left:auto;margin-right:auto;">
+      Более 30 лидеров рынка получили от iViSiON брендированные частушки
+    </h3>
+    <div class="carousel-wrap" id="chastushki-carousel" style="margin-top:32px;"></div>
+
+    <!-- Финальная мысль на золотой плашке + большой подзаголовок -->
+    <div class="gold-plate" style="max-width:880px;margin:80px auto 0;text-align:center;">
+      <p style="margin:0;font-family:var(--font-display);font-weight:400;font-size:clamp(24px,3vw,38px);text-transform:uppercase;letter-spacing:.02em;line-height:1.1;">
+        Сегодня мы способны влиять ещё больше<br>и ещё масштабнее
+      </p>
+    </div>
+    <p style="max-width:1080px;margin:24px auto 0;text-align:center;font-family:var(--font-body);font-weight:800;font-size:clamp(22px,2.6vw,34px);text-transform:uppercase;letter-spacing:.02em;color:#FFFFFF;line-height:1.2;">
+      И содействовать <span style="color:var(--brand-peach);">русским созидателям</span> становиться узнаваемыми по всему миру
+    </p>
   </div>
 
   <style>
@@ -2829,8 +2844,8 @@ function renderBlock(b, isLast) {
     .q-tg-btn-i{display:flex;align-items:center;gap:10px;background:rgba(255,207,164,.12);color:var(--text-light);font-family:var(--font-body);font-weight:700;font-size:16px;letter-spacing:.04em;padding:16px 28px;border-radius:100px;}
     .q-tg-btn:hover .q-tg-btn-i{background:rgba(255,207,164,.18);}
     .q-photo-col{display:flex;justify-content:center;}
-    .q-photo{width:100%;max-width:380px;aspect-ratio:3/4;overflow:hidden;border-radius:50% 50% 50% 50% / 40% 40% 60% 60%;outline:2px solid rgba(255,207,164,.32);outline-offset:-2px;box-shadow:0 24px 60px rgba(0,0,0,.5);transform:rotate(2deg);transition:transform .35s ease;}
-    .q-photo:hover{transform:rotate(2deg) scale(1.02);}
+    .q-photo{width:100%;max-width:420px;aspect-ratio:1/1;overflow:hidden;border-radius:20px;border:1px solid rgba(255,207,164,.28);box-shadow:0 24px 60px rgba(0,0,0,.5);transition:transform .35s ease;}
+    .q-photo:hover{transform:scale(1.02);}
     .q-photo img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
     @media(max-width:880px){
       .q-grid{grid-template-columns:1fr;gap:32px;text-align:center;}
@@ -2853,7 +2868,7 @@ function renderBlock(b, isLast) {
       </div>
       <div class="q-photo-col">
         <div class="q-photo">
-          <img src="/img/nha_trang/Margo_guitar.png" alt="Марго на гиталеле">
+          <img src="/img/margo2.png" alt="Марго Форбс">
         </div>
       </div>
     </div>
@@ -3186,12 +3201,17 @@ async function loadData() {
     track.className = 'carousel-track';
     track.id = `carousel-${idSuffix}`;
 
-    videos.forEach(video => {
+    videos.forEach(item => {
+      // Поддержка двух форматов: string URL ИЛИ {src, poster}
+      const video = typeof item === 'string' ? item : item.src;
+      const customPoster = typeof item === 'object' ? item.poster : null;
       const videoCard = document.createElement('div');
       videoCard.className = 'video-card';
-      videoCard.innerHTML = `<video loop playsinline preload="metadata"><source src="${video}#t=0.1" type="video/mp4"></video>`;
+      videoCard.innerHTML = `<video loop playsinline preload="metadata"${customPoster ? ` poster="${customPoster}"` : ''}><source src="${video}#t=0.1" type="video/mp4"></video>`;
       const videoEl = videoCard.querySelector('video');
-      generateVideoThumbnail(video).then(posterUrl => { if (posterUrl) videoEl.poster = posterUrl; });
+      if (!customPoster) {
+        generateVideoThumbnail(video).then(posterUrl => { if (posterUrl) videoEl.poster = posterUrl; });
+      }
       videoCard.addEventListener('click', () => {
         if (videoEl.paused) {
           track.querySelectorAll('video').forEach(v => {
@@ -3280,6 +3300,19 @@ async function loadData() {
   const etap2Container = document.getElementById('etap2-carousel');
   if (etap1Container) buildVideoCarousel(ETAP1_VIDEOS, etap1Container, 'etap1');
   if (etap2Container) buildVideoCarousel(ETAP2_VIDEOS, etap2Container, 'etap2');
+
+  // ЧАСТУШКИ — 7 видео-визиток лидеров рынка
+  const CHASTUSHKI = [
+    { src: '/img/chastushki/belochkina.mp4',     poster: '/img/chastushki/belochkina_title.PNG' },
+    { src: '/img/chastushki/kromberger.mp4',     poster: '/img/chastushki/kromberger_title.JPG' },
+    { src: '/img/chastushki/mikhailenko.mp4',    poster: '/img/chastushki/mikhailenko_title.PNG' },
+    { src: '/img/chastushki/pavel_lebedev.mp4',  poster: '/img/chastushki/pavel_lebedev_title.PNG' },
+    { src: '/img/chastushki/zhibulya.mp4',       poster: '/img/chastushki/zhibulya_title.PNG' },
+    '/img/chastushki/korchagina.mp4',
+    '/img/chastushki/teleshova.mp4'
+  ];
+  const chastushkiContainer = document.getElementById('chastushki-carousel');
+  if (chastushkiContainer) buildVideoCarousel(CHASTUSHKI, chastushkiContainer, 'chastushki');
 }
 document.addEventListener('DOMContentLoaded', loadData);
 
