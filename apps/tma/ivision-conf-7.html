@@ -661,7 +661,7 @@ function render(c){
   h+='<div class="w">';
   /* Logos at top — Опора + iViSiON image */
   h+='<div class="hero-logos">';
-  h+='<img src="/img/opora.png" alt="Опора России" class="hero-opora">';
+  h+='<img src="/img/opora.png" alt="Опора России" class="hero-opora" loading="lazy" decoding="async">';
   h+='<img src="/img/logo_ivision.png" alt="iViSiON" class="hero-ivision">';
   h+='</div>';
   /* Date pill + Countdown on same row */
@@ -882,7 +882,7 @@ function render(c){
       h+='<div class="partner-card">';
       if(p.logo){
         var logoType='partner-logo-type-'+(p.photo_type||'logo');
-        h+='<img src="'+e(p.logo)+'" alt="'+e(p.name)+'" class="partner-logo '+logoType+'">';
+        h+='<img src="'+e(p.logo)+'" alt="'+e(p.name)+'" class="partner-logo '+logoType+'" loading="lazy" decoding="async">';
       }
       h+='<div class="partner-name">'+e(p.name)+'</div>';
       h+='<ul class="partner-info">';
