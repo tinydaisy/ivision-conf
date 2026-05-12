@@ -80,7 +80,7 @@ section[class*="sec"] {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background-image: url('/img/nha_trang/plashka.png');
+  background-image: url('/img/nha_trang/plashka.png?v=2');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   width: clamp(280px, 28vw, 380px);
@@ -126,7 +126,7 @@ section[class*="sec"] {
       rgba(8, 11, 18, 0.7) 32%,
       rgba(8, 11, 18, 0.2) 60%,
       rgba(8, 11, 18, 0) 100%),
-    url('/img/nha_trang/hero3.jpg?v=15') !important;
+    url('/img/nha_trang/hero3.jpg?v=16') !important;
   background-size: cover !important;
   background-position: 113% center !important;
   background-repeat: no-repeat !important;
@@ -148,7 +148,7 @@ section[class*="sec"] {
      Высота = 300vw / 2.812 ≈ 106.7vw. Текст компактно под фото. */
   #hero {
     background-color: transparent !important;
-    background-image: url('/img/nha_trang/hero3.jpg?v=15') !important;
+    background-image: url('/img/nha_trang/hero3.jpg?v=16') !important;
     background-size: 255% auto !important;
     background-position: 55% top !important;
     background-repeat: no-repeat !important;
