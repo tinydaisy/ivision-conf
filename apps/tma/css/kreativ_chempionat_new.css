@@ -74,49 +74,37 @@ section[class*="sec"] {
   background-image: none !important;
 }
 
-/* HERO — плашка «Приём заявок» в русском народном стиле: тёмно-красный + золотая двойная кайма, ромбовидный орнамент */
+/* HERO — плашка «Приём заявок»: фоном изображение plashka.png (красный с золотым орнаментом) */
 .hero-priem-badge {
-  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 14px;
-  background:
-    linear-gradient(180deg, rgba(255, 207, 164, 0.08), transparent 30%),
-    linear-gradient(135deg, #8B0000 0%, #A50021 50%, #6B0010 100%);
+  justify-content: center;
+  background-image: url('/img/nha_trang/plashka.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: clamp(280px, 28vw, 380px);
+  aspect-ratio: 1090 / 284;
+  padding: 0 9% 0 9%;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+.hero-priem-text {
   color: #FFFFFF;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(13px, 1.15vw, 16px);
-  letter-spacing: 0.12em;
-  padding: 12px 26px;
-  border: 2px solid #FFCFA4;
-  outline: 1px solid #8B6914;
-  outline-offset: 3px;
-  border-radius: 2px;
-  box-shadow:
-    0 0 0 4px rgba(255, 207, 164, 0.08),
-    0 8px 24px rgba(139, 0, 0, 0.55),
-    inset 0 1px 0 rgba(255, 207, 164, 0.35),
-    inset 0 -2px 6px rgba(0, 0, 0, 0.4);
-  transform: rotate(-1.5deg);
-  text-transform: uppercase;
-  margin-bottom: 22px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6), 0 0 8px rgba(255, 207, 164, 0.2);
-}
-.hero-priem-star {
-  color: #FFCFA4;
-  font-size: 1.2em;
-  line-height: 1;
-  text-shadow: 0 0 6px rgba(255, 207, 164, 0.6);
-}
-.hero-priem-text {
+  font-size: clamp(12px, 1.05vw, 15px);
+  letter-spacing: 0.1em;
   white-space: nowrap;
+  text-transform: uppercase;
+  text-align: center;
 }
 @media (max-width: 768px) {
   .hero-priem-badge {
-    font-size: 12px;
-    padding: 9px 18px;
-    gap: 10px;
+    width: 260px;
+  }
+  .hero-priem-text {
+    font-size: 11px;
+    letter-spacing: 0.08em;
   }
 }
 
