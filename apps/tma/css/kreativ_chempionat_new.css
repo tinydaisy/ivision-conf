@@ -90,9 +90,9 @@ section[class*="sec"] {
   background-repeat: no-repeat !important;
 }
 
-/* Текст в правой колонке grid, сдвинут на 20% вправо (левая колонка шире) */
+/* Текст в правой колонке grid (правая колонка чуть шире, чтобы «МЕЖДУНАРОДНЫЙ» помещался) */
 #hero .hero-grid {
-  grid-template-columns: 1.4fr 0.6fr !important;
+  grid-template-columns: 1.15fr 0.85fr !important;
 }
 #hero .hero-content {
   grid-column: 2 !important;
