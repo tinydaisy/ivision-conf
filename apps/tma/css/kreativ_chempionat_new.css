@@ -74,6 +74,42 @@ section[class*="sec"] {
   background-image: none !important;
 }
 
+/* HERO — плашка «Приём заявок» в стиле русского кода: красный фон, белый текст, золотая обводка, наклон как у штампа */
+.hero-priem-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #B8001F 0%, #DC143C 50%, #8B0000 100%);
+  color: #FFFFFF;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(13px, 1.2vw, 16px);
+  letter-spacing: 0.08em;
+  padding: 10px 22px;
+  border: 2px solid #FFCFA4;
+  border-radius: 4px;
+  box-shadow: 0 6px 20px rgba(184, 0, 31, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transform: rotate(-2deg);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.55);
+}
+.hero-priem-star {
+  color: #FFCFA4;
+  font-size: 1.1em;
+  line-height: 1;
+}
+.hero-priem-text {
+  white-space: nowrap;
+}
+@media (max-width: 768px) {
+  .hero-priem-badge {
+    font-size: 12px;
+    padding: 8px 16px;
+    gap: 8px;
+  }
+}
+
 /* HERO — фото слева, текст справа.
    Градиент 265deg = тёмная маска справа (за текстом), прозрачная слева (фото видно). */
 #hero {
@@ -85,8 +121,8 @@ section[class*="sec"] {
       rgba(8, 11, 18, 0.2) 60%,
       rgba(8, 11, 18, 0) 100%),
     url('/img/nha_trang/hero3.png?v=14') !important;
-  background-size: cover !important;
-  background-position: 110% center !important;
+  background-size: auto 100% !important;
+  background-position: left center !important;
   background-repeat: no-repeat !important;
 }
 
