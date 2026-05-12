@@ -132,7 +132,7 @@ section[class*="sec"] {
       rgba(8, 11, 18, 0) 100%),
     url('/img/nha_trang/hero3.jpg?v=15') !important;
   background-size: cover !important;
-  background-position: 100% center !important;
+  background-position: 115% center !important;
   background-repeat: no-repeat !important;
   min-height: 720px !important;
 }
