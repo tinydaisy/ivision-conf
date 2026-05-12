@@ -848,7 +848,6 @@
     line-height:1.32;
     flex:1;
   }
-  .grow-card{ position:relative; }
   .grow-card.is-active{
     transform:translateX(8px) scale(1.02);
     background:linear-gradient(135deg, #FFCFA4 0%, #FFE9D4 50%, #FFCFA4 100%);
@@ -857,26 +856,6 @@
       0 0 28px rgba(255,207,164,.55),
       0 0 70px rgba(255,207,164,.35),
       0 0 140px rgba(255,207,164,.2);
-  }
-  /* Русско-народная кружевная рамка вокруг активной карточки */
-  .grow-card.is-active::before{
-    content:"";
-    position:absolute;
-    inset:-14px;
-    border-radius:28px;
-    pointer-events:none;
-    background:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 12' preserveAspectRatio='none'><path d='M0 11 Q5 1 10 11 T20 11 T30 11 T40 11' fill='none' stroke='%23FFCFA4' stroke-width='1.2'/><g fill='%23FFCFA4'><circle cx='5' cy='4' r='1.2'/><circle cx='15' cy='4' r='1.2'/><circle cx='25' cy='4' r='1.2'/><circle cx='35' cy='4' r='1.2'/></g></svg>") repeat-x top,
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 12' preserveAspectRatio='none'><path d='M0 1 Q5 11 10 1 T20 1 T30 1 T40 1' fill='none' stroke='%23FFCFA4' stroke-width='1.2'/><g fill='%23FFCFA4'><circle cx='5' cy='8' r='1.2'/><circle cx='15' cy='8' r='1.2'/><circle cx='25' cy='8' r='1.2'/><circle cx='35' cy='8' r='1.2'/></g></svg>") repeat-x bottom,
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 40' preserveAspectRatio='none'><path d='M11 0 Q1 5 11 10 T11 20 T11 30 T11 40' fill='none' stroke='%23FFCFA4' stroke-width='1.2'/><g fill='%23FFCFA4'><circle cx='4' cy='5' r='1.2'/><circle cx='4' cy='15' r='1.2'/><circle cx='4' cy='25' r='1.2'/><circle cx='4' cy='35' r='1.2'/></g></svg>") repeat-y left,
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 40' preserveAspectRatio='none'><path d='M1 0 Q11 5 1 10 T1 20 T1 30 T1 40' fill='none' stroke='%23FFCFA4' stroke-width='1.2'/><g fill='%23FFCFA4'><circle cx='8' cy='5' r='1.2'/><circle cx='8' cy='15' r='1.2'/><circle cx='8' cy='25' r='1.2'/><circle cx='8' cy='35' r='1.2'/></g></svg>") repeat-y right;
-    background-size: auto 11px, auto 11px, 11px auto, 11px auto;
-    filter: drop-shadow(0 0 6px rgba(255,207,164,.55));
-    animation: lace-pulse 2.2s ease-in-out infinite;
-  }
-  @keyframes lace-pulse{
-    0%,100%{ opacity:.55; filter:drop-shadow(0 0 4px rgba(255,207,164,.35)); }
-    50%   { opacity:1;   filter:drop-shadow(0 0 10px rgba(255,207,164,.7)); }
   }
   .grow-card.is-active .grow-card-inner{
     background:radial-gradient(circle at 0% 50%, rgba(255,207,164,.16) 0%, rgba(13,17,26,.92) 70%);
@@ -1346,27 +1325,10 @@
     justify-content:center;
     transition:background .85s ease;
   }
-  .flow-step{ position:relative; }
   .flow-step.is-active{
     transform:scale(1.06);
     background:linear-gradient(135deg,#FFCFA4 0%,#FFE9D4 50%,#FFCFA4 100%);
     box-shadow:0 0 0 1px rgba(255,207,164,.55), 0 0 28px rgba(255,207,164,.55), 0 0 90px rgba(255,207,164,.32);
-  }
-  /* Кружевная рамка вокруг активного flow-step */
-  .flow-step.is-active::before{
-    content:"";
-    position:absolute;
-    inset:-14px;
-    border-radius:26px;
-    pointer-events:none;
-    background:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 12' preserveAspectRatio='none'><path d='M0 11 Q5 1 10 11 T20 11 T30 11 T40 11' fill='none' stroke='%23FFCFA4' stroke-width='1.2'/><g fill='%23FFCFA4'><circle cx='5' cy='4' r='1.2'/><circle cx='15' cy='4' r='1.2'/><circle cx='25' cy='4' r='1.2'/><circle cx='35' cy='4' r='1.2'/></g></svg>") repeat-x top,
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 12' preserveAspectRatio='none'><path d='M0 1 Q5 11 10 1 T20 1 T30 1 T40 1' fill='none' stroke='%23FFCFA4' stroke-width='1.2'/><g fill='%23FFCFA4'><circle cx='5' cy='8' r='1.2'/><circle cx='15' cy='8' r='1.2'/><circle cx='25' cy='8' r='1.2'/><circle cx='35' cy='8' r='1.2'/></g></svg>") repeat-x bottom,
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 40' preserveAspectRatio='none'><path d='M11 0 Q1 5 11 10 T11 20 T11 30 T11 40' fill='none' stroke='%23FFCFA4' stroke-width='1.2'/><g fill='%23FFCFA4'><circle cx='4' cy='5' r='1.2'/><circle cx='4' cy='15' r='1.2'/><circle cx='4' cy='25' r='1.2'/><circle cx='4' cy='35' r='1.2'/></g></svg>") repeat-y left,
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 40' preserveAspectRatio='none'><path d='M1 0 Q11 5 1 10 T1 20 T1 30 T1 40' fill='none' stroke='%23FFCFA4' stroke-width='1.2'/><g fill='%23FFCFA4'><circle cx='8' cy='5' r='1.2'/><circle cx='8' cy='15' r='1.2'/><circle cx='8' cy='25' r='1.2'/><circle cx='8' cy='35' r='1.2'/></g></svg>") repeat-y right;
-    background-size: auto 11px, auto 11px, 11px auto, 11px auto;
-    filter: drop-shadow(0 0 6px rgba(255,207,164,.55));
-    animation: lace-pulse 2.2s ease-in-out infinite;
   }
   .flow-step.is-active .flow-step-inner{
     background:radial-gradient(circle at 0% 50%, rgba(255,207,164,.16) 0%, rgba(13,17,26,.92) 70%);
