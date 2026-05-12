@@ -131,18 +131,20 @@ section[class*="sec"] {
       rgba(8, 11, 18, 0.2) 60%,
       rgba(8, 11, 18, 0) 100%),
     url('/img/nha_trang/hero3.jpg?v=15') !important;
-  background-size: auto 90% !important;
-  background-position: 100% center !important;
+  background-size: cover !important;
+  background-position: 0% center !important;
   background-repeat: no-repeat !important;
+  min-height: 720px !important;
 }
 
-/* Текст в правой колонке grid (правая колонка чуть шире, чтобы «МЕЖДУНАРОДНЫЙ» помещался) */
+/* Текст ещё правее: правая колонка прижата к правому краю */
 #hero .hero-grid {
-  grid-template-columns: 1.15fr 0.85fr !important;
+  grid-template-columns: 1.3fr 0.7fr !important;
 }
 #hero .hero-content {
   grid-column: 2 !important;
-  padding-left: 5% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 @media (max-width: 768px) {
