@@ -84,6 +84,7 @@ section[class*="sec"] {
       rgba(8, 11, 18, 0.7) 32%,
       rgba(8, 11, 18, 0.2) 60%,
       rgba(8, 11, 18, 0) 100%),
+    linear-gradient(rgba(8, 11, 18, 0.22), rgba(8, 11, 18, 0.22)),
     url('/img/nha_trang/hero3.png?v=14') !important;
   background-size: cover !important;
   background-position: 110% center !important;
@@ -103,9 +104,11 @@ section[class*="sec"] {
      Высота = 300vw / 2.812 ≈ 106.7vw. Текст компактно под фото. */
   #hero {
     background-color: transparent !important;
-    background-image: url('/img/nha_trang/hero3.png?v=14') !important;
-    background-size: 255% auto !important;
-    background-position: 55% top !important;
+    background-image:
+      linear-gradient(rgba(8, 11, 18, 0.22), rgba(8, 11, 18, 0.22)),
+      url('/img/nha_trang/hero3.png?v=14') !important;
+    background-size: cover, 255% auto !important;
+    background-position: center top, 55% top !important;
     background-repeat: no-repeat !important;
     padding-top: calc(255vw / 2.812 + 12px) !important;
     padding-bottom: 30px !important;
