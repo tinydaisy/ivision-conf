@@ -79,6 +79,7 @@ section[class*="sec"] {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
   background-image: url('/img/nha_trang/plashka.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -90,17 +91,24 @@ section[class*="sec"] {
 }
 .hero-priem-text {
   color: #FFFFFF;
-  font-family: var(--font-display);
-  font-weight: 600;
+  font-family: 'Roboto', system-ui, sans-serif;
+  font-weight: 700;
   font-size: clamp(12px, 1.05vw, 15px);
   letter-spacing: 0.1em;
   white-space: nowrap;
   text-transform: uppercase;
   text-align: center;
 }
+.hero-priem-star {
+  color: #FFCFA4;
+  font-size: 1.1em;
+  line-height: 1;
+  text-shadow: 0 0 6px rgba(255, 207, 164, 0.6);
+}
 @media (max-width: 768px) {
   .hero-priem-badge {
     width: 260px;
+    gap: 8px;
   }
   .hero-priem-text {
     font-size: 11px;
