@@ -425,7 +425,13 @@
     line-height:1.08;
     letter-spacing:.02em;
     text-transform:uppercase;
-    color:#FFFFFF;
+    /* Перебиваем правила «section h2» из общего CSS, которые превращают текст в metal-peach */
+    background:none !important;
+    -webkit-background-clip:border-box !important;
+    background-clip:border-box !important;
+    -webkit-text-fill-color:#FFFFFF !important;
+    color:#FFFFFF !important;
+    filter:none !important;
     margin:0 0 18px;
     text-shadow:
       0 1px 0 rgba(132,90,55,.55),
