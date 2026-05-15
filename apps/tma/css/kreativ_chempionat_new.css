@@ -133,21 +133,13 @@ section[class*="sec"] {
   min-height: 720px !important;
 }
 
-/* Текст ВПРАВО до правого края ЭКРАНА (не container'а 1200px).
-   Раздвигаем container hero на 100vw, текст уезжает в пустое поле справа от фото. */
-#hero > .container {
-  max-width: 100% !important;
-  padding: 0 60px !important;
-}
+/* Текст ещё правее: правая колонка прижата к правому краю */
 #hero .hero-grid {
-  grid-template-columns: 1fr auto !important;
-  gap: 0 !important;
+  grid-template-columns: 1.3fr 0.7fr !important;
 }
 #hero .hero-content {
   grid-column: 2 !important;
-  max-width: 380px !important;
-  margin-left: auto !important;
-  padding-left: 0 !important;
+  padding-left: 64px !important;
   padding-right: 0 !important;
 }
 
@@ -311,14 +303,24 @@ body, p, li, span, div, .desc, .hero-desc, .hero-sub,
 
 /* Внутренняя плашка — тёмный фон, белый текст */
 .btn-grad-inner,
-.ptariff-btn-i,
-.nav-btn-i {
+.ptariff-btn-i {
   background: rgba(8, 11, 18, 0.92) !important;
   color: #FFFFFF !important;
 }
 
 .btn-grad-wrap:hover .btn-grad-inner {
   background: rgba(8, 11, 18, 0.78) !important;
+}
+
+/* Sticky-нав CTA — красная заливка (отличается от обычных тёмных кнопок) */
+.nav-btn-i {
+  background: linear-gradient(135deg, #DC2626 0%, #991B1B 100%) !important;
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+}
+.nav-btn:hover .nav-btn-i {
+  background: linear-gradient(135deg, #EF4444 0%, #B91C1C 100%) !important;
 }
 
 /* Sticky-нав — был розово-бирюзовый */
