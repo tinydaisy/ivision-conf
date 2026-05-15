@@ -739,14 +739,14 @@ function renderTariff(t) {
   const blocksHtml = (t.blocks || []).map((b, i, arr) => renderBlock(b, i === arr.length - 1)).join('');
   const reqsHtml = (t.requirements || []).map((r, i, arr) => `<li${i < arr.length - 1 ? ' style="margin-bottom:16px;"' : ''}>${r}</li>`).join('');
   const subtitleHtml = t.subtitle
-    ? `<span style="font-size:13px;color:var(--text-muted);font-weight:500;font-style:italic;">${t.subtitle}</span>`
+    ? `<span style="display:block;width:100%;font-size:13px;color:#FFFFFF;font-weight:600;margin-top:8px;line-height:1.45;letter-spacing:.02em;">${t.subtitle}</span>`
     : '';
 
   return `
     <div style="margin-bottom:32px;" class="jury-accordion active" data-tariff-id="${t.id || ''}">
       <div class="jury-toggle" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:28px;background:linear-gradient(135deg,rgba(${accent},.12),rgba(${accent},.06));border:2px solid rgba(${accent},.25);border-radius:24px;transition:all 0.3s ease;">
-        <h3 style="font-size:22px;font-weight:700;color:var(--text-light);margin:0;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-          ${t.title || ''}
+        <h3 style="font-size:22px;font-weight:700;color:var(--text-light);margin:0;display:flex;flex-direction:column;align-items:flex-start;flex:1;min-width:0;">
+          <span>${t.title || ''}</span>
           ${subtitleHtml}
         </h3>
         <div style="width:60px;height:60px;background:linear-gradient(135deg,#FFD4A8,#FFCFA4,#FFB57F);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform 0.3s ease;box-shadow:0 0 20px rgba(255,207,164,0.5);" class="jury-arrow pulse-glow">

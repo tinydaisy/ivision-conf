@@ -21,7 +21,7 @@
     {
       "id": "winwin",
       "title": "WIN-WIN Жюри",
-      "subtitle": "(ПАРТНЕРСКОЕ ПРЕДЛОЖЕНИЕ ЖЮРИ)",
+      "subtitle": "(ПАРТНЕРСКОЕ ПРЕДЛОЖЕНИЕ ДЛЯ ЛИДЕРОВ <span style=\"color:var(--brand-peach);\">С АУДИТОРИЯМИ ОТ 5000 ПОДПИСЧИКОВ В ТЕЛЕГРАМ</span>)",
       "color": "peach",
       "visibility": ["shwp", "shwa", "shw2k"],
       "blocks": [
@@ -154,7 +154,7 @@
       "title": "Жюри с выступлением",
       "subtitle": "(КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ)",
       "color": "purple",
-      "visibility": ["shwa", "shw2k"],
+      "visibility": ["shwa", "shw2k", "shwk"],
       "blocks": [
         {
           "type": "list",
@@ -217,7 +217,7 @@
       "title": "Жюри партнерский пакет",
       "subtitle": "(КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ)",
       "color": "purple",
-      "visibility": ["shwa"],
+      "visibility": ["shwa", "shwk"],
       "blocks": [
         {
           "type": "list",
