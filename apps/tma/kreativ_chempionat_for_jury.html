@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<!-- Cache bust: 2026-04-17 v16 -->
+<!-- Cache bust: 2026-05-15 jury-v1 -->
 <html lang="ru">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
-  <title>iViSiON: Ж.И.В.У. — Чемпионат для жюри</title>
+  <title>iViSiON: Ж.И.В.У. — Жюри Чемпионата</title>
   <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="preload" as="image" href="/img/nha_trang/hero3.jpg?v=16" fetchpriority="high">
+  <link rel="preload" as="image" href="/img/nha_trang/plashka.png?v=2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@500;600;700&family=Roboto:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
   <style>
     :root{
       --brand-teal:#25455D;--brand-peach:#FFCFA4;--brand-purple:#C084FC;--brand-pink:#C84B9E;--brand-pink-light:#DD85B8;
@@ -32,46 +34,29 @@
     .container{max-width:1200px;margin:0 auto;padding:0 24px;}
     .section-label{font-family:var(--font-body);font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand-peach);margin-bottom:16px;display:block;}
 
-    /* GLOW BG */
     .glow-pink{background:radial-gradient(ellipse,rgba(200,75,158,.12) 0%,transparent 65%);width:600px;height:600px;position:absolute;pointer-events:none;user-select:none;}
     .glow-teal{background:radial-gradient(ellipse,rgba(37,69,93,.28) 0%,transparent 65%);width:500px;height:500px;position:absolute;pointer-events:none;user-select:none;}
-
-    /* RINGS SVG */
     .rings-deco{position:absolute;pointer-events:none;user-select:none;}
 
     /* HERO */
     #hero{position:relative;min-height:100vh;display:flex;align-items:center;background:linear-gradient(160deg,#25455D 0%,#080B12 60%);overflow:hidden;padding:120px 0 80px;}
     .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:flex-start;position:relative;z-index:2;padding-top:40px;}
     .hero-label{font-family:var(--font-body);font-weight:700;font-size:clamp(13px,3vw,15px);letter-spacing:.22em;text-transform:uppercase;color:var(--brand-peach);margin-bottom:20px;}
-    .hero-h1{font-family:var(--font-display);font-size:clamp(64px,8vw,110px);letter-spacing:.02em;line-height:.95;color:var(--text-light);margin-bottom:24px;}
-    .hero-h1-line1{display:inline-block;width:fit-content;font-size:1.2em;}
-    .hero-h1-line2{display:flex;align-items:baseline;gap:8px;width:fit-content;}
-    .hero-h1-brand{color:var(--brand-peach);}
-    .hero-h1-accent{background:linear-gradient(to bottom,#C84B9E 0%,#6B4FA0 50%,#1A3A5C 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:.08em;}
     .hero-sub{font-size:18px;font-weight:700;color:var(--text-light);margin-bottom:12px;line-height:1.4;}
-    .hero-desc{font-size:16px;color:var(--text-muted);line-height:1.8;margin-bottom:36px;max-width:480px;}
     .hero-btns{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:36px;}
-
-    /* HERO PHOTO */
-    .hero-photo-wrap{position:relative;display:flex;justify-content:center;align-items:center;}
-    .hero-photo{width:100%;max-width:460px;aspect-ratio:3/4;object-fit:cover;object-position:top;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;border:2px solid rgba(255,207,164,.2);position:relative;z-index:2;}
-    .hero-deco-circle{position:absolute;border-radius:50%;pointer-events:none;}
-    .hero-deco-1{width:120px;height:120px;border:1.5px solid rgba(255,207,164,.3);border-radius:30% 70% 70% 30% / 30% 30% 70% 70%;top:10%;right:0;}
-    .hero-deco-2{width:80px;height:80px;background:rgba(200,75,158,.25);bottom:15%;left:0;z-index:0;}
-
     .hero-rings{position:absolute;right:-100px;top:50%;transform:translateY(-50%);width:700px;height:700px;opacity:.5;z-index:1;animation:rotateRings 80s linear infinite;}
     @keyframes rotateRings{to{transform:translateY(-50%) rotate(360deg);}}
 
-    /* MANIFEST */
-    .manifest-sec{background:var(--bg-mid);padding:80px 0;}
-    .manifest-title{font-family:var(--font-body);font-size:clamp(40px,6vw,72px);letter-spacing:.03em;line-height:1.1;color:var(--brand-peach);margin-bottom:24px;}
-    .manifest-text{font-size:clamp(16px,3.5vw,20px);color:var(--text-light);font-weight:500;line-height:1.8;max-width:700px;}
-
     /* BUTTONS */
-    .btn-grad-wrap{display:inline-block;padding:9px;border-radius:var(--radius-pill);background:var(--btn-grad);cursor:pointer;transition:transform .25s ease;}
+    .btn-grad-wrap{display:inline-block;padding:9px;border-radius:var(--radius-pill);background:var(--btn-grad);cursor:pointer;transition:transform .25s ease;border:none;}
     .btn-grad-wrap:hover{transform:translateY(-2px);}
     .btn-grad-inner{display:flex;align-items:center;justify-content:center;background:var(--bg-dark);color:var(--text-light);font-family:var(--font-body);font-weight:700;font-size:15px;padding:14px 36px;border-radius:var(--radius-pill);white-space:nowrap;}
     .btn-grad-wrap:hover .btn-grad-inner{background:rgba(8,11,18,.75);}
+
+    .btn-red-cta{display:inline-block;padding:9px;border-radius:var(--radius-pill);background:var(--btn-grad);border:none;cursor:pointer;transition:transform .25s ease;}
+    .btn-red-cta:hover{transform:translateY(-2px);}
+    .btn-red-cta-i{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#DC2626 0%,#991B1B 100%) !important;color:#FFFFFF !important;font-family:var(--font-body);font-weight:800;font-size:16px;padding:16px 40px;border-radius:var(--radius-pill);white-space:nowrap;letter-spacing:.04em;text-transform:uppercase;}
+    .btn-red-cta:hover .btn-red-cta-i{background:linear-gradient(135deg,#EF4444 0%,#B91C1C 100%) !important;}
     @media(max-width:768px){
       .hero-btns .btn-grad-wrap{display:block;width:100%;}
     }
@@ -80,162 +65,96 @@
     .sec{padding:80px 0;}
     .sec.dark{background:var(--bg-dark);}
     .sec.mid{background:var(--bg-mid);}
-    .sec.gradient-bg{background:linear-gradient(160deg,rgba(37,69,93,.55) 0%,rgba(8,11,18,.96) 68%) !important;background-attachment:fixed;}
-    .sec.dark.gradient-bg{background:linear-gradient(160deg,rgba(37,69,93,.55) 0%,rgba(8,11,18,.96) 68%) !important;width:100vw;margin-left:calc(50% - 50vw);}
-    .sec.mid.gradient-bg{background:linear-gradient(160deg,rgba(37,69,93,.55) 0%,rgba(8,11,18,.96) 68%) !important;}
-    .h2{font-family:var(--font-body);font-weight:700;font-size:clamp(36px,4vw,56px);line-height:1.15;color:var(--text-light);margin-bottom:20px;}
+    .h2{font-family:var(--font-display);font-weight:400;font-size:clamp(40px,4.6vw,64px);line-height:1.05;letter-spacing:.02em;color:var(--text-light);margin-bottom:20px;text-transform:uppercase;}
     .desc{font-size:15px;color:var(--text-muted);line-height:1.7;margin-bottom:28px;max-width:700px;}
 
-    /* CARDS GRID */
-    .card-grid{display:grid;grid-template-columns:1fr;gap:20px;margin-top:32px;}
-    @media(min-width:768px){.card-grid{grid-template-columns:repeat(2,1fr);gap:28px;}}
-    @media(min-width:1024px){.card-grid{grid-template-columns:repeat(3,1fr);}}
-    .card{background:rgba(17,24,39,.7);border:1px solid var(--border-peach);border-radius:var(--radius-lg);backdrop-filter:blur(20px);padding:24px;transition:all .3s ease;position:relative;overflow:hidden;}
-    .card::before{content:'';position:absolute;top:0;right:0;width:200px;height:200px;background:radial-gradient(circle,rgba(255,207,164,.12),transparent);border-radius:50%;pointer-events:none;z-index:0;}
-    .card > *{position:relative;z-index:1;}
-    .card:nth-child(2)::before{background:radial-gradient(circle,rgba(192,132,252,.15),transparent);}
-    .card:nth-child(3)::before{background:radial-gradient(circle,rgba(200,75,158,.15),transparent);}
-    .card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.3);}
-    .card-icon{font-size:32px;margin-bottom:12px;}
-    .card-title{font-size:16px;font-weight:700;margin-bottom:10px;color:var(--text-light);}
-    .card-desc{font-size:13px;color:var(--text-muted);line-height:1.6;}
+    /* GOLD PLATE */
+    .gold-plate{margin:8px 0 0;font-size:16px;line-height:1.7;color:#FFFFFF;font-weight:500;padding:22px 26px;background:linear-gradient(135deg,rgba(255,207,164,.45) 0%,rgba(184,137,106,.30) 60%,rgba(255,207,164,.40) 100%);border:1.5px solid rgba(255,207,164,.55);border-radius:14px;box-shadow:0 0 24px rgba(255,207,164,.22);}
+    .gold-plate strong{color:var(--brand-peach);font-weight:800;}
+    .gold-plate ul{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:6px;}
+    .gold-plate ul li{font-size:15px;line-height:1.6;display:flex;gap:10px;align-items:flex-start;color:#FFFFFF;}
+    .gold-plate ul li::before{content:"—";color:var(--brand-peach);font-weight:800;flex-shrink:0;}
 
-    /* VALUES PILLS */
-    .values-grid{display:flex;gap:16px;flex-wrap:nowrap;margin:32px 0;justify-content:flex-start;}
-    .value-pill{border:2px solid var(--brand-purple);border-radius:100px;padding:12px 24px;font-size:14px;color:var(--text-light);text-align:center;background:rgba(192,132,252,.05);}
+    /* GOAL LIST */
+    .goal-list{list-style:none;padding:0;margin:32px auto 0;max-width:900px;text-align:left;}
+    .goal-list li{display:flex;align-items:flex-start;gap:16px;font-size:17px;line-height:1.55;color:var(--text-light);padding:22px 26px;margin-bottom:16px;border:2px solid;border-left-width:4px;border-radius:14px;transition:transform .25s ease;}
+    .goal-list li:hover{transform:translateX(4px);}
+    .goal-list .goal-arrow{font-weight:700;font-size:22px;line-height:1.3;flex-shrink:0;}
+    .goal-list li:nth-child(1){background:linear-gradient(135deg,rgba(255,207,164,.14),rgba(255,207,164,.04));border-color:rgba(255,207,164,.35);}
+    .goal-list li:nth-child(1) .goal-arrow{color:var(--brand-peach);}
+    .goal-list li:nth-child(2){background:linear-gradient(135deg,rgba(192,132,252,.14),rgba(192,132,252,.04));border-color:rgba(192,132,252,.35);}
+    .goal-list li:nth-child(2) .goal-arrow{color:var(--brand-purple);}
+    .goal-list li:nth-child(3){background:linear-gradient(135deg,rgba(200,75,158,.14),rgba(200,75,158,.04));border-color:rgba(200,75,158,.35);}
+    .goal-list li:nth-child(3) .goal-arrow{color:var(--brand-pink);}
+    .goal-list li:nth-child(4){background:linear-gradient(135deg,rgba(255,207,164,.10),rgba(192,132,252,.05));border-color:rgba(255,207,164,.30);}
+    .goal-list li:nth-child(4) .goal-arrow{color:var(--brand-peach);}
+    @media(max-width:768px){.goal-list li{font-size:15px;padding:16px 18px;}}
 
-    /* PROCESS TIMELINE */
-    .process-timeline{margin-top:140px;max-width:1000px;margin-left:auto;margin-right:auto;position:relative;padding:60px 0;}
-    .process-timeline::before{content:'';position:absolute;left:50%;top:220px;bottom:0;width:2px;background:linear-gradient(to bottom,rgba(255,207,164,.4),rgba(255,207,164,.1));transform:translateX(-50%);z-index:0;}
-    .process-intro{font-size:32px;color:var(--brand-peach);font-weight:700;margin-bottom:80px;text-align:center;text-transform:uppercase;line-height:1.3;letter-spacing:.04em;}
-    .process-step{display:grid;grid-template-columns:1fr 60px 1fr;gap:0;margin-bottom:120px;position:relative;align-items:center;}
-    .process-step:nth-child(odd) .process-content{text-align:right;padding-right:100px;grid-column:1;}
-    .process-step:nth-child(odd) .process-icon-wrap{grid-column:2;}
-    .process-step:nth-child(even) .process-content{text-align:left;padding-left:100px;grid-column:3;order:2;}
-    .process-step:nth-child(even) .process-icon-wrap{grid-column:2;order:1;}
-    .process-step:last-child{margin-bottom:0;}
-    .process-icon-wrap{width:60px;height:60px;z-index:3;display:flex;align-items:center;justify-content:center;}
-    .process-icon{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#C84B9E,#6B4FA0);display:flex;align-items:center;justify-content:center;color:var(--brand-peach);font-size:24px;font-weight:700;position:relative;z-index:1;box-shadow:0 0 20px rgba(200,75,158,.2);}
-    .process-content{flex:0 0 350px;}
-    .process-title{font-size:16px;font-weight:700;color:var(--text-light);margin-bottom:8px;}
-    .process-desc{font-size:14px;color:var(--text-muted);line-height:1.6;}
-
-    /* MISSION GRID */
-    .mission-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:80px;align-items:flex-start;overflow:hidden;}
-    .mission-content{display:flex;flex-direction:column;overflow:hidden;}
-
-    /* VISION SECTION */
-    .vision-text{color:var(--brand-peach);font-size:16px;line-height:1.8;font-weight:500;margin-top:32px;}
-    .vision-egg-wrap{position:relative;display:flex;justify-content:center;align-items:center;min-height:520px;}
-    .vision-egg-rings{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:560px;height:560px;opacity:.45;pointer-events:none;user-select:none;animation:rotateRings 80s linear infinite;z-index:0;}
-    .vision-egg-deco{position:absolute;border-radius:50%;pointer-events:none;z-index:1;}
-    .vision-egg-deco-1{width:110px;height:110px;border:1.5px solid rgba(255,207,164,.3);border-radius:30% 70% 70% 30% / 30% 30% 70% 70%;top:8%;right:-10px;}
-    .vision-egg-deco-2{width:70px;height:70px;background:rgba(200,75,158,.25);bottom:12%;left:-10px;}
-    .vision-egg-deco-3{width:50px;height:50px;border:1.5px solid rgba(192,132,252,.4);border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;top:30%;left:-20px;}
-    .vision-egg{width:100%;max-width:400px;aspect-ratio:3/4;border-radius:50% 50% 50% 50% / 55% 55% 45% 45%;border:2px solid rgba(255,207,164,.2);position:relative;z-index:2;transform:rotate(-8deg);overflow:hidden;}
-    .vision-egg img{position:absolute;top:-25%;left:1%;width:155%;height:155%;object-fit:cover;object-position:50% 15%;transform:rotate(8deg);}
-    .vision-egg-text{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);font-size:16px;font-weight:700;color:var(--brand-peach);text-align:center;width:85%;z-index:3;display:none;}
-
-    /* STAGES WITH VIDEO CAROUSEL */
-    .stages-container{margin-top:48px;}
-    .stage-row{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:80px;position:relative;}
-    .stage-image{display:block;width:100%;max-width:560px;margin:32px auto 0;border-radius:20px;}
-
-    .stage-text{display:flex;flex-direction:column;}
-    .stage-number{font-size:72px;font-weight:900;color:var(--brand-peach);line-height:.8;margin-bottom:8px;}
-    .stage-title{font-size:28px;font-weight:700;color:var(--text-light);margin-bottom:12px;}
-    .stage-duration{font-size:13px;color:var(--brand-peach);font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px;}
-    .stage-desc{font-size:15px;color:var(--text-muted);line-height:1.7;max-width:400px;}
-
-    .carousel-wrap{position:relative;width:100%;max-width:280px;margin:0 auto;}
-    .carousel-track{display:flex;gap:0;overflow-x:auto;scroll-behavior:smooth;padding-bottom:8px;scroll-snap-type:x mandatory;}
-    .carousel-track::-webkit-scrollbar{display:none;}
-    .carousel-track{scrollbar-width:none;}
-    .carousel-track::-webkit-scrollbar{height:4px;}
-    .carousel-track::-webkit-scrollbar-track{background:rgba(255,207,164,.1);border-radius:2px;}
-    .carousel-track::-webkit-scrollbar-thumb{background:var(--brand-peach);border-radius:2px;}
-
-    .video-card{width:100%;min-width:100%;aspect-ratio:9/16;scroll-snap-align:center;flex-shrink:0;position:relative;cursor:pointer;background:linear-gradient(135deg,rgba(255,207,164,.1),rgba(192,132,252,.1));border-radius:12px;overflow:hidden;}
-    .video-card video{width:100%;height:100%;object-fit:cover;display:block;border-radius:12px;border:2px solid rgba(255,207,164,.15);background:rgba(17,24,39,.7);}
-    .video-card::after{content:'▶';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:rgba(8,11,18,.75);color:var(--brand-peach);display:flex;align-items:center;justify-content:center;font-size:18px;pointer-events:none;transition:opacity .2s;border:2px solid var(--brand-peach);z-index:2;}
-    .video-card.playing::after{opacity:0;}
-
-    .carousel-nav{display:flex;gap:16px;justify-content:center;align-items:center;margin-top:12px;}
-    .carousel-nav button{width:auto;height:auto;padding:4px 8px;border-radius:0;border:none;background:none;color:var(--brand-peach);font-size:16px;cursor:pointer;transition:opacity .2s;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-    .carousel-nav button:hover{opacity:.7;}
-    .carousel-progress{display:flex;gap:4px;flex:1;max-width:160px;}
-    .carousel-progress .seg{flex:1;height:3px;border-radius:2px;background:rgba(255,207,164,.2);transition:background .25s;}
-    .carousel-progress .seg.active{background:var(--brand-peach);}
-
-    /* CONNECTOR ARROWS */
-    .stage-connector{position:absolute;left:50%;width:80px;height:80px;margin-left:-40px;bottom:-90px;z-index:5;display:none;}
-    .stage-row:last-child .stage-connector{display:none;}
-
-    /* BENEFITS */
-    .benefits{list-style:none;margin:24px 0;}
-    .benefits li{font-size:14px;color:var(--text-light);padding:12px 0 12px 32px;line-height:1.6;position:relative;}
-    .benefits li::before{content:'✓';position:absolute;left:0;color:var(--brand-peach);font-weight:900;}
-
-    /* COLLAGE */
-    .collage-wrap{position:relative;width:100%;height:900px;margin:60px 0;perspective:1200px;background:rgba(200,75,158,.12);border-radius:24px;padding:60px 0;}
-    .collage-item{position:absolute;border:none;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.6);outline:2px solid rgba(255,207,164,.35);outline-offset:-2px;transition:transform .3s ease;cursor:pointer;
-      /* default egg: wide bottom, narrow top */
-      border-radius:50% 50% 50% 50% / 40% 40% 60% 60%;}
-    .collage-item:hover{filter:brightness(1.1);}
-    .collage-item img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
-    /* horizontal egg: wide left, narrow right */
-    .collage-item.egg-h{border-radius:40% 60% 60% 40% / 50% 50% 50% 50%;}
-    .collage-item.egg-h img{object-position:left;}
-    /* inverted egg: wide top, narrow bottom */
-    .collage-item.egg-inv{border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;}
-    .collage-item.egg-inv img{object-position:top;}
-
-    /* Center items - larger */
-    .collage-item.center-left{width:260px;height:300px;left:36%;top:50%;transform:translate(-50%,-50%) rotate(-8deg);}
-    .collage-item.center-right{width:260px;height:300px;left:64%;top:50%;transform:translate(-50%,-50%) rotate(8deg);}
-
-    /* Top items */
-    .collage-item.top-left{width:200px;height:200px;left:8%;top:10%;transform:rotate(-12deg);}
-    .collage-item.top-right{width:200px;height:200px;right:6%;top:12%;transform:rotate(15deg);}
-
-    /* Bottom items */
-    .collage-item.bottom-left{width:220px;height:200px;left:10%;bottom:12%;transform:rotate(10deg);}
-    .collage-item.bottom-right{width:200px;height:220px;right:8%;bottom:8%;transform:rotate(-14deg);}
-
-    /* Водопад — центр снизу */
-    .collage-item.bottom-center{width:220px;height:200px;left:50%;bottom:4%;transform:translate(-50%) rotate(5deg);}
-    /* Сердце — центр сверху */
-    .collage-item.top-center{width:200px;height:200px;left:50%;top:4%;transform:translate(-50%) rotate(-5deg);}
-
-    @media(max-width:768px){
-      .collage-wrap{height:700px;margin:40px 0;padding:40px 0;}
-      .collage-item.center-left{width:180px;height:220px;left:28%;}
-      .collage-item.center-right{width:180px;height:220px;left:72%;}
-      .collage-item.top-left{width:140px;height:140px;left:5%;}
-      .collage-item.top-right{width:140px;height:140px;right:3%;}
-      .collage-item.bottom-left{width:150px;height:140px;left:6%;}
-      .collage-item.bottom-right{width:140px;height:150px;right:5%;}
+    /* WHY-WE-DO */
+    #why-jury .why-top-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:center;max-width:1100px;margin:0 auto 64px;}
+    #why-jury .why-title{font-family:var(--font-display);font-size:clamp(30px,4.2vw,48px);font-weight:400;color:var(--brand-peach);line-height:1.08;letter-spacing:.02em;text-transform:uppercase;margin:0 0 24px;}
+    #why-jury .why-meme{display:flex;justify-content:center;}
+    #why-jury .why-meme-frame{position:relative;width:100%;max-width:460px;aspect-ratio:1/1;border:1px solid var(--brand-teal);border-radius:18px;transition:transform .35s ease;box-shadow:0 18px 36px rgba(0,0,0,.45);overflow:hidden;}
+    #why-jury .why-meme-frame:hover{transform:scale(1.02);}
+    #why-jury .why-meme-frame img{display:block;width:100%;height:100%;object-fit:cover;}
+    #why-jury .ai-block{margin:0 0 14px;color:#FFFFFF;font-size:17px;line-height:1.7;}
+    #why-jury .ai-block strong{color:var(--brand-peach);font-weight:700;}
+    @media(max-width:900px){
+      #why-jury .why-top-grid{grid-template-columns:1fr;gap:28px;}
+      #why-jury .why-title{text-align:center;}
+      #why-jury .why-meme-frame{max-width:360px;}
     }
 
-    /* MEDAL CARDS — нумерованные призы под медалями (место × сцена × фонд) */
-    .medals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:100%;margin:48px auto 0;align-items:stretch;}
-    .medal-card{display:flex;flex-direction:column;align-items:center;text-align:center;padding:8px 4px;}
-    .medal-place{font-family:var(--font-body);font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--brand-peach);margin-top:8px;margin-bottom:18px;}
-    .medal-stage-line{font-size:14px;color:var(--text-light);line-height:1.55;font-weight:500;margin-bottom:18px;max-width:280px;flex:1;text-align:center;}
-    .medal-stage-grand{color:var(--brand-peach);font-weight:700;}
-    .medal-fund{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--brand-peach);padding:8px 14px;border:1px solid rgba(255,207,164,.4);border-radius:100px;background:rgba(255,207,164,.05);letter-spacing:.04em;margin-top:auto;}
-
-    @media(max-width:768px){
-      .medals-grid{grid-template-columns:1fr;gap:28px;align-items:start;}
-      .medal-fund{margin-top:0;}
+    /* MARKET OVALS (рынок выбирает не "просто экспертов") */
+    .market-block{max-width:1080px;margin:48px auto 0;}
+    .market-intro{font-size:clamp(18px,2.2vw,22px);font-weight:700;color:#FFFFFF;line-height:1.5;text-align:center;margin-bottom:28px;}
+    .market-intro span{color:var(--brand-peach);}
+    .market-ovals{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+    .market-oval{position:relative;border-radius:100px;padding:1.6px;background:linear-gradient(135deg,rgba(255,207,164,.55) 0%,rgba(255,207,164,.14) 50%,rgba(255,207,164,.55) 100%);transition:transform .3s ease,box-shadow .3s ease;}
+    .market-oval-inner{border-radius:100px;background:linear-gradient(135deg,rgba(20,28,45,.94) 0%,rgba(8,11,18,.96) 100%);padding:22px 32px;text-align:center;color:#FFFFFF;font-size:16px;font-weight:600;line-height:1.5;letter-spacing:.01em;}
+    .market-oval:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(255,207,164,.18);}
+    @media(max-width:760px){
+      .market-ovals{grid-template-columns:1fr;}
+      .market-oval-inner{padding:18px 24px;font-size:15px;}
     }
 
-    /* SOCHI SHOWCASE */
-    .sochi-showcase{display:flex;flex-direction:column;align-items:center;}
-    .sochi-showcase-title{font-family:var(--font-body);font-size:clamp(20px,3vw,28px);font-weight:700;color:var(--brand-peach);text-align:center;line-height:1.3;margin-bottom:32px;max-width:700px;}
-    #sochi-showcase-carousel{margin:0 auto;}
+    /* CTA SECTIONS - заголовок над кнопкой */
+    .cta-big{max-width:980px;margin:0 auto;text-align:center;padding:80px 24px;}
+    .cta-big h2{font-family:var(--font-display);font-size:clamp(34px,4.6vw,58px);font-weight:400;color:var(--brand-peach);line-height:1.08;letter-spacing:.02em;text-transform:uppercase;margin-bottom:32px;}
 
-    /* JURY TEAM CAROUSEL */
+    /* ROLE-OF-JURY */
+    .role-block{max-width:1080px;margin:48px auto 0;background:linear-gradient(160deg,rgba(255,207,164,.06),rgba(192,132,252,.04));border:1px solid rgba(255,207,164,.25);border-radius:24px;padding:36px 32px;}
+    .role-lead{font-size:18px;font-weight:700;color:#FFFFFF;line-height:1.5;margin-bottom:18px;}
+    .role-lead .accent{color:var(--brand-peach);}
+    .role-list{list-style:none;padding:0;margin:14px 0 0;display:flex;flex-direction:column;gap:8px;}
+    .role-list li{font-size:16px;color:#FFFFFF;line-height:1.6;padding:8px 0 8px 22px;position:relative;}
+    .role-list li::before{content:"—";color:var(--brand-peach);font-weight:700;position:absolute;left:0;top:8px;}
+    .role-outro{margin-top:24px;font-size:18px;font-weight:700;line-height:1.5;color:var(--brand-peach);text-align:center;}
+
+    /* GETS-3-BLOCKS */
+    .gets-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1200px;margin:48px auto 0;}
+    .gets-card{background:linear-gradient(160deg,rgba(255,207,164,.06),rgba(192,132,252,.04));border:1px solid rgba(255,207,164,.25);border-radius:24px;padding:32px 28px;display:flex;flex-direction:column;gap:14px;transition:transform .3s ease,box-shadow .3s ease;}
+    .gets-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.35);}
+    .gets-card-num{font-family:var(--font-display);font-size:48px;font-weight:400;line-height:1;letter-spacing:.02em;background:linear-gradient(180deg,#FFF1DD 0%,#FFCFA4 38%,#E0A371 70%,#B8896A 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px;}
+    .gets-card-title{font-family:var(--font-display);font-size:clamp(22px,2.3vw,28px);font-weight:400;color:var(--brand-peach);text-transform:uppercase;letter-spacing:.02em;line-height:1.15;margin-bottom:10px;}
+    .gets-card-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
+    .gets-card-list li{font-size:15px;color:#FFFFFF;line-height:1.55;padding-left:18px;position:relative;}
+    .gets-card-list li::before{content:"—";color:var(--brand-peach);font-weight:700;position:absolute;left:0;top:0;}
+    @media(max-width:900px){.gets-grid{grid-template-columns:1fr;gap:20px;}}
+
+    /* REQUIREMENTS TIMELINE (01/02) */
+    .req-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:1080px;margin:48px auto 0;}
+    .req-card{background:linear-gradient(160deg,rgba(255,207,164,.06),rgba(192,132,252,.04));border:1px solid rgba(255,207,164,.25);border-radius:24px;padding:32px 28px;}
+    .req-num{font-family:var(--font-display);font-size:56px;font-weight:400;line-height:.9;background:linear-gradient(180deg,#FFF1DD 0%,#FFCFA4 38%,#E0A371 70%,#B8896A 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;}
+    .req-title{font-family:var(--font-display);font-size:clamp(24px,2.6vw,32px);font-weight:400;color:var(--brand-peach);text-transform:uppercase;letter-spacing:.02em;line-height:1.15;margin-bottom:16px;}
+    .req-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
+    .req-list li{font-size:15px;color:#FFFFFF;line-height:1.55;padding-left:18px;position:relative;}
+    .req-list li::before{content:"—";color:var(--brand-peach);font-weight:700;position:absolute;left:0;top:0;}
+    .req-list li strong{color:var(--brand-peach);}
+    .req-outro{max-width:980px;margin:32px auto 0;text-align:center;font-size:16px;color:#FFFFFF;line-height:1.7;font-style:italic;}
+    @media(max-width:900px){.req-grid{grid-template-columns:1fr;}}
+
+    /* JURY TEAM CAROUSEL (КТО УЖЕ В СОСТАВЕ) */
     .jury-team-track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:32px 4px 24px;margin:0 -4px;scrollbar-width:none;align-items:stretch;}
     .jury-team-track::-webkit-scrollbar{display:none;}
     .jury-team-card{flex:0 0 230px;scroll-snap-align:start;display:flex;flex-direction:column;align-items:center;text-align:center;background:linear-gradient(180deg,rgba(255,207,164,.04) 0%,rgba(17,24,39,.5) 35%,rgba(17,24,39,.5) 100%);border:1px solid rgba(255,207,164,.12);border-radius:20px;padding:24px 18px 28px;transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease;}
@@ -252,52 +171,67 @@
     .jury-team-regalia{list-style:none;text-align:left;font-size:11px;color:var(--text-muted);line-height:1.55;width:100%;}
     .jury-team-regalia li{padding:5px 0 5px 14px;position:relative;}
     .jury-team-regalia li::before{content:'◆';position:absolute;left:0;color:var(--brand-peach);font-size:8px;top:7px;}
-
     .jury-team-nav{display:flex;align-items:center;gap:16px;justify-content:center;margin-top:24px;}
     .jury-team-nav button{padding:4px 8px;border:none;background:none;color:var(--brand-peach);font-size:18px;cursor:pointer;transition:opacity .2s;}
     .jury-team-nav button:hover{opacity:.7;}
     .jury-team-progress{display:flex;gap:4px;flex:1;max-width:240px;}
     .jury-team-progress .seg{flex:1;height:3px;border-radius:2px;background:rgba(255,207,164,.2);transition:background .25s;}
     .jury-team-progress .seg.active{background:var(--brand-peach);}
-
     @media(max-width:768px){
       .jury-team-card{flex:0 0 80%;padding:22px 16px 24px;}
       .jury-team-egg{width:150px;height:185px;}
     }
 
-    /* PARTNERS */
-    .partners-grid{display:flex;flex-wrap:wrap;gap:40px 32px;justify-content:center;align-items:flex-start;margin-top:48px;}
-    .partner-card{display:flex;flex-direction:column;align-items:center;text-align:center;}
-    .partner-card.partner-card-circle{max-width:200px;}
-    .partner-card.partner-card-pill{max-width:280px;}
-    .partner-logo-slot{height:148px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+    /* ORGANIZERS */
+    .org-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;max-width:1080px;margin:48px auto 0;}
+    .org-card{background:linear-gradient(160deg,rgba(255,207,164,.06),rgba(192,132,252,.04));border:1px solid rgba(255,207,164,.25);border-radius:24px;padding:36px 28px;display:flex;flex-direction:column;align-items:center;text-align:center;}
+    .org-photo-wrap{position:relative;width:200px;height:240px;margin-bottom:22px;}
+    .org-photo{width:100%;height:100%;border-radius:50% 50% 50% 50% / 55% 55% 45% 45%;border:2px solid rgba(255,207,164,.3);overflow:hidden;background:linear-gradient(135deg,rgba(255,207,164,.08),rgba(192,132,252,.08));transform:rotate(-4deg);}
+    .org-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;transform:rotate(4deg) scale(1.1);}
+    .org-name{font-family:var(--font-display);font-size:clamp(26px,2.8vw,34px);font-weight:400;color:var(--brand-peach);text-transform:uppercase;letter-spacing:.02em;margin-bottom:8px;}
+    .org-role{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--brand-peach);font-weight:700;margin-bottom:14px;}
+    .org-desc{font-size:15px;color:#FFFFFF;line-height:1.6;}
+    .org-desc strong{color:var(--brand-peach);}
+    @media(max-width:760px){.org-grid{grid-template-columns:1fr;gap:24px;}}
 
-    .partner-circle{width:148px;height:148px;border-radius:50%;padding:3px;background:linear-gradient(135deg,var(--brand-purple) 0%,var(--brand-pink) 60%,var(--brand-pink-light) 100%);transition:transform .3s ease,box-shadow .3s ease;position:relative;}
-    .partner-circle::before{content:'';position:absolute;inset:-6px;border-radius:50%;background:radial-gradient(circle,rgba(192,132,252,.25),transparent 70%);z-index:-1;opacity:0;transition:opacity .3s;}
-    .partner-circle:hover{transform:translateY(-4px);box-shadow:0 0 32px rgba(200,75,158,.35);}
-    .partner-circle:hover::before{opacity:1;}
-    .partner-circle-inner{width:100%;height:100%;border-radius:50%;background:var(--bg-dark);display:flex;align-items:center;justify-content:center;overflow:hidden;}
-    .partner-circle-inner img{width:88%;height:88%;object-fit:contain;}
-
-    .partner-pill{width:260px;height:148px;border-radius:80px;padding:3px;background:linear-gradient(135deg,var(--brand-purple) 0%,var(--brand-pink) 60%,var(--brand-pink-light) 100%);transition:transform .3s ease,box-shadow .3s ease;position:relative;}
-    .partner-pill::before{content:'';position:absolute;inset:-6px;border-radius:90px;background:radial-gradient(ellipse,rgba(192,132,252,.25),transparent 70%);z-index:-1;opacity:0;transition:opacity .3s;}
-    .partner-pill:hover{transform:translateY(-4px);box-shadow:0 0 32px rgba(200,75,158,.35);}
-    .partner-pill:hover::before{opacity:1;}
-    .partner-pill-inner{width:100%;height:100%;border-radius:80px;background:var(--bg-dark);display:flex;align-items:center;justify-content:center;padding:18px 28px;overflow:hidden;}
-    .partner-pill-inner img{max-width:100%;max-height:100%;object-fit:contain;}
-
-    .partner-name{font-size:14px;font-weight:700;color:var(--text-light);margin-bottom:6px;letter-spacing:.02em;}
-    .partner-desc{font-size:12px;color:var(--text-muted);line-height:1.5;max-width:200px;}
-
+    /* NHA TRANG INNER SUB-BLOCK STYLES */
+    .nt-block{max-width:980px;margin:64px auto 0;padding:32px;background:linear-gradient(160deg,rgba(255,207,164,.06),rgba(192,132,252,.04));border:1px solid rgba(255,207,164,.2);border-radius:24px;}
+    .nt-block-title{font-family:var(--font-body);font-size:22px;font-weight:800;color:var(--text-light);letter-spacing:.02em;line-height:1.3;}
+    .nt-block-text{font-size:16px;line-height:1.7;color:var(--text-light);margin:0 0 18px;}
+    .nt-block-text strong{color:var(--brand-peach);font-weight:700;}
+    .nt-block-img{width:100%;border-radius:18px;overflow:hidden;margin-top:18px;}
+    .nt-block-img img{width:100%;display:block;}
+    .nt-block-img.shape-stage{border-radius:32% 68% 41% 59% / 56% 38% 62% 44%;transform:rotate(-1.2deg);box-shadow:0 24px 60px rgba(255,207,164,.18),0 8px 24px rgba(0,0,0,.4);outline:2px solid rgba(255,207,164,.35);outline-offset:-2px;}
+    .nt-block-img.shape-stilyagi{border-radius:71% 29% 56% 44% / 30% 70% 30% 70%;transform:rotate(-3.5deg);box-shadow:0 24px 60px rgba(200,75,158,.22),0 8px 24px rgba(0,0,0,.4);outline:2px solid rgba(200,75,158,.4);outline-offset:-2px;}
+    .nt-block-img.shape-egg{border-radius:50% 50% 50% 50% / 40% 40% 60% 60%;aspect-ratio:3/4;overflow:hidden;outline:2px solid rgba(255,207,164,.32);outline-offset:-2px;box-shadow:0 18px 50px rgba(0,0,0,.45);}
+    .nt-block-img.shape-egg img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+    .nt-block-img.shape-egg.shape-egg-solo{max-width:380px;margin-left:auto;margin-right:auto;}
+    .nt-block-caption{font-size:13px;color:var(--text-muted);font-style:italic;margin-top:10px;text-align:center;}
+    .nt-photos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;}
+    .nt-photos-grid .nt-block-img{margin-top:0;}
+    .nt-photos-grid .nt-block-img.shape-egg:nth-child(1){transform:rotate(-2deg);}
+    .nt-photos-grid .nt-block-img.shape-egg:nth-child(2){transform:rotate(1.5deg);}
+    .nt-photos-grid .nt-block-img.shape-egg:nth-child(3){transform:rotate(-1deg);}
+    .stage-num-large{font-family:var(--font-display);font-size:clamp(56px,7vw,96px);font-weight:400;line-height:.85;letter-spacing:.01em;background:linear-gradient(180deg,#FFF1DD 0%,#FFCFA4 38%,#E0A371 70%,#B8896A 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.45));}
+    .stage-list-mini{list-style:none;padding:0;margin:0 0 18px;display:flex;flex-direction:column;gap:6px;}
+    .stage-list-mini li{font-size:14.5px;color:#FFFFFF;line-height:1.55;display:flex;gap:10px;align-items:flex-start;}
+    .stage-list-mini li::before{content:"—";color:var(--brand-peach);font-weight:700;flex-shrink:0;}
+    .nt-extras-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:48px;max-width:1080px;margin:0 auto;}
+    .nt-extras-title{font-family:var(--font-display);font-size:clamp(24px,2.8vw,34px);font-weight:400;color:var(--brand-peach);text-transform:uppercase;letter-spacing:.02em;line-height:1.1;margin:0 0 18px;}
     @media(max-width:768px){
-      .partners-grid{gap:28px 20px;}
-      .partner-logo-slot{height:120px;margin-bottom:14px;}
-      .partner-circle{width:120px;height:120px;}
-      .partner-pill{width:220px;height:120px;}
-      .partner-pill-inner{padding:12px 20px;border-radius:70px;}
-      .partner-card.partner-card-circle{max-width:160px;}
-      .partner-card.partner-card-pill{max-width:240px;}
+      .nt-block{padding:24px 20px;}
+      .nt-block-title{font-size:19px;}
+      .nt-block-text{font-size:15px;}
+      .nt-photos-grid{grid-template-columns:1fr;}
+      .nt-extras-grid{grid-template-columns:1fr;gap:36px;}
     }
+
+    /* HERO photo right */
+    .hero-photo-wrap{position:relative;display:flex;justify-content:center;align-items:center;}
+    .hero-photo{width:100%;max-width:460px;aspect-ratio:3/4;object-fit:cover;object-position:top;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;border:2px solid rgba(255,207,164,.2);position:relative;z-index:2;}
+    .hero-deco-circle{position:absolute;border-radius:50%;pointer-events:none;}
+    .hero-deco-1{width:120px;height:120px;border:1.5px solid rgba(255,207,164,.3);border-radius:30% 70% 70% 30% / 30% 30% 70% 70%;top:10%;right:0;}
+    .hero-deco-2{width:80px;height:80px;background:rgba(200,75,158,.25);bottom:15%;left:0;z-index:0;}
 
     /* FOOTER */
     #site-footer{background:#04060d;padding:32px 0;border-top:1px solid rgba(255,207,164,.1);}
@@ -306,16 +240,33 @@
     .footer-links a:hover{color:var(--brand-peach);}
     .footer-legal{font-size:12px;color:var(--text-dim);line-height:1.7;}
 
-    /* STICKY NAV (скользящая навигация) */
+    /* STICKY NAV */
     #nav{position:fixed;top:12px;left:50%;transform:translateX(-50%) translateY(-120px);z-index:9999;width:calc(100% - 24px);max-width:480px;background:linear-gradient(135deg,rgba(160,50,120,.7),rgba(25,45,70,.75));backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,207,164,.2);border-radius:var(--radius-pill);padding:9px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;transition:transform .3s ease;box-shadow:0 8px 24px rgba(0,0,0,.3);pointer-events:none;visibility:hidden;}
     #nav *{pointer-events:auto;}
     #nav.vis{transform:translateX(-50%) translateY(0)!important;visibility:visible!important;}
     .nav-logo{height:24px;width:auto;object-fit:contain;margin-right:4px;flex-shrink:0;}
     .nav-links{display:flex;align-items:center;gap:14px;}
-    .nav-links a{font-family:var(--font-body);font-size:13px;font-weight:600;letter-spacing:.02em;color:#fff;text-decoration:none;white-space:nowrap;}
+    .nav-links a{font-family:var(--font-body);font-size:13px;font-weight:600;letter-spacing:.02em;color:#fff;text-decoration:none;white-space:nowrap;cursor:pointer;}
     .nav-links a:active{color:var(--brand-peach);}
     .nav-btn{padding:1.5px;border-radius:var(--radius-pill);background:var(--btn-grad);border:none;cursor:pointer;flex-shrink:0;}
     .nav-btn-i{display:flex;align-items:center;background:var(--bg-dark);color:var(--text-light);font-family:var(--font-body);font-size:13px;letter-spacing:.06em;padding:7px 14px;border-radius:var(--radius-pill);white-space:nowrap;}
+
+    /* TARIFFS — jury accordions */
+    .jury-accordion .jury-content{display:none !important;max-height:0 !important;}
+    .jury-accordion.active .jury-content{display:block !important;max-height:none !important;overflow:visible !important;}
+    .jury-accordion.active .jury-arrow{transform:rotate(180deg);}
+    @keyframes pulse-glow-animation{
+      0%{box-shadow:0 0 15px rgba(255,207,164,.3),0 0 30px rgba(255,207,164,.1);transform:scale(1);}
+      50%{box-shadow:0 0 30px rgba(255,207,164,.6),0 0 50px rgba(255,207,164,.3);transform:scale(1.05);}
+      100%{box-shadow:0 0 15px rgba(255,207,164,.3),0 0 30px rgba(255,207,164,.1);transform:scale(1);}
+    }
+    .pulse-glow{animation:pulse-glow-animation 2s ease-in-out infinite;}
+    @media(max-width:768px){
+      .jury-content > div > div[style*="grid-template-columns"]{grid-template-columns:1fr !important;gap:28px !important;}
+    }
+    .benefits{list-style:none;margin:24px 0;}
+    .benefits li{font-size:14px;color:var(--text-light);padding:12px 0 12px 32px;line-height:1.6;position:relative;}
+    .benefits li::before{content:'✓';position:absolute;left:0;color:var(--brand-peach);font-weight:900;}
 
     @media(max-width:768px){
       .container{padding:0 20px;}
@@ -323,64 +274,15 @@
       #hero{padding:80px 0 60px;min-height:auto;}
       .hero-grid{grid-template-columns:1fr;gap:32px;padding-top:20px;}
       .hero-rings{right:auto;left:-200px;width:500px;height:500px;opacity:.25;}
-      .hero-h1{font-size:clamp(44px,11vw,64px);margin-bottom:20px;}
-      .hero-h1-line2{flex-wrap:wrap;gap:6px;}
-      .hero-h1-accent{letter-spacing:.04em;}
       .hero-sub{font-size:15px;}
       .hero-btns{flex-direction:column;gap:12px;}
       .hero-photo{max-width:300px;}
-      .mission-grid{display:flex;flex-direction:column;gap:40px;}
-      .mission-content{order:1;}
-      .vision-egg-wrap{order:2;justify-content:center;min-height:320px;width:100%;align-self:center;}
-      .vision-egg-rings{width:400px;height:400px;opacity:.35;}
-      .vision-egg-deco-1{width:70px;height:70px;right:0;top:5%;}
-      .vision-egg-deco-2{width:50px;height:50px;left:0;bottom:10%;}
-      .vision-egg-deco-3{width:36px;height:36px;left:-6px;top:28%;}
-      .vision-egg{max-width:260px;}
-      .vision-egg-text{bottom:40px;font-size:14px;}
-      .values-grid{flex-wrap:wrap!important;gap:10px;justify-content:center;}
-      .value-pill{padding:10px 18px;font-size:13px;}
-      .vision-text{font-size:14px;}
       .h2{font-size:clamp(28px,7vw,40px);}
       .desc{font-size:14px;}
-      .card{padding:20px;}
-      .benefits li{font-size:13px;padding:10px 0 10px 28px;}
-      .stage-row{display:flex;flex-direction:column;gap:32px;margin-bottom:60px;}
-      .stage-row .stage-text{order:1;}
-      .stage-row .carousel-wrap{order:2;}
-      .carousel-wrap{max-width:240px;}
-      .stage-title{font-size:20px;}
-      .stage-number{font-size:48px;}
-
-      /* PROCESS TIMELINE MOBILE */
-      .process-timeline{margin-top:60px;padding:0;}
-      .process-timeline::before{display:none;}
-      .process-intro{font-size:18px;margin-bottom:40px;}
-      .process-step{display:flex!important;flex-direction:row;align-items:flex-start;gap:16px;margin-bottom:40px;}
-      .process-step .process-icon-wrap{flex-shrink:0;order:-1!important;grid-column:unset!important;}
-      .process-step .process-content{flex:1!important;text-align:left!important;padding:0!important;grid-column:unset!important;order:0!important;}
-      .process-title{font-size:14px;}
-      .process-desc{font-size:12px;}
-
-      /* BENEFITS MOBILE - stack columns */
-      .benefits-grid-inline{grid-template-columns:1fr!important;gap:20px!important;}
-
-      /* CRITERIA MOBILE - icon on top, text below */
-      div[style*="grid-template-columns:100px 1fr"] {
-        grid-template-columns: 1fr !important;
-        gap: 20px !important;
-        text-align: center;
-      }
-      div[style*="grid-template-columns:100px 1fr"] > div:first-child {
-        justify-self: center;
-      }
-
-      /* COLLAGE MOBILE */
-      .collage-wrap{height:780px!important;}
-      .collage-item.bottom-center{width:140px!important;height:130px!important;bottom:2%!important;transform:translate(-50%) rotate(3deg)!important;}
-      .collage-item.top-center{width:140px!important;height:130px!important;top:2%!important;transform:translate(-50%) rotate(-3deg)!important;}
     }
   </style>
+  <!-- НОВЫЙ СТИЛЬ: единый градиент + персиковый металлик. Старые стили выше перекрываются. -->
+  <link rel="stylesheet" href="/css/kreativ_chempionat_new.css">
 </head>
 <body>
 
@@ -388,8 +290,7 @@
 <nav id="nav">
   <img src="/img/logo_ivision.png" alt="iViSiON" class="nav-logo">
   <div class="nav-links">
-    <a href="#" data-nav="jury-sec">Форматы жюри</a>
-    <a href="/kreativ-chempionat">Подробно про чемпионат</a>
+    <a href="#" data-nav="jury-sec">Форматы участия</a>
   </div>
   <button class="nav-btn" id="nav-cta-btn">
     <span class="nav-btn-i" id="nav-cta-label">Стать жюри</span>
@@ -399,140 +300,415 @@
 <!-- HERO -->
 <section id="hero">
   <div class="glow-pink" style="top:-100px;left:-100px;"></div>
-  <div class="glow-teal"  style="bottom:0;right:0;"></div>
+  <div class="glow-teal" style="bottom:0;right:0;"></div>
 
   <svg class="rings-deco hero-rings" viewBox="0 0 700 700" aria-hidden="true">
     <defs>
       <linearGradient id="rg1" x1="0%" y1="100%" x2="100%" y2="0%">
-        <stop offset="0%"   stop-color="#1A3A5C"/>
-        <stop offset="50%"  stop-color="#6B4FA0"/>
+        <stop offset="0%" stop-color="#1A3A5C"/>
+        <stop offset="50%" stop-color="#6B4FA0"/>
         <stop offset="100%" stop-color="#C84B9E"/>
       </linearGradient>
     </defs>
-    <circle cx="350" cy="350" r="50"  fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.7"/>
-    <circle cx="350" cy="350" r="75"  fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.62"/>
+    <circle cx="350" cy="350" r="50" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.7"/>
     <circle cx="350" cy="350" r="100" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.56"/>
-    <circle cx="350" cy="350" r="125" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.50"/>
     <circle cx="350" cy="350" r="150" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.44"/>
-    <circle cx="350" cy="350" r="175" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.38"/>
     <circle cx="350" cy="350" r="200" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.33"/>
-    <circle cx="350" cy="350" r="225" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.28"/>
     <circle cx="350" cy="350" r="250" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.23"/>
-    <circle cx="350" cy="350" r="275" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.18"/>
     <circle cx="350" cy="350" r="300" fill="none" stroke="url(#rg1)" stroke-width="0.8" opacity="0.14"/>
-    <circle cx="350" cy="350" r="325" fill="none" stroke="url(#rg1)" stroke-width="0.6" opacity="0.10"/>
-    <circle cx="350" cy="350" r="345" fill="none" stroke="url(#rg1)" stroke-width="0.5" opacity="0.07"/>
   </svg>
 
   <div class="container">
     <div class="hero-grid">
-      <!-- LEFT: TEXT -->
       <div class="hero-content">
-        <p class="hero-label">Международный чемпионат <span style="color:var(--brand-pink-light);">креативных</span> спикеров</p>
-        <h1 class="hero-h1">
-          <span class="hero-h1-line1">ЧЕМПИОНАТ</span><br>
-          <span class="hero-h1-line2">
-            <span class="hero-h1-brand">iViSiON:</span>
-            <span class="hero-h1-accent">Ж.И.В.У.</span>
-          </span>
-        </h1>
-        <p class="hero-sub">Живые <span style="color:var(--brand-peach);">·</span> Истинные <span style="color:var(--brand-peach);">·</span> Влиятельные <span style="color:var(--brand-peach);">·</span> Успешные</p>
-
-        <p class="hero-date" style="font-family:var(--font-body);font-weight:700;font-size:16px;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-peach);margin:24px 0 24px;display:flex;align-items:center;gap:10px;">
-          <span style="display:inline-block;width:28px;height:1px;background:var(--brand-peach);"></span>
-          С 15 июня 2026
-        </p>
-
-        <div class="hero-btns">
-          <button class="btn-grad-wrap" id="hero-cta-btn" style="display:inline-block;">
-            <span class="btn-grad-inner" id="hero-cta-label">Стать жюри</span>
-          </button>
+        <div class="hero-priem-badge">
+          <span class="hero-priem-star">❖</span>
+          <span class="hero-priem-text">ПРИЁМ В ЖЮРИ ДО 5 ИЮНЯ</span>
+          <span class="hero-priem-star">❖</span>
         </div>
 
-      </div>
+        <p class="hero-sub"><span style="color:var(--brand-peach);">Ж</span>ивые <span style="color:var(--brand-peach);">·</span> <span style="color:var(--brand-peach);">И</span>скренние <span style="color:var(--brand-peach);">·</span> <span style="color:var(--brand-peach);">В</span>лияющие <span style="color:var(--brand-peach);">·</span> <span style="color:var(--brand-peach);">У</span>спешные</p>
 
-      <!-- RIGHT: PHOTO -->
-      <div class="hero-photo-wrap">
-        <div class="hero-deco-circle hero-deco-1"></div>
-        <div class="hero-deco-circle hero-deco-2"></div>
-        <img src="https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/merch_1.png" alt="iViSiON Merch" class="hero-photo" loading="lazy" decoding="async">
+        <h1 class="hero-title-big">
+          МЕЖДУНАРОДНЫЙ<br>
+          ЧЕМПИОНАТ СПИКЕРОВ
+        </h1>
+
+        <p style="font-family:var(--font-body);font-weight:800;font-size:clamp(13px,1.25vw,17px);letter-spacing:.06em;color:#FFFFFF;text-transform:uppercase;margin:14px 0 4px;line-height:1.3;">
+          для <span style="color:var(--brand-peach);">узнаваемости и медийности</span><br>русских созидателей по всему миру
+        </p>
+
+        <div class="hero-btns" style="margin-top:24px;">
+          <button class="btn-grad-wrap" id="hero-cta-btn">
+            <span class="btn-grad-inner" id="hero-cta-label">Войти в состав жюри</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HEADING + LINK TO FULL CHAMPIONSHIP LANDING -->
-<div style="padding:80px 24px; text-align:center; position:relative; overflow:hidden; background:linear-gradient(180deg,rgba(0,0,0,.2),transparent);">
-  <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 50% 0%,rgba(255,207,164,.12),transparent);pointer-events:none;"></div>
-  <div style="position:relative;z-index:1;">
-    <h2 style="font-size:32px; font-weight:700; color:var(--brand-peach); line-height:1.35; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:32px;">
-      Стань жюри<br>и повысь свою узнаваемость и медийность
-    </h2>
-    <a href="/kreativ-chempionat" class="btn-grad-wrap" style="display:inline-block;text-decoration:none;">
-      <span class="btn-grad-inner">Подробно про чемпионат</span>
+<!-- GOAL — Цель Чемпионата (рендер из data.goal) -->
+<section class="sec dark" id="goal-sec">
+  <div class="container" style="text-align:center;">
+    <div class="section-label" id="goal-label">Цель чемпионата</div>
+    <h2 class="h2" id="goal-title">Цель Чемпионата</h2>
+    <ul class="goal-list" id="goal-items"></ul>
+
+    <a href="/kreativ-chempionat" class="btn-grad-wrap" style="margin:48px auto 0;text-decoration:none;">
+      <span class="btn-grad-inner">Подробнее про чемпионат</span>
     </a>
   </div>
-</div>
+</section>
 
-<!-- JURY -->
+<!-- WHY WE DO THIS -->
+<section class="sec dark" id="why-jury">
+  <div class="container">
+    <div class="why-top-grid">
+      <div class="why-meme">
+        <div class="why-meme-frame">
+          <img src="/img/turnir_zhivu/vyezd/stat_i_poroda.png" alt="Стать и порода" loading="lazy">
+        </div>
+      </div>
+
+      <div class="why-content">
+        <div class="section-label">Почему мы это делаем</div>
+        <h2 class="why-title">Эпоха ИИ не отменяет личность — она её усиливает</h2>
+
+        <p class="ai-block">ИИ может создать текст. Но не может создать <strong>аутентичность, энергетику, харизму</strong>.</p>
+        <p class="ai-block">ИИ может собрать картинку. Но не может передать <strong>масштаб личности, внутреннюю силу и контекст жизни</strong>.</p>
+      </div>
+    </div>
+
+    <div class="market-block">
+      <p class="market-intro">Рынок выбирает не <span>«просто экспертов»</span>, а тех, кто:</p>
+      <div class="market-ovals">
+        <div class="market-oval"><div class="market-oval-inner">умеет удерживать внимание</div></div>
+        <div class="market-oval"><div class="market-oval-inner">обладает сильной публичной подачей</div></div>
+        <div class="market-oval"><div class="market-oval-inner">вызывает доверие через личность</div></div>
+        <div class="market-oval"><div class="market-oval-inner">становится фигурой влияния, а не просто специалистом</div></div>
+      </div>
+
+      <div class="gold-plate" style="margin-top:36px;text-align:center;">
+        <p style="margin:0;">iViSiON объединяет <strong>предпринимателей, экспертов и спикеров</strong>, которые формируют новый стандарт публичности, влияния и живого лидерства.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA: Станьте частью совета -->
+<section class="sec dark">
+  <div class="cta-big">
+    <h2>Станьте частью совета,<br>кто формирует новую медийную элиту рынка</h2>
+    <button class="btn-red-cta" data-nav="jury-sec">
+      <span class="btn-red-cta-i">Войти в состав жюри</span>
+    </button>
+  </div>
+</section>
+
+<!-- РОЛЬ ЖЮРИ -->
+<section class="sec dark">
+  <div class="container">
+    <div class="section-label" style="text-align:center;">Роль</div>
+    <h2 class="h2" style="text-align:center;">Роль жюри</h2>
+
+    <div class="role-block">
+      <p class="role-lead">Жюри iViSiON — это <span class="accent">не «оценка участников»</span>.</p>
+      <p class="role-lead" style="margin-bottom:6px;">Это:</p>
+      <ul class="role-list">
+        <li>причастность к идее <strong style="color:var(--brand-peach);">русских созидателей по всему миру</strong>;</li>
+        <li>участие в формировании <strong style="color:var(--brand-peach);">новой культуры лидерства в эпоху ИИ</strong>;</li>
+        <li>поддержка сильных экспертов и предпринимателей;</li>
+        <li>усиление собственного статуса через международный проект;</li>
+        <li>влияние на развитие русскоязычной медийной сцены.</li>
+      </ul>
+      <p class="role-outro">Мы собираем не просто жюри.<br>Мы собираем <span style="color:#FFFFFF;">совет лидеров новой эпохи</span>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ЧТО ПОЛУЧАЕТ ЖЮРИ -->
+<section class="sec dark">
+  <div class="container">
+    <div class="section-label" style="text-align:center;">Что получает</div>
+    <h2 class="h2" style="text-align:center;">Что получает жюри</h2>
+
+    <div class="gets-grid">
+      <div class="gets-card">
+        <div class="gets-card-num">01</div>
+        <h3 class="gets-card-title">Статус и международный формат</h3>
+        <ul class="gets-card-list">
+          <li>статус международного спикера и члена жюри</li>
+          <li>усиление личного бренда и узнаваемости</li>
+          <li>международная медиа-резиденция во Вьетнаме</li>
+        </ul>
+      </div>
+      <div class="gets-card">
+        <div class="gets-card-num">02</div>
+        <h3 class="gets-card-title">Медийность и новые клиенты</h3>
+        <ul class="gets-card-list">
+          <li>обмен аудиторией с сильными лидерами</li>
+          <li>реклама продающих материалов и блогов/каналов внутри экосистемы iViSiON (на 2000+ экспертов и предпринимателей)</li>
+          <li>возможность привлечь новых клиентов и увеличить продажи</li>
+          <li>участие в международной сцене iViSiON (онлайн и офлайн во Вьетнаме)</li>
+        </ul>
+      </div>
+      <div class="gets-card">
+        <div class="gets-card-num">03</div>
+        <h3 class="gets-card-title">Окружение и новые возможности</h3>
+        <ul class="gets-card-list">
+          <li>предпринимательское окружение</li>
+          <li>новые знакомства и партнёрства с другими лидерами и членами жюри</li>
+          <li>доступ к новым талантам и экспертам</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="gold-plate" style="max-width:1080px;margin:48px auto 0;">
+      <p style="margin:0;">Для членов жюри участие в iViSiON — это не только статус, медийность и новые связи. Это ещё и возможность стать частью <strong>международной медиа-резиденции во Вьетнаме</strong> — поездки, где соединяются бизнес, сцена, сильное окружение, съёмки, отдых и новый уровень личного бренда.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ЧТО ТРЕБУЕТСЯ ОТ ЖЮРИ -->
+<section class="sec dark">
+  <div class="container">
+    <div class="section-label" style="text-align:center;">Формат</div>
+    <h2 class="h2" style="text-align:center;">Что требуется от жюри</h2>
+    <p class="desc" style="text-align:center;margin:0 auto 8px;color:var(--brand-peach);font-weight:600;font-style:italic;">Минимум времени — максимум влияния</p>
+    <p class="desc" style="text-align:center;margin:0 auto;max-width:880px;color:#FFFFFF;">Мы создаём формат, который уважает время сильных людей и при этом даёт высокий уровень медийного присутствия и влияния.</p>
+
+    <div class="req-grid">
+      <div class="req-card">
+        <div class="req-num">01</div>
+        <h3 class="req-title">Онлайн-формат</h3>
+        <ul class="req-list">
+          <li>анонсы чемпионата в <strong>июне</strong></li>
+          <li>участие в оценке выступлений (<strong>1–2 раза по 2 часа</strong> оценка отобранных участников) в <strong>июле</strong></li>
+          <li>поддержка финалистов</li>
+        </ul>
+      </div>
+      <div class="req-card">
+        <div class="req-num">02</div>
+        <h3 class="req-title">Офлайн-формат</h3>
+        <ul class="req-list">
+          <li><strong>(Опционально)</strong> Участие в офлайн-конференции и медиа-резиденции во Вьетнаме</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- МЕДИА-РЕЗИДЕНЦИЯ ВЬЕТНАМ — скопировано из главного лендинга -->
+<section class="sec dark" id="vietnam-sec">
+  <div class="container">
+    <div class="vietnam-hero-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;max-width:1240px;margin:0 auto;">
+      <div class="vietnam-hero-text">
+        <div class="section-label">Финальный этап</div>
+        <h2 class="h2" style="margin-top:8px;">Вьетнам — международная медиа-резиденция iViSiON</h2>
+        <p class="desc" style="color:var(--brand-peach);font-weight:600;margin:0 0 22px;font-style:italic;">Не просто выезд. Новый уровень статуса, медийности и окружения</p>
+        <p class="nt-block-text">Финальный этап iViSiON проходит во Вьетнаме в формате <strong>международной медиа-резиденции</strong> для предпринимателей, экспертов и спикеров новой эпохи.</p>
+        <p class="nt-block-text">Это пространство, где соединяются: <strong>международная конференция, выступления, медийность, сильное окружение, контент, эстетика и создание личного бренда нового уровня</strong>.</p>
+      </div>
+      <div class="vietnam-hero-img" style="display:flex;justify-content:center;align-items:center;">
+        <img src="/img/nha_trang/lepota.png?v=1" alt="Лепота во Вьетнаме" style="max-width:100%;width:100%;max-height:720px;height:auto;object-fit:contain;display:block;filter:hue-rotate(-12deg) saturate(0.78);" loading="lazy" decoding="async">
+      </div>
+    </div>
+    <style>
+      @media(max-width:768px){
+        #vietnam-sec .vietnam-hero-grid{grid-template-columns:1fr !important;gap:24px !important;}
+        #vietnam-sec .vietnam-hero-text{text-align:center;}
+        #vietnam-sec .vietnam-hero-img img{max-height:480px !important;}
+      }
+    </style>
+
+    <h3 class="h2" style="text-align:center;font-size:clamp(28px,3.6vw,42px);margin-top:64px;">В программе выезда во Вьетнам</h3>
+
+    <!-- Sub 01 — Международная конференция -->
+    <div class="nt-block">
+      <div class="stage-num-large">01</div>
+      <h3 class="nt-block-title" style="margin-bottom:18px;">Международная конференция</h3>
+      <p class="nt-block-text">Жюри и участники:</p>
+      <ul class="stage-list-mini" style="margin-bottom:18px;">
+        <li>выступают на международной площадке на аудиторию русскоязычных экспатов и предпринимателей</li>
+        <li>получают профессиональные записи выступления</li>
+        <li>обретают <strong>статус международного спикера и эксперта</strong> в продвижении, медиаките и продажах</li>
+      </ul>
+      <div class="nt-block-img shape-stage">
+        <img src="/img/nha_trang/zal_nha_trang.jpg" alt="Конференц-зал в Нячанге" loading="lazy">
+      </div>
+      <p class="nt-block-caption">Конференц-зал в Нячанге</p>
+
+      <div class="gold-plate" style="margin-top:24px;">
+        <ul>
+          <li>Это уже не просто онлайн-эфир. Это <strong>новый уровень восприятия личности и бренда как лидера рынка</strong>.</li>
+          <li>Новая аудитория экспатов и зарубежных русскоязычных предпринимателей для поиска клиентов, коллабораций и партнёрств.</li>
+          <li>Масштаб, который увеличивает стоимость продукта и желание аудитории ассоциироваться с вами.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Sub 02 — Съёмка в стиле «Русский код» -->
+    <div class="nt-block">
+      <div class="stage-num-large">02</div>
+      <h3 class="nt-block-title" style="margin-bottom:18px;">Съёмка сценического видео-клипа в стиле «Русский код»</h3>
+      <p class="nt-block-text">Отдельная идея финального этапа — показать <strong>новый образ русскоязычных предпринимателей и экспертов на международной сцене</strong>.</p>
+      <p class="nt-block-text">Не через пафос. А через: <strong>масштаб личности, эстетику, культуру созидания и уважение к своим корням</strong>.</p>
+      <div class="nt-block-img shape-stilyagi">
+        <img src="/img/nha_trang/russkii_kod.JPG" alt="Референс стиля съёмки — Русский код" loading="lazy">
+      </div>
+      <p class="nt-block-caption">Референс стиля съёмки</p>
+
+      <div class="gold-plate" style="margin-top:24px;">
+        <ul>
+          <li>Креативная самопрезентация своего продукта, бренда или услуги</li>
+          <li>Контент для соцсетей, чатов нетворкингов и выходов на сцену</li>
+          <li>Сопричастность к идее <strong>русских созидателей по всему миру</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Sub 03 — Что ещё -->
+    <h2 class="h2" style="text-align:center;margin-top:80px;margin-bottom:32px;">Что ещё?</h2>
+
+    <div class="nt-extras-grid">
+      <div>
+        <h4 class="nt-extras-title">Комьюнити сильных людей</h4>
+        <p class="nt-block-text">Во Вьетнам едут: <strong>предприниматели, эксперты, создатели проектов и лидеры сообществ</strong>, которые хотят расти не только в доходе, но и в масштабе личности.</p>
+        <p class="nt-block-text">Это среда:</p>
+        <ul class="stage-list-mini" style="margin-bottom:12px;">
+          <li>партнёрств</li>
+          <li>коллабораций</li>
+          <li>знакомств</li>
+          <li>новых возможностей</li>
+          <li>и сильного окружения</li>
+        </ul>
+        <p class="nt-block-text" style="font-style:italic;color:var(--brand-peach);">Потому что масштаб часто растёт через людей, рядом с которыми вы находитесь.</p>
+      </div>
+
+      <div>
+        <h4 class="nt-extras-title">Атмосфера, досуг и состояние</h4>
+        <p class="nt-block-text">Мы создаём не просто деловую поездку, а <strong>пространство энергии, вдохновения и красивой жизни</strong>.</p>
+        <p class="nt-block-text">Участников ждут:</p>
+        <ul class="stage-list-mini" style="margin-bottom:18px;">
+          <li>конференция, коллаборации и выступления</li>
+          <li>проживание в Золотом дворце на берегу моря</li>
+          <li>красивые локации Вьетнама</li>
+          <li>совместный отдых</li>
+          <li>атмосферные ужины</li>
+          <li>прогулки и выезды</li>
+          <li>съёмки в необычных местах</li>
+          <li>живое общение вне рамок «нетворкинга ради пользы»</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="nt-photos-grid" style="max-width:980px;margin:48px auto 0;">
+      <div class="nt-block-img shape-egg"><img src="/img/nha_trang/photo2.jpg" alt="Терраса со стеклянным полом" loading="lazy"></div>
+      <div class="nt-block-img shape-egg"><img src="/img/nha_trang/photo5.jpg" alt="Фасад дворца" loading="lazy"></div>
+      <div class="nt-block-img shape-egg"><img src="/img/nha_trang/photo1.jpg" alt="Внутренний бассейн" loading="lazy"></div>
+    </div>
+    <p class="nt-block-caption">Золотой дворец у моря</p>
+
+    <!-- Финальная золотая плашка -->
+    <div class="gold-plate" style="max-width:980px;margin:48px auto 0;">
+      <p style="margin:0;">Это не просто поездка. Это пространство, где ваш <strong>статус, окружение и медийность</strong> усиливаются естественно — через сцену, людей, контент и международную атмосферу.</p>
+    </div>
+  </div>
+</section>
+
+<!-- КТО УЖЕ В СОСТАВЕ ЖЮРИ — карусель -->
+<section class="sec dark" id="jury-team-sec">
+  <div class="container">
+    <div class="section-label" id="jury-team-label">Состав жюри</div>
+    <h2 class="h2" id="jury-team-title">Кто уже входит в состав жюри iViSiON: «Ж.И.В.У.»</h2>
+    <p class="desc" id="jury-team-intro">Предприниматели · Эксперты · Спикеры · Создатели проектов</p>
+    <p class="desc" style="margin-top:8px;">iViSiON объединяет людей, которые: создают бизнесы; развивают сообщества; формируют аудитории; влияют через личность, идеи и публичность.</p>
+
+    <div class="jury-team-track" id="jury-team-track"></div>
+    <div class="jury-team-nav">
+      <button id="jury-team-prev" aria-label="Назад">◀</button>
+      <div class="jury-team-progress" id="jury-team-progress"></div>
+      <button id="jury-team-next" aria-label="Вперёд">▶</button>
+    </div>
+  </div>
+</section>
+
+<!-- ОРГАНИЗАТОРЫ -->
+<section class="sec dark">
+  <div class="container">
+    <div class="section-label" style="text-align:center;">Организаторы</div>
+    <h2 class="h2" style="text-align:center;">Организаторы Чемпионата</h2>
+
+    <div class="org-grid">
+      <div class="org-card">
+        <div class="org-photo-wrap">
+          <div class="org-photo"><img src="/img/jury/iViSiON%20and%20Margo%20Forbs.png" alt="Марго Форбс" loading="lazy"></div>
+        </div>
+        <div class="org-name">Марго Форбс</div>
+        <div class="org-role">Основатель iViSiON</div>
+        <p class="org-desc">Создатель международного чемпионата <strong>iViSiON: Ж.И.В.У.</strong>, автор концепции живой медийности и предпринимательского лидерства в эпоху ИИ. Эксперт по созданию узнаваемого личного бренда.</p>
+      </div>
+
+      <div class="org-card">
+        <div class="org-photo-wrap">
+          <div class="org-photo"><img src="/img/jury/romanovskaya.JPG" alt="Евгения Романовская" loading="lazy"></div>
+        </div>
+        <div class="org-name">Евгения Романовская</div>
+        <div class="org-role">Соорганизатор</div>
+        <p class="org-desc">Предприниматель со стажем <strong>20 лет</strong>, лидер сильных сообществ. Партнёр международной медиа-резиденции iViSiON во Вьетнаме.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA: ИЗВЕСТНЫХ ЭКСПЕРТОВ МНОГО -->
+<section class="sec dark">
+  <div class="cta-big">
+    <h2>Известных экспертов много.<br>Лидеров — единицы.</h2>
+    <p style="font-size:17px;color:#FFFFFF;line-height:1.7;margin-bottom:32px;max-width:780px;margin-left:auto;margin-right:auto;">
+      Войдите в состав жюри iViSiON и станьте частью международной сцены живых лидеров.
+    </p>
+    <button class="btn-red-cta" data-nav="jury-sec">
+      <span class="btn-red-cta-i">Стать членом жюри</span>
+    </button>
+  </div>
+</section>
+
+<!-- ТАРИФЫ ЖЮРИ — 4 пакета (рендер из data.tariffs) -->
 <section class="sec dark" id="jury-sec">
   <div class="container">
-    <div class="section-label" id="tariffs-section-label">Партнерское предложение</div>
-    <h2 class="h2" id="tariffs-section-title">ВЫБЕРИТЕ ФОРМАТ ЖЮРИ ЧЕМПИОНАТА:</h2>
+    <div class="section-label" id="tariffs-section-label">Форматы участия</div>
+    <h2 class="h2" id="tariffs-section-title">Выберите формат жюри Чемпионата</h2>
     <p class="desc" id="tariffs-section-intro" style="margin-bottom:48px;"></p>
-
-    <!-- Все тарифы рендерятся динамически из tariffs[] в JSON -->
     <div id="tariffs-container"></div>
   </div>
 </section>
 
+<!-- ФИНАЛЬНЫЙ СЛОГАН -->
+<section class="sec dark">
+  <div class="cta-big" style="padding:60px 24px 80px;">
+    <h2 style="font-size:clamp(36px,5vw,64px);">Быть жюри</h2>
+    <p style="font-size:17px;color:#FFFFFF;line-height:1.7;max-width:880px;margin:0 auto;">
+      Это статус, медийность, сильное окружение, доступ к новым экспертам, участие в международной сцене — и невероятная поездка во Вьетнам, где <strong style="color:var(--brand-peach);">бизнес, выступления, съёмки и отдых</strong> соединяются в один мощный опыт личного бренда.
+    </p>
+  </div>
+</section>
 
-<style>
-.jury-content {
-  display: none !important;
-  max-height: 0 !important;
-}
-
-.jury-accordion.active .jury-content {
-  display: block !important;
-  max-height: none !important;
-  overflow: visible !important;
-}
-
-.jury-accordion.active .jury-arrow {
-  transform: rotate(180deg);
-}
-
-@keyframes pulse-glow-animation {
-  0% {
-    box-shadow: 0 0 15px rgba(255,207,164,0.3), 0 0 30px rgba(255,207,164,0.1);
-    transform: scale(1);
-  }
-  50% {
-    box-shadow: 0 0 30px rgba(255,207,164,0.6), 0 0 50px rgba(255,207,164,0.3);
-    transform: scale(1.05);
-  }
-  100% {
-    box-shadow: 0 0 15px rgba(255,207,164,0.3), 0 0 30px rgba(255,207,164,0.1);
-    transform: scale(1);
-  }
-}
-
-.pulse-glow {
-  animation: pulse-glow-animation 2s ease-in-out infinite;
-}
-
-@media(max-width:768px){
-  .jury-content > div > div[style*="grid-template-columns"] {
-    grid-template-columns: 1fr !important;
-    gap: 28px !important;
-  }
-}
-</style>
+<!-- FOOTER -->
+<footer id="site-footer">
+  <div class="container">
+    <div class="footer-links">
+      <a href="https://medialift.margoforbs.ru/oferta_list" target="_blank">Договор оферты</a>
+      <a href="https://medialift.margoforbs.ru/politika" target="_blank">Политика обработки данных</a>
+    </div>
+    <div class="footer-legal">ИП САХИБГАРЕЕВА МАРГАРИТА ВЛАДИМИРОВНА · ИНН 890306512862</div>
+  </div>
+</footer>
 
 <script>
 // ============================================================
-// Динамический рендер тарифов жюри из data.tariffs (JSON)
+// Рендер тарифов жюри (4 пакета) из data.tariffs
 // ============================================================
 function renderTariffs(tariffs) {
   const container = document.getElementById('tariffs-container');
@@ -541,20 +717,15 @@ function renderTariffs(tariffs) {
   const params = new URLSearchParams(window.location.search);
   const visible = tariffs.filter(t => {
     if (t.visibility === 'always' || !t.visibility) return true;
-    if (Array.isArray(t.visibility)) {
-      return t.visibility.some(p => params.has(p));
-    }
+    if (Array.isArray(t.visibility)) return t.visibility.some(p => params.has(p));
     return params.has(t.visibility);
   });
 
   container.innerHTML = visible.map(renderTariff).join('');
 
-  // Аккордеон: клик по заголовку переключает только текущий тариф
   container.querySelectorAll('.jury-accordion').forEach(acc => {
     const toggle = acc.querySelector('.jury-toggle');
-    if (toggle) {
-      toggle.addEventListener('click', () => acc.classList.toggle('active'));
-    }
+    if (toggle) toggle.addEventListener('click', () => acc.classList.toggle('active'));
   });
 }
 
@@ -565,14 +736,8 @@ function renderTariff(t) {
     ? 'linear-gradient(135deg,rgba(255,207,164,.15),rgba(255,207,164,.08))'
     : 'linear-gradient(135deg,rgba(192,132,252,.15),rgba(200,75,158,.15))';
 
-  const blocksHtml = (t.blocks || [])
-    .map((b, i, arr) => renderBlock(b, i === arr.length - 1))
-    .join('');
-
-  const reqsHtml = (t.requirements || [])
-    .map((r, i, arr) => `<li${i < arr.length - 1 ? ' style="margin-bottom:16px;"' : ''}>${r}</li>`)
-    .join('');
-
+  const blocksHtml = (t.blocks || []).map((b, i, arr) => renderBlock(b, i === arr.length - 1)).join('');
+  const reqsHtml = (t.requirements || []).map((r, i, arr) => `<li${i < arr.length - 1 ? ' style="margin-bottom:16px;"' : ''}>${r}</li>`).join('');
   const subtitleHtml = t.subtitle
     ? `<span style="font-size:13px;color:var(--text-muted);font-weight:500;font-style:italic;">${t.subtitle}</span>`
     : '';
@@ -580,7 +745,7 @@ function renderTariff(t) {
   return `
     <div style="margin-bottom:32px;" class="jury-accordion active" data-tariff-id="${t.id || ''}">
       <div class="jury-toggle" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:28px;background:linear-gradient(135deg,rgba(${accent},.12),rgba(${accent},.06));border:2px solid rgba(${accent},.25);border-radius:24px;transition:all 0.3s ease;">
-        <h3 style="font-size:22px;font-weight:700;color:var(--text-light);margin:0;display:flex;align-items:center;gap:12px;">
+        <h3 style="font-size:22px;font-weight:700;color:var(--text-light);margin:0;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
           ${t.title || ''}
           ${subtitleHtml}
         </h3>
@@ -588,8 +753,8 @@ function renderTariff(t) {
           <span style="color:#080B12;font-size:32px;font-weight:700;line-height:1;">▼</span>
         </div>
       </div>
-      <div style="display:none;padding:0;overflow:hidden;max-height:0;transition:max-height 0.4s ease,padding 0.4s ease;" class="jury-content">
-        <div style="padding:40px;background:rgba(17,24,39,.4);border-left:2px solid rgba(${accent},.25);border-right:2px solid rgba(${accent},.25);border-bottom:2px solid rgba(${accent},.25);">
+      <div style="padding:0;overflow:hidden;" class="jury-content">
+        <div style="padding:40px;background:rgba(17,24,39,.4);border-left:2px solid rgba(${accent},.25);border-right:2px solid rgba(${accent},.25);border-bottom:2px solid rgba(${accent},.25);border-bottom-left-radius:24px;border-bottom-right-radius:24px;margin-top:-4px;">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:flex-start;">
             <div>
               <h4 style="font-size:18px;font-weight:700;color:var(--brand-peach);margin-bottom:20px;">iViSiON вам:</h4>
@@ -630,9 +795,7 @@ function renderBlock(b, isLast) {
       </div>
     `;
   }
-  if (b.type === 'html') {
-    return `<div style="${mb}">${b.content || ''}</div>`;
-  }
+  if (b.type === 'html') return `<div style="${mb}">${b.content || ''}</div>`;
   if (b.type === 'strikethrough') {
     const noteHtml = b.note
       ? `<p style="font-size:13px;color:var(--text-muted);margin-left:20px;font-style:italic;">${b.note}</p>`
@@ -648,76 +811,22 @@ function renderBlock(b, isLast) {
   }
   return '';
 }
-</script>
 
-<!-- FOOTER -->
-<footer id="site-footer">
-  <div class="container">
-    <div class="footer-links">
-      <a href="https://medialift.margoforbs.ru/oferta_list" target="_blank">Договор оферты</a>
-      <a href="https://medialift.margoforbs.ru/politika" target="_blank">Политика обработки данных</a>
-    </div>
-    <div class="footer-legal">ИП САХИБГАРЕЕВА МАРГАРИТА ВЛАДИМИРОВНА · ИНН 890306512862</div>
-  </div>
-</footer>
-
-<script>
-// Генерирует обложку видео из первого кадра на 0.1 сек
-function generateVideoThumbnail(videoUrl) {
-  return new Promise((resolve) => {
-    const video = document.createElement('video');
-    video.src = videoUrl;
-    video.muted = true;
-    video.crossOrigin = 'anonymous';
-
-    video.addEventListener('loadedmetadata', () => {
-      video.currentTime = 0.1;
-    });
-
-    video.addEventListener('seeked', () => {
-      try {
-        const canvas = document.createElement('canvas');
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(video, 0, 0);
-        const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
-        resolve(dataUrl);
-      } catch (e) {
-        resolve(''); // Fallback если ошибка
-      }
-    });
-
-    video.addEventListener('error', () => {
-      resolve(''); // Fallback если видео не загружается
-    });
-
-    // Загрузим видео но не добавляем в DOM
-    video.style.display = 'none';
-  });
-}
-
+// ============================================================
+// loadData — общая инициализация (goal, jury_team, tariffs, CTA)
+// ============================================================
 async function loadData() {
-  // Параллельно грузим общий файл (championship, mission, audience, stages, jury_team, partners…)
-  // и роль-специфичный (тарифы, заголовок секции тарифов, CTA-кнопки, post-hero заголовок)
   const [common, role] = await Promise.all([
     fetch('./kreativ_chempionat_common.json').then(r => r.json()),
     fetch('./kreativ_chempionat_for_jury.json').then(r => r.json())
   ]);
-  // Роль-специфичные ключи перекрывают общие при совпадении
   const data = Object.assign({}, common, role);
-  const params = new URLSearchParams(window.location.search);
 
-  // Hero
-  document.querySelector('.hero-label').textContent = data.championship.label;
-  document.querySelector('.hero-h1').innerHTML = `ЧЕМПИОНАТ<br><span class="hero-h1-line2"><span class="hero-h1-brand">iViSiON:</span> <span class="hero-h1-accent">Ж.И.В.У.</span></span>`;
-  document.querySelector('.hero-sub').innerHTML = data.championship.tagline.split(', ').join(' <span style="color:var(--brand-peach);">·</span> ');
-
-  // HERO CTA — кнопка на главном экране (роль-специфично)
+  // HERO CTA
   if (data.hero_cta) {
     const heroLabel = document.getElementById('hero-cta-label');
     const heroBtn = document.getElementById('hero-cta-btn');
-    if (heroLabel) heroLabel.textContent = data.hero_cta.label || '';
+    if (heroLabel) heroLabel.textContent = data.hero_cta.label || 'Войти в состав жюри';
     if (heroBtn && data.hero_cta.scrollTo) {
       heroBtn.onclick = () => {
         const el = document.getElementById(data.hero_cta.scrollTo);
@@ -726,10 +835,10 @@ async function loadData() {
     }
   }
 
-  // NAV CTA — кнопка в липкой навигации (роль-специфично)
+  // NAV CTA
   if (data.nav_cta) {
     const navLabel = document.getElementById('nav-cta-label');
-    if (navLabel) navLabel.textContent = data.nav_cta.label || '';
+    if (navLabel) navLabel.textContent = data.nav_cta.label || 'Стать жюри';
     const navBtn = document.getElementById('nav-cta-btn');
     if (navBtn && data.nav_cta.scrollTo) {
       navBtn.onclick = () => {
@@ -739,7 +848,7 @@ async function loadData() {
     }
   }
 
-  // TARIFFS SECTION — заголовок и интро над тарифами
+  // TARIFFS section header
   if (data.tariffs_section) {
     const tsLabel = document.getElementById('tariffs-section-label');
     const tsTitle = document.getElementById('tariffs-section-title');
@@ -749,27 +858,7 @@ async function loadData() {
     if (tsIntro) tsIntro.textContent = data.tariffs_section.intro || '';
   }
 
-  // BOTTOM CTA — финальная секция с кнопками (роль-специфично, фильтр по visibility)
-  if (data.bottom_cta) {
-    const introEl = document.getElementById('bottom-cta-intro');
-    const btnsEl = document.getElementById('bottom-cta-buttons');
-    if (introEl) introEl.innerHTML = data.bottom_cta.intro || '';
-    if (btnsEl && Array.isArray(data.bottom_cta.buttons)) {
-      const visible = data.bottom_cta.buttons.filter(b => {
-        if (!b.visibility || b.visibility === 'always') return true;
-        if (Array.isArray(b.visibility)) return b.visibility.some(p => params.has(p));
-        return params.has(b.visibility);
-      });
-      btnsEl.innerHTML = visible.map(b => `
-        <button class="btn-grad-wrap" onclick="document.location='${b.href}'" style="display:block;width:100%;">
-          <span class="btn-grad-inner" style="width:100%;padding:16px 12px;white-space:normal;line-height:1.3;">${b.label || ''}</span>
-        </button>
-      `).join('');
-      btnsEl.style.gridTemplateColumns = visible.length >= 2 ? 'repeat(2,1fr)' : '1fr';
-    }
-  }
-
-  // GOAL — секция "Цель Чемпионата"
+  // GOAL — Цель Чемпионата
   if (data.goal) {
     const goalLabel = document.getElementById('goal-label');
     const goalTitle = document.getElementById('goal-title');
@@ -783,80 +872,8 @@ async function loadData() {
     }
   }
 
-  // Mission title (заголовок раздела "Концепт/Почему мы это делаем")
-  const missionTitle = document.getElementById('mission-title');
-  if (missionTitle && data.mission && data.mission.title) {
-    missionTitle.textContent = data.mission.title;
-  }
-
-  // Mission values
-  const valuesContainer = document.getElementById('values-container');
-  if (valuesContainer && data.mission && Array.isArray(data.mission.values)) {
-    data.mission.values.forEach(value => {
-      const pill = document.createElement('div');
-      pill.className = 'value-pill';
-      pill.textContent = value;
-      valuesContainer.appendChild(pill);
-    });
-  }
-
-  // AUDIENCE — секция "ДЛЯ КОГО?"
-  if (data.audience) {
-    const audLabel = document.getElementById('audience-label');
-    const audTitle = document.getElementById('audience-title');
-    const audItems = document.getElementById('audience-items');
-    if (audLabel) audLabel.textContent = data.audience.label || '';
-    if (audTitle) audTitle.textContent = data.audience.title || '';
-    if (audItems && Array.isArray(data.audience.items)) {
-      audItems.innerHTML = data.audience.items
-        .map(it => `
-          <div class="audience-card">
-            ${it.image ? (() => {
-              const tx = it.offsetX || 0, ty = it.offsetY || 0, zoom = it.zoom || 1;
-              const transform = (tx || ty || zoom !== 1)
-                ? `transform:translate(${tx}px, ${ty}px) scale(${zoom});`
-                : '';
-              const imgStyle = `${it.objectFit ? `object-fit:${it.objectFit};` : ''}${it.objectPosition ? `object-position:${it.objectPosition};` : ''}${transform}`;
-              return `
-              <div class="audience-portrait-wrap">
-                <span class="audience-deco audience-deco-1"></span>
-                <span class="audience-deco audience-deco-2"></span>
-                <div class="audience-portrait"${it.borderRadius ? ` style="border-radius:${it.borderRadius}"` : ''}><img src="${it.image}" alt="${it.title || ''}" loading="lazy" style="${imgStyle}"></div>
-              </div>`;
-            })() : ''}
-            <h3 class="audience-card-title">${it.title || ''}</h3>
-            <p class="audience-card-desc">${it.description || ''}</p>
-          </div>
-        `)
-        .join('');
-    }
-  }
-
-  // Mission vision text
-  const visionHighlight = document.getElementById('vision-highlight');
-  const visionMain = document.getElementById('vision-main');
-
-  if (visionHighlight && data.mission.vision_highlight) {
-    visionHighlight.textContent = data.mission.vision_highlight;
-  }
-  if (visionMain && data.mission.vision_main) {
-    const text = data.mission.vision_main;
-    const highlightText = '\"ЭТО ИИ?\"';
-    if (text.includes(highlightText)) {
-      const parts = text.split(highlightText);
-      visionMain.innerHTML = parts[0] + '<span style="color:var(--brand-pink-light);">' + highlightText + '</span>' + parts[1];
-    } else {
-      visionMain.textContent = text;
-    }
-  }
-
-  // JURY TEAM — карусель состава жюри
+  // JURY TEAM CAROUSEL
   if (data.jury_team && Array.isArray(data.jury_team.members)) {
-    const jtTitle = document.getElementById('jury-team-title');
-    const jtIntro = document.getElementById('jury-team-intro');
-    if (jtTitle && data.jury_team.title) jtTitle.textContent = data.jury_team.title;
-    if (jtIntro && data.jury_team.intro) jtIntro.textContent = data.jury_team.intro;
-
     const jtTrack = document.getElementById('jury-team-track');
     const jtProgress = document.getElementById('jury-team-progress');
     if (jtTrack && jtProgress) {
@@ -885,7 +902,7 @@ async function loadData() {
       const cardStep = () => {
         const cards = jtTrack.querySelectorAll('.jury-team-card');
         if (!cards.length) return 0;
-        return cards[0].offsetWidth + 24;
+        return cards[0].offsetWidth + 20;
       };
       const updateActive = () => {
         const step = cardStep();
@@ -913,238 +930,29 @@ async function loadData() {
     }
   }
 
-  // PARTNERS — список партнёров
-  if (data.partners && Array.isArray(data.partners.items)) {
-    const pTitle = document.getElementById('partners-title');
-    const pIntro = document.getElementById('partners-intro');
-    if (pTitle && data.partners.title) pTitle.textContent = data.partners.title;
-    if (pIntro && data.partners.intro) pIntro.textContent = data.partners.intro;
-
-    const grid = document.getElementById('partners-grid');
-    if (grid) {
-      data.partners.items.forEach(p => {
-        const card = document.createElement('div');
-        const isPill = p.shape === 'pill';
-        card.className = 'partner-card ' + (isPill ? 'partner-card-pill' : 'partner-card-circle');
-        const wrapClass = isPill ? 'partner-pill' : 'partner-circle';
-        const innerClass = isPill ? 'partner-pill-inner' : 'partner-circle-inner';
-        const scale = typeof p.imageScale === 'number' ? p.imageScale : (isPill ? 100 : 88);
-        const imgStyle = isPill
-          ? `max-width:${scale}%;max-height:${scale}%;`
-          : `width:${scale}%;height:${scale}%;`;
-        card.innerHTML = `
-          <div class="partner-logo-slot">
-            <div class="${wrapClass}">
-              <div class="${innerClass}"><img src="${p.logo}" alt="${p.name}" loading="lazy" style="${imgStyle}"></div>
-            </div>
-          </div>
-          <div class="partner-name">${p.name}</div>
-          <div class="partner-desc">${p.description || ''}</div>
-        `;
-        grid.appendChild(card);
-      });
-    }
-  }
-
-  // Тарифы жюри: рендеринг 4 аккордеонов из data.tariffs
-  if (Array.isArray(data.tariffs)) {
-    renderTariffs(data.tariffs);
-  }
-
-  // Stages with videos
-  const stagesContainer = document.getElementById('stages-container');
-  const stagesIntro = document.getElementById('stages-intro-text');
-
-  if (stagesIntro && data.stages_intro && data.stages_intro.intro) {
-    stagesIntro.textContent = data.stages_intro.intro;
-  }
-  if (!stagesContainer) return;
-
-  // Рендерит карусель видео в готовый контейнер .carousel-wrap. Возвращает контейнер.
-  function buildVideoCarousel(videos, container, idSuffix) {
-    container = container || document.createElement('div');
-    container.classList.add('carousel-wrap');
-
-    const track = document.createElement('div');
-    track.className = 'carousel-track';
-    track.id = `carousel-${idSuffix}`;
-
-    videos.forEach(video => {
-      const videoCard = document.createElement('div');
-      videoCard.className = 'video-card';
-      videoCard.innerHTML = `<video loop playsinline preload="metadata"><source src="${video}#t=0.1" type="video/mp4"></video>`;
-      const videoEl = videoCard.querySelector('video');
-      generateVideoThumbnail(video).then(posterUrl => { if (posterUrl) videoEl.poster = posterUrl; });
-      videoCard.addEventListener('click', () => {
-        if (videoEl.paused) {
-          track.querySelectorAll('video').forEach(v => {
-            if (v !== videoEl) { v.pause(); v.parentElement.classList.remove('playing'); }
-          });
-          videoEl.muted = false;
-          videoEl.play().then(() => videoCard.classList.add('playing')).catch(() => {
-            videoEl.muted = true;
-            videoEl.play().then(() => videoCard.classList.add('playing')).catch(() => {});
-          });
-        } else {
-          videoEl.pause();
-          videoCard.classList.remove('playing');
-        }
-      });
-      track.appendChild(videoCard);
-    });
-
-    const scrollObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) {
-          const v = entry.target.querySelector('video');
-          if (v && !v.paused) { v.pause(); entry.target.classList.remove('playing'); }
-        }
-      });
-    }, { root: track, threshold: 0.6 });
-    track.querySelectorAll('.video-card').forEach(c => scrollObserver.observe(c));
-
-    const nav = document.createElement('div');
-    nav.className = 'carousel-nav';
-    const prevBtn = document.createElement('button');
-    prevBtn.innerHTML = '◀';
-    const progress = document.createElement('div');
-    progress.className = 'carousel-progress';
-    videos.forEach(() => {
-      const seg = document.createElement('div');
-      seg.className = 'seg';
-      progress.appendChild(seg);
-    });
-    const nextBtn = document.createElement('button');
-    nextBtn.innerHTML = '▶';
-
-    const setActive = i => {
-      progress.querySelectorAll('.seg').forEach((s, si) => s.classList.toggle('active', si === i));
-    };
-    const currentIndex = () => {
-      const cards = track.querySelectorAll('.video-card');
-      if (!cards.length) return 0;
-      return Math.round(track.scrollLeft / cards[0].offsetWidth);
-    };
-    prevBtn.onclick = () => {
-      const cards = track.querySelectorAll('.video-card');
-      const i = Math.max(0, currentIndex() - 1);
-      cards[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-    };
-    nextBtn.onclick = () => {
-      const cards = track.querySelectorAll('.video-card');
-      const i = Math.min(cards.length - 1, currentIndex() + 1);
-      cards[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-    };
-    track.addEventListener('scroll', () => setActive(currentIndex()));
-    setActive(0);
-
-    nav.appendChild(prevBtn);
-    nav.appendChild(progress);
-    nav.appendChild(nextBtn);
-    container.appendChild(track);
-    container.appendChild(nav);
-    return container;
-  }
-
-  // SOCHI SHOWCASE — карусель с видео-визитками из Сочи под коллажем выезда
-  if (data.sochi_showcase && Array.isArray(data.sochi_showcase.videos) && data.sochi_showcase.videos.length) {
-    const sec = document.getElementById('sochi-showcase');
-    const ttl = document.getElementById('sochi-showcase-title');
-    const car = document.getElementById('sochi-showcase-carousel');
-    if (sec && ttl && car) {
-      ttl.textContent = data.sochi_showcase.title || '';
-      buildVideoCarousel(data.sochi_showcase.videos, car, 'sochi');
-      sec.style.display = 'flex';
-    }
-  }
-
-  data.stages.forEach((stage, idx) => {
-    const row = document.createElement('div');
-    row.className = 'stage-row';
-
-    // Connector arrow (не для последней строки)
-    const connector = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    connector.setAttribute('class', 'stage-connector');
-    connector.setAttribute('viewBox', '0 0 80 80');
-    connector.innerHTML = `
-      <defs>
-        <marker id="arrow-${idx}" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-          <path d="M0,0 L0,6 L9,3 z" fill="#FFCFA4" />
-        </marker>
-      </defs>
-      <path d="M40,5 Q40,35 40,65" stroke="#FFCFA4" stroke-width="2" fill="none" marker-end="url(#arrow-${idx})" stroke-dasharray="5,5"/>
-      <circle cx="40" cy="20" r="4" fill="#FFCFA4" opacity="0.6"/>
-      <circle cx="40" cy="40" r="4" fill="#FFCFA4" opacity="0.6"/>
-    `;
-
-    // Text column
-    const textCol = document.createElement('div');
-    textCol.className = 'stage-text';
-    textCol.innerHTML = `
-      ${stage.number != null ? `<div class="stage-number">${String(stage.number).padStart(2, '0')}</div>` : ''}
-      <h3 class="stage-title">${stage.title}</h3>
-      <p class="stage-duration">${stage.duration}</p>
-      <p class="stage-desc">${stage.description}</p>
-    `;
-
-    const hasVideos = Array.isArray(stage.videos) && stage.videos.length > 0;
-
-    if (hasVideos) {
-      const carouselCol = buildVideoCarousel(stage.videos, null, String(idx));
-      if (stage.position === 'left') {
-        row.appendChild(textCol);
-        row.appendChild(carouselCol);
-      } else {
-        row.appendChild(carouselCol);
-        row.appendChild(textCol);
-      }
-    } else {
-      // Этап без видео — текст занимает всю ширину строки, центрируется
-      row.style.gridTemplateColumns = '1fr';
-      row.style.maxWidth = '900px';
-      row.style.margin = '0 auto 80px';
-      textCol.style.alignItems = 'center';
-      textCol.style.textAlign = 'center';
-      const descEl = textCol.querySelector('.stage-desc');
-      if (descEl) descEl.style.maxWidth = '820px';
-      row.appendChild(textCol);
-      if (stage.image) {
-        const img = document.createElement('img');
-        img.src = stage.image;
-        img.alt = stage.title || '';
-        img.className = 'stage-image';
-        img.loading = 'lazy';
-        row.appendChild(img);
-      }
-    }
-
-    if (idx < data.stages.length - 1) {
-      row.appendChild(connector);
-    }
-
-    stagesContainer.appendChild(row);
-  });
+  // TARIFFS
+  if (Array.isArray(data.tariffs)) renderTariffs(data.tariffs);
 }
+
 document.addEventListener('DOMContentLoaded', loadData);
 
-// NAV: скользящая навигация
-var nav=document.getElementById('nav');
-window.addEventListener('scroll',function(){
-  if(window.scrollY>80){nav.classList.add('vis');}
-  else{nav.classList.remove('vis');}
-},{passive:true});
+// STICKY NAV
+var navEl = document.getElementById('nav');
+window.addEventListener('scroll', function(){
+  if (window.scrollY > 80) navEl.classList.add('vis');
+  else navEl.classList.remove('vis');
+}, { passive: true });
 
-// Клик на ссылки навигации
-document.addEventListener('click',function(ev){
-  var a=ev.target.closest('[data-nav]');
-  if(a){ev.preventDefault();var el=document.getElementById(a.dataset.nav);if(el)el.scrollIntoView({behavior:'smooth'});}
-});
-
-// Клик на кнопку "Стать жюри"
-document.getElementById('nav-cta-btn').addEventListener('click',function(){
-  var el=document.getElementById('jury-sec');if(el)el.scrollIntoView({behavior:'smooth'});
+// data-nav click handler
+document.addEventListener('click', function(ev){
+  var a = ev.target.closest('[data-nav]');
+  if (a) {
+    ev.preventDefault();
+    var el = document.getElementById(a.dataset.nav);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }
 });
 </script>
-<!-- VERSION: 2026-04-16-updated -->
+<!-- VERSION: 2026-05-15 jury-new-v1 -->
 </body>
 </html>
