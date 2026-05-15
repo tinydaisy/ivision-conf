@@ -117,29 +117,32 @@ section[class*="sec"] {
 }
 
 /* HERO — фото слева, текст справа.
-   Градиент 265deg = тёмная маска справа (за текстом), прозрачная слева (фото видно). */
+   Градиент 265deg = тёмная маска справа (за текстом), прозрачная слева (фото видно).
+   Маска усилена в правой трети, чтобы скрыть туфлю позади текста. */
 #hero {
   background-color: transparent !important;
   background-image:
     linear-gradient(265deg,
-      rgba(8, 11, 18, 0.92) 0%,
-      rgba(8, 11, 18, 0.7) 32%,
-      rgba(8, 11, 18, 0.2) 60%,
+      rgba(8, 11, 18, 0.96) 0%,
+      rgba(8, 11, 18, 0.92) 30%,
+      rgba(8, 11, 18, 0.55) 50%,
+      rgba(8, 11, 18, 0.15) 70%,
       rgba(8, 11, 18, 0) 100%),
     url('/img/nha_trang/hero3.jpg?v=16') !important;
   background-size: cover !important;
-  background-position: 113% center !important;
+  background-position: 35% center !important;
   background-repeat: no-repeat !important;
   min-height: 720px !important;
 }
 
-/* Текст ещё правее: правая колонка прижата к правому краю */
+/* Текст в фиксированной узкой колонке, прижатой к правому краю — не наезжает на туфлю */
 #hero .hero-grid {
-  grid-template-columns: 1.3fr 0.7fr !important;
+  grid-template-columns: 1fr minmax(0, 460px) !important;
+  gap: 0 !important;
 }
 #hero .hero-content {
   grid-column: 2 !important;
-  padding-left: 64px !important;
+  padding-left: 0 !important;
   padding-right: 0 !important;
 }
 
