@@ -128,7 +128,7 @@ section[class*="sec"] {
       rgba(8, 11, 18, 0) 100%),
     url('/img/nha_trang/hero3.jpg?v=16') !important;
   background-size: cover !important;
-  background-position: 113% center !important;
+  background-position: 93% center !important;
   background-repeat: no-repeat !important;
   min-height: 720px !important;
 }
@@ -139,7 +139,7 @@ section[class*="sec"] {
 }
 #hero .hero-content {
   grid-column: 2 !important;
-  padding-left: 30vw !important;
+  padding-left: 15vw !important;
   padding-right: 0 !important;
 }
 /* На десктопе «МЕЖДУНАРОДНЫЙ / ЧЕМПИОНАТ / СПИКЕРОВ» — каждое слово с новой строки */
