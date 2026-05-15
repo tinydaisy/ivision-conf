@@ -135,7 +135,7 @@ section[class*="sec"] {
 
 /* Текст ещё правее: правая колонка прижата к правому краю */
 #hero .hero-grid {
-  grid-template-columns: 1fr 1fr !important;
+  grid-template-columns: 1.3fr 0.7fr !important;
 }
 #hero .hero-content {
   grid-column: 2 !important;
