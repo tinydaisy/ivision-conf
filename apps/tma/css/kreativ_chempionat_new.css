@@ -139,8 +139,14 @@ section[class*="sec"] {
 }
 #hero .hero-content {
   grid-column: 2 !important;
-  padding-left: 15vw !important;
+  padding-left: 30vw !important;
   padding-right: 0 !important;
+}
+/* На десктопе «МЕЖДУНАРОДНЫЙ / ЧЕМПИОНАТ / СПИКЕРОВ» — каждое слово с новой строки */
+.hero-title-big .br-desktop { display: inline; }
+@media (max-width: 768px) {
+  .hero-title-big .br-desktop { display: none; }
+  .hero-title-big .br-desktop + * { margin-left: 0; }
 }
 
 @media (max-width: 768px) {
