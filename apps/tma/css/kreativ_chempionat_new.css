@@ -139,7 +139,7 @@ section[class*="sec"] {
 }
 #hero .hero-content {
   grid-column: 2 !important;
-  padding-left: 0 !important;
+  padding-left: 64px !important;
   padding-right: 0 !important;
 }
 
@@ -162,7 +162,7 @@ section[class*="sec"] {
     gap: 0 !important;
     padding-top: 0 !important;
   }
-  #hero .hero-content { grid-column: auto !important; }
+  #hero .hero-content { grid-column: auto !important; padding-left: 0 !important; }
 
   /* Компактные размеры — чтобы всё влезло на один экран */
   .hero-title-big {
