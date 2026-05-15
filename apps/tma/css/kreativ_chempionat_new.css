@@ -139,7 +139,7 @@ section[class*="sec"] {
 }
 #hero .hero-content {
   grid-column: 2 !important;
-  padding-left: 64px !important;
+  padding-left: 15vw !important;
   padding-right: 0 !important;
 }
 
