@@ -845,7 +845,10 @@ function renderTariff(t) {
     ? 'linear-gradient(135deg,rgba(255,207,164,.15),rgba(255,207,164,.08))'
     : 'linear-gradient(135deg,rgba(184,137,106,.18),rgba(255,207,164,.10))';
 
-  const blocksHtml = (t.blocks || []).map((b, i, arr) => renderBlock(b, i === arr.length - 1)).join('');
+  const leftBlocks = (t.blocks || []).filter(b => b.placement !== 'right');
+  const rightBlocks = (t.blocks || []).filter(b => b.placement === 'right');
+  const blocksHtml = leftBlocks.map((b, i, arr) => renderBlock(b, i === arr.length - 1)).join('');
+  const rightBlocksHtml = rightBlocks.map((b, i, arr) => renderBlock(b, i === arr.length - 1)).join('');
   const reqsHtml = (t.requirements || []).map((r, i, arr) => `<li${i < arr.length - 1 ? ' style="margin-bottom:16px;"' : ''}>${r}</li>`).join('');
   const subtitleHtml = t.subtitle
     ? `<span style="display:block;width:100%;font-size:13px;color:#FFFFFF;font-weight:600;margin-top:8px;line-height:1.45;letter-spacing:.02em;">${t.subtitle}</span>`
@@ -876,12 +879,15 @@ function renderTariff(t) {
                 <p style="font-size:13px;color:var(--text-muted);margin-top:8px;">${(t.investment && t.investment.caption) || ''}</p>
               </div>
               <h4 style="font-size:18px;font-weight:700;color:var(--brand-peach);margin-bottom:20px;">Что требуется от вас:</h4>
-              <ul class="benefits" style="font-size:14px;">${reqsHtml}</ul>
+              <ul class="benefits" style="font-size:14px;margin-bottom:${rightBlocksHtml ? '24px' : '0'};">${reqsHtml}</ul>
+              ${rightBlocksHtml}
             </div>
           </div>
-          <button class="btn-red-cta" onclick="document.location='${(t.cta && t.cta.href) || '#'}'" style="margin-top:32px;display:block;width:100%;">
-            <span class="btn-red-cta-i" style="width:100%;">${(t.cta && t.cta.label) || ''}</span>
-          </button>
+          <div style="text-align:center;margin-top:32px;">
+            <button class="btn-red-cta" onclick="document.location='${(t.cta && t.cta.href) || '#'}'">
+              <span class="btn-red-cta-i">${(t.cta && t.cta.label) || ''}</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
