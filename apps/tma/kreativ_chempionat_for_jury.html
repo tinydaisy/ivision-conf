@@ -110,6 +110,8 @@
     .market-intro{font-size:clamp(18px,2.2vw,22px);font-weight:700;color:#FFFFFF;line-height:1.5;text-align:center;margin-bottom:28px;}
     .market-intro span{color:var(--brand-peach);}
     .market-ovals{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+    .market-ovals.market-ovals-tight{grid-template-columns:1fr;gap:12px;}
+    .market-ovals.market-ovals-tight .market-oval-inner{padding:16px 22px;font-size:15px;text-align:left;}
     .market-oval{position:relative;border-radius:100px;padding:1.6px;background:linear-gradient(135deg,rgba(255,207,164,.55) 0%,rgba(255,207,164,.14) 50%,rgba(255,207,164,.55) 100%);transition:transform .3s ease,box-shadow .3s ease;}
     .market-oval-inner{border-radius:100px;background:linear-gradient(135deg,rgba(20,28,45,.94) 0%,rgba(8,11,18,.96) 100%);padding:22px 32px;text-align:center;color:#FFFFFF;font-size:16px;font-weight:600;line-height:1.5;letter-spacing:.01em;}
     .market-oval-inner .ovl-letter{display:inline-block;font-family:var(--font-display);font-size:1.8em;font-weight:400;line-height:1;background:linear-gradient(180deg,#FFF1DD 0%,#FFCFA4 38%,#E0A371 70%,#B8896A 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-right:6px;vertical-align:-0.05em;letter-spacing:.02em;filter:drop-shadow(0 1px 1px rgba(0,0,0,.45));}
@@ -375,24 +377,24 @@
       <div class="why-content">
         <div class="section-label">Почему мы это делаем</div>
         <h2 class="why-title">Рынок больше не выбирает «просто экспертов»</h2>
-        <p class="market-intro" style="text-align:left;margin:0;">Сегодня выигрывают те, кто:</p>
+        <p class="market-intro" style="text-align:left;margin:0 0 22px;">Сегодня выигрывают те, кто:</p>
+
+        <div class="market-ovals market-ovals-tight">
+          <div class="market-oval"><div class="market-oval-inner"><span class="ovl-letter">Ж</span> — живой и аутентичный</div></div>
+          <div class="market-oval"><div class="market-oval-inner"><span class="ovl-letter">И</span> — искренний и вызывает доверие</div></div>
+          <div class="market-oval"><div class="market-oval-inner"><span class="ovl-letter">В</span> — становится фигурой Влияния</div></div>
+          <div class="market-oval"><div class="market-oval-inner"><span class="ovl-letter">У</span> — успешен и профессионален</div></div>
+        </div>
+
+        <div style="margin-top:28px;">
+          <p class="ai-block">ИИ может создать текст. Но не может создать <strong>аутентичность, энергетику, харизму</strong>.</p>
+          <p class="ai-block">ИИ может собрать картинку. Но не может передать <strong>масштаб личности, внутреннюю силу и контекст жизни</strong>.</p>
+        </div>
       </div>
     </div>
 
     <div class="market-block">
-      <div class="market-ovals">
-        <div class="market-oval"><div class="market-oval-inner"><span class="ovl-letter">Ж</span> — живой и аутентичный</div></div>
-        <div class="market-oval"><div class="market-oval-inner"><span class="ovl-letter">И</span> — искренний и вызывает доверие</div></div>
-        <div class="market-oval"><div class="market-oval-inner"><span class="ovl-letter">В</span> — становится фигурой Влияния</div></div>
-        <div class="market-oval"><div class="market-oval-inner"><span class="ovl-letter">У</span> — успешен и профессионален</div></div>
-      </div>
-
-      <div style="max-width:980px;margin:48px auto 0;">
-        <p class="ai-block">ИИ может создать текст. Но не может создать <strong>аутентичность, энергетику, харизму</strong>.</p>
-        <p class="ai-block">ИИ может собрать картинку. Но не может передать <strong>масштаб личности, внутреннюю силу и контекст жизни</strong>.</p>
-      </div>
-
-      <div class="gold-plate" style="margin-top:36px;text-align:center;">
+      <div class="gold-plate" style="text-align:center;">
         <p style="margin:0;">iViSiON объединяет <strong>предпринимателей, экспертов и спикеров</strong>, которые формируют новый стандарт публичности, влияния и живого лидерства.</p>
       </div>
     </div>
