@@ -112,6 +112,7 @@
     .market-ovals{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
     .market-oval{position:relative;border-radius:100px;padding:1.6px;background:linear-gradient(135deg,rgba(255,207,164,.55) 0%,rgba(255,207,164,.14) 50%,rgba(255,207,164,.55) 100%);transition:transform .3s ease,box-shadow .3s ease;}
     .market-oval-inner{border-radius:100px;background:linear-gradient(135deg,rgba(20,28,45,.94) 0%,rgba(8,11,18,.96) 100%);padding:22px 32px;text-align:center;color:#FFFFFF;font-size:16px;font-weight:600;line-height:1.5;letter-spacing:.01em;}
+    .market-oval-inner .ovl-letter{display:inline-block;font-family:var(--font-display);font-size:1.8em;font-weight:400;line-height:1;background:linear-gradient(180deg,#FFF1DD 0%,#FFCFA4 38%,#E0A371 70%,#B8896A 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-right:6px;vertical-align:-0.05em;letter-spacing:.02em;filter:drop-shadow(0 1px 1px rgba(0,0,0,.45));}
     .market-oval:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(255,207,164,.18);}
     @media(max-width:760px){
       .market-ovals{grid-template-columns:1fr;}
@@ -351,7 +352,7 @@
 <!-- GOAL — Цель Чемпионата (рендер из data.goal) -->
 <section class="sec dark" id="goal-sec">
   <div class="container" style="text-align:center;">
-    <div class="section-label" id="goal-label">Цель чемпионата</div>
+    <div class="section-label" id="goal-label">Почему мы это делаем</div>
     <h2 class="h2" id="goal-title">Цель Чемпионата</h2>
     <ul class="goal-list" id="goal-items"></ul>
 
@@ -373,20 +374,22 @@
 
       <div class="why-content">
         <div class="section-label">Почему мы это делаем</div>
-        <h2 class="why-title">Эпоха ИИ не отменяет личность — она её усиливает</h2>
-
-        <p class="ai-block">ИИ может создать текст. Но не может создать <strong>аутентичность, энергетику, харизму</strong>.</p>
-        <p class="ai-block">ИИ может собрать картинку. Но не может передать <strong>масштаб личности, внутреннюю силу и контекст жизни</strong>.</p>
+        <h2 class="why-title">Рынок больше не выбирает «просто экспертов»</h2>
+        <p class="market-intro" style="text-align:left;margin:0;">Сегодня выигрывают те, кто:</p>
       </div>
     </div>
 
     <div class="market-block">
-      <p class="market-intro">Рынок выбирает не <span>«просто экспертов»</span>, а тех, кто:</p>
       <div class="market-ovals">
-        <div class="market-oval"><div class="market-oval-inner">умеет удерживать внимание</div></div>
-        <div class="market-oval"><div class="market-oval-inner">обладает сильной публичной подачей</div></div>
-        <div class="market-oval"><div class="market-oval-inner">вызывает доверие через личность</div></div>
-        <div class="market-oval"><div class="market-oval-inner">становится фигурой влияния, а не просто специалистом</div></div>
+        <div class="market-oval"><div class="market-oval-inner"><span class="ovl-letter">Ж</span> — живой и аутентичный</div></div>
+        <div class="market-oval"><div class="market-oval-inner"><span class="ovl-letter">И</span> — искренний и вызывает доверие</div></div>
+        <div class="market-oval"><div class="market-oval-inner"><span class="ovl-letter">В</span> — становится фигурой Влияния</div></div>
+        <div class="market-oval"><div class="market-oval-inner"><span class="ovl-letter">У</span> — успешен и профессионален</div></div>
+      </div>
+
+      <div style="max-width:980px;margin:48px auto 0;">
+        <p class="ai-block">ИИ может создать текст. Но не может создать <strong>аутентичность, энергетику, харизму</strong>.</p>
+        <p class="ai-block">ИИ может собрать картинку. Но не может передать <strong>масштаб личности, внутреннюю силу и контекст жизни</strong>.</p>
       </div>
 
       <div class="gold-plate" style="margin-top:36px;text-align:center;">
@@ -858,12 +861,10 @@ async function loadData() {
     if (tsIntro) tsIntro.textContent = data.tariffs_section.intro || '';
   }
 
-  // GOAL — Цель Чемпионата
+  // GOAL — Цель Чемпионата (label захардкожен в HTML: "Почему мы это делаем")
   if (data.goal) {
-    const goalLabel = document.getElementById('goal-label');
     const goalTitle = document.getElementById('goal-title');
     const goalItems = document.getElementById('goal-items');
-    if (goalLabel) goalLabel.textContent = data.goal.label || '';
     if (goalTitle) goalTitle.textContent = data.goal.title || '';
     if (goalItems && Array.isArray(data.goal.items)) {
       goalItems.innerHTML = data.goal.items
