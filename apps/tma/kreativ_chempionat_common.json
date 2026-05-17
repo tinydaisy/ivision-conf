@@ -126,10 +126,10 @@
   "sochi_showcase": {
     "title": "Как это было в Сочи",
     "videos": [
-      "https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/kreativ_video/kabriolet_za_3_dnya.mp4",
-      "https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/kreativ_video/kabriolet_za_2_dnya.mp4",
-      "https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/kreativ_video/kabriolet_za_1_den.mp4",
-      "https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/kreativ_video/kabriolet.MP4"
+      { "src": "https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/kreativ_video/kabriolet_za_3_dnya.mp4", "poster": "https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_video_posters/kabriolet_za_3_dnya.jpg" },
+      { "src": "https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/kreativ_video/kabriolet_za_2_dnya.mp4", "poster": "https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_video_posters/kabriolet_za_2_dnya.jpg" },
+      { "src": "https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/kreativ_video/kabriolet_za_1_den.mp4", "poster": "https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_video_posters/kabriolet_za_1_den.jpg" },
+      { "src": "https://pub-1d2696bcb28146eabdf21d47669b01c5.r2.dev/turnir_zhivu/kreativ_video/kabriolet.MP4",           "poster": "https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_video_posters/kabriolet.jpg" }
     ]
   },
 
