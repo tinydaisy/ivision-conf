@@ -986,7 +986,7 @@
 
       <div class="alive-video">
         <div class="alive-gif-wrap">
-          <video src="/img/nha_trang/smeh.mp4" autoplay loop muted playsinline preload="metadata" aria-label="Живой смех"></video>
+          <video src="/img/nha_trang/smeh.mp4" autoplay loop muted playsinline preload="none" aria-label="Живой смех"></video>
         </div>
       </div>
 
@@ -3330,7 +3330,7 @@ async function loadData() {
       const customPoster = typeof item === 'object' ? item.poster : null;
       const videoCard = document.createElement('div');
       videoCard.className = 'video-card';
-      videoCard.innerHTML = `<video loop playsinline preload="metadata"${customPoster ? ` poster="${customPoster}"` : ''}><source src="${video}#t=0.1" type="video/mp4"></video>`;
+      videoCard.innerHTML = `<video loop playsinline preload="none"${customPoster ? ` poster="${customPoster}"` : ''}><source src="${video}#t=0.1" type="video/mp4"></video>`;
       const videoEl = videoCard.querySelector('video');
       if (!customPoster) {
         generateVideoThumbnail(video).then(posterUrl => { if (posterUrl) videoEl.poster = posterUrl; });
@@ -3425,14 +3425,16 @@ async function loadData() {
   if (etap2Container) buildVideoCarousel(ETAP2_VIDEOS, etap2Container, 'etap2');
 
   // ЧАСТУШКИ — 7 видео-визиток лидеров рынка
+  // Видео вынесены в R2 (ivision_chastushki/) чтобы не валить pluson.ru
+  // десятком параллельных запросов с мобильной сети — постеры остаются локально.
   const CHASTUSHKI = [
-    { src: '/img/chastushki/belochkina.mp4',     poster: '/img/chastushki/belochkina_title.PNG' },
-    { src: '/img/chastushki/kromberger.mp4',     poster: '/img/chastushki/kromberger_title.JPG' },
-    { src: '/img/chastushki/mikhailenko.mp4',    poster: '/img/chastushki/mikhailenko_title.PNG' },
-    { src: '/img/chastushki/pavel_lebedev.mp4',  poster: '/img/chastushki/pavel_lebedev_title.PNG' },
-    { src: '/img/chastushki/zhibulya.mp4',       poster: '/img/chastushki/zhibulya_title.PNG' },
-    '/img/chastushki/korchagina.mp4',
-    '/img/chastushki/teleshova.mp4'
+    { src: 'https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_chastushki/belochkina.mp4',    poster: '/img/chastushki/belochkina_title.PNG' },
+    { src: 'https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_chastushki/kromberger.mp4',    poster: '/img/chastushki/kromberger_title.JPG' },
+    { src: 'https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_chastushki/mikhailenko.mp4',   poster: '/img/chastushki/mikhailenko_title.PNG' },
+    { src: 'https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_chastushki/pavel_lebedev.mp4', poster: '/img/chastushki/pavel_lebedev_title.PNG' },
+    { src: 'https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_chastushki/zhibulya.mp4',      poster: '/img/chastushki/zhibulya_title.PNG' },
+    'https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_chastushki/korchagina.mp4',
+    'https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_chastushki/teleshova.mp4'
   ];
   const chastushkiContainer = document.getElementById('chastushki-carousel');
   if (chastushkiContainer) buildVideoCarousel(CHASTUSHKI, chastushkiContainer, 'chastushki');
