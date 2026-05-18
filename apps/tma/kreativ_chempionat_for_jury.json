@@ -21,7 +21,7 @@
     {
       "id": "winwin",
       "title": "WIN-WIN Жюри",
-      "subtitle": "(ПАРТНЕРСКОЕ ПРЕДЛОЖЕНИЕ ДЛЯ ЛИДЕРОВ <span style=\"color:var(--brand-peach);\">С АУДИТОРИЯМИ ОТ 5000 ПОДПИСЧИКОВ В ТЕЛЕГРАМ</span>)",
+      "subtitle": "(БЕЗ ОПЛАТНОЕ ПРЕДЛОЖЕНИЕ ДЛЯ ЛИДЕРОВ <span style=\"color:var(--brand-peach);\">С АУДИТОРИЯМИ ОТ 5000 ПОДПИСЧИКОВ В ТЕЛЕГРАМ</span>)",
       "color": "peach",
       "visibility": ["shwp", "shwa", "shw2k"],
       "blocks": [
