@@ -434,7 +434,836 @@
     }
   </style>
   <!-- НОВЫЙ СТИЛЬ: единый градиент + персиковый металлик. Старые стили выше не удалены — этот файл их перекрывает. -->
-  <link rel="stylesheet" href="https://ivision.pluson.ru/css/kreativ_chempionat_new.css?v=17">
+  <!-- INLINED kreativ_chempionat_new.css для GetCourse-версии -->
+  <style id="kreativ-chempionat-new-css">
+/* ============================================================
+   kreativ_chempionat_new.css
+   Новый стиль чемпионата: единый тёмно-бирюзовый градиент,
+   персиковый металлик на заголовках, иконка-венец на подзаголовках.
+   Подключается ПОСЛЕ inline-блока <style> в kreativ_chempionat.html
+   и переопределяет всё необходимое.
+   ============================================================ */
+
+:root {
+  --new-bg-grad: linear-gradient(135deg, #25455D 0%, #080B12 70%);
+
+  /* Металлический персик: светлый блик → персик → бронза → персик → блик */
+  --metal-peach: linear-gradient(135deg,
+      #FFE4C9 0%,
+      #FFCFA4 22%,
+      #B8896A 50%,
+      #FFCFA4 78%,
+      #FFE4C9 100%);
+
+  /* Кнопочный персик: чуть более бронзовый, для бордеров и контура */
+  --btn-peach-grad: linear-gradient(135deg, #C99775 0%, #FFCFA4 50%, #C99775 100%);
+
+  /* Перекрываем старые переменные — используются по всему файлу */
+  --bg-dark: transparent;
+  --bg-mid: transparent;
+  --bg-card: rgba(17, 24, 39, 0.55);
+  --text-light: #FFFFFF;
+  --text-muted: rgba(255, 255, 255, 0.72);
+  --text-dim: rgba(255, 255, 255, 0.45);
+  --btn-grad: var(--btn-peach-grad);
+  --ring-grad: linear-gradient(135deg, #25455D 0%, #6B4F3C 50%, #FFCFA4 100%);
+
+  /* Розовый и фиолетовый — переписываем на золото/персик/бронзу.
+     Покрывает все inline-стили color:var(--brand-pink) / --brand-purple etc. */
+  --brand-purple: #FFCFA4;        /* был #C084FC (фиолетовый) */
+  --brand-pink: #B8896A;          /* был #C84B9E (розовый) */
+  --brand-pink-light: #FFE4C9;    /* был #DD85B8 (светло-розовый) */
+
+  --venec-svg: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 32' fill='none'><path d='M2 26 Q10 22 20 22 Q30 22 38 26' stroke='%23FFCFA4' stroke-width='1.6' stroke-linecap='round'/><path d='M20 4 L26 14 L20 22 L14 14 Z' fill='%23FFCFA4' stroke='%23FFE4C9' stroke-width='0.6'/><path d='M20 8 L22.5 14 L20 12 Z' fill='%23FFE4C9'/><circle cx='6' cy='25' r='1.5' fill='%23FFCFA4'/><circle cx='34' cy='25' r='1.5' fill='%23FFCFA4'/></svg>");
+}
+
+/* ===== 1. ФОН — единый градиент на весь документ =====
+   На iOS Safari background-attachment: fixed часто игнорируется и градиент
+   растягивается на всю высоту body (тёмная часть видна только в самом низу).
+   Решение: фиксированный псевдо-элемент за всем содержимым. */
+html, body {
+  background: transparent !important;
+  color: #FFFFFF !important;
+}
+
+/* ===== ФИКС МОБИЛЬНОГО СКРОЛЛА =====
+   На мобиле палец «залипал» внутри горизонтальных каруселей и не мог
+   прокручивать страницу. touch-action:pan-y на body отдаёт вертикальные
+   жесты странице; на самих каруселях явно разрешаем pan-x.
+   Также убираем магнитный scroll-snap (он усиливал залипание). */
+body { touch-action: pan-y !important; }
+.jury-team-track,
+.carousel-track,
+.yt-cases-track,
+.speaker-cases-track,
+[class*="-track"] {
+  touch-action: pan-x !important;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: none !important;
+}
+.video-card,
+.jury-team-card,
+.speaker-case,
+.yt-case {
+  scroll-snap-align: none !important;
+}
+
+body::before {
+  content: '' !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: var(--new-bg-grad) !important;
+  z-index: -1 !important;
+  pointer-events: none !important;
+}
+
+/* Все секции делаем прозрачными — пусть просвечивает body */
+.sec,
+.sec.dark,
+.sec.mid,
+.sec.gradient-bg,
+.sec.dark.gradient-bg,
+.sec.mid.gradient-bg,
+.manifest-sec,
+#site-footer,
+section[class*="sec"] {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+/* HERO — плашка «Приём заявок»: фоном изображение plashka.png (красный с золотым орнаментом) */
+.hero-priem-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-image: url('https://ivision.pluson.ru/img/nha_trang/plashka.png?v=2');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: clamp(280px, 28vw, 380px);
+  aspect-ratio: 1090 / 284;
+  padding: 0 9% 0 9%;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+.hero-priem-text {
+  color: #FFFFFF;
+  font-family: 'Roboto', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(12px, 1.05vw, 15px);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  text-transform: uppercase;
+  text-align: center;
+}
+.hero-priem-star {
+  color: #FFCFA4;
+  font-size: 1.1em;
+  line-height: 1;
+  text-shadow: 0 0 6px rgba(255, 207, 164, 0.6);
+}
+@media (max-width: 768px) {
+  .hero-priem-badge {
+    width: 260px;
+    gap: 8px;
+  }
+  .hero-priem-text {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
+}
+
+/* HERO — фото слева, текст справа.
+   Градиент 265deg = тёмная маска справа (за текстом), прозрачная слева (фото видно). */
+#hero {
+  background-color: transparent !important;
+  background-image:
+    linear-gradient(265deg,
+      rgba(8, 11, 18, 0.92) 0%,
+      rgba(8, 11, 18, 0.7) 32%,
+      rgba(8, 11, 18, 0.2) 60%,
+      rgba(8, 11, 18, 0) 100%),
+    url('https://ivision.pluson.ru/img/nha_trang/hero3.jpg?v=16') !important;
+  background-size: cover !important;
+  background-position: 98% center !important;
+  background-repeat: no-repeat !important;
+  min-height: 720px !important;
+}
+
+/* Текст ещё правее: правая колонка прижата к правому краю */
+#hero .hero-grid {
+  grid-template-columns: 1.3fr 0.7fr !important;
+}
+#hero .hero-content {
+  grid-column: 2 !important;
+  padding-left: 15vw !important;
+  padding-right: 0 !important;
+}
+/* На десктопе «МЕЖДУНАРОДНЫЙ / ЧЕМПИОНАТ / СПИКЕРОВ» — каждое слово с новой строки */
+.hero-title-big .br-desktop { display: inline; }
+@media (max-width: 768px) {
+  .hero-title-big .br-desktop { display: none; }
+  .hero-title-big .br-desktop + * { margin-left: 0; }
+}
+
+@media (max-width: 768px) {
+  /* Mobile: фото х3 — занимает 300% ширины (зум на центральную часть с девушкой и туфлей).
+     Высота = 300vw / 2.812 ≈ 106.7vw. Текст компактно под фото. */
+  #hero {
+    background-color: transparent !important;
+    background-image: url('https://ivision.pluson.ru/img/nha_trang/hero3.jpg?v=16') !important;
+    background-size: 166% auto !important;
+    background-position: 55% top !important;
+    background-repeat: no-repeat !important;
+    padding-top: calc(166vw / 2.812 + 12px) !important;
+    padding-bottom: 30px !important;
+    min-height: auto !important;
+  }
+  /* Текст в одну колонку под фото */
+  #hero .hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+    padding-top: 0 !important;
+  }
+  #hero .hero-content { grid-column: auto !important; padding-left: 0 !important; }
+
+  /* Компактные размеры — чтобы всё влезло на один экран */
+  .hero-title-big {
+    font-size: clamp(39px, 12.65vw, 64px) !important;
+    line-height: 0.96 !important;
+    margin: 0 0 14px !important;
+  }
+  .hero-sub {
+    font-size: 13px !important;
+    margin-bottom: 6px !important;
+  }
+  .hero-date {
+    font-size: 12px !important;
+    margin: 14px 0 18px !important;
+    letter-spacing: 0.04em !important;
+  }
+  .hero-btns { margin-bottom: 0 !important; }
+  .hero-btns .btn-grad-inner {
+    font-size: 14px !important;
+    padding: 12px 30px !important;
+  }
+}
+
+/* Главный заголовок hero — Oswald (поддержка кириллицы, «й» с бреве) */
+.hero-title-big {
+  font-family: 'Oswald', 'Bebas Neue', Impact, sans-serif !important;
+  font-weight: 600 !important;
+  font-size: clamp(26px, 3.6vw, 48px) !important;
+  letter-spacing: 0.02em !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  text-align: left !important;
+  margin: 0 0 22px !important;
+  white-space: nowrap !important;
+}
+@media (max-width: 768px) {
+  .hero-title-big {
+    font-size: clamp(22px, 6.5vw, 36px) !important;
+  }
+}
+
+/* Декоративные радиальные glow убираем (они «дёргают» фон) */
+.glow-pink,
+.glow-teal {
+  display: none !important;
+}
+
+/* Тонкие разделители между секциями вместо смены фона */
+.sec.mid,
+.manifest-sec {
+  border-top: 1px solid rgba(255, 207, 164, 0.08);
+}
+
+/* Декоративные блоки с полу-инлайн фоном — тоже прозрачные */
+[style*="background:linear-gradient(180deg,rgba(0,0,0,.2)"],
+[style*="background:linear-gradient(180deg, rgba(0,0,0,.2)"] {
+  background: transparent !important;
+}
+
+/* ===== 2. ЗАГОЛОВКИ — персик с металлическим отливом ===== */
+.hero-h1,
+.hero-h1-line1,
+.hero-h1-brand,
+.h2,
+.manifest-title,
+.stage-title,
+.stage-number,
+.process-intro,
+.nt-block-title,
+.ptariff-title,
+.partner-name,
+.sochi-showcase-title,
+.medal-stage-grand,
+section h1,
+section h2,
+section h3,
+section h4 {
+  background: var(--metal-peach) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.45))
+          drop-shadow(0 0 18px rgba(255, 207, 164, 0.18));
+}
+
+/* Hero-акцент Ж.И.В.У. — был розово-фиолетовый, теперь обратный металлик */
+.hero-h1-accent {
+  background: linear-gradient(180deg,
+      #FFE4C9 0%,
+      #FFCFA4 30%,
+      #B8896A 60%,
+      #FFCFA4 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+/* Подзаголовочные надписи (section-label, hero-label) — однотонный персик */
+.section-label,
+.hero-label,
+.stage-duration,
+.ptariff-stage,
+.medal-place,
+.price-timer-label {
+  color: #FFCFA4 !important;
+  background: none !important;
+  -webkit-text-fill-color: #FFCFA4 !important;
+}
+
+/* ===== 3. ОСНОВНОЙ ТЕКСТ — белый/приглушённо-белый ===== */
+body, p, li, span, div, .desc, .hero-desc, .hero-sub,
+.stage-desc, .nt-block-text, .card-desc, .card-title,
+.partner-desc, .footer-legal, .ptariff-list li,
+.value-pill, .benefits li, .process-title, .process-desc,
+.medal-stage-line, .jury-team-name, .jury-team-title, .jury-team-regalia li {
+  color: #FFFFFF;
+}
+
+.desc, .hero-desc, .stage-desc, .card-desc, .partner-desc,
+.footer-legal, .process-desc, .jury-team-regalia li, .jury-team-title {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+/* Отдельный nt-block-text strong — был персик, оставим */
+.nt-block-text strong { color: #FFCFA4 !important; }
+
+/* ===== 4. КНОПКИ — переход с розового на персик-металлик ===== */
+
+/* Главная кнопка (внешний градиентный «обвод») */
+.btn-grad-wrap,
+.ptariff-btn,
+.nav-btn {
+  background: var(--btn-peach-grad) !important;
+  box-shadow: 0 6px 20px rgba(255, 207, 164, 0.18) !important;
+}
+
+/* Внутренняя плашка — тёмный фон, белый текст */
+.btn-grad-inner,
+.ptariff-btn-i {
+  background: rgba(8, 11, 18, 0.92) !important;
+  color: #FFFFFF !important;
+}
+
+.btn-grad-wrap:hover .btn-grad-inner {
+  background: rgba(8, 11, 18, 0.78) !important;
+}
+
+/* Sticky-нав CTA — красная заливка (отличается от обычных тёмных кнопок) */
+.nav-btn-i {
+  background: linear-gradient(135deg, #DC2626 0%, #991B1B 100%) !important;
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+}
+.nav-btn:hover .nav-btn-i {
+  background: linear-gradient(135deg, #EF4444 0%, #B91C1C 100%) !important;
+}
+
+/* Sticky-нав — был розово-бирюзовый */
+#nav {
+  background: linear-gradient(135deg,
+      rgba(37, 69, 93, 0.85),
+      rgba(8, 11, 18, 0.9)) !important;
+  border: 1px solid rgba(255, 207, 164, 0.28) !important;
+}
+
+/* Срочные плашки/badges (deadline, ptariff-places) — были красно-розовые */
+.hero-deadline,
+.ptariff-places {
+  background: var(--metal-peach) !important;
+  color: #080B12 !important;
+  text-shadow: none !important;
+  box-shadow: 0 0 22px rgba(255, 207, 164, 0.35) !important;
+}
+
+/* Pulse-анимация для deadline — переопределяем тень на персиковую */
+@keyframes pulse-deadline {
+  0%, 100% { box-shadow: 0 0 18px rgba(255, 207, 164, 0.35); }
+  50%      { box-shadow: 0 0 32px rgba(255, 207, 164, 0.65); }
+}
+
+/* Таймер цены — был розово-фиолетовый */
+.price-timer {
+  background: linear-gradient(135deg,
+      rgba(255, 207, 164, 0.18),
+      rgba(184, 137, 106, 0.12) 60%,
+      rgba(255, 207, 164, 0.18)) !important;
+  border: 1.5px solid rgba(255, 207, 164, 0.55) !important;
+  box-shadow: 0 0 28px rgba(255, 207, 164, 0.22),
+              inset 0 0 24px rgba(255, 207, 164, 0.08) !important;
+}
+.price-timer-label { color: #FFE4C9 !important; text-shadow: none !important; }
+.price-timer-num   { color: #FFFFFF !important; }
+.price-timer-cap   { color: #FFCFA4 !important; }
+.price-timer-sep   { color: #FFCFA4 !important; opacity: .7 !important; }
+.price-timer-unit  {
+  background: rgba(8, 11, 18, 0.7) !important;
+  border: 1px solid rgba(255, 207, 164, 0.4) !important;
+}
+
+/* Process-icon (timeline кружки) — были розово-фиолетовые */
+.process-icon {
+  background: var(--btn-peach-grad) !important;
+  color: #080B12 !important;
+  box-shadow: 0 0 20px rgba(255, 207, 164, 0.25) !important;
+}
+
+/* Партнёрские кружки/пилюли — были фиолетово-розовые */
+.partner-circle,
+.partner-pill {
+  background: var(--btn-peach-grad) !important;
+}
+.partner-circle:hover,
+.partner-pill:hover {
+  box-shadow: 0 0 32px rgba(255, 207, 164, 0.4) !important;
+}
+
+/* Голос/арки в hero (svg rings) — оставляем как есть, но затемняем */
+.hero-rings, .vision-egg-rings { opacity: 0.35 !important; }
+
+/* ===== 5. ИКОНКИ-ВЕНЕЦ для подзаголовков sub-блоков ===== */
+.nt-block-icon {
+  display: inline-block !important;
+  width: 36px !important;
+  height: 28px !important;
+  font-size: 0 !important;       /* прячем ◆ из HTML */
+  color: transparent !important;
+  background-image: var(--venec-svg) !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: contain !important;
+  flex-shrink: 0;
+}
+
+/* Тот же венец — для маркеров целей (goal-arrow), пунктов жюри и benefits */
+.goal-list .goal-arrow {
+  width: 26px;
+  height: 22px;
+  font-size: 0;
+  background-image: var(--venec-svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  margin-top: 4px;
+}
+
+/* ===== 6. ФОРМЫ ИЗОБРАЖЕНИЙ — убираем «яйца», делаем плавные прямоугольники ===== */
+.hero-photo,
+.vision-egg,
+.jury-team-egg,
+.collage-item,
+.collage-item.center-big,
+.collage-item.egg-h,
+.collage-item.egg-inv,
+.nt-block-img.shape-egg,
+.nt-block-img.shape-stage,
+.nt-block-img.shape-stilyagi {
+  border-radius: 18px !important;
+  transform: none !important;
+}
+
+.vision-egg img,
+.jury-team-egg img,
+.collage-item img,
+.nt-block-img.shape-egg img {
+  position: static !important;
+  width: 100% !important;
+  height: 100% !important;
+  transform: none !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+/* Деко-кружки вокруг hero-фото и vision-фото — убираем, чтобы не создавали «яичный» силуэт */
+.hero-deco-circle,
+.vision-egg-deco,
+.jury-team-egg-deco {
+  display: none !important;
+}
+
+/* Убираем поворот jury-team-egg, чтобы фото стояли ровно */
+.jury-team-egg { width: 170px !important; height: 200px !important; }
+
+/* ===== 7. КОЛЛАЖ ВЫЕЗДА — 2 ряда, фото в каждом ряду одной высоты =====
+   Верхний ряд:  [ страус ] [ яхта ]                       (одна высота)
+   Нижний ряд:   [ дверь ]  [ кокос / байк ]  [ лестница ] (одна высота)
+   Чтобы фото в ряду совпадали по высоте, используем object-fit: cover. */
+.collage-wrap {
+  background: rgba(255, 207, 164, 0.04) !important;
+  border: 1px solid rgba(255, 207, 164, 0.12);
+  border-radius: 24px !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-width: 1040px !important;
+  margin: 60px auto !important;
+  padding: 22px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 18px !important;
+  perspective: none !important;
+  grid-template-columns: none !important;
+  grid-template-rows: none !important;
+  grid-template-areas: none !important;
+}
+
+.collage-row {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: stretch !important;
+  gap: 16px !important;
+  width: 100% !important;
+}
+
+/* Верхний ряд — авто-высота, страус не обрезается, яхта крупная */
+.collage-row-top {
+  height: auto !important;
+  align-items: flex-start !important;
+}
+.collage-row-top .collage-col:nth-child(1) { flex: 1 1 0 !important; }   /* страус */
+.collage-row-top .collage-col:nth-child(2) { flex: 2.6 1 0 !important; } /* яхта — крупнее */
+
+.collage-row-top .collage-item {
+  height: auto !important;
+  flex: 0 1 auto !important;
+}
+.collage-row-top .collage-item img {
+  height: auto !important;
+  object-fit: unset !important;
+  object-position: unset !important;
+}
+
+/* Нижний ряд — фиксированная высота, фото подгоняются */
+.collage-row-bottom { height: 480px; }
+
+.collage-col {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  justify-content: stretch !important;
+}
+
+/* Колонка с двумя фото друг под другом (кокос + байк) — поделят высоту поровну */
+.collage-col-stack > .collage-item {
+  flex: 1 1 0 !important;
+  min-height: 0 !important;
+}
+
+.collage-item {
+  position: static !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  transform: none !important;
+  outline: 1px solid rgba(255, 207, 164, 0.25) !important;
+  outline-offset: -1px !important;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45) !important;
+  overflow: hidden !important;
+  display: block !important;
+  border-radius: 18px !important;
+  grid-area: auto !important;
+  align-self: auto !important;
+  flex: 1 1 0 !important;
+  min-height: 0 !important;
+}
+
+.collage-item img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+}
+
+/* Яхта — акцентная рамка */
+.collage-item.slot-yacht {
+  outline: 2px solid rgba(255, 207, 164, 0.55) !important;
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.65) !important;
+  border-radius: 22px !important;
+}
+
+/* Лестница вертикальная — показываем верх кадра */
+.collage-item.slot-lest img,
+.collage-item.slot-dver img {
+  object-position: center top !important;
+}
+
+@media (max-width: 1024px) {
+  .collage-row-bottom { height: 420px; }
+}
+
+@media (max-width: 768px) {
+  .collage-wrap {
+    padding: 14px !important;
+    gap: 12px !important;
+    margin: 32px auto !important;
+  }
+  .collage-row {
+    gap: 12px !important;
+  }
+  .collage-row-bottom { height: 320px; }
+}
+
+@media (max-width: 480px) {
+  .collage-row-bottom { height: 260px; }
+}
+
+/* ===== 8. КАРТОЧКИ — лёгкая полупрозрачность поверх градиента ===== */
+.card,
+.ptariff,
+.jury-team-card,
+.nt-block {
+  background: rgba(17, 24, 39, 0.55) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(255, 207, 164, 0.18) !important;
+}
+
+.ptariff.featured {
+  background: rgba(255, 207, 164, 0.08) !important;
+  border-color: rgba(255, 207, 164, 0.35) !important;
+}
+
+/* Карточкам убираем розовые свечения */
+.card::before,
+.card:nth-child(2)::before,
+.card:nth-child(3)::before {
+  background: radial-gradient(circle, rgba(255, 207, 164, 0.12), transparent) !important;
+}
+
+/* Цели — все плашки в персик, без розовых/фиолетовых */
+.goal-list li,
+.goal-list li:nth-child(1),
+.goal-list li:nth-child(2),
+.goal-list li:nth-child(3) {
+  background: linear-gradient(135deg,
+      rgba(255, 207, 164, 0.12),
+      rgba(255, 207, 164, 0.03)) !important;
+  border-color: rgba(255, 207, 164, 0.32) !important;
+}
+.goal-list li .goal-arrow,
+.goal-list li:nth-child(1) .goal-arrow,
+.goal-list li:nth-child(2) .goal-arrow,
+.goal-list li:nth-child(3) .goal-arrow {
+  color: transparent !important; /* фон — SVG-венец */
+}
+
+/* Vision-highlight (был розовый) — теперь персиковый */
+#vision-highlight,
+[id="vision-highlight"] {
+  color: #FFCFA4 !important;
+}
+
+/* Footer */
+#site-footer {
+  border-top: 1px solid rgba(255, 207, 164, 0.12) !important;
+}
+.footer-links a:hover { color: #FFE4C9 !important; }
+
+/* ===== 9. ДЫМ ПО СЕКЦИЯМ — лёгкий персиково-фиолетовый туман снизу/сверху ===== */
+.sec, .manifest-sec {
+  position: relative;
+  isolation: isolate; /* свой stacking context — псевдо не выползает за секцию */
+}
+
+/* Туман снизу секции — пушистое персиковое свечение */
+.sec::before, .manifest-sec::before {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110%;
+  height: 240px;
+  background:
+    radial-gradient(ellipse 60% 100% at 30% 100%,
+      rgba(255, 207, 164, 0.10) 0%,
+      transparent 65%),
+    radial-gradient(ellipse 70% 100% at 75% 100%,
+      rgba(184, 137, 106, 0.08) 0%,
+      rgba(37, 69, 93, 0.06) 35%,
+      transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Туман сверху секции — холодный бирюзовый, тоньше */
+.sec::after, .manifest-sec::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 140px;
+  background: radial-gradient(ellipse 70% 100% at 50% 0%,
+    rgba(37, 69, 93, 0.18) 0%,
+    rgba(255, 207, 164, 0.04) 40%,
+    transparent 75%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Контент секции — над дымом */
+.sec > .container,
+.manifest-sec > .container,
+.sec > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* На hero дым не нужен — там картинка с настоящим туманом */
+#hero::before, #hero::after { display: none !important; }
+
+/* ===== 10. ОЧИСТКА: остатки розового и фиолетового → персик / бронза =====
+   Жёстко прописанные цвета в исходном CSS не перекрываются через
+   переопределение переменных. Перебиваем точечно. */
+
+/* SVG-градиенты в hero-rings и других местах — заменяем stop-color */
+stop[stop-color="#C84B9E"] { stop-color: #FFCFA4 !important; }
+stop[stop-color="#6B4FA0"] { stop-color: #B8896A !important; }
+stop[stop-color="#C084FC"] { stop-color: #FFCFA4 !important; }
+stop[stop-color="#1A3A5C"] { stop-color: #25455D !important; }
+
+/* Card hover-glow (radial-gradients были розово-фиолетовые) */
+.card:nth-child(2)::before {
+  background: radial-gradient(circle, rgba(255, 207, 164, 0.12), transparent) !important;
+}
+.card:nth-child(3)::before {
+  background: radial-gradient(circle, rgba(184, 137, 106, 0.12), transparent) !important;
+}
+
+/* Plate "value-pill" — был фиолетовый фон */
+.value-pill {
+  background: rgba(255, 207, 164, 0.06) !important;
+  border-color: rgba(255, 207, 164, 0.4) !important;
+}
+
+/* Price-timer был розово-фиолетовый */
+.price-timer {
+  background: linear-gradient(135deg,
+      rgba(255, 207, 164, 0.18),
+      rgba(184, 137, 106, 0.12) 60%,
+      rgba(255, 207, 164, 0.18)) !important;
+  border-color: rgba(255, 207, 164, 0.55) !important;
+  box-shadow: 0 0 28px rgba(255, 207, 164, 0.22),
+              inset 0 0 24px rgba(255, 207, 164, 0.08) !important;
+}
+.price-timer-unit {
+  background: rgba(8, 11, 18, 0.7) !important;
+  border-color: rgba(255, 207, 164, 0.4) !important;
+}
+.price-timer-label { text-shadow: 0 1px 8px rgba(255, 207, 164, 0.3) !important; }
+
+/* Partner-circle/pill hover-glow */
+.partner-circle::before,
+.partner-pill::before {
+  background: radial-gradient(circle, rgba(255, 207, 164, 0.25), transparent 70%) !important;
+}
+
+/* Pulse-deadline (анимация tariff-places и hero-deadline) — переопределена выше,
+   но ключевые кадры в основном CSS используют rgba(200,75,158). Перекрываем. */
+@keyframes pulse-deadline {
+  0%, 100% { box-shadow: 0 0 18px rgba(255, 207, 164, 0.35); }
+  50%      { box-shadow: 0 0 32px rgba(255, 207, 164, 0.65); }
+}
+
+/* ptariff-places — был жёсткий розово-красный градиент */
+.ptariff-places {
+  background: linear-gradient(135deg, #FFCFA4 0%, #B8896A 100%) !important;
+  color: #080B12 !important;
+  box-shadow: 0 0 20px rgba(255, 207, 164, 0.45) !important;
+}
+
+/* ptariff.featured — был фиолетово-розовый */
+.ptariff.featured {
+  border-color: rgba(255, 207, 164, 0.45) !important;
+  background: linear-gradient(160deg,
+      rgba(255, 207, 164, 0.08),
+      rgba(184, 137, 106, 0.05)) !important;
+}
+
+/* Video-card — был с фиолетовым акцентом */
+.video-card {
+  background: linear-gradient(135deg,
+      rgba(255, 207, 164, 0.1),
+      rgba(184, 137, 106, 0.1)) !important;
+}
+
+/* Collage-wrap раньше был с розовым фоном — у меня уже перекрыт, но на всякий */
+.collage-wrap {
+  background: rgba(255, 207, 164, 0.04) !important;
+}
+
+/* Jury-team-egg градиент */
+.jury-team-egg {
+  background: linear-gradient(135deg,
+      rgba(255, 207, 164, 0.08),
+      rgba(184, 137, 106, 0.08)) !important;
+}
+
+/* Декоративные deco-кружки — у меня display:none, но если где осталось */
+.vision-egg-deco-2,
+.jury-team-egg-deco-2 {
+  background: rgba(255, 207, 164, 0.18) !important;
+}
+.vision-egg-deco-3 {
+  border-color: rgba(255, 207, 164, 0.4) !important;
+}
+
+/* Hero-h1-accent (если ещё есть в DOM) — цвет был розово-фиолетовый */
+.hero-h1-accent {
+  background: linear-gradient(180deg, #FFE4C9, #FFCFA4 50%, #B8896A) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+/* Глобальный отлов: любые inline-стили color/background с розово-фиолетовыми
+   значениями переменных уже перекрыты через --brand-purple/pink/pink-light.
+   Прямые hex-стили в inline (#C84B9E, #C084FC) — точечно перекрываем через [style] */
+[style*="#C84B9E"],
+[style*="#C084FC"],
+[style*="#DD85B8"],
+[style*="#6B4FA0"] {
+  color: #FFCFA4 !important;
+}
+
+  </style>
 </head>
 <body>
 
