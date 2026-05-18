@@ -59,6 +59,9 @@
     .btn-red-cta:hover .btn-red-cta-i{background:linear-gradient(135deg,#EF4444 0%,#B91C1C 100%) !important;}
     @media(max-width:768px){
       .hero-btns .btn-grad-wrap{display:block;width:100%;}
+      /* Длинные CTA («ОСТАВИТЬ ЗАЯВКУ НА ЖЮРИ» / «НА ВЫЕЗД» и т.п.) не должны вылезать за блок */
+      .btn-red-cta{max-width:100%;}
+      .btn-red-cta-i{white-space:normal !important;padding:14px 20px !important;font-size:14px !important;letter-spacing:.03em !important;text-align:center;line-height:1.25;}
     }
 
     /* SECTIONS */
