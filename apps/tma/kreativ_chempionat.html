@@ -2486,24 +2486,26 @@
     </div>
     <div class="ptariffs">
 
-      <!-- Тариф 1 — Живой Автор (скрыт; показывается только при ?shw1 в URL) -->
-      <div class="ptariff" id="ptariff-1" style="display:none;">
+      <!-- Тариф 1 — Живой Автор (бесплатный, показывается всегда) -->
+      <div class="ptariff" id="ptariff-1">
         <div class="ptariff-stage">Этап 1</div>
         <div class="ptariff-title">Тариф: "Живой Автор"</div>
         <div class="ptariff-prices">
-          <span class="ptariff-old">1 400 ₽</span>
-          <span class="ptariff-new">990 ₽</span>
+          <span class="ptariff-new">0 ₽</span>
         </div>
         <ul class="ptariff-list">
-          <li>7 заданий с материалами и примерами по креативному маркетингу</li>
+          <li>6 способов пробивать баннерную слепоту как лидер</li>
+          <li>7 заданий с материалами и примерами для подготовки блога и контента как основы для выступлений в этапе 2</li>
+          <li>Распаковка аутентичного рычага узнаваемости</li>
           <li>Практика йоги смеха для запуска творческой энергии</li>
           <li>Доступ к сообществу из 900+ экспертов и предпринимателей</li>
           <li>Участие в финальном онлайн-нетворкинге</li>
-          <li>Шанс на денежный приз этапа 1</li>
-          <li>Шанс на выигрыш титула «Самый запоминающийся контент»</li>
+          <li>Доступ к платформе «ПЛЮСОН» для автоматизации</li>
+          <li>Возможность выиграть 7 мин спикерства на финальном онлайн-нетворкинге этапа 1</li>
+          <li>Бонусные очки для старта в соревновательной части</li>
         </ul>
         <button class="ptariff-btn" onclick="openGC('gc-modal-t1')">
-          <span class="ptariff-btn-i">Оплатить</span>
+          <span class="ptariff-btn-i">Получить доступ</span>
         </button>
       </div>
 
@@ -3545,19 +3547,7 @@ document.addEventListener('DOMContentLoaded', loadData);
   if (grid) grid.classList.add('org-grid-1col');
 })();
 
-// Тариф 1 показывается только при наличии ?shw1 в URL.
-// Если параметра нет — у .ptariffs остаётся 2 видимые карточки, выравниваем сетку в 2 колонки.
-(function applyTariff1Visibility() {
-  const params = new URLSearchParams(window.location.search);
-  const showT1 = params.has('shw1');
-  const t1 = document.getElementById('ptariff-1');
-  const grid = document.querySelector('.ptariffs');
-  if (showT1 && t1) {
-    t1.style.display = '';
-  } else if (grid) {
-    grid.classList.add('ptariffs-2col');
-  }
-})();
+// Тариф 1 (Живой Автор) показывается всегда — сетка из 3 колонок по умолчанию.
 
 // NAV: скользящая навигация
 var nav=document.getElementById('nav');
