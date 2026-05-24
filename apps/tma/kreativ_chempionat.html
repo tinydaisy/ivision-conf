@@ -438,29 +438,25 @@
 </head>
 <body>
 
-<!-- GetCourse payment widgets (pre-embedded, opened via openGC) -->
-<div class="gc-modal" id="gc-modal-t1" onclick="if(event.target===this)closeGC('gc-modal-t1')">
+<!-- GetCourse payment widgets — lazy-loaded via openGC() с пробросом доп. параметров из URL -->
+<div class="gc-modal" id="gc-modal-t1" data-gc-script-id="370f55b1315628e3f00d742d539f7393bb486e2b" data-gc-widget-id="1599504" onclick="if(event.target===this)closeGC('gc-modal-t1')">
   <div class="gc-box">
     <button class="gc-close" onclick="closeGC('gc-modal-t1')">&#215;</button>
-    <script id="370f55b1315628e3f00d742d539f7393bb486e2b" src="https://medialift.margoforbs.ru/pl/lite/widget/script?id=1599504"></script>
   </div>
 </div>
-<div class="gc-modal" id="gc-modal-t2" onclick="if(event.target===this)closeGC('gc-modal-t2')">
+<div class="gc-modal" id="gc-modal-t2" data-gc-script-id="a38d8c35673ef642094fdd31403d8b8d602ea620" data-gc-widget-id="1599505" onclick="if(event.target===this)closeGC('gc-modal-t2')">
   <div class="gc-box">
     <button class="gc-close" onclick="closeGC('gc-modal-t2')">&#215;</button>
-    <script id="a38d8c35673ef642094fdd31403d8b8d602ea620" src="https://medialift.margoforbs.ru/pl/lite/widget/script?id=1599505"></script>
   </div>
 </div>
-<div class="gc-modal" id="gc-modal-t3" onclick="if(event.target===this)closeGC('gc-modal-t3')">
+<div class="gc-modal" id="gc-modal-t3" data-gc-script-id="5668736ca1fe7123d0b5f128dd93156922b14940" data-gc-widget-id="1608251" onclick="if(event.target===this)closeGC('gc-modal-t3')">
   <div class="gc-box">
     <button class="gc-close" onclick="closeGC('gc-modal-t3')">&#215;</button>
-    <script id="5668736ca1fe7123d0b5f128dd93156922b14940" src="https://medialift.margoforbs.ru/pl/lite/widget/script?id=1608251"></script>
   </div>
 </div>
-<div class="gc-modal" id="gc-modal-t4" onclick="if(event.target===this)closeGC('gc-modal-t4')">
+<div class="gc-modal" id="gc-modal-t4" data-gc-script-id="7c154c7237c59ba88377696febdf0b20be7d7140" data-gc-widget-id="1599506" onclick="if(event.target===this)closeGC('gc-modal-t4')">
   <div class="gc-box">
     <button class="gc-close" onclick="closeGC('gc-modal-t4')">&#215;</button>
-    <script id="7c154c7237c59ba88377696febdf0b20be7d7140" src="https://medialift.margoforbs.ru/pl/lite/widget/script?id=1599506"></script>
   </div>
 </div>
 
@@ -2941,7 +2937,28 @@
 
 <script>
 // GetCourse payment modal
-function openGC(id){const m=document.getElementById(id);if(!m)return;m.style.display='flex';document.body.style.overflow='hidden';}
+function openGC(id){
+  const m=document.getElementById(id);
+  if(!m) return;
+  // Ленивая загрузка виджета GC с пробросом GET-параметров (доп. параметры формы)
+  const box = m.querySelector('.gc-box');
+  if (box && !m.dataset.gcLoaded) {
+    const widgetId = m.dataset.gcWidgetId;
+    const scriptId = m.dataset.gcScriptId;
+    if (widgetId) {
+      const pageParams = window.location.search.replace(/^\?/, '');
+      let src = 'https://medialift.margoforbs.ru/pl/lite/widget/script?id=' + encodeURIComponent(widgetId);
+      if (pageParams) src += '&' + pageParams;
+      const s = document.createElement('script');
+      if (scriptId) s.id = scriptId;
+      s.src = src;
+      box.appendChild(s);
+      m.dataset.gcLoaded = '1';
+    }
+  }
+  m.style.display='flex';
+  document.body.style.overflow='hidden';
+}
 function closeGC(id){const m=document.getElementById(id);if(!m)return;m.style.display='none';document.body.style.overflow='';}
 
 // ============================================================
