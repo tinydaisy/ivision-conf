@@ -417,6 +417,23 @@
     .ptariff-btn{margin-top:auto;padding:1.5px;border-radius:100px;background:var(--btn-grad);border:none;cursor:pointer;}
     .ptariff-btn-i{display:flex;align-items:center;justify-content:center;background:rgba(255,207,164,.12);color:var(--text-light);font-family:var(--font-body);font-weight:700;font-size:15px;letter-spacing:.04em;padding:14px 24px;border-radius:100px;}
 
+    /* CHAT TARIFF — приглашение в чат чемпионата (показывается по умолчанию, скрывается при ?shwt) */
+    .ptariff-chat{grid-column:1/-1;align-items:center;text-align:center;padding:56px 48px;background:linear-gradient(160deg,rgba(255,207,164,.12),rgba(192,132,252,.08));border-color:rgba(255,207,164,.35);}
+    .ptariff-chat-title{font-family:var(--font-body);font-size:clamp(28px,5vw,44px);font-weight:800;color:var(--brand-peach);letter-spacing:.04em;text-transform:uppercase;line-height:1.1;margin-bottom:14px;}
+    .ptariff-chat-sub{font-size:clamp(15px,2vw,18px);color:var(--text-light);font-weight:600;line-height:1.45;margin-bottom:8px;max-width:640px;}
+    .ptariff-chat-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px;max-width:720px;text-align:left;}
+    .ptariff-chat-list li{font-size:15px;color:var(--text-light);line-height:1.55;display:flex;gap:10px;align-items:flex-start;}
+    .ptariff-chat-list li::before{content:none;}
+    .ptariff-chat-arrow{color:var(--brand-peach);font-weight:700;flex-shrink:0;font-size:17px;line-height:1.4;}
+    .ptariff-chat-btn{max-width:420px;width:100%;margin-top:8px;}
+    @media(max-width:600px){
+      .ptariff-chat{padding:36px 22px;}
+    }
+
+    /* Переключатель видимости: по умолчанию — виден чат, скрыты платные. При ?shwt — наоборот. */
+    html:not(.shwt) .ptariff-paid{display:none!important;}
+    html.shwt .ptariff-chat{display:none!important;}
+
     /* PRICE COUNTDOWN TIMER (над тарифами) */
     .price-timer{display:none;max-width:720px;margin:0 auto 48px;padding:24px 20px;background:linear-gradient(135deg,rgba(200,75,158,.45),rgba(192,132,252,.30) 60%,rgba(200,75,158,.40));border:1.5px solid rgba(200,75,158,.75);border-radius:20px;text-align:center;box-shadow:0 0 32px rgba(200,75,158,.35),inset 0 0 24px rgba(200,75,158,.12);}
     .price-timer.visible{display:block;}
@@ -435,6 +452,12 @@
   </style>
   <!-- НОВЫЙ СТИЛЬ: единый градиент + персиковый металлик. Старые стили выше не удалены — этот файл их перекрывает. -->
   <link rel="stylesheet" href="/css/kreativ_chempionat_new.css?v=17">
+  <script>
+    // Переключатель тарифов: при ?shwt в URL — показываем 4 платных, скрываем «Чат». Без shwt — наоборот.
+    if (new URLSearchParams(location.search).has('shwt')) {
+      document.documentElement.classList.add('shwt');
+    }
+  </script>
 </head>
 <body>
 
@@ -2492,8 +2515,25 @@
     </div>
     <div class="ptariffs ptariffs-2col">
 
+      <!-- Тариф «Чат» — приглашение в чат чемпионата (виден по умолчанию, скрыт при ?shwt) -->
+      <div class="ptariff ptariff-chat">
+        <div class="ptariff-chat-title">Вступайте в чат чемпионата</div>
+        <div class="ptariff-chat-sub">и ещё до старта получите:</div>
+        <ul class="ptariff-chat-list">
+          <li><span class="ptariff-chat-arrow">→</span> Подробности о формате, главных призах и условиях участия</li>
+          <li><span class="ptariff-chat-arrow">→</span> Знакомство и нетворкинг с сообществом 900+ экспертов и предпринимателей</li>
+          <li><span class="ptariff-chat-arrow">→</span> Ранний доступ к платформе iViSiON:ПЛЮСОН для роста и автоматизации набора аудитории</li>
+          <li><span class="ptariff-chat-arrow">→</span> Эфиры и материалы по спикерству, медийности и продажам через личный бренд и сцену</li>
+          <li><span class="ptariff-chat-arrow">→</span> Мастермайнды с разборами проектов и рычагов узнаваемости</li>
+          <li><span class="ptariff-chat-arrow">→</span> И капелька творческого безумия по версии Марго Форбс</li>
+        </ul>
+        <button class="ptariff-btn ptariff-chat-btn" onclick="openGC('gc-modal-t1')">
+          <span class="ptariff-btn-i">ВСТУПИТЬ В ЧАТ</span>
+        </button>
+      </div>
+
       <!-- Тариф 1 — Живой Автор (бесплатный, показывается всегда) -->
-      <div class="ptariff" id="ptariff-1">
+      <div class="ptariff ptariff-paid" id="ptariff-1">
         <div class="ptariff-stage">онлайн этап 0</div>
         <div class="ptariff-title">Тариф: "ЖИВОЙ АВТОР — ОНЛАЙН" (предстарт)</div>
         <div class="ptariff-prices">
@@ -2516,7 +2556,7 @@
       </div>
 
       <!-- Тариф 2 — Живой Спикер -->
-      <div class="ptariff featured">
+      <div class="ptariff ptariff-paid featured">
         <div class="ptariff-stage">онлайн-этапы 0 + 1</div>
         <div class="ptariff-title">Тариф: "ЖИВОЙ СПИКЕР ЧЕМПИОНАТА - ОНЛАЙН" (соревновательная часть)</div>
         <div class="ptariff-prices">
@@ -2551,7 +2591,7 @@
       </div>
 
       <!-- Тариф 3 — Живой Спикер на сцене (онлайн + спикер онлайн-конференции) -->
-      <div class="ptariff">
+      <div class="ptariff ptariff-paid">
         <div class="ptariff-stage">онлайн-этапы 0 + 1 + спикер онлайн-конференции</div>
         <div class="ptariff-title">Тариф: "ЖИВОЙ СПИКЕР ЧЕМПИОНАТА и ФИНАЛА"</div>
         <div class="ptariff-prices">
@@ -2592,7 +2632,7 @@
       </div>
 
       <!-- Тариф 4 — Онлайн + с выездом во Вьетнам -->
-      <div class="ptariff">
+      <div class="ptariff ptariff-paid">
         <div class="ptariff-stage">онлайн-этапы 0 + 1 + спикер онлайн-конференции + Выезд</div>
         <div class="ptariff-title">Тариф: "Онлайн + с выездом во Вьетнам"</div>
         <div class="ptariff-prices">
