@@ -491,7 +491,7 @@
 <nav id="nav">
   <img src="/img/logo_ivision.png" alt="iViSiON" class="nav-logo">
   <div class="nav-links">
-    <a href="#" data-nav="jury-sec">Тарифы</a>
+    <a href="#" data-nav="format-section">Этапы</a>
     <a href="#" data-nav="prizes-sec">Призы</a>
   </div>
   <button class="nav-btn" id="nav-cta-btn">
@@ -1052,7 +1052,7 @@
 
     <div style="text-align:center;margin-top:32px;">
       <button class="btn-red-cta" data-nav="jury-sec">
-        <span class="btn-red-cta-i">Выбрать формат участия</span>
+        <span class="btn-red-cta-i">Хочу заявить о себе</span>
       </button>
     </div>
   </div>
@@ -2352,8 +2352,8 @@
     </style>
 
     <div style="text-align:center;margin-top:40px;">
-      <button class="btn-red-cta" data-nav="jury-sec">
-        <span class="btn-red-cta-i">Попасть на выезд во Вьетнам</span>
+      <button class="btn-red-cta" onclick="openGC('gc-modal-t1')">
+        <span class="btn-red-cta-i">Вступить в чат</span>
       </button>
     </div>
   </div>
@@ -2493,8 +2493,8 @@
 <!-- TARIFFS — 3 пакета участия -->
 <section class="sec dark" id="jury-sec">
   <div class="container">
-    <div class="section-label" id="tariffs-section-label">Пакеты участия</div>
-    <h2 class="h2" id="tariffs-section-title">ВЫБЕРИТЕ 1 из 4х ФОРМАТов УЧАСТИЯ</h2>
+    <div class="section-label" id="tariffs-section-label">Станьте русским созидателем</div>
+    <h2 class="h2" id="tariffs-section-title">ВСТУПАЙТЕ В ЧАТ ЧЕМПИОНАТА</h2>
     <p style="margin:0 0 16px;color:#FFFFFF;font-family:var(--font-body);font-weight:800;font-size:clamp(15px,1.5vw,20px);letter-spacing:.06em;line-height:1.6;text-transform:uppercase;text-decoration:underline;text-decoration-color:var(--brand-peach);text-decoration-thickness:2px;text-underline-offset:8px;">
       ВЕСЬ ЧЕМПИОНАТ ПРОХОДИТ <span style="color:var(--brand-peach);">ОНЛАЙН</span>.<br>ФИНАЛ ПРОХОДИТ <span style="color:var(--brand-peach);">ОНЛАЙН</span> ИЛИ <span style="color:var(--brand-peach);">ОФЛАЙН</span> ВО ВЬЕТНАМЕ
     </p>
@@ -2502,7 +2502,7 @@
 
     <!-- PRICE COUNTDOWN TIMER — отображается, если задан price_deadline в JSON -->
     <div class="price-timer" id="price-timer" data-deadline="">
-      <div class="price-timer-label" id="price-timer-label">Приём заявок до 5 июня</div>
+      <div class="price-timer-label" id="price-timer-label">Стартуем 15 июня</div>
       <div class="price-timer-units">
         <div class="price-timer-unit"><span class="price-timer-num" id="pt-days">00</span><span class="price-timer-cap">дней</span></div>
         <div class="price-timer-sep">:</div>
@@ -2517,8 +2517,10 @@
 
       <!-- Тариф «Чат» — приглашение в чат чемпионата (виден по умолчанию, скрыт при ?shwt) -->
       <div class="ptariff ptariff-chat">
-        <div class="ptariff-chat-title">Вступайте в чат чемпионата</div>
-        <div class="ptariff-chat-sub">и ещё до старта получите:</div>
+        <div class="ptariff-chat-sub">ещё до старта вас будут ждать:</div>
+        <button class="btn-red-cta ptariff-chat-btn" onclick="openGC('gc-modal-t1')">
+          <span class="btn-red-cta-i">Вступить в чат</span>
+        </button>
         <ul class="ptariff-chat-list">
           <li><span class="ptariff-chat-arrow">→</span> Подробности о формате, главных призах и условиях участия</li>
           <li><span class="ptariff-chat-arrow">→</span> Знакомство и нетворкинг с сообществом 900+ экспертов и предпринимателей</li>
@@ -2527,9 +2529,6 @@
           <li><span class="ptariff-chat-arrow">→</span> Мастермайнды с разборами проектов и рычагов узнаваемости</li>
           <li><span class="ptariff-chat-arrow">→</span> И капелька творческого безумия по версии Марго Форбс</li>
         </ul>
-        <button class="ptariff-btn ptariff-chat-btn" onclick="openGC('gc-modal-t1')">
-          <span class="ptariff-btn-i">ВСТУПИТЬ В ЧАТ</span>
-        </button>
       </div>
 
       <!-- Тариф 1 — Живой Автор (бесплатный, показывается всегда) -->
@@ -3231,11 +3230,15 @@ async function loadData() {
     const navLabel = document.getElementById('nav-cta-label');
     if (navLabel) navLabel.textContent = data.nav_cta.label || '';
     const navBtn = document.getElementById('nav-cta-btn');
-    if (navBtn && data.nav_cta.scrollTo) {
-      navBtn.onclick = () => {
-        const el = document.getElementById(data.nav_cta.scrollTo);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      };
+    if (navBtn) {
+      if (data.nav_cta.openModal) {
+        navBtn.onclick = () => openGC(data.nav_cta.openModal);
+      } else if (data.nav_cta.scrollTo) {
+        navBtn.onclick = () => {
+          const el = document.getElementById(data.nav_cta.scrollTo);
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        };
+      }
     }
   }
 
