@@ -166,6 +166,11 @@
     .carousel-track::-webkit-scrollbar-thumb{background:var(--brand-peach);border-radius:2px;}
 
     .video-card{width:100%;min-width:100%;aspect-ratio:9/16;scroll-snap-align:center;flex-shrink:0;position:relative;cursor:pointer;background:linear-gradient(135deg,rgba(255,207,164,.1),rgba(192,132,252,.1));border-radius:12px;overflow:hidden;}
+    /* Частушки — статическая галерея 3 в ряд (без карусели) */
+    .chastushki-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:980px;margin:32px auto 0;}
+    .chastushki-gallery .video-card{min-width:0;scroll-snap-align:none;}
+    @media(max-width:900px){.chastushki-gallery{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:560px){.chastushki-gallery{grid-template-columns:repeat(2,1fr);gap:10px;}}
     .video-card video{width:100%;height:100%;object-fit:cover;display:block;border-radius:12px;border:2px solid rgba(255,207,164,.15);background:rgba(17,24,39,.7);}
     .video-card::after{content:'▶';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:rgba(8,11,18,.75);color:var(--brand-peach);display:flex;align-items:center;justify-content:center;font-size:18px;pointer-events:none;transition:opacity .2s;border:2px solid var(--brand-peach);z-index:2;}
     .video-card.playing::after{opacity:0;}
@@ -2774,7 +2779,7 @@
     <h3 class="h2" style="text-align:center;font-size:clamp(26px,3.4vw,40px);margin-top:96px;color:var(--brand-peach);max-width:980px;margin-left:auto;margin-right:auto;">
       Более 30 лидеров рынка получили от iViSiON брендированные частушки
     </h3>
-    <div class="carousel-wrap" id="chastushki-carousel" style="margin-top:32px;"></div>
+    <div class="chastushki-gallery" id="chastushki-gallery"></div>
 
     <!-- Финальная мысль на золотой плашке + большой подзаголовок -->
     <div class="gold-plate" style="max-width:880px;margin:80px auto 0;text-align:center;">
@@ -3339,6 +3344,38 @@ async function loadData() {
   ];
 
   // Рендерит карусель видео в готовый контейнер .carousel-wrap. Возвращает контейнер.
+  // Простая галерея видео (без карусели/прогресса) — для статичных сеток типа «Частушек»
+  function buildVideoGallery(videos, container) {
+    if (!container) return;
+    videos.forEach(item => {
+      const video = typeof item === 'string' ? item : item.src;
+      const customPoster = typeof item === 'object' ? item.poster : null;
+      const videoCard = document.createElement('div');
+      videoCard.className = 'video-card';
+      videoCard.innerHTML = `<video loop playsinline preload="none"${customPoster ? ` poster="${customPoster}"` : ''}><source src="${video}#t=0.1" type="video/mp4"></video>`;
+      const videoEl = videoCard.querySelector('video');
+      if (!customPoster) {
+        generateVideoThumbnail(video).then(posterUrl => { if (posterUrl) videoEl.poster = posterUrl; });
+      }
+      videoCard.addEventListener('click', () => {
+        if (videoEl.paused) {
+          container.querySelectorAll('video').forEach(v => {
+            if (v !== videoEl) { v.pause(); v.parentElement.classList.remove('playing'); }
+          });
+          videoEl.muted = false;
+          videoEl.play().then(() => videoCard.classList.add('playing')).catch(() => {
+            videoEl.muted = true;
+            videoEl.play().then(() => videoCard.classList.add('playing')).catch(() => {});
+          });
+        } else {
+          videoEl.pause();
+          videoCard.classList.remove('playing');
+        }
+      });
+      container.appendChild(videoCard);
+    });
+  }
+
   function buildVideoCarousel(videos, container, idSuffix) {
     container = container || document.createElement('div');
     container.classList.add('carousel-wrap');
@@ -3459,8 +3496,8 @@ async function loadData() {
     { src: 'https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_chastushki/korchagina.mp4', poster: 'https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_video_posters/korchagina.jpg' },
     { src: 'https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_chastushki/teleshova.mp4',  poster: 'https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_video_posters/teleshova.jpg' }
   ];
-  const chastushkiContainer = document.getElementById('chastushki-carousel');
-  if (chastushkiContainer) buildVideoCarousel(CHASTUSHKI, chastushkiContainer, 'chastushki');
+  const chastushkiContainer = document.getElementById('chastushki-gallery');
+  if (chastushkiContainer) buildVideoGallery(CHASTUSHKI, chastushkiContainer);
 }
 document.addEventListener('DOMContentLoaded', loadData);
 
