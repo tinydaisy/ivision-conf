@@ -342,7 +342,10 @@
           rgba(8,11,18,.2) 60%,
           rgba(8,11,18,0) 100%),
         url('/img/nha_trang/hero_vietnam.png?v=1') !important;
-      background-position: 0% center !important;
+      /* Две позиции: 1-я для градиента (не двигаем — текст останется на месте),
+         2-я для PNG (сильный сдвиг влево, чтобы девушка ушла к левому краю). */
+      background-position: 0% center, -65vw center !important;
+      background-size: cover, auto 110% !important;
     }
     #hero .hero-grid {
       grid-template-columns: 1.55fr 0.45fr !important;
