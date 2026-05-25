@@ -414,8 +414,10 @@
     .ptariff-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
     .ptariff-list li{font-size:14px;color:var(--text-light);line-height:1.5;display:flex;gap:8px;align-items:flex-start;}
     .ptariff-list li::before{content:"✓";color:var(--brand-peach);font-weight:700;flex-shrink:0;}
-    .ptariff-btn{margin-top:auto;padding:1.5px;border-radius:100px;background:var(--btn-grad);border:none;cursor:pointer;}
-    .ptariff-btn-i{display:flex;align-items:center;justify-content:center;background:rgba(255,207,164,.12);color:var(--text-light);font-family:var(--font-body);font-weight:700;font-size:15px;letter-spacing:.04em;padding:14px 24px;border-radius:100px;}
+    .ptariff-btn{margin-top:auto;padding:1.5px;border-radius:100px;background:var(--btn-grad);border:none;cursor:pointer;transition:transform .25s ease;}
+    .ptariff-btn:hover{transform:translateY(-2px);}
+    .ptariff-btn-i{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#DC2626 0%,#991B1B 100%);color:#FFFFFF;font-family:var(--font-body);font-weight:800;font-size:15px;letter-spacing:.04em;padding:14px 24px;border-radius:100px;text-transform:uppercase;}
+    .ptariff-btn:hover .ptariff-btn-i{background:linear-gradient(135deg,#EF4444 0%,#B91C1C 100%);}
 
     /* PRICE COUNTDOWN TIMER (над тарифами) */
     .price-timer{display:none;max-width:720px;margin:0 auto 48px;padding:24px 20px;background:linear-gradient(135deg,rgba(200,75,158,.45),rgba(192,132,252,.30) 60%,rgba(200,75,158,.40));border:1.5px solid rgba(200,75,158,.75);border-radius:20px;text-align:center;box-shadow:0 0 32px rgba(200,75,158,.35),inset 0 0 24px rgba(200,75,158,.12);}
@@ -802,9 +804,9 @@ body, p, li, span, div, .desc, .hero-desc, .hero-sub,
   box-shadow: 0 6px 20px rgba(255, 207, 164, 0.18) !important;
 }
 
-/* Внутренняя плашка — тёмный фон, белый текст */
-.btn-grad-inner,
-.ptariff-btn-i {
+/* Внутренняя плашка btn-grad-inner — тёмный фон, белый текст.
+   .ptariff-btn-i ИСКЛЮЧЁН из этого правила: тарифные CTA должны быть красными. */
+.btn-grad-inner {
   background: rgba(8, 11, 18, 0.92) !important;
   color: #FFFFFF !important;
 }
