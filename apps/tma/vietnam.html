@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
   <title>Международная медиа-резиденция iViSiON · Нячанг, Вьетнам</title>
   <link rel="icon" type="image/png" href="/img/favicon.png">
-  <link rel="preload" as="image" href="/img/nha_trang/hero3.jpg?v=16" fetchpriority="high">
+  <link rel="preload" as="image" href="/img/nha_trang/hero_vietnam.png?v=1" fetchpriority="high">
   <link rel="preload" as="image" href="/img/nha_trang/plashka.png?v=2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@500;600;700&family=Roboto:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
@@ -231,6 +231,11 @@
     .org-photo{width:200px;height:240px;object-fit:cover;object-position:center;border-radius:50% 50% 50% 50% / 55% 55% 45% 45%;border:2px solid rgba(255,207,164,.3);box-shadow:0 12px 40px rgba(0,0,0,.35);}
     .org-name{font-family:var(--font-body);font-size:24px;font-weight:800;color:var(--brand-peach);text-align:center;margin-bottom:8px;letter-spacing:.02em;}
     .org-role{font-size:14px;color:var(--text-muted);text-align:center;margin-bottom:24px;font-style:italic;}
+    /* Аудитория коллаборатора (топ-актив) — под ролью карточки */
+    .collab-audience{font-size:12px;font-weight:700;color:#FFCFA4;text-align:center;margin:-6px 0 12px;letter-spacing:.01em;}
+    .collab-audience::before{content:'◆';margin-right:6px;font-size:9px;color:#FFCFA4;vertical-align:1px;}
+    .org-card .collab-audience{margin:-16px 0 16px;font-size:13px;}
+    .partner-card .collab-audience{margin:-2px 0 8px;}
     .org-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
     .org-list li{font-size:14.5px;color:var(--text-light);line-height:1.55;padding-left:18px;position:relative;}
     .org-list li::before{content:"•";color:var(--brand-peach);position:absolute;left:0;top:0;font-size:18px;line-height:1;font-weight:700;}
@@ -328,6 +333,49 @@
   </style>
   <!-- Общий стиль чемпионата (hero3.jpg фон, металлический персик) -->
   <link rel="stylesheet" href="/css/kreativ_chempionat_new.css?v=17">
+  <!-- Override: hero_vietnam.png + смещение текста вправо, чтобы не наезжал на изображение -->
+  <style>
+    #hero {
+      background-image:
+        linear-gradient(265deg,
+          rgba(8,11,18,.92) 0%,
+          rgba(8,11,18,.7) 32%,
+          rgba(8,11,18,.2) 60%,
+          rgba(8,11,18,0) 100%),
+        url('/img/nha_trang/hero_vietnam.png?v=1') !important;
+      background-position: 0% center !important;
+    }
+    #hero .hero-grid {
+      grid-template-columns: 1.55fr 0.45fr !important;
+    }
+    #hero .hero-content {
+      padding-left: 6vw !important;
+    }
+    .hero-title-big {
+      white-space: normal !important;
+    }
+    @media (max-width: 1100px) {
+      #hero {
+        background-image:
+          linear-gradient(180deg,
+            rgba(8,11,18,0) 0%,
+            rgba(8,11,18,.35) 55%,
+            rgba(8,11,18,.85) 100%),
+          url('/img/nha_trang/hero_vietnam.png?v=1') !important;
+        background-position: center top !important;
+      }
+      #hero .hero-grid {
+        grid-template-columns: 1fr !important;
+      }
+      #hero .hero-content { padding-left: 0 !important; }
+    }
+    @media (max-width: 768px) {
+      #hero {
+        background-image: url('/img/nha_trang/hero_vietnam.png?v=1') !important;
+        background-position: 55% top !important;
+      }
+    }
+  </style>
 </head>
 <body>
 
