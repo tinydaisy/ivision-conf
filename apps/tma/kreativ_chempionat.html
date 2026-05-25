@@ -1687,22 +1687,28 @@
   .final-bridge{
     grid-column:1 / -1;
     margin-top:8px;
-    padding:22px 28px;
+    padding:26px 28px 28px;
     display:flex;
+    flex-direction:column;
     align-items:center;
     justify-content:center;
-    gap:18px;
+    gap:16px;
     background:linear-gradient(135deg,rgba(255,207,164,.18),rgba(192,132,252,.10) 60%,rgba(37,69,93,.18));
     border:1.5px solid rgba(255,207,164,.45);
     border-radius:18px;
     box-shadow:0 12px 32px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,207,164,.25);
     position:relative;
   }
+  /* Иконка в круге — в том же стиле, что и .final-partner-img */
   .final-bridge-icon{
-    width:56px;height:56px;flex-shrink:0;
+    width:96px;height:96px;border-radius:50%;
+    background:#FFF;
+    overflow:hidden;
+    box-shadow:0 8px 24px rgba(255,207,164,.32);
+    border:2px solid rgba(255,207,164,.5);
     display:flex;align-items:center;justify-content:center;
   }
-  .final-bridge-icon img{width:100%;height:100%;object-fit:contain;}
+  .final-bridge-icon img{width:78%;height:78%;object-fit:contain;}
   .final-bridge-text{
     font-family:var(--font-display);
     font-weight:400;
@@ -2116,7 +2122,7 @@
         <div class="final-partner-text">Медиа-платформа для экспертов и предпринимателей <strong>ГРАНИ</strong></div>
       </div>
       <div class="final-bridge">
-        <div class="final-bridge-icon"><img src="/img/jury/icon_ivision.png" alt="iVision" loading="lazy" decoding="async"></div>
+        <div class="final-bridge-icon"><img src="/img/logo_ivision.png" alt="iViSiON" loading="lazy" decoding="async"></div>
         <div class="final-bridge-text">МЕДИА-РЕЗИДЕНЦИЯ iViSiON ВО ВЬЕТНАМЕ</div>
         <div class="final-bridge-arrow">↓</div>
       </div>
@@ -2147,9 +2153,17 @@
       }
     </style>
 
-    <h3 class="h2" style="text-align:center;font-size:clamp(28px,3.6vw,42px);margin-top:64px;">В программе выезда во Вьетнам</h3>
+    <p class="nt-block-text" style="max-width:780px;margin:64px auto 28px;text-align:center;font-size:18px;line-height:1.6;">
+      Финальный этап <strong>iViSiON во Вьетнаме</strong> — это переход не просто в «более известного»,<br>
+      а в человека, которого начинают воспринимать как <strong>лидера и фигуру влияния</strong>.
+    </p>
+    <div style="text-align:center;margin:0 0 64px;">
+      <a class="btn-red-cta" href="/vietnam.html">
+        <span class="btn-red-cta-i">Смотреть программу в Нячанге</span>
+      </a>
+    </div>
 
-    <!-- NHA TRANG SUB-BLOCKS: Живая сцена, Стиляги, Проживание, Мальдивы -->
+    <!-- NHA TRANG SUB-BLOCKS — стили оставлены: используются ниже в блоке «Бонус Мальдивы» (shape-egg, nt-block-text…) -->
     <style>
       .nt-block{max-width:980px;margin:64px auto 0;padding:32px;background:linear-gradient(160deg,rgba(255,207,164,.06),rgba(192,132,252,.04));border:1px solid rgba(255,207,164,.2);border-radius:24px;}
       .nt-block-head{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
@@ -2231,150 +2245,6 @@
       }
     </style>
 
-    <!-- Sub-block 1: Международная конференция -->
-    <div class="nt-block">
-      <div class="stage-num-large">01</div>
-      <h3 class="nt-block-title" style="margin-bottom:18px;">Международная конференция</h3>
-      <p class="nt-block-text">Каждый участник или победитель выезда:</p>
-      <ul class="stage-list-mini" style="margin-bottom:18px;">
-        <li>выступит на международной площадке на аудиторию русскоязычных экспатов и предпринимателей</li>
-        <li>получит профессиональные записи выступления</li>
-        <li>обретёт <strong>статус международного спикера и эксперта</strong> в своём продвижении, медиаките и продажах</li>
-      </ul>
-      <div class="nt-block-img shape-stage">
-        <img src="/img/nha_trang/zal_nha_trang.jpg" alt="Конференц-зал в Нячанге" loading="lazy">
-      </div>
-      <p class="nt-block-caption">Конференц-зал в Нячанге</p>
-
-      <div class="gold-plate" style="margin-top:24px;">
-        <ul>
-          <li>Это уже не просто онлайн-эфир. Это <strong>новый уровень восприятия личности и бренда как лидера рынка</strong>.</li>
-          <li>Новая аудитория экспатов и зарубежных русскоязычных предпринимателей для поиска клиентов, коллабораций и партнёрств.</li>
-          <li>Масштаб, который увеличивает стоимость продукта и желание аудитории ассоциироваться с вами.</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Sub-block 2: Медиа-батл с ИИ -->
-    <div class="nt-block">
-      <div class="stage-num-large">02</div>
-      <h3 class="nt-block-title" style="margin-bottom:18px;">Медиа-батл с ИИ и визуальный брендинг личности</h3>
-      <p class="nt-block-text" style="font-style:italic;color:var(--brand-peach);font-weight:600;">Все научились нажимать кнопку и получать «ИИ-шедевр» за три секунды. А как насчёт повторить вживую?</p>
-      <p class="nt-block-text">Мы превратим ИИ в нашего <strong>главного креативного партнёра</strong> и… главного соперника. Часть референсов для иммерсивного баттла с ИИ — для вовлечения аудитории и выхода за рамки привычного контента.</p>
-
-      <div class="collage-wrap">
-        <!-- Верхний ряд: страус | яхта (одна высота) -->
-        <div class="collage-row collage-row-top">
-          <div class="collage-col">
-            <div class="collage-item slot-straus">
-              <img src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/2straus.jpg" alt="Страус" loading="lazy" decoding="async">
-            </div>
-          </div>
-          <div class="collage-col">
-            <div class="collage-item slot-yacht">
-              <img src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/2yahta.webp" alt="Яхта" loading="lazy" decoding="async">
-            </div>
-          </div>
-        </div>
-        <!-- Нижний ряд: дверь | (кокос+байк стопкой) | лестница (одна высота) -->
-        <div class="collage-row collage-row-bottom">
-          <div class="collage-col">
-            <div class="collage-item slot-dver">
-              <img src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/2dver.webp" alt="Дверь" loading="lazy" decoding="async">
-            </div>
-          </div>
-          <div class="collage-col collage-col-stack">
-            <div class="collage-item slot-kokos">
-              <img src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/2gamak.webp" alt="Кокос" loading="lazy" decoding="async">
-            </div>
-            <div class="collage-item slot-bike">
-              <img src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/2bike.webp" alt="Байк" loading="lazy" decoding="async">
-            </div>
-          </div>
-          <div class="collage-col">
-            <div class="collage-item slot-lest">
-              <img src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/2lestmitsa.jpg" alt="Лестница" loading="lazy" decoding="async">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="gold-plate" style="margin-top:24px;">
-        <ul>
-          <li>Вы получите <strong>свою собственную рекламную растяжку</strong> для брендированного контента — для соцсетей, сайтов и рекламы.</li>
-          <li>Почувствуете вкус жизни, драйв и искренний смех над вызовами ИИ-идей.</li>
-          <li>Контент в эстетике международного бренда.</li>
-          <li>Такой концептуальный визуал усиливает <strong>вовлечение, доверие аудитории и вашу узнаваемость</strong>.</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Sub-block 3: Русский код -->
-    <div class="nt-block">
-      <div class="stage-num-large">03</div>
-      <h3 class="nt-block-title" style="margin-bottom:18px;">Съёмка сценического видео-клипа о вашем продукте в стиле «Русский код»</h3>
-      <p class="nt-block-text">Отдельная идея финального этапа — показать <strong>новый образ русскоязычных предпринимателей и экспертов на международной сцене</strong>.</p>
-      <p class="nt-block-text">Не через пафос. А через: <strong>масштаб личности, эстетику, культуру созидания и уважение к своим корням</strong>.</p>
-      <p class="nt-block-text">Наша цель — показать русских созидателей по всему миру, которые создают, развиваются и влияют — сохраняя свой культурный код, мышление и внутреннюю опору.</p>
-      <div class="nt-block-img shape-stilyagi">
-        <img src="/img/nha_trang/russkii_kod.JPG" alt="Референс стиля съёмки — Русский код" loading="lazy">
-      </div>
-      <p class="nt-block-caption">Референс стиля съёмки</p>
-
-      <div class="gold-plate" style="margin-top:24px;">
-        <ul>
-          <li>Вы заснимете <strong>креативную самопрезентацию своего продукта, бренда или услуги</strong>.</li>
-          <li>Сможете использовать его в контенте, чатах нетворкингов и перед выходами на сцену.</li>
-          <li>Станете сопричастны к идее <strong>русских созидателей по всему миру</strong>.</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Sub-block 4: ЧТО ЕЩЁ — заголовок крупно вне рамок, два под-блока без внешней рамки -->
-    <h2 class="h2" style="text-align:center;margin-top:80px;margin-bottom:32px;">Что ещё?</h2>
-
-    <div class="nt-extras-grid">
-      <div class="nt-extras-block">
-        <h4 class="nt-extras-title">Комьюнити сильных людей</h4>
-        <p class="nt-block-text">Во Вьетнам едут: <strong>предприниматели, эксперты, создатели проектов и лидеры сообществ</strong>, которые хотят расти не только в доходе, но и в масштабе личности.</p>
-        <p class="nt-block-text">Это среда:</p>
-        <ul class="stage-list-mini" style="margin-bottom:12px;">
-          <li>партнёрств</li>
-          <li>коллабораций</li>
-          <li>знакомств</li>
-          <li>новых возможностей</li>
-          <li>и сильного окружения</li>
-        </ul>
-        <p class="nt-block-text" style="font-style:italic;color:var(--brand-peach);">Потому что масштаб часто растёт через людей, рядом с которыми вы находитесь.</p>
-      </div>
-
-      <div class="nt-extras-block">
-        <h4 class="nt-extras-title">Атмосфера, досуг и состояние</h4>
-        <p class="nt-block-text">Мы создаём не просто деловую поездку, а <strong>пространство энергии, вдохновения и красивой жизни</strong>.</p>
-        <p class="nt-block-text">Участников ждут:</p>
-        <ul class="stage-list-mini" style="margin-bottom:18px;">
-          <li>конференция, коллаборации и выступления</li>
-          <li>проживание в Золотом дворце на берегу моря</li>
-          <li>красивые локации Вьетнама</li>
-          <li>совместный отдых</li>
-          <li>атмосферные ужины</li>
-          <li>прогулки и выезды</li>
-          <li>съёмки в необычных местах</li>
-          <li>живое общение вне рамок «нетворкинга ради пользы»</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="nt-photos-grid" style="max-width:980px;margin:48px auto 0;">
-      <div class="nt-block-img shape-egg"><img src="/img/nha_trang/photo2.jpg" alt="Терраса со стеклянным полом" loading="lazy"></div>
-      <div class="nt-block-img shape-egg"><img src="/img/nha_trang/photo5.jpg" alt="Фасад дворца" loading="lazy"></div>
-      <div class="nt-block-img shape-egg"><img src="/img/nha_trang/photo1.jpg" alt="Внутренний бассейн" loading="lazy"></div>
-    </div>
-    <p class="nt-block-caption">Золотой дворец у моря</p>
-
-    <div class="gold-plate" style="max-width:880px;margin:32px auto 0;text-align:center;">
-      <p style="margin:0;font-style:italic;">Самые сильные идеи, связи и коллаборации часто рождаются <strong>не на сцене, а в атмосфере свободы и живого общения</strong>.</p>
-    </div>
 
     <!-- Sub-block 5: Бонус Мальдивы — заголовок крупно вне рамок -->
     <h2 class="h2" style="text-align:center;margin-top:80px;margin-bottom:24px;">И бонус после Вьетнама</h2>
@@ -2485,12 +2355,12 @@
 <section class="sec dark">
   <div class="container">
     <div class="section-label">Психология влияния</div>
-    <h2 class="h2">Почему креативный маркетинг продает и привлекает клиентов</h2>
+    <h2 class="h2">Почему креативный и идеологический маркетинг продает</h2>
 
     <div class="card-grid">
       <div class="card" style="background:transparent!important;border:none!important;display:flex;flex-direction:column;align-items:center;text-align:center;">
         <div class="card-title" style="color:var(--brand-peach);">Эффект "Илона Маска"</div>
-        <div class="card-desc">Если пьяный бомж танцует на улице — это позор. Если Илон Маск танцует на открытии завода — это демонстрация финансовой свободы.<br><br>В психологии это называется <strong>"Идиосинкразический кредит"</strong> — <strong>"Запас доверия"</strong> как право на отклонение от норм, которое аудитория прощает лидеру за его вклад и авторитет.</div>
+        <div class="card-desc">Если Илон Маск танцует на открытии завода Тесла в Берлине — это демонстрация финансовой свободы и идеологии.<br><br>В психологии это называется <strong>"Идиосинкразический кредит"</strong> — <strong>"Запас доверия"</strong> как право на отклонение от норм, которое аудитория прощает лидеру за его вклад и авторитет.</div>
       </div>
       <div class="card" style="background:transparent!important;border:none!important;display:flex;flex-direction:column;align-items:center;text-align:center;">
         <div class="card-title" style="color:var(--brand-peach);">Пробитие баннерной слепоты</div>
@@ -3268,8 +3138,8 @@ async function loadData() {
         return params.has(b.visibility);
       });
       btnsEl.innerHTML = visible.map(b => `
-        <button class="btn-grad-wrap" onclick="document.location='${b.href}'" style="display:block;width:100%;">
-          <span class="btn-grad-inner" style="width:100%;padding:16px 12px;white-space:normal;line-height:1.3;">${b.label || ''}</span>
+        <button class="btn-red-cta" onclick="document.location='${b.href}'" style="display:block;width:100%;">
+          <span class="btn-red-cta-i" style="width:100%;padding:16px 12px;white-space:normal;line-height:1.3;">${b.label || ''}</span>
         </button>
       `).join('');
       btnsEl.style.gridTemplateColumns = visible.length >= 2 ? 'repeat(2,1fr)' : '1fr';
