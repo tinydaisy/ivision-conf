@@ -27,6 +27,54 @@
       });
   }
 
+  // Форматирует число (в тысячах) в "19,9 тыс." / "450 тыс." / "1,5 млн."
+  function formatThousands(n) {
+    if (typeof n !== 'number' || !isFinite(n) || n <= 0) return '';
+    if (n >= 1000) {
+      var mln = n / 1000;
+      return (Math.round(mln * 10) / 10).toString().replace('.', ',') + ' млн.';
+    }
+    if (n >= 100) return Math.round(n).toLocaleString('ru-RU') + ' тыс.';
+    return (Math.round(n * 10) / 10).toString().replace('.', ',') + ' тыс.';
+  }
+
+  // Возвращает самый крупный актив коллаборатора (приоритет — platform "total"),
+  // или null если активов нет. Формат: { value, formatted, isTotal }.
+  function getTopAsset(media_assets) {
+    if (!Array.isArray(media_assets) || !media_assets.length) return null;
+    var totalItem = null;
+    var maxItem = null;
+    media_assets.forEach(function (m) {
+      if (!m || typeof m.subscribers !== 'number' || m.subscribers <= 0) return;
+      if (m.platform === 'total') {
+        if (!totalItem || m.subscribers > totalItem.subscribers) totalItem = m;
+      }
+      if (!maxItem || m.subscribers > maxItem.subscribers) maxItem = m;
+    });
+    var top = totalItem || maxItem;
+    if (!top) return null;
+    return {
+      value: top.subscribers,
+      isTotal: top.platform === 'total',
+      formatted: formatThousands(top.subscribers)
+    };
+  }
+
+  // Сортирует и фильтрует список: только с топ-активом, по убыванию value.
+  // Возвращает массив { collaborator, top }.
+  function rankByAssets(items) {
+    return (items || [])
+      .map(function (c) { return { collaborator: c, top: getTopAsset(c.media_assets) }; })
+      .filter(function (x) { return x.top !== null; })
+      .sort(function (a, b) { return b.top.value - a.top.value; });
+  }
+
+  // HTML строчки «◆ Аудитория: X тыс. подписчиков» под ролью карточки.
+  function audienceHtml(top) {
+    if (!top) return '';
+    return '<div class="collab-audience">Аудитория: ' + escapeHtml(top.formatted) + ' подписчиков</div>';
+  }
+
   /* ЖЮРИ — карусель .jury-team-track + прогресс-сегменты + кнопки prev/next.
      track:    HTMLElement   — обязательный контейнер .jury-team-track
      progress: HTMLElement|null — .jury-team-progress (если есть)
@@ -39,8 +87,11 @@
     track.innerHTML = '';
     if (progress) progress.innerHTML = '';
 
-    items.forEach(function (c, i) {
-      if (!c.photo_url) return;
+    // Фильтр + сортировка по убыванию топ-актива; без активов — не показываем.
+    var ranked = rankByAssets(items).filter(function (x) { return x.collaborator.photo_url; });
+
+    ranked.forEach(function (x, i) {
+      var c = x.collaborator;
       var card = document.createElement('div');
       card.className = 'jury-team-card';
       var ach = (c.achievements || []).map(function (a) { return '<li>' + escapeHtml(a) + '</li>'; }).join('');
@@ -53,6 +104,7 @@
         '</div>' +
         '<div class="jury-team-name">' + escapeHtml(c.name) + '</div>' +
         '<div class="jury-team-title">' + escapeHtml(titleText) + '</div>' +
+        audienceHtml(x.top) +
         (ach ? '<div class="jury-team-divider"></div><ul class="jury-team-regalia">' + ach + '</ul>' : '');
       track.appendChild(card);
 
@@ -102,8 +154,10 @@
     if (!grid || !Array.isArray(items)) return;
     grid.innerHTML = '';
 
-    items.forEach(function (c) {
-      if (!c.photo_url) return;
+    var ranked = rankByAssets(items).filter(function (x) { return x.collaborator.photo_url; });
+
+    ranked.forEach(function (x) {
+      var c = x.collaborator;
       var card = document.createElement('div');
       // стартуем как circle, переключим на pill после загрузки картинки если она широкая
       card.className = 'partner-card partner-card-circle';
@@ -117,6 +171,7 @@
         '</div>' +
         '<div class="partner-name">' + escapeHtml(c.name) + '</div>' +
         (titleText ? '<div class="partner-role">' + escapeHtml(titleText) + '</div>' : '') +
+        audienceHtml(x.top) +
         (ach ? '<ul class="partner-regalia">' + ach + '</ul>' : '');
       grid.appendChild(card);
 
@@ -148,12 +203,13 @@
     if (!grid || !Array.isArray(items)) return;
     grid.innerHTML = '';
 
-    // если один организатор — растягиваем на одну колонку
-    var visible = items.filter(function (c) { return c.photo_url; });
-    if (visible.length === 1) grid.classList.add('org-grid-1col');
+    // Фильтр + сортировка по топ-активу; без активов — не показываем.
+    var ranked = rankByAssets(items).filter(function (x) { return x.collaborator.photo_url; });
+    if (ranked.length === 1) grid.classList.add('org-grid-1col');
     else grid.classList.remove('org-grid-1col');
 
-    visible.forEach(function (c) {
+    ranked.forEach(function (x) {
+      var c = x.collaborator;
       var card = document.createElement('div');
       card.className = 'org-card';
       card.setAttribute('data-name', c.name || '');
@@ -165,6 +221,7 @@
         '</div>' +
         '<div class="org-name">' + escapeHtml(c.name) + '</div>' +
         (roleText ? '<div class="org-role">' + escapeHtml(roleText) + '</div>' : '') +
+        audienceHtml(x.top) +
         (ach ? '<ul class="org-list">' + ach + '</ul>' : '');
       grid.appendChild(card);
     });
