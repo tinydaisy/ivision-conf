@@ -3140,10 +3140,12 @@ async function loadData() {
     .join(' <span style="color:var(--brand-peach);">·</span> ');
 
   // HERO CTA — кнопка на главном экране (роль-специфично)
+  // При ?shwt — переключаем заголовок на «Выбрать формат» (режим показа платных тарифов)
   if (data.hero_cta) {
     const heroLabel = document.getElementById('hero-cta-label');
     const heroBtn = document.getElementById('hero-cta-btn');
-    if (heroLabel) heroLabel.textContent = data.hero_cta.label || '';
+    const heroText = params.has('shwt') ? 'Выбрать формат' : (data.hero_cta.label || '');
+    if (heroLabel) heroLabel.textContent = heroText;
     if (heroBtn && data.hero_cta.scrollTo) {
       heroBtn.onclick = () => {
         const el = document.getElementById(data.hero_cta.scrollTo);
@@ -3153,9 +3155,11 @@ async function loadData() {
   }
 
   // NAV CTA — кнопка в липкой навигации (роль-специфично)
+  // При ?shwt — заменяем «Вступить в чат» на «Выбрать формат»
   if (data.nav_cta) {
     const navLabel = document.getElementById('nav-cta-label');
-    if (navLabel) navLabel.textContent = data.nav_cta.label || '';
+    const navText = params.has('shwt') ? 'Выбрать формат' : (data.nav_cta.label || '');
+    if (navLabel) navLabel.textContent = navText;
     const navBtn = document.getElementById('nav-cta-btn');
     if (navBtn) {
       if (data.nav_cta.openModal) {
