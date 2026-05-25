@@ -1719,6 +1719,45 @@
     text-transform:uppercase;
     text-align:center;
   }
+  .final-bridge-meta{
+    font-family:var(--font-body);
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--brand-peach);
+    text-align:center;
+    opacity:.85;
+  }
+  .final-bridge-lead{
+    margin:8px 0 4px;
+    font-size:15px;
+    color:#FFFFFF;
+    font-weight:500;
+    text-align:center;
+  }
+  .final-bridge-list{
+    list-style:none;
+    padding:0;
+    margin:0 auto;
+    max-width:620px;
+    text-align:left;
+  }
+  .final-bridge-list li{
+    position:relative;
+    padding:6px 0 6px 22px;
+    font-size:15px;
+    line-height:1.5;
+    color:#FFFFFF;
+  }
+  .final-bridge-list li::before{
+    content:'◆';
+    position:absolute;
+    left:0;top:8px;
+    color:var(--brand-peach);
+    font-size:11px;
+  }
+  .final-bridge-quote{margin-top:12px;max-width:780px;}
   .final-bridge-arrow{
     position:absolute;
     left:50%;bottom:-14px;
@@ -2087,23 +2126,7 @@
       </div>
     </div>
 
-    <!-- OFFLINE block -->
-    <div class="final-block">
-      <div class="final-meta">Офлайн · Вьетнам · середина августа</div>
-      <h3>Международная медиа-резиденция iViSiON</h3>
-      <p>Финалисты выходят на международный уровень:</p>
-      <ul class="stage-list-mini">
-        <li>выступают перед аудиторией русскоязычных предпринимателей и экспатов</li>
-        <li>усиливают статус международного спикера</li>
-        <li>участвуют в съёмках со своим брендированным мерчем</li>
-        <li>снимают сценический клип-видеовизитку</li>
-        <li>получают сильное окружение, нетворкинг и новые возможности</li>
-      </ul>
-
-      <div class="gold-plate" style="margin-top:24px;">
-        <p style="margin:0;">Во Вьетнаме соединяются: <strong>конференция, медийность, выступления, эстетика, контент и окружение сильных людей</strong>.</p>
-      </div>
-    </div>
+    <!-- OFFLINE block — перенесён в плашку final-bridge ниже -->
 
     <!-- А ДАЛЬШЕ -->
     <h2 class="final-partners-title">А дальше — медийность продолжается</h2>
@@ -2123,7 +2146,19 @@
       </div>
       <div class="final-bridge">
         <div class="final-bridge-icon"><img src="/img/logo_ivision.png" alt="iViSiON" loading="lazy" decoding="async"></div>
+        <div class="final-bridge-meta">Офлайн · Вьетнам · середина августа</div>
         <div class="final-bridge-text">МЕДИА-РЕЗИДЕНЦИЯ iViSiON ВО ВЬЕТНАМЕ</div>
+        <p class="final-bridge-lead">Финалисты выходят на международный уровень:</p>
+        <ul class="final-bridge-list">
+          <li>выступают перед аудиторией русскоязычных предпринимателей и экспатов</li>
+          <li>усиливают статус международного спикера</li>
+          <li>участвуют в съёмках со своим брендированным мерчем</li>
+          <li>снимают сценический клип-видеовизитку</li>
+          <li>получают сильное окружение, нетворкинг и новые возможности</li>
+        </ul>
+        <div class="gold-plate final-bridge-quote">
+          <p style="margin:0;">Во Вьетнаме соединяются: <strong>конференция, медийность, выступления, эстетика, контент и окружение сильных людей</strong>.</p>
+        </div>
         <div class="final-bridge-arrow">↓</div>
       </div>
     </div>
