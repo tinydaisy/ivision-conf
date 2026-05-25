@@ -803,6 +803,10 @@ function renderTariffs(tariffs) {
 
   const params = new URLSearchParams(window.location.search);
   const visible = tariffs.filter(t => {
+    // hide_on: массив URL-параметров. Если хоть один из них есть в URL — тариф скрывается.
+    // Пример: hide_on: ["shwp"] — тариф скрыт при ?shwp.
+    if (Array.isArray(t.hide_on) && t.hide_on.some(p => params.has(p))) return false;
+    // visibility (legacy): whitelist — показывается только при наличии одного из параметров.
     if (t.visibility === 'always' || !t.visibility) return true;
     if (Array.isArray(t.visibility)) return t.visibility.some(p => params.has(p));
     return params.has(t.visibility);

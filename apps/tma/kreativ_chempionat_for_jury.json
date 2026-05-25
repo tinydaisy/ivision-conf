@@ -143,6 +143,7 @@
       "title": "Жюри с выступлением (iViSiON, июль)",
       "subtitle": "(КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ)",
       "color": "purple",
+      "hide_on": ["shwp"],
       "blocks": [
         {
           "type": "list",
@@ -202,6 +203,7 @@
       "title": "Жюри партнерский пакет",
       "subtitle": "(КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ)",
       "color": "purple",
+      "hide_on": ["shwp"],
       "blocks": [
         {
           "type": "list",

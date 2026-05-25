@@ -166,11 +166,12 @@
     .carousel-track::-webkit-scrollbar-thumb{background:var(--brand-peach);border-radius:2px;}
 
     .video-card{width:100%;min-width:100%;aspect-ratio:9/16;scroll-snap-align:center;flex-shrink:0;position:relative;cursor:pointer;background:linear-gradient(135deg,rgba(255,207,164,.1),rgba(192,132,252,.1));border-radius:12px;overflow:hidden;}
-    /* Частушки — статическая галерея 3 в ряд (без карусели) */
-    .chastushki-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:980px;margin:32px auto 0;}
-    .chastushki-gallery .video-card{min-width:0;scroll-snap-align:none;}
-    @media(max-width:900px){.chastushki-gallery{grid-template-columns:repeat(2,1fr);}}
-    @media(max-width:560px){.chastushki-gallery{grid-template-columns:repeat(2,1fr);gap:10px;}}
+    /* Частушки — карусель по 3 видео на экране */
+    .chastushki-wrap{max-width:920px!important;margin:32px auto 0!important;}
+    .chastushki-wrap .carousel-track{gap:16px;scroll-snap-type:x mandatory;}
+    .chastushki-wrap .video-card{flex:0 0 calc((100% - 32px)/3);min-width:0;width:auto;scroll-snap-align:start;}
+    @media(max-width:760px){.chastushki-wrap .video-card{flex:0 0 calc((100% - 16px)/2);}.chastushki-wrap .carousel-track{gap:16px;}}
+    @media(max-width:480px){.chastushki-wrap .video-card{flex:0 0 100%;}}
     .video-card video{width:100%;height:100%;object-fit:cover;display:block;border-radius:12px;border:2px solid rgba(255,207,164,.15);background:rgba(17,24,39,.7);}
     .video-card::after{content:'▶';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:rgba(8,11,18,.75);color:var(--brand-peach);display:flex;align-items:center;justify-content:center;font-size:18px;pointer-events:none;transition:opacity .2s;border:2px solid var(--brand-peach);z-index:2;}
     .video-card.playing::after{opacity:0;}
@@ -428,7 +429,7 @@
     .ptariff-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
     .ptariff-list li{font-size:14px;color:var(--text-light);line-height:1.5;display:flex;gap:8px;align-items:flex-start;}
     .ptariff-list li::before{content:"✓";color:var(--brand-peach);font-weight:700;flex-shrink:0;}
-    .ptariff-btn{margin-top:auto;padding:1.5px;border-radius:100px;background:var(--btn-grad);border:none;cursor:pointer;transition:transform .25s ease;}
+    .ptariff-btn{margin-top:auto;padding:0;border-radius:100px;background:transparent;border:none;cursor:pointer;transition:transform .25s ease;}
     .ptariff-btn:hover{transform:translateY(-2px);}
     .ptariff-btn-i{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#DC2626 0%,#991B1B 100%);color:#FFFFFF;font-family:var(--font-body);font-weight:800;font-size:15px;letter-spacing:.04em;padding:14px 24px;border-radius:100px;text-transform:uppercase;}
     .ptariff-btn:hover .ptariff-btn-i{background:linear-gradient(135deg,#EF4444 0%,#B91C1C 100%);}
@@ -2781,7 +2782,7 @@
     <h3 class="h2" style="text-align:center;font-size:clamp(26px,3.4vw,40px);margin-top:96px;color:var(--brand-peach);max-width:980px;margin-left:auto;margin-right:auto;">
       Более 30 лидеров рынка получили от iViSiON брендированные частушки
     </h3>
-    <div class="chastushki-gallery" id="chastushki-gallery"></div>
+    <div class="chastushki-wrap" id="chastushki-gallery"></div>
 
     <!-- Финальная мысль на золотой плашке + большой подзаголовок -->
     <div class="gold-plate" style="max-width:880px;margin:80px auto 0;text-align:center;">
@@ -3499,7 +3500,7 @@ async function loadData() {
     { src: 'https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_chastushki/teleshova.mp4',  poster: 'https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_video_posters/teleshova.jpg' }
   ];
   const chastushkiContainer = document.getElementById('chastushki-gallery');
-  if (chastushkiContainer) buildVideoGallery(CHASTUSHKI, chastushkiContainer);
+  if (chastushkiContainer) buildVideoCarousel(CHASTUSHKI, chastushkiContainer, 'chastushki');
 }
 document.addEventListener('DOMContentLoaded', loadData);
 
