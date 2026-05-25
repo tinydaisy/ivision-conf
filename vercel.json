@@ -24,6 +24,7 @@
     { "src": "^/kreativ-chempionat-zayavka(\\.html)?$", "dest": "/apps/tma/kreativ_chempionat_zayavka.html" },
     { "src": "^/russky-kod-mockup(\\.html)?$",          "dest": "/apps/tma/russky_kod_mockup.html" },
     { "src": "^/zhivu-hero-mockup(\\.html)?$",          "dest": "/apps/tma/zhivu_hero_mockup.html" },
+    { "src": "^/vietnam(\\.html)?$",                    "dest": "/apps/tma/vietnam.html" },
     { "src": "^/(.*)$",                                 "dest": "/apps/tma/index.html" }
   ],
   "headers": [

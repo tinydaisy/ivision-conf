@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<!-- Cache bust: 2026-05-25 v1 -->
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
+  <title>Вьетнам — международная медиа-резиденция iViSiON</title>
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="preload" as="image" href="/img/nha_trang/hero3.jpg?v=16" fetchpriority="high">
+  <link rel="preload" as="image" href="/img/nha_trang/plashka.png?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@500;600;700&family=Roboto:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --brand-teal:#25455D;--brand-peach:#FFCFA4;--brand-purple:#C084FC;--brand-pink:#C84B9E;--brand-pink-light:#DD85B8;
+      --bg-dark:#080B12;--bg-mid:#0D111A;--bg-card:#111827;
+      --text-light:#F5F0E8;--text-muted:rgba(245,240,232,.55);--text-dim:rgba(245,240,232,.32);
+      --border:rgba(37,69,93,.45);--border-peach:rgba(255,207,164,.2);
+      --btn-grad:linear-gradient(135deg,#FFCFA4 0%,#C084FC 50%,#25455D 100%);
+      --font-display:'Bebas Neue',Impact,sans-serif;
+      --font-body:'Roboto',system-ui,sans-serif;
+      --radius-sm:8px;--radius-md:16px;--radius-lg:24px;--radius-pill:100px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%;}
+    body{font-family:var(--font-body);background:var(--bg-dark);color:var(--text-light);line-height:1.6;overflow-x:hidden;max-width:100%;}
+    section{overflow-x:hidden;position:relative;}
+    img{max-width:100%;display:block;}
+    a{text-decoration:none;color:inherit;}
+    ul{list-style:none;}
+
+    .container{max-width:1200px;margin:0 auto;padding:0 24px;}
+    .section-label{font-family:var(--font-body);font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand-peach);margin-bottom:16px;display:block;}
+
+    /* HERO */
+    #hero{position:relative;min-height:100vh;display:flex;align-items:center;background:linear-gradient(160deg,#25455D 0%,#080B12 60%);overflow:hidden;padding:120px 0 80px;}
+    .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:flex-start;position:relative;z-index:2;padding-top:40px;}
+    .hero-sub{font-size:18px;font-weight:700;color:var(--text-light);margin-bottom:12px;line-height:1.4;}
+    .hero-btns{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:36px;}
+
+    /* Red CTA */
+    .btn-red-cta{display:inline-block;padding:9px;border-radius:var(--radius-pill);background:var(--btn-grad);border:none;cursor:pointer;transition:transform .25s ease;text-decoration:none;}
+    .btn-red-cta:hover{transform:translateY(-2px);}
+    .btn-red-cta-i{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#DC2626 0%,#991B1B 100%) !important;color:#FFFFFF !important;font-family:var(--font-body);font-weight:800;font-size:16px;padding:16px 40px;border-radius:var(--radius-pill);white-space:nowrap;letter-spacing:.04em;text-transform:uppercase;}
+    .btn-red-cta:hover .btn-red-cta-i{background:linear-gradient(135deg,#EF4444 0%,#B91C1C 100%) !important;}
+    @media(max-width:768px){
+      .hero-btns .btn-red-cta{display:block;width:100%;}
+      .hero-btns .btn-red-cta-i{width:100%;}
+    }
+
+    /* SECTIONS */
+    .sec{padding:80px 0;}
+    .sec.dark{background:var(--bg-dark);}
+    .sec.mid{background:var(--bg-mid);}
+    .h2{font-family:var(--font-display);font-weight:400;font-size:clamp(40px,4.6vw,64px);line-height:1.05;letter-spacing:.02em;color:var(--text-light);margin-bottom:20px;text-transform:uppercase;}
+    .desc{font-size:15px;color:var(--text-muted);line-height:1.7;margin-bottom:28px;max-width:700px;}
+
+    /* STAGE LIST MINI (used in vietnam section) */
+    .stage-list-mini{list-style:none;padding:0;margin:0;}
+    .stage-list-mini li{font-size:15px;color:var(--text-light);line-height:1.7;padding:6px 0 6px 22px;position:relative;}
+    .stage-list-mini li::before{content:'◆';position:absolute;left:0;color:var(--brand-peach);font-size:10px;top:11px;}
+
+    /* GOLD PLATE */
+    .gold-plate{background:linear-gradient(135deg,rgba(255,207,164,.10),rgba(184,137,106,.05));border:1px solid rgba(255,207,164,.28);border-radius:18px;padding:22px 24px;color:var(--text-light);font-size:15px;line-height:1.65;}
+    .gold-plate strong{color:var(--brand-peach);font-weight:700;}
+    .gold-plate ul{list-style:none;padding:0;margin:0;}
+    .gold-plate ul li{padding:8px 0 8px 22px;position:relative;}
+    .gold-plate ul li::before{content:'◆';position:absolute;left:0;color:var(--brand-peach);font-size:10px;top:13px;}
+
+    /* STAGE NUMBER (01/02/03 in nt-block) */
+    .stage-num-large{font-family:var(--font-display);font-size:64px;font-weight:400;color:var(--brand-peach);line-height:.9;margin-bottom:8px;opacity:.65;}
+
+    /* COLLAGE (медиа-батл) — простая grid-вёрстка */
+    .collage-wrap{display:grid;gap:14px;margin:18px 0;}
+    .collage-row{display:grid;gap:14px;}
+    .collage-row-top{grid-template-columns:1fr 1fr;}
+    .collage-row-bottom{grid-template-columns:1fr 0.7fr 1fr;}
+    .collage-col{display:flex;flex-direction:column;gap:14px;}
+    .collage-item{border-radius:18px;overflow:hidden;background:rgba(17,24,39,.55);border:1px solid rgba(255,207,164,.18);min-height:160px;}
+    .collage-item img{width:100%;height:100%;object-fit:cover;display:block;}
+    .collage-col-stack .collage-item{min-height:110px;}
+    @media(max-width:768px){
+      .collage-row-top,.collage-row-bottom{grid-template-columns:1fr 1fr;}
+      .collage-col-stack{grid-column:span 2;flex-direction:row;}
+    }
+
+    /* PTARIFF (тариф) */
+    .ptariff{background:linear-gradient(160deg,rgba(255,207,164,.06),rgba(255,255,255,.02));border:1px solid rgba(255,207,164,.2);border-radius:24px;padding:40px 36px;display:flex;flex-direction:column;gap:18px;max-width:760px;margin:0 auto;}
+    .ptariff-stage{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-peach);}
+    .ptariff-title{font-size:22px;font-weight:700;color:var(--text-light);line-height:1.3;}
+    @keyframes pulse-deadline{0%,100%{box-shadow:0 0 20px rgba(200,75,158,.45);}50%{box-shadow:0 0 32px rgba(200,75,158,.75);}}
+    .ptariff-places{display:inline-block;align-self:flex-start;font-family:var(--font-body);font-size:15px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#FFFFFF;background:linear-gradient(135deg,#C84B9E 0%,#FF4757 100%);padding:10px 18px;border-radius:100px;margin-top:2px;box-shadow:0 0 20px rgba(200,75,158,.5);animation:pulse-deadline 2.4s ease-in-out infinite;}
+    .ptariff-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
+    .ptariff-list li{font-size:14px;color:var(--text-light);line-height:1.5;display:flex;gap:8px;align-items:flex-start;}
+    .ptariff-list li::before{content:"✓";color:var(--brand-peach);font-weight:700;flex-shrink:0;}
+    .ptariff-btn{margin-top:auto;padding:1.5px;border-radius:100px;background:var(--btn-grad);border:none;cursor:pointer;text-decoration:none;display:block;}
+    .ptariff-btn-i{display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(255,207,164,.12);color:var(--text-light);font-family:var(--font-body);font-weight:700;font-size:15px;letter-spacing:.04em;padding:14px 24px;border-radius:100px;}
+
+    /* QUESTIONS / Telegram CTA */
+    .q-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;max-width:1080px;margin:0 auto;}
+    .q-text-col{display:flex;flex-direction:column;align-items:flex-start;}
+    .q-title{font-family:var(--font-body);font-size:clamp(28px,4.5vw,42px);font-weight:800;color:var(--brand-peach);line-height:1.15;letter-spacing:.02em;margin-bottom:24px;text-transform:uppercase;}
+    .q-desc{font-size:17px;line-height:1.65;color:var(--text-light);margin-bottom:32px;max-width:480px;}
+    .q-tg-btn{display:inline-flex;align-items:center;gap:12px;padding:1.5px;border-radius:100px;background:var(--btn-grad);border:none;cursor:pointer;text-decoration:none;}
+    .q-tg-btn-i{display:flex;align-items:center;gap:10px;background:rgba(255,207,164,.12);color:var(--text-light);font-family:var(--font-body);font-weight:700;font-size:16px;letter-spacing:.04em;padding:16px 28px;border-radius:100px;}
+    .q-tg-btn:hover .q-tg-btn-i{background:rgba(255,207,164,.18);}
+    .q-photo-col{display:flex;justify-content:center;}
+    .q-photo{width:100%;max-width:420px;aspect-ratio:1/1;overflow:hidden;border-radius:20px;border:1px solid rgba(255,207,164,.28);box-shadow:0 24px 60px rgba(0,0,0,.5);transition:transform .35s ease;}
+    .q-photo:hover{transform:scale(1.02);}
+    .q-photo img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+    @media(max-width:880px){
+      .q-grid{grid-template-columns:1fr;gap:32px;text-align:center;}
+      .q-text-col{align-items:center;}
+      .q-desc{margin-left:auto;margin-right:auto;}
+      .q-photo{max-width:280px;}
+    }
+
+    /* FOOTER */
+    #site-footer{background:#04060d;padding:32px 0;border-top:1px solid rgba(255,207,164,.1);}
+    .footer-links{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:16px;}
+    .footer-links a{font-size:12px;color:var(--text-muted);text-decoration:underline;text-underline-offset:3px;transition:color .2s;}
+    .footer-links a:hover{color:var(--brand-peach);}
+    .footer-legal{font-size:12px;color:var(--text-dim);line-height:1.7;}
+
+    /* MOBILE базовые правки */
+    @media(max-width:768px){
+      .container{padding:0 20px;}
+      .sec{padding:60px 0;}
+      #hero{padding:80px 0 60px;min-height:auto;}
+      .hero-grid{grid-template-columns:1fr;gap:32px;padding-top:20px;}
+      .hero-sub{font-size:15px;}
+      .hero-btns{flex-direction:column;gap:12px;}
+      .h2{font-size:clamp(28px,7vw,40px);}
+      .desc{font-size:14px;}
+      .ptariff{padding:28px 22px;}
+    }
+  </style>
+  <!-- Подключаем общий стиль чемпионата: hero3.jpg фон, металлический персик, шрифты заголовков -->
+  <link rel="stylesheet" href="/css/kreativ_chempionat_new.css?v=17">
+</head>
+<body>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-priem-badge">
+          <span class="hero-priem-star">❖</span>
+          <span class="hero-priem-text">ВСЕГО 10 МЕСТ</span>
+          <span class="hero-priem-star">❖</span>
+        </div>
+
+        <p class="hero-sub"><span style="color:var(--brand-peach);">Ж</span>ивые <span style="color:var(--brand-peach);">·</span> <span style="color:var(--brand-peach);">И</span>стинные <span style="color:var(--brand-peach);">·</span> <span style="color:var(--brand-peach);">В</span>лияющие <span style="color:var(--brand-peach);">·</span> <span style="color:var(--brand-peach);">У</span>спешные</p>
+
+        <h1 class="hero-title-big">
+          МЕЖДУНАРОДНЫЙ<br>
+          ЧЕМПИОНАТ<br class="br-desktop">
+          СПИКЕРОВ
+        </h1>
+
+        <p style="font-family:var(--font-body);font-weight:800;font-size:clamp(13px,1.25vw,17px);letter-spacing:.06em;color:#FFFFFF;text-transform:uppercase;margin:14px 0 4px;line-height:1.3;">
+          для <span style="color:var(--brand-peach);">узнаваемости</span> русских <br>созидателей по всему миру:
+        </p>
+        <p style="font-family:var(--font-body);font-weight:500;font-size:clamp(13px,1.1vw,16px);color:#FFFFFF;margin:0;line-height:1.4;">
+          экспертов, предпринимателей, владельцев бизнесов и брендов
+        </p>
+
+        <p style="margin:24px 0 12px;font-family:var(--font-body);font-weight:800;font-size:clamp(12px,1.1vw,15px);letter-spacing:.08em;color:#FFFFFF;text-transform:uppercase;line-height:1.4;text-decoration:underline;text-decoration-color:var(--brand-peach);text-decoration-thickness:2px;text-underline-offset:6px;">
+          ФИНАЛ — <span style="color:var(--brand-peach);">ВЬЕТНАМ</span>
+        </p>
+
+        <div class="hero-btns" style="margin-top:12px;">
+          <a class="btn-red-cta" href="#tariff-sec">
+            <span class="btn-red-cta-i">Забронировать место</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIETNAM — Международная медиа-резиденция -->
+<section class="sec dark" id="vietnam-sec">
+  <div class="container">
+    <div class="vietnam-hero-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;max-width:1240px;margin:0 auto;">
+      <div class="vietnam-hero-text">
+        <div class="section-label">Международный уровень</div>
+        <h2 class="h2" style="margin-top:8px;">Вьетнам — международная медиа-резиденция iViSiON</h2>
+        <p class="desc" style="color:var(--brand-peach);font-weight:600;margin:0 0 22px;font-style:italic;">Не просто выезд. Новый уровень статуса, медийности и окружения</p>
+        <p style="font-size:16px;line-height:1.7;color:var(--text-light);margin:0 0 18px;">Финальный этап iViSiON проходит во Вьетнаме в формате <strong style="color:var(--brand-peach);">международной медиа-резиденции</strong> для предпринимателей, экспертов и спикеров новой эпохи.</p>
+        <p style="font-size:16px;line-height:1.7;color:var(--text-light);margin:0;">Это пространство, где соединяются: <strong style="color:var(--brand-peach);">международная конференция, выступления, медийность, сильное окружение, контент, эстетика и создание личного бренда нового уровня</strong>.</p>
+      </div>
+      <div class="vietnam-hero-img" style="display:flex;justify-content:center;align-items:center;">
+        <img src="/img/nha_trang/lepota.png?v=1" alt="Лепота во Вьетнаме" style="max-width:100%;width:100%;max-height:720px;height:auto;object-fit:contain;display:block;filter:hue-rotate(-12deg) saturate(0.78);" loading="lazy" decoding="async">
+      </div>
+    </div>
+    <style>
+      @media (max-width: 768px) {
+        .vietnam-hero-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+        .vietnam-hero-text { text-align: center; }
+        .vietnam-hero-img img { max-height: 480px !important; }
+      }
+    </style>
+
+    <h3 class="h2" style="text-align:center;font-size:clamp(28px,3.6vw,42px);margin-top:64px;">В программе выезда во Вьетнам</h3>
+
+    <!-- NHA TRANG SUB-BLOCKS -->
+    <style>
+      .nt-block{max-width:980px;margin:64px auto 0;padding:32px;background:linear-gradient(160deg,rgba(255,207,164,.06),rgba(192,132,252,.04));border:1px solid rgba(255,207,164,.2);border-radius:24px;}
+      .nt-block-title{font-family:var(--font-body);font-size:22px;font-weight:800;color:var(--text-light);letter-spacing:.02em;line-height:1.3;}
+      .nt-block-text{font-size:16px;line-height:1.7;color:var(--text-light);margin:0 0 18px;}
+      .nt-block-text strong{color:var(--brand-peach);font-weight:700;}
+      .nt-block-img{width:100%;border-radius:18px;overflow:hidden;margin-top:18px;}
+      .nt-block-img img{width:100%;display:block;}
+
+      .nt-block-img.shape-stage{
+        border-radius: 32% 68% 41% 59% / 56% 38% 62% 44%;
+        transform: rotate(-1.2deg);
+        box-shadow: 0 24px 60px rgba(255,207,164,.18), 0 8px 24px rgba(0,0,0,.4);
+        outline: 2px solid rgba(255,207,164,.35);
+        outline-offset: -2px;
+      }
+      .nt-block-img.shape-stilyagi{
+        border-radius: 71% 29% 56% 44% / 30% 70% 30% 70%;
+        transform: rotate(-3.5deg);
+        box-shadow: 0 24px 60px rgba(200,75,158,.22), 0 8px 24px rgba(0,0,0,.4);
+        outline: 2px solid rgba(200,75,158,.4);
+        outline-offset: -2px;
+      }
+      .nt-block-img.shape-stilyagi:hover{transform:rotate(-3.5deg) scale(1.02);}
+      .nt-block-img.shape-stage:hover{transform:rotate(-1.2deg) scale(1.02);}
+      .nt-block-img.shape-stage,.nt-block-img.shape-stilyagi{transition:transform .35s ease;}
+
+      .nt-block-img.shape-egg{
+        border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+        aspect-ratio: 3/4;
+        overflow: hidden;
+        outline: 2px solid rgba(255,207,164,.32);
+        outline-offset: -2px;
+        box-shadow: 0 18px 50px rgba(0,0,0,.45);
+      }
+      .nt-block-img.shape-egg img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+      }
+      .nt-block-img.shape-egg.shape-egg-solo{
+        max-width: 380px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .nt-photos-grid .nt-block-img.shape-egg:nth-child(1){transform:rotate(-2deg);}
+      .nt-photos-grid .nt-block-img.shape-egg:nth-child(2){transform:rotate(1.5deg);}
+      .nt-photos-grid .nt-block-img.shape-egg:nth-child(3){transform:rotate(-1deg);}
+      .nt-block-caption{font-size:13px;color:var(--text-muted);font-style:italic;margin-top:10px;text-align:center;}
+      .nt-photos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;}
+      .nt-photos-grid .nt-block-img{margin-top:0;}
+      .nt-extras-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:48px;max-width:1080px;margin:0 auto;}
+      .nt-extras-title{font-family:var(--font-display);font-size:clamp(24px,2.8vw,34px);font-weight:400;color:var(--brand-peach);text-transform:uppercase;letter-spacing:.02em;line-height:1.1;margin:0 0 18px;}
+      @media(max-width:768px){
+        .nt-block{padding:24px 20px;}
+        .nt-block-title{font-size:19px;}
+        .nt-block-text{font-size:15px;}
+        .nt-photos-grid{grid-template-columns:1fr;}
+        .nt-extras-grid{grid-template-columns:1fr;gap:36px;}
+        .nt-block .gold-plate ul{display:block;}
+        .nt-block .gold-plate ul li{display:block;position:relative;padding-left:22px;margin-bottom:10px;}
+        .nt-block .gold-plate ul li::before{position:absolute;left:0;top:13px;}
+      }
+    </style>
+
+    <!-- Sub-block 1: Международная конференция -->
+    <div class="nt-block">
+      <div class="stage-num-large">01</div>
+      <h3 class="nt-block-title" style="margin-bottom:18px;">Международная конференция</h3>
+      <p class="nt-block-text">Каждый участник или победитель выезда:</p>
+      <ul class="stage-list-mini" style="margin-bottom:18px;">
+        <li>выступит на международной площадке на аудиторию русскоязычных экспатов и предпринимателей</li>
+        <li>получит профессиональные записи выступления</li>
+        <li>обретёт <strong>статус международного спикера и эксперта</strong> в своём продвижении, медиаките и продажах</li>
+      </ul>
+      <div class="nt-block-img shape-stage">
+        <img src="/img/nha_trang/zal_nha_trang.jpg" alt="Конференц-зал в Нячанге" loading="lazy">
+      </div>
+      <p class="nt-block-caption">Конференц-зал в Нячанге</p>
+
+      <div class="gold-plate" style="margin-top:24px;">
+        <ul>
+          <li>Это уже не просто онлайн-эфир. Это <strong>новый уровень восприятия личности и бренда как лидера рынка</strong>.</li>
+          <li>Новая аудитория экспатов и зарубежных русскоязычных предпринимателей для поиска клиентов, коллабораций и партнёрств.</li>
+          <li>Масштаб, который увеличивает стоимость продукта и желание аудитории ассоциироваться с вами.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Sub-block 2: Медиа-батл с ИИ -->
+    <div class="nt-block">
+      <div class="stage-num-large">02</div>
+      <h3 class="nt-block-title" style="margin-bottom:18px;">Медиа-батл с ИИ и визуальный брендинг личности</h3>
+      <p class="nt-block-text" style="font-style:italic;color:var(--brand-peach);font-weight:600;">Все научились нажимать кнопку и получать «ИИ-шедевр» за три секунды. А как насчёт повторить вживую?</p>
+      <p class="nt-block-text">Мы превратим ИИ в нашего <strong>главного креативного партнёра</strong> и… главного соперника. Часть референсов для иммерсивного баттла с ИИ — для вовлечения аудитории и выхода за рамки привычного контента.</p>
+
+      <div class="collage-wrap">
+        <div class="collage-row collage-row-top">
+          <div class="collage-col">
+            <div class="collage-item slot-straus">
+              <img src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/2straus.jpg" alt="Страус" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <div class="collage-col">
+            <div class="collage-item slot-yacht">
+              <img src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/2yahta.webp" alt="Яхта" loading="lazy" decoding="async">
+            </div>
+          </div>
+        </div>
+        <div class="collage-row collage-row-bottom">
+          <div class="collage-col">
+            <div class="collage-item slot-dver">
+              <img src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/2dver.webp" alt="Дверь" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <div class="collage-col collage-col-stack">
+            <div class="collage-item slot-kokos">
+              <img src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/2gamak.webp" alt="Кокос" loading="lazy" decoding="async">
+            </div>
+            <div class="collage-item slot-bike">
+              <img src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/2bike.webp" alt="Байк" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <div class="collage-col">
+            <div class="collage-item slot-lest">
+              <img src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/2lestmitsa.jpg" alt="Лестница" loading="lazy" decoding="async">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gold-plate" style="margin-top:24px;">
+        <ul>
+          <li>Вы получите <strong>свою собственную рекламную растяжку</strong> для брендированного контента — для соцсетей, сайтов и рекламы.</li>
+          <li>Почувствуете вкус жизни, драйв и искренний смех над вызовами ИИ-идей.</li>
+          <li>Контент в эстетике международного бренда.</li>
+          <li>Такой концептуальный визуал усиливает <strong>вовлечение, доверие аудитории и вашу узнаваемость</strong>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Sub-block 3: Русский код -->
+    <div class="nt-block">
+      <div class="stage-num-large">03</div>
+      <h3 class="nt-block-title" style="margin-bottom:18px;">Съёмка сценического видео-клипа о вашем продукте в стиле «Русский код»</h3>
+      <p class="nt-block-text">Отдельная идея финального этапа — показать <strong>новый образ русскоязычных предпринимателей и экспертов на международной сцене</strong>.</p>
+      <p class="nt-block-text">Не через пафос. А через: <strong>масштаб личности, эстетику, культуру созидания и уважение к своим корням</strong>.</p>
+      <p class="nt-block-text">Наша цель — показать русских созидателей по всему миру, которые создают, развиваются и влияют — сохраняя свой культурный код, мышление и внутреннюю опору.</p>
+      <div class="nt-block-img shape-stilyagi">
+        <img src="/img/nha_trang/russkii_kod.JPG" alt="Референс стиля съёмки — Русский код" loading="lazy">
+      </div>
+      <p class="nt-block-caption">Референс стиля съёмки</p>
+
+      <div class="gold-plate" style="margin-top:24px;">
+        <ul>
+          <li>Вы заснимете <strong>креативную самопрезентацию своего продукта, бренда или услуги</strong>.</li>
+          <li>Сможете использовать его в контенте, чатах нетворкингов и перед выходами на сцену.</li>
+          <li>Станете сопричастны к идее <strong>русских созидателей по всему миру</strong>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Sub-block 4: Что ещё -->
+    <h2 class="h2" style="text-align:center;margin-top:80px;margin-bottom:32px;">Что ещё?</h2>
+
+    <div class="nt-extras-grid">
+      <div class="nt-extras-block">
+        <h4 class="nt-extras-title">Комьюнити сильных людей</h4>
+        <p class="nt-block-text">Во Вьетнам едут: <strong>предприниматели, эксперты, создатели проектов и лидеры сообществ</strong>, которые хотят расти не только в доходе, но и в масштабе личности.</p>
+        <p class="nt-block-text">Это среда:</p>
+        <ul class="stage-list-mini" style="margin-bottom:12px;">
+          <li>партнёрств</li>
+          <li>коллабораций</li>
+          <li>знакомств</li>
+          <li>новых возможностей</li>
+          <li>и сильного окружения</li>
+        </ul>
+        <p class="nt-block-text" style="font-style:italic;color:var(--brand-peach);">Потому что масштаб часто растёт через людей, рядом с которыми вы находитесь.</p>
+      </div>
+
+      <div class="nt-extras-block">
+        <h4 class="nt-extras-title">Атмосфера, досуг и состояние</h4>
+        <p class="nt-block-text">Мы создаём не просто деловую поездку, а <strong>пространство энергии, вдохновения и красивой жизни</strong>.</p>
+        <p class="nt-block-text">Участников ждут:</p>
+        <ul class="stage-list-mini" style="margin-bottom:18px;">
+          <li>конференция, коллаборации и выступления</li>
+          <li>проживание в Золотом дворце на берегу моря</li>
+          <li>красивые локации Вьетнама</li>
+          <li>совместный отдых</li>
+          <li>атмосферные ужины</li>
+          <li>прогулки и выезды</li>
+          <li>съёмки в необычных местах</li>
+          <li>живое общение вне рамок «нетворкинга ради пользы»</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="nt-photos-grid" style="max-width:980px;margin:48px auto 0;">
+      <div class="nt-block-img shape-egg"><img src="/img/nha_trang/photo2.jpg" alt="Терраса со стеклянным полом" loading="lazy"></div>
+      <div class="nt-block-img shape-egg"><img src="/img/nha_trang/photo5.jpg" alt="Фасад дворца" loading="lazy"></div>
+      <div class="nt-block-img shape-egg"><img src="/img/nha_trang/photo1.jpg" alt="Внутренний бассейн" loading="lazy"></div>
+    </div>
+    <p class="nt-block-caption">Золотой дворец у моря</p>
+
+    <div class="gold-plate" style="max-width:880px;margin:32px auto 0;text-align:center;">
+      <p style="margin:0;font-style:italic;">Самые сильные идеи, связи и коллаборации часто рождаются <strong>не на сцене, а в атмосфере свободы и живого общения</strong>.</p>
+    </div>
+
+    <!-- Sub-block 5: Бонус Мальдивы -->
+    <h2 class="h2" style="text-align:center;margin-top:80px;margin-bottom:24px;">И бонус после Вьетнама</h2>
+    <div style="max-width:780px;margin:0 auto;text-align:center;">
+      <p class="nt-block-text"><strong style="color:var(--brand-peach);">3 дня на Мальдивах</strong> от соорганизатора iViSiON — для каждого участника выезда.</p>
+      <div class="nt-block-img shape-egg shape-egg-solo" style="margin-top:24px;">
+        <img src="/img/nha_trang/maldivy.webp" alt="Мальдивы" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Финальная мысль -->
+    <h2 class="h2" style="text-align:center;margin-top:96px;max-width:1080px;margin-left:auto;margin-right:auto;">Финальный этап iViSiON во Вьетнаме — это переход</h2>
+    <p style="max-width:980px;margin:8px auto 0;text-align:center;font-family:var(--font-body);font-size:clamp(22px,2.6vw,32px);font-weight:700;color:#FFFFFF;line-height:1.3;letter-spacing:.01em;">
+      не просто в «более известного»,<br>а в человека, которого начинают воспринимать как<br><span style="color:var(--brand-peach);">лидера и фигуру влияния</span>
+    </p>
+  </div>
+</section>
+
+<!-- TARIFF — Вьетнам, без цены -->
+<section class="sec dark" id="tariff-sec">
+  <div class="container">
+    <div class="section-label" style="text-align:center;">Условия участия</div>
+    <h2 class="h2" style="text-align:center;margin-bottom:48px;">Тариф «Выезд во Вьетнам»</h2>
+
+    <div class="ptariff">
+      <div class="ptariff-stage">онлайн-этапы 0 + 1 + спикер онлайн-конференции + Выезд</div>
+      <div class="ptariff-title">Тариф: «Онлайн + с выездом во Вьетнам»</div>
+      <div class="ptariff-places">Всего 10 мест</div>
+
+      <div style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-peach);margin-top:6px;margin-bottom:-4px;">Этап 0 · Живой Автор</div>
+      <ul class="ptariff-list">
+        <li>6 способов пробивать баннерную слепоту как лидер</li>
+        <li>7 заданий с материалами и примерами для подготовки блога и контента как основы для выступлений в этапе 1</li>
+        <li>Распаковка аутентичного рычага узнаваемости</li>
+        <li>Практика йоги смеха для запуска творческой энергии</li>
+        <li>Доступ к сообществу из 900+ экспертов и предпринимателей</li>
+        <li>Участие в финальном онлайн-нетворкинге</li>
+      </ul>
+
+      <div style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-peach);margin-top:8px;margin-bottom:-4px;">Этап 1 · Живой Спикер</div>
+      <ul class="ptariff-list">
+        <li>От 1 до 3 выступлений на площадке ВИДЕНИЕ / iViSiON</li>
+        <li>Персональная реклама по базе 2 500+ человек</li>
+        <li>Запись выступления как лид-магнит</li>
+        <li>Шанс на денежный приз этапа 1</li>
+        <li>Шанс на выигрыш титула «Лидер Влияния»</li>
+        <li>Шанс выиграть главный приз — выступление на живой сцене во Вьетнаме с суммарным охватом 8 000 человек</li>
+      </ul>
+
+      <div style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-peach);margin-top:8px;margin-bottom:-4px;">Спикерство на масштабной онлайн-конференции iViSiON</div>
+      <ul class="ptariff-list">
+        <li>30 мин выступления на одной сцене с лидерами рынка</li>
+        <li>Размещение на одной афише с лидерами рынка</li>
+        <li>5 рекламных касаний с аудиторией</li>
+        <li>Благодарственное письмо от Опоры России за вклад в развитие предпринимателей</li>
+      </ul>
+
+      <div style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-peach);margin-top:8px;margin-bottom:-4px;">Выезд · Вьетнам + Мальдивы</div>
+      <ul class="ptariff-list">
+        <li>Гарантированное выступление 30 минут на конференции iViSiON-8</li>
+        <li>Гарантированное выступление на живой сцене во Вьетнаме — Нячанг</li>
+        <li>Съёмка брендированного клипа-визитки в стиле стиляг</li>
+        <li>Размещение рекламы в открытой базе чемпионата</li>
+        <li>7 дней во Вьетнаме — проживание в золотом дворце у моря</li>
+        <li>Круиз на яхте и экскурсии</li>
+        <li>3 дня на Мальдивах</li>
+      </ul>
+
+      <div style="margin-top:18px;padding:18px 18px 16px;background:linear-gradient(160deg,rgba(255,207,164,.10),rgba(184,137,106,.06));border:1px solid rgba(255,207,164,.32);border-radius:14px;">
+        <div style="font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--brand-peach);margin-bottom:14px;">Выберите условия участия:</div>
+
+        <div style="font-size:14px;font-weight:700;color:var(--brand-peach);margin-bottom:10px;">Проживание</div>
+        <div style="margin-bottom:14px;font-size:14px;line-height:1.55;">
+          <div style="margin-bottom:10px;">
+            <div style="font-weight:700;color:var(--text-light);">Дворцовые покои</div>
+            <div style="color:var(--text-light);">— комната на двоих</div>
+          </div>
+          <div>
+            <div style="font-weight:700;color:var(--text-light);">Королевские апартаменты</div>
+            <div style="color:var(--text-light);">— отдельная комната во дворце <span style="color:var(--brand-peach);font-weight:700;">(+ доплата)</span></div>
+          </div>
+        </div>
+
+        <div style="font-size:14px;font-weight:700;color:var(--brand-peach);margin-bottom:10px;">Формат выступления</div>
+        <div style="margin-bottom:8px;font-size:14px;line-height:1.55;">
+          <div style="margin-bottom:10px;">
+            <div style="font-weight:700;color:var(--text-light);">Стол на мастермайнде</div>
+            <div style="color:var(--text-light);">— живой обмен в малой группе</div>
+          </div>
+          <div>
+            <div style="font-weight:700;color:var(--text-light);">Сцена перед аудиторией 50+ зрителей</div>
+            <div style="color:var(--text-light);">— 20 минут сольного выступления <span style="color:var(--brand-peach);font-weight:700;">(+ доплата)</span></div>
+          </div>
+        </div>
+
+        <p style="margin:14px 0 0;font-size:12.5px;color:var(--text-muted);line-height:1.55;font-style:italic;">Перелёт не входит. Итоговая стоимость зависит от выбранных опций. Уточните детали в Telegram.</p>
+      </div>
+
+      <a class="ptariff-btn" href="https://t.me/margoforbs" target="_blank" rel="noopener">
+        <span class="ptariff-btn-i">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+          Написать в личку
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- QUESTIONS / TELEGRAM CTA -->
+<section class="sec dark" id="questions-sec">
+  <div class="container">
+    <div class="q-grid">
+      <div class="q-text-col">
+        <h2 class="q-title">Остались вопросы?</h2>
+        <p class="q-desc">Напишите Марго напрямую — расскажет про выезд во Вьетнам, поможет с бронированием и ответит на любые вопросы.</p>
+        <a class="q-tg-btn" href="https://t.me/margoforbs" target="_blank" rel="noopener">
+          <span class="q-tg-btn-i">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+            Написать в личку
+          </span>
+        </a>
+      </div>
+      <div class="q-photo-col">
+        <div class="q-photo">
+          <img src="/img/margo2.png" alt="Марго Форбс" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="site-footer">
+  <div class="container">
+    <div class="footer-links">
+      <a href="https://medialift.margoforbs.ru/oferta_list" target="_blank">Договор оферты</a>
+      <a href="https://medialift.margoforbs.ru/politika" target="_blank">Политика обработки данных</a>
+    </div>
+    <div class="footer-legal">ИП САХИБГАРЕЕВА МАРГАРИТА ВЛАДИМИРОВНА · ИНН 890306512862</div>
+  </div>
+</footer>
+
+</body>
+</html>
