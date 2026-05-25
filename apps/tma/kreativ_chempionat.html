@@ -295,8 +295,13 @@
     .partner-pill-inner{width:100%;height:100%;border-radius:80px;background:linear-gradient(160deg,var(--brand-teal) 0%,var(--bg-dark) 75%);display:flex;align-items:center;justify-content:center;padding:18px 28px;overflow:hidden;}
     .partner-pill-inner img{max-width:100%;max-height:100%;object-fit:contain;}
 
+    .partner-card.partner-card-circle{max-width:240px;}
     .partner-name{font-size:14px;font-weight:700;color:var(--text-light);margin-bottom:6px;letter-spacing:.02em;}
     .partner-desc{font-size:12px;color:var(--text-muted);line-height:1.5;max-width:200px;}
+    .partner-role{font-size:12px;color:var(--text-muted);line-height:1.4;font-style:italic;margin-bottom:12px;max-width:220px;}
+    .partner-regalia{list-style:none;text-align:left;font-size:11px;color:var(--text-muted);line-height:1.55;width:100%;padding:0;margin:0;}
+    .partner-regalia li{padding:5px 0 5px 14px;position:relative;}
+    .partner-regalia li::before{content:'◆';position:absolute;left:0;color:var(--brand-peach);font-size:8px;top:7px;}
 
     @media(max-width:768px){
       .partners-grid{gap:28px 20px;}
@@ -304,7 +309,7 @@
       .partner-circle{width:120px;height:120px;}
       .partner-pill{width:220px;height:120px;}
       .partner-pill-inner{padding:12px 20px;border-radius:70px;}
-      .partner-card.partner-card-circle{max-width:160px;}
+      .partner-card.partner-card-circle{max-width:200px;}
       .partner-card.partner-card-pill{max-width:240px;}
     }
 
@@ -2682,42 +2687,7 @@
     <div class="section-label">Организаторы</div>
     <h2 class="h2">Кто стоит за чемпионатом</h2>
 
-    <div class="org-grid">
-
-      <!-- Марго Форбс -->
-      <div class="org-card">
-        <div class="org-photo-wrap">
-          <img class="org-photo" src="/img/forbs_margo.jpg" alt="Марго Форбс" loading="lazy" decoding="async">
-        </div>
-        <div class="org-name">Марго Форбс</div>
-        <div class="org-role">Основатель и креатор чемпионата</div>
-        <ul class="org-list">
-          <li>Нелинейный стратег в маркетинге и продажах</li>
-          <li>Создатель ВИДЕНИЕ / iViSiON · 7 конференций · 50+ лидеров рынка · 3 600+ участников</li>
-          <li>Несёт культуру аутентичности: пишет и поёт музыкальные портреты лидерам рынка</li>
-          <li>Чемпион смеха Приволжского округа 2025</li>
-          <li>Зам. председателя комитета по личному бренду БРО «Опора России»</li>
-          <li>Спикер Сколково, ЭКСПО · Кандидат физ-мат наук</li>
-        </ul>
-      </div>
-
-      <!-- Евгения Романовская -->
-      <div class="org-card" id="org-evgenia">
-        <div class="org-photo-wrap">
-          <img class="org-photo" src="/img/nha_trang/romanovskaya_ebg.JPG" alt="Евгения Романовская" loading="lazy" decoding="async">
-        </div>
-        <div class="org-name">Евгения Романовская</div>
-        <div class="org-role">Предприниматель со стажем 20 лет</div>
-        <ul class="org-list">
-          <li>Продюсер проектов и сильных коллабораций</li>
-          <li>Личный бренд • PR • Конференции • Медиа • Авторские туры</li>
-          <li>Председатель комитета по личному бренду в ОПОРА РОССИИ</li>
-          <li>Член клуба продюсеров и Женщины бизнеса</li>
-          <li>Соединяю нужных людей в нужной точке мира</li>
-        </ul>
-      </div>
-
-    </div>
+    <div class="org-grid" id="organizers-grid"></div>
   </div>
 </section>
 <!-- ИСТОРИЯ iViSiON: Сочи + кейсы -->
@@ -3093,6 +3063,7 @@ function renderBlock(b, isLast) {
   </div>
 </footer>
 
+<script src="/js/collaborators.js"></script>
 <script>
 // Генерирует обложку видео из первого кадра на 0.1 сек
 function generateVideoThumbnail(videoUrl) {
@@ -3293,100 +3264,28 @@ async function loadData() {
     }
   }
 
-  // JURY TEAM — карусель состава жюри
-  if (data.jury_team && Array.isArray(data.jury_team.members)) {
-    const jtTitle = document.getElementById('jury-team-title');
-    const jtIntro = document.getElementById('jury-team-intro');
-    if (jtTitle && data.jury_team.title) jtTitle.textContent = data.jury_team.title;
-    if (jtIntro && data.jury_team.intro) jtIntro.textContent = data.jury_team.intro;
+  // JURY + PARTNERS + ORGANIZERS — данные из PLUSSON API (event_id=24).
+  // Заголовки/intro секций по-прежнему из локального JSON (data.jury_team.title и т.д.).
+  const jtTitle = document.getElementById('jury-team-title');
+  const jtIntro = document.getElementById('jury-team-intro');
+  if (jtTitle && data.jury_team && data.jury_team.title) jtTitle.textContent = data.jury_team.title;
+  if (jtIntro && data.jury_team && data.jury_team.intro) jtIntro.textContent = data.jury_team.intro;
+  const pTitle = document.getElementById('partners-title');
+  const pIntro = document.getElementById('partners-intro');
+  if (pTitle && data.partners && data.partners.title) pTitle.textContent = data.partners.title;
+  if (pIntro && data.partners && data.partners.intro) pIntro.textContent = data.partners.intro;
 
-    const jtTrack = document.getElementById('jury-team-track');
-    const jtProgress = document.getElementById('jury-team-progress');
-    if (jtTrack && jtProgress) {
-      data.jury_team.members.forEach((person, i) => {
-        const card = document.createElement('div');
-        card.className = 'jury-team-card';
-        const achievements = person.achievements || [];
-        const regalia = achievements.map(a => `<li>${a}</li>`).join('');
-        card.innerHTML = `
-          <div class="jury-team-egg-wrap">
-            <span class="jury-team-egg-deco jury-team-egg-deco-1"></span>
-            <span class="jury-team-egg-deco jury-team-egg-deco-2"></span>
-            <div class="jury-team-egg"><img src="${person.photo}" alt="${person.name}" loading="lazy"></div>
-          </div>
-          <div class="jury-team-name">${person.name}</div>
-          <div class="jury-team-title">${person.title || ''}</div>
-          <div class="jury-team-divider"></div>
-          <ul class="jury-team-regalia">${regalia}</ul>
-        `;
-        jtTrack.appendChild(card);
-        const seg = document.createElement('div');
-        seg.className = 'seg' + (i === 0 ? ' active' : '');
-        jtProgress.appendChild(seg);
-      });
-
-      const cardStep = () => {
-        const cards = jtTrack.querySelectorAll('.jury-team-card');
-        if (!cards.length) return 0;
-        return cards[0].offsetWidth + 24;
-      };
-      const updateActive = () => {
-        const step = cardStep();
-        if (!step) return;
-        const idx = Math.round(jtTrack.scrollLeft / step);
-        jtProgress.querySelectorAll('.seg').forEach((s, si) => s.classList.toggle('active', si === idx));
-      };
-      jtTrack.addEventListener('scroll', updateActive);
-      const prevBtn = document.getElementById('jury-team-prev');
-      const nextBtn = document.getElementById('jury-team-next');
-      if (prevBtn) prevBtn.onclick = () => {
-        const cards = jtTrack.querySelectorAll('.jury-team-card');
-        const step = cardStep();
-        if (!cards.length || !step) return;
-        const idx = Math.max(0, Math.round(jtTrack.scrollLeft / step) - 1);
-        cards[idx].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-      };
-      if (nextBtn) nextBtn.onclick = () => {
-        const cards = jtTrack.querySelectorAll('.jury-team-card');
-        const step = cardStep();
-        if (!cards.length || !step) return;
-        const idx = Math.min(cards.length - 1, Math.round(jtTrack.scrollLeft / step) + 1);
-        cards[idx].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-      };
-    }
-  }
-
-  // PARTNERS — список партнёров
-  if (data.partners && Array.isArray(data.partners.items)) {
-    const pTitle = document.getElementById('partners-title');
-    const pIntro = document.getElementById('partners-intro');
-    if (pTitle && data.partners.title) pTitle.textContent = data.partners.title;
-    if (pIntro && data.partners.intro) pIntro.textContent = data.partners.intro;
-
-    const grid = document.getElementById('partners-grid');
-    if (grid) {
-      data.partners.items.forEach(p => {
-        const card = document.createElement('div');
-        const isPill = p.shape === 'pill';
-        card.className = 'partner-card ' + (isPill ? 'partner-card-pill' : 'partner-card-circle');
-        const wrapClass = isPill ? 'partner-pill' : 'partner-circle';
-        const innerClass = isPill ? 'partner-pill-inner' : 'partner-circle-inner';
-        const scale = typeof p.imageScale === 'number' ? p.imageScale : (isPill ? 100 : 88);
-        const imgStyle = isPill
-          ? `max-width:${scale}%;max-height:${scale}%;`
-          : `width:${scale}%;height:${scale}%;`;
-        card.innerHTML = `
-          <div class="partner-logo-slot">
-            <div class="${wrapClass}">
-              <div class="${innerClass}"><img src="${p.logo}" alt="${p.name}" loading="lazy" style="${imgStyle}"></div>
-            </div>
-          </div>
-          <div class="partner-name">${p.name}</div>
-          <div class="partner-desc">${p.description || ''}</div>
-        `;
-        grid.appendChild(card);
-      });
-    }
+  if (window.PlussonCollaborators) {
+    window.PlussonCollaborators.fetch(24).then(api => {
+      window.PlussonCollaborators.renderJury(
+        document.getElementById('jury-team-track'),
+        document.getElementById('jury-team-progress'),
+        api.jury,
+        { prevBtn: document.getElementById('jury-team-prev'), nextBtn: document.getElementById('jury-team-next') }
+      );
+      window.PlussonCollaborators.renderPartners(document.getElementById('partners-grid'), api.partners);
+      window.PlussonCollaborators.renderOrganizers(document.getElementById('organizers-grid'), api.organizers);
+    }).catch(err => console.warn('PLUSSON API error:', err));
   }
 
   // Тарифы жюри: рендеринг 4 аккордеонов из data.tariffs
@@ -3575,13 +3474,22 @@ document.addEventListener('DOMContentLoaded', loadData);
 })();
 
 // Евгения Романовская скрывается при наличии ?hder в URL (по умолчанию — видна).
+// Карточки организаторов рендерятся из PLUSSON API асинхронно — наблюдаем за gridом.
 (function applyEvgeniaVisibility() {
   const params = new URLSearchParams(window.location.search);
   if (!params.has('hder')) return;
-  const ev = document.getElementById('org-evgenia');
-  const grid = ev && ev.closest('.org-grid');
-  if (ev) ev.style.display = 'none';
-  if (grid) grid.classList.add('org-grid-1col');
+  const grid = document.getElementById('organizers-grid');
+  if (!grid) return;
+  const hide = () => {
+    const ev = grid.querySelector('.org-card[data-name*="Евгения"]');
+    if (!ev) return false;
+    ev.style.display = 'none';
+    grid.classList.add('org-grid-1col');
+    return true;
+  };
+  if (hide()) return;
+  const mo = new MutationObserver(() => { if (hide()) mo.disconnect(); });
+  mo.observe(grid, { childList: true });
 })();
 
 // Тариф 1 (Живой Автор) показывается всегда — сетка из 3 колонок по умолчанию.

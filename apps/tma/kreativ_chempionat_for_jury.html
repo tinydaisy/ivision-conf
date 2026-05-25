@@ -740,42 +740,7 @@
     <div class="section-label" style="text-align:center;">Кто стоит за чемпионатом</div>
     <h2 class="h2" style="text-align:center;">Организаторы Чемпионата</h2>
 
-    <div class="org-grid">
-
-      <!-- Марго Форбс -->
-      <div class="org-card">
-        <div class="org-photo-wrap">
-          <img class="org-photo" src="/img/forbs_margo.jpg" alt="Марго Форбс" loading="lazy" decoding="async">
-        </div>
-        <div class="org-name">Марго Форбс</div>
-        <div class="org-role">Основатель и креатор чемпионата</div>
-        <ul class="org-list">
-          <li>Нелинейный стратег в маркетинге и продажах</li>
-          <li>Создатель ВИДЕНИЕ / iViSiON · 7 конференций · 50+ лидеров рынка · 3 600+ участников</li>
-          <li>Несёт культуру аутентичности: пишет и поёт музыкальные портреты лидерам рынка</li>
-          <li>Чемпион смеха Приволжского округа 2025</li>
-          <li>Зам. председателя комитета по личному бренду БРО «Опора России»</li>
-          <li>Спикер Сколково, ЭКСПО · Кандидат физ-мат наук</li>
-        </ul>
-      </div>
-
-      <!-- Евгения Романовская -->
-      <div class="org-card" id="org-evgenia">
-        <div class="org-photo-wrap">
-          <img class="org-photo" src="/img/nha_trang/romanovskaya_ebg.JPG" alt="Евгения Романовская" loading="lazy" decoding="async">
-        </div>
-        <div class="org-name">Евгения Романовская</div>
-        <div class="org-role">Предприниматель со стажем 20 лет</div>
-        <ul class="org-list">
-          <li>Продюсер проектов и сильных коллабораций</li>
-          <li>Личный бренд • PR • Конференции • Медиа • Авторские туры</li>
-          <li>Председатель комитета по личному бренду в ОПОРА РОССИИ</li>
-          <li>Член клуба продюсеров и Женщины бизнеса</li>
-          <li>Соединяю нужных людей в нужной точке мира</li>
-        </ul>
-      </div>
-
-    </div>
+    <div class="org-grid" id="organizers-grid"></div>
   </div>
 </section>
 
@@ -823,6 +788,7 @@
   </div>
 </footer>
 
+<script src="/js/collaborators.js"></script>
 <script>
 // ============================================================
 // Рендер тарифов жюри (4 пакета) из data.tariffs
@@ -997,62 +963,17 @@ async function loadData() {
     }
   }
 
-  // JURY TEAM CAROUSEL
-  if (data.jury_team && Array.isArray(data.jury_team.members)) {
-    const jtTrack = document.getElementById('jury-team-track');
-    const jtProgress = document.getElementById('jury-team-progress');
-    if (jtTrack && jtProgress) {
-      data.jury_team.members.forEach((person, i) => {
-        const card = document.createElement('div');
-        card.className = 'jury-team-card';
-        const achievements = person.achievements || [];
-        const regalia = achievements.map(a => `<li>${a}</li>`).join('');
-        card.innerHTML = `
-          <div class="jury-team-egg-wrap">
-            <span class="jury-team-egg-deco jury-team-egg-deco-1"></span>
-            <span class="jury-team-egg-deco jury-team-egg-deco-2"></span>
-            <div class="jury-team-egg"><img src="${person.photo}" alt="${person.name}" loading="lazy"></div>
-          </div>
-          <div class="jury-team-name">${person.name}</div>
-          <div class="jury-team-title">${person.title || ''}</div>
-          <div class="jury-team-divider"></div>
-          <ul class="jury-team-regalia">${regalia}</ul>
-        `;
-        jtTrack.appendChild(card);
-        const seg = document.createElement('div');
-        seg.className = 'seg' + (i === 0 ? ' active' : '');
-        jtProgress.appendChild(seg);
-      });
-
-      const cardStep = () => {
-        const cards = jtTrack.querySelectorAll('.jury-team-card');
-        if (!cards.length) return 0;
-        return cards[0].offsetWidth + 20;
-      };
-      const updateActive = () => {
-        const step = cardStep();
-        if (!step) return;
-        const idx = Math.round(jtTrack.scrollLeft / step);
-        jtProgress.querySelectorAll('.seg').forEach((s, si) => s.classList.toggle('active', si === idx));
-      };
-      jtTrack.addEventListener('scroll', updateActive);
-      const prevBtn = document.getElementById('jury-team-prev');
-      const nextBtn = document.getElementById('jury-team-next');
-      if (prevBtn) prevBtn.onclick = () => {
-        const cards = jtTrack.querySelectorAll('.jury-team-card');
-        const step = cardStep();
-        if (!cards.length || !step) return;
-        const idx = Math.max(0, Math.round(jtTrack.scrollLeft / step) - 1);
-        cards[idx].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-      };
-      if (nextBtn) nextBtn.onclick = () => {
-        const cards = jtTrack.querySelectorAll('.jury-team-card');
-        const step = cardStep();
-        if (!cards.length || !step) return;
-        const idx = Math.min(cards.length - 1, Math.round(jtTrack.scrollLeft / step) + 1);
-        cards[idx].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-      };
-    }
+  // JURY + ORGANIZERS — данные из PLUSSON API (event_id=24)
+  if (window.PlussonCollaborators) {
+    window.PlussonCollaborators.fetch(24).then(api => {
+      window.PlussonCollaborators.renderJury(
+        document.getElementById('jury-team-track'),
+        document.getElementById('jury-team-progress'),
+        api.jury,
+        { prevBtn: document.getElementById('jury-team-prev'), nextBtn: document.getElementById('jury-team-next') }
+      );
+      window.PlussonCollaborators.renderOrganizers(document.getElementById('organizers-grid'), api.organizers);
+    }).catch(err => console.warn('PLUSSON API error:', err));
   }
 
   // TARIFFS

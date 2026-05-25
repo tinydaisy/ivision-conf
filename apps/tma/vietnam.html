@@ -250,15 +250,20 @@
     .partner-pill:hover{transform:translateY(-4px);box-shadow:0 0 32px rgba(255,207,164,.35);}
     .partner-pill-inner{width:100%;height:100%;border-radius:80px;background:linear-gradient(160deg,#25455D 0%,#080B12 75%);display:flex;align-items:center;justify-content:center;padding:18px 28px;overflow:hidden;}
     .partner-pill-inner img{max-width:100%;max-height:100%;object-fit:contain;}
+    .partner-card.partner-card-circle{max-width:240px;}
     .partner-name{font-size:14px;font-weight:700;color:var(--text-light);margin-bottom:6px;letter-spacing:.02em;}
     .partner-desc{font-size:12px;color:var(--text-muted);line-height:1.5;max-width:200px;}
+    .partner-role{font-size:12px;color:var(--text-muted);line-height:1.4;font-style:italic;margin-bottom:12px;max-width:220px;}
+    .partner-regalia{list-style:none;text-align:left;font-size:11px;color:var(--text-muted);line-height:1.55;width:100%;padding:0;margin:0;}
+    .partner-regalia li{padding:5px 0 5px 14px;position:relative;}
+    .partner-regalia li::before{content:'◆';position:absolute;left:0;color:#FFCFA4;font-size:8px;top:7px;}
     @media(max-width:768px){
       .partners-grid{gap:28px 20px;}
       .partner-logo-slot{height:120px;margin-bottom:14px;}
       .partner-circle{width:120px;height:120px;}
       .partner-pill{width:220px;height:120px;}
       .partner-pill-inner{padding:12px 20px;border-radius:70px;}
-      .partner-card.partner-card-circle{max-width:160px;}
+      .partner-card.partner-card-circle{max-width:200px;}
       .partner-card.partner-card-pill{max-width:240px;}
     }
 
@@ -798,38 +803,7 @@
   <div class="container">
     <h2 class="h2">Организаторы</h2>
 
-    <div class="org-grid">
-      <div class="org-card">
-        <div class="org-photo-wrap">
-          <img class="org-photo" src="/img/forbs_margo.jpg" alt="Марго Форбс" loading="lazy" decoding="async">
-        </div>
-        <div class="org-name">Марго Форбс</div>
-        <div class="org-role">Основатель iViSiON и креатор чемпионата и выезда</div>
-        <ul class="org-list">
-          <li>Нелинейный стратег в маркетинге и продажах</li>
-          <li>Создатель ВИДЕНИЕ / iViSiON · 7 конференций · 50+ лидеров рынка · 3 600+ участников</li>
-          <li>Несёт культуру аутентичности: пишет и поёт музыкальные портреты лидерам рынка</li>
-          <li>Чемпион смеха Приволжского округа 2025</li>
-          <li>Зам. председателя комитета по личному бренду БРО «Опора России»</li>
-          <li>Спикер Сколково, ЭКСПО · Кандидат физ-мат наук</li>
-        </ul>
-      </div>
-
-      <div class="org-card">
-        <div class="org-photo-wrap">
-          <img class="org-photo" src="/img/nha_trang/romanovskaya_ebg.JPG" alt="Евгения Романовская" loading="lazy" decoding="async">
-        </div>
-        <div class="org-name">Евгения Романовская</div>
-        <div class="org-role">Авторские туры, предприниматель со стажем 20 лет</div>
-        <ul class="org-list">
-          <li>Продюсер проектов и сильных коллабораций</li>
-          <li>Личный бренд • PR • Конференции • Медиа • Авторские туры</li>
-          <li>Председатель комитета по личному бренду в ОПОРА РОССИИ</li>
-          <li>Член клуба продюсеров и Женщины бизнеса</li>
-          <li>Соединяю нужных людей в нужной точке мира</li>
-        </ul>
-      </div>
-    </div>
+    <div class="org-grid" id="organizers-grid"></div>
   </div>
 </section>
 
@@ -840,35 +814,7 @@
     <h2 class="h2">Партнёры iViSiON</h2>
     <p class="desc">Сообщества, премии и организации, поддерживающие чемпионат и формирующие новое направление развития рынка.</p>
 
-    <div class="partners-grid">
-      <div class="partner-card partner-card-circle">
-        <div class="partner-logo-slot">
-          <div class="partner-circle">
-            <div class="partner-circle-inner"><img src="/img/jury/kos.JPG" alt="КОС" loading="lazy" style="width:88%;height:88%;"></div>
-          </div>
-        </div>
-        <div class="partner-name">КОС</div>
-        <div class="partner-desc">Сообщество из 6000+ предпринимателей</div>
-      </div>
-      <div class="partner-card partner-card-circle">
-        <div class="partner-logo-slot">
-          <div class="partner-circle">
-            <div class="partner-circle-inner"><img src="/img/jury/freedom.JPG" alt="FREEDOM" loading="lazy" style="width:88%;height:88%;"></div>
-          </div>
-        </div>
-        <div class="partner-name">FREEDOM</div>
-        <div class="partner-desc">Федеральная премия и онлайн-конференция</div>
-      </div>
-      <div class="partner-card partner-card-pill">
-        <div class="partner-logo-slot">
-          <div class="partner-pill">
-            <div class="partner-pill-inner"><img src="/img/jury/opora.png" alt="Опора России" loading="lazy" style="max-width:100%;max-height:100%;"></div>
-          </div>
-        </div>
-        <div class="partner-name">БРО «Опора России»</div>
-        <div class="partner-desc">Башкирское региональное отделение «Опоры России»</div>
-      </div>
-    </div>
+    <div class="partners-grid" id="partners-grid"></div>
   </div>
 </section>
 
@@ -962,6 +908,18 @@
     <div class="footer-legal">ИП САХИБГАРЕЕВА МАРГАРИТА ВЛАДИМИРОВНА · ИНН 890306512862</div>
   </div>
 </footer>
+
+<script src="/js/collaborators.js"></script>
+<script>
+// PLUSSON collaborators — организаторы + партнёры (event_id=24)
+document.addEventListener('DOMContentLoaded', function () {
+  if (!window.PlussonCollaborators) return;
+  window.PlussonCollaborators.fetch(24).then(function (api) {
+    window.PlussonCollaborators.renderOrganizers(document.getElementById('organizers-grid'), api.organizers);
+    window.PlussonCollaborators.renderPartners(document.getElementById('partners-grid'), api.partners);
+  }).catch(function (err) { console.warn('PLUSSON API error:', err); });
+});
+</script>
 
 <script>
 // GROW SCHEMA — циклическая персиковая подсветка карточек
