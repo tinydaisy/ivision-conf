@@ -1676,6 +1676,20 @@
     margin:0 auto 28px;
     max-width:780px;
   }
+  /* Золотая цифра-номер для блоков финала (общая для big-блока и карточек/плашки) */
+  .final-num{
+    font-family:var(--font-display);
+    font-size:clamp(56px,7vw,96px);
+    font-weight:400;
+    line-height:.85;
+    letter-spacing:.01em;
+    background:linear-gradient(180deg,#FFF1DD 0%,#FFCFA4 38%,#E0A371 70%,#B8896A 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    filter:drop-shadow(0 1px 1px rgba(0,0,0,.45));
+    text-align:center;
+    margin:0 0 10px;
+  }
+  .final-num-sm{font-size:clamp(38px,4.5vw,56px);}
   .final-partners-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -2100,12 +2114,9 @@
     <div class="section-label" style="text-align:center;">Финал</div>
     <h2 class="h2" style="text-align:center;">Финал · «Живые лидеры на международной сцене»</h2>
     <p class="desc" style="text-align:center;margin-left:auto;margin-right:auto;max-width:780px;color:var(--brand-peach);font-weight:600;">Ваша медийная стратегия на полгода вперёд начинается здесь</p>
-    <p style="text-align:center;margin:0 auto 24px;color:#FFFFFF;font-family:var(--font-body);font-weight:800;font-size:clamp(16px,2vw,22px);letter-spacing:.12em;text-transform:uppercase;line-height:1.3;">
-      ОНЛАЙН ИЛИ ОФЛАЙН
-    </p>
-
-    <!-- ONLINE block -->
+    <!-- ONLINE block — пункт 1 -->
     <div class="final-block">
+      <div class="final-num">1</div>
       <div class="final-meta">Онлайн · 29–30 июля</div>
       <h3>Конференция iViSiON-8 «Бизнес-Создатели»</h3>
       <p>Финалисты выступают рядом с лидерами рынка и членами жюри перед живой аудиторией чемпионата.</p>
@@ -2133,18 +2144,22 @@
     <p class="final-partners-lead">После финала лучшие участники получают пакет выступлений на площадках партнёров:</p>
     <div class="final-partners-grid">
       <div class="final-partner-card">
+        <div class="final-num final-num-sm">2</div>
         <div class="final-partner-img"><img src="/img/jury/freedom.JPG" alt="FREEDOM" loading="lazy" decoding="async"></div>
         <div class="final-partner-text">Выступление на площадке Федеральной премии и онлайн-конференции <strong>Freedom Genius Expert Awards</strong></div>
       </div>
       <div class="final-partner-card tone-bronze">
+        <div class="final-num final-num-sm">3</div>
         <div class="final-partner-img"><img src="/img/jury/kos.JPG" alt="КОС" loading="lazy" decoding="async"></div>
         <div class="final-partner-text">Бизнес-сообщество из 6000+ предпринимателей <strong>КОС</strong></div>
       </div>
       <div class="final-partner-card">
+        <div class="final-num final-num-sm">4</div>
         <div class="final-partner-img"><img src="/img/grani.jpg" alt="ГРАНИ" loading="lazy" decoding="async"></div>
         <div class="final-partner-text">Медиа-платформа для экспертов и предпринимателей <strong>ГРАНИ</strong></div>
       </div>
       <div class="final-bridge">
+        <div class="final-num final-num-sm">5</div>
         <div class="final-bridge-icon"><img src="/img/logo_ivision.png" alt="iViSiON" loading="lazy" decoding="async"></div>
         <div class="final-bridge-text">МЕДИА-РЕЗИДЕНЦИЯ iViSiON ВО ВЬЕТНАМЕ</div>
       </div>
@@ -2211,7 +2226,7 @@
 
     <p class="nt-block-text" style="max-width:780px;margin:64px auto 28px;text-align:center;font-size:18px;line-height:1.6;">
       Финальный этап <strong>iViSiON во Вьетнаме</strong> — это переход не просто в «более известного»,<br>
-      а в человека, которого начинают воспринимать как <strong>лидера и фигуру влияния</strong>.
+      а в <strong>эксперта</strong>, которого начинают воспринимать как <strong>лидера и фигуру влияния</strong>.
     </p>
 
     <!-- Краткая «программа выезда»: meta + заголовок + лид + 5 буллетов + цитата (скопировано из плашки-моста выше) -->
