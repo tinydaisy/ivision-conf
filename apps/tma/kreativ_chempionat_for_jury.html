@@ -151,7 +151,8 @@
     /* REQUIREMENTS TIMELINE (01/02) */
     .req-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:1080px;margin:48px auto 0;}
     .req-card{background:linear-gradient(160deg,rgba(255,207,164,.06),rgba(192,132,252,.04));border:1px solid rgba(255,207,164,.25);border-radius:24px;padding:32px 28px;}
-    .req-num{font-family:var(--font-display);font-size:56px;font-weight:400;line-height:.9;background:linear-gradient(180deg,#FFF1DD 0%,#FFCFA4 38%,#E0A371 70%,#B8896A 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;}
+    .req-num{font-family:var(--font-display);font-size:56px;font-weight:400;line-height:.9;background:linear-gradient(180deg,#FFF1DD 0%,#FFCFA4 38%,#E0A371 70%,#B8896A 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;display:flex;align-items:baseline;gap:12px;}
+    .req-num-when{font-family:var(--font-body);font-size:15px;font-weight:700;color:var(--brand-peach);-webkit-text-fill-color:var(--brand-peach);letter-spacing:.02em;text-transform:uppercase;}
     .req-title{font-family:var(--font-display);font-size:clamp(24px,2.6vw,32px);font-weight:400;color:var(--brand-peach);text-transform:uppercase;letter-spacing:.02em;line-height:1.15;margin-bottom:16px;}
     .req-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
     .req-list li{font-size:15px;color:#FFFFFF;line-height:1.55;padding-left:18px;position:relative;}
@@ -334,7 +335,7 @@
       <div class="hero-content">
         <div class="hero-priem-badge">
           <span class="hero-priem-star">❖</span>
-          <span class="hero-priem-text">ПРИЁМ В ЖЮРИ ДО 5 ИЮНЯ</span>
+          <span class="hero-priem-text">ПРИЁМ В ЖЮРИ ДО 14 ИЮНЯ</span>
           <span class="hero-priem-star">❖</span>
         </div>
 
@@ -583,7 +584,7 @@
 
     <div class="req-grid">
       <div class="req-card">
-        <div class="req-num">01</div>
+        <div class="req-num">01<span class="req-num-when">С 1 июля</span></div>
         <h3 class="req-title">Онлайн-формат</h3>
         <ul class="req-list">
           <li>анонсы чемпионата в <strong>июне</strong></li>
@@ -592,7 +593,7 @@
         </ul>
       </div>
       <div class="req-card">
-        <div class="req-num">02</div>
+        <div class="req-num">02<span class="req-num-when">в августе</span></div>
         <h3 class="req-title">Офлайн-формат</h3>
         <ul class="req-list">
           <li><strong>(Опционально)</strong> Участие в офлайн-конференции и медиа-резиденции во Вьетнаме</li>
