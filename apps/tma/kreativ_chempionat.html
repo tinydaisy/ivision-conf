@@ -3178,7 +3178,10 @@ async function loadData() {
     const tsTitle = document.getElementById('tariffs-section-title');
     const tsIntro = document.getElementById('tariffs-section-intro');
     if (tsLabel) tsLabel.textContent = data.tariffs_section.label || '';
-    if (tsTitle) tsTitle.textContent = data.tariffs_section.title || '';
+    // При ?shwt — режим показа платных тарифов: меняем заголовок секции
+    if (tsTitle) tsTitle.textContent = params.has('shwt')
+      ? 'ВЫБЕРИТЕ 1 из 4 ФОРМАТОВ УЧАСТИЯ'
+      : (data.tariffs_section.title || '');
     if (tsIntro) tsIntro.textContent = data.tariffs_section.intro || '';
 
     // PRICE COUNTDOWN — рендерится, если задан price_deadline (ISO 8601)
