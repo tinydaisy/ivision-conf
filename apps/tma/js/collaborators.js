@@ -60,19 +60,25 @@
     };
   }
 
-  // Сортирует и фильтрует список: только с топ-активом, по убыванию value.
-  // Возвращает массив { collaborator, top }.
+  // Сортирует список: с топ-активом — по убыванию value, без актива — в конец
+  // в исходном порядке. Никого не фильтрует.
+  // Возвращает массив { collaborator, top|null, index }.
   function rankByAssets(items) {
     return (items || [])
-      .map(function (c) { return { collaborator: c, top: getTopAsset(c.media_assets) }; })
-      .filter(function (x) { return x.top !== null; })
-      .sort(function (a, b) { return b.top.value - a.top.value; });
+      .map(function (c, i) { return { collaborator: c, top: getTopAsset(c.media_assets), index: i }; })
+      .sort(function (a, b) {
+        if (a.top && b.top) return b.top.value - a.top.value;
+        if (a.top && !b.top) return -1;
+        if (!a.top && b.top) return 1;
+        return a.index - b.index;
+      });
   }
 
-  // HTML строчки «◆ Аудитория: X тыс. подписчиков» под ролью карточки.
+  // HTML строчки «Общий медийный вес: X тыс. подписчиков» под ролью карточки.
+  // «Общий» — потому что это сумма по всем площадкам (а не одна соц.сеть).
   function audienceHtml(top) {
     if (!top) return '';
-    return '<div class="collab-audience">Аудитория: ' + escapeHtml(top.formatted) + ' подписчиков</div>';
+    return '<div class="collab-audience">Общий медийный вес: ' + escapeHtml(top.formatted) + ' подписчиков</div>';
   }
 
   /* ЖЮРИ — карусель .jury-team-track + прогресс-сегменты + кнопки prev/next.
