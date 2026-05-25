@@ -78,7 +78,7 @@
   // «Общий» — потому что это сумма по всем площадкам (а не одна соц.сеть).
   function audienceHtml(top) {
     if (!top) return '';
-    return '<div class="collab-audience">Общий медийный вес: ' + escapeHtml(top.formatted) + ' подписчиков</div>';
+    return '<div class="collab-audience">Общий медийный вес: ' + escapeHtml(top.formatted) + '<br>подписчиков</div>';
   }
 
   /* ЖЮРИ — карусель .jury-team-track + прогресс-сегменты + кнопки prev/next.
