@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<!-- Cache bust: 2026-05-25 v1 -->
+<!-- Cache bust: 2026-05-25 v2 -->
 <html lang="ru">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
-  <title>Вьетнам — международная медиа-резиденция iViSiON</title>
+  <title>Международная медиа-резиденция iViSiON · Нячанг, Вьетнам</title>
   <link rel="icon" type="image/png" href="/img/favicon.png">
   <link rel="preload" as="image" href="/img/nha_trang/hero3.jpg?v=16" fetchpriority="high">
   <link rel="preload" as="image" href="/img/nha_trang/plashka.png?v=2">
@@ -55,7 +55,7 @@
     .h2{font-family:var(--font-display);font-weight:400;font-size:clamp(40px,4.6vw,64px);line-height:1.05;letter-spacing:.02em;color:var(--text-light);margin-bottom:20px;text-transform:uppercase;}
     .desc{font-size:15px;color:var(--text-muted);line-height:1.7;margin-bottom:28px;max-width:700px;}
 
-    /* STAGE LIST MINI (used in vietnam section) */
+    /* STAGE LIST MINI */
     .stage-list-mini{list-style:none;padding:0;margin:0;}
     .stage-list-mini li{font-size:15px;color:var(--text-light);line-height:1.7;padding:6px 0 6px 22px;position:relative;}
     .stage-list-mini li::before{content:'◆';position:absolute;left:0;color:var(--brand-peach);font-size:10px;top:11px;}
@@ -67,10 +67,10 @@
     .gold-plate ul li{padding:8px 0 8px 22px;position:relative;}
     .gold-plate ul li::before{content:'◆';position:absolute;left:0;color:var(--brand-peach);font-size:10px;top:13px;}
 
-    /* STAGE NUMBER (01/02/03 in nt-block) */
+    /* STAGE NUMBER */
     .stage-num-large{font-family:var(--font-display);font-size:64px;font-weight:400;color:var(--brand-peach);line-height:.9;margin-bottom:8px;opacity:.65;}
 
-    /* COLLAGE (медиа-батл) — простая grid-вёрстка */
+    /* COLLAGE */
     .collage-wrap{display:grid;gap:14px;margin:18px 0;}
     .collage-row{display:grid;gap:14px;}
     .collage-row-top{grid-template-columns:1fr 1fr;}
@@ -84,19 +84,205 @@
       .collage-col-stack{grid-column:span 2;flex-direction:row;}
     }
 
-    /* PTARIFF (тариф) */
+    /* PTARIFF */
     .ptariff{background:linear-gradient(160deg,rgba(255,207,164,.06),rgba(255,255,255,.02));border:1px solid rgba(255,207,164,.2);border-radius:24px;padding:40px 36px;display:flex;flex-direction:column;gap:18px;max-width:760px;margin:0 auto;}
-    .ptariff-stage{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-peach);}
     .ptariff-title{font-size:22px;font-weight:700;color:var(--text-light);line-height:1.3;}
     @keyframes pulse-deadline{0%,100%{box-shadow:0 0 20px rgba(200,75,158,.45);}50%{box-shadow:0 0 32px rgba(200,75,158,.75);}}
     .ptariff-places{display:inline-block;align-self:flex-start;font-family:var(--font-body);font-size:15px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#FFFFFF;background:linear-gradient(135deg,#C84B9E 0%,#FF4757 100%);padding:10px 18px;border-radius:100px;margin-top:2px;box-shadow:0 0 20px rgba(200,75,158,.5);animation:pulse-deadline 2.4s ease-in-out infinite;}
     .ptariff-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
     .ptariff-list li{font-size:14px;color:var(--text-light);line-height:1.5;display:flex;gap:8px;align-items:flex-start;}
     .ptariff-list li::before{content:"✓";color:var(--brand-peach);font-weight:700;flex-shrink:0;}
+    .ptariff-list li a{color:var(--brand-peach);text-decoration:underline;text-underline-offset:3px;}
+    .ptariff-list li a:hover{color:#FFE4C9;}
+    .ptariff-bonus-title{font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-peach);margin-top:12px;margin-bottom:-2px;}
     .ptariff-btn{margin-top:auto;padding:1.5px;border-radius:100px;background:var(--btn-grad);border:none;cursor:pointer;text-decoration:none;display:block;}
     .ptariff-btn-i{display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(255,207,164,.12);color:var(--text-light);font-family:var(--font-body);font-weight:700;font-size:15px;letter-spacing:.04em;padding:14px 24px;border-radius:100px;}
 
-    /* QUESTIONS / Telegram CTA */
+    /* TRANSITION GRID (Выйди в свет) */
+    @media(max-width:768px){
+      .transition-grid{grid-template-columns:1fr!important;gap:24px!important;}
+      .transition-grid .transition-circle{width:200px!important;height:200px!important;}
+      .transition-grid .transition-arrow svg{transform:rotate(90deg);margin:34px 0;}
+    }
+
+    /* WHY NOT ENOUGH */
+    #why-not-enough .why-top-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:center;max-width:1100px;margin:0 auto 64px;}
+    #why-not-enough .why-title{font-family:var(--font-display);font-size:clamp(30px,4.2vw,48px);font-weight:400;color:var(--brand-peach);line-height:1.08;letter-spacing:.02em;text-transform:uppercase;margin:0 0 24px;}
+    #why-not-enough .why-meme{display:flex;justify-content:center;}
+    #why-not-enough .why-meme-frame{position:relative;width:100%;max-width:460px;aspect-ratio:1/1;border:1px solid var(--brand-teal);border-radius:18px;transition:transform .35s ease;box-shadow:0 18px 36px rgba(0,0,0,.45);}
+    #why-not-enough .why-meme-frame:hover{transform:scale(1.02);}
+    #why-not-enough .why-meme-frame img{display:block;width:100%;height:100%;object-fit:contain;}
+    #why-not-enough .why-grid{position:relative;display:grid;grid-template-columns:1fr;gap:18px;}
+    #why-not-enough .why-card{position:relative;padding:0 0 0 18px;border-left:2px solid var(--brand-peach);}
+    #why-not-enough .why-stamp{position:absolute;top:50%;right:-24px;width:200px;height:200px;object-fit:contain;pointer-events:none;transform:translateY(-50%) rotate(-12deg);filter:brightness(1.35) saturate(1.5) contrast(1.05);z-index:2;}
+    @media(max-width:900px){
+      #why-not-enough .why-stamp{ width:140px; height:140px; top:auto; bottom:8px; right:8px; transform:rotate(-12deg); }
+      #why-not-enough .why-top-grid{grid-template-columns:1fr;gap:28px;}
+      #why-not-enough .why-title{ text-align:center; }
+      #why-not-enough .why-meme-frame{ max-width:360px; }
+    }
+    @media(max-width:560px){
+      #why-not-enough .why-stamp{ width:110px; height:110px; top:auto; bottom:8px; right:8px; transform:rotate(-12deg); }
+    }
+
+    /* GOAL LIST */
+    .goal-list{list-style:none;padding:0;margin:32px auto 0;max-width:900px;text-align:left;}
+    .goal-list li{display:flex;align-items:flex-start;gap:16px;font-size:17px;line-height:1.55;color:var(--text-light);padding:22px 26px;margin-bottom:16px;border:2px solid;border-left-width:4px;border-radius:14px;transition:transform .25s ease;}
+    .goal-list li:hover{transform:translateX(4px);}
+    .goal-list .goal-arrow{font-weight:700;font-size:22px;line-height:1.3;flex-shrink:0;}
+    .goal-list li:nth-child(1){background:linear-gradient(135deg,rgba(255,207,164,.14),rgba(255,207,164,.04));border-color:rgba(255,207,164,.35);}
+    .goal-list li:nth-child(1) .goal-arrow{color:var(--brand-peach);}
+    .goal-list li:nth-child(2){background:linear-gradient(135deg,rgba(192,132,252,.14),rgba(192,132,252,.04));border-color:rgba(192,132,252,.35);}
+    .goal-list li:nth-child(2) .goal-arrow{color:var(--brand-purple);}
+    .goal-list li:nth-child(3){background:linear-gradient(135deg,rgba(200,75,158,.14),rgba(200,75,158,.04));border-color:rgba(200,75,158,.35);}
+    .goal-list li:nth-child(3) .goal-arrow{color:var(--brand-pink);}
+    .goal-list li:nth-child(4){background:linear-gradient(135deg,rgba(255,207,164,.14),rgba(255,207,164,.04));border-color:rgba(255,207,164,.35);}
+    .goal-list li:nth-child(4) .goal-arrow{color:var(--brand-peach);}
+    @media(max-width:768px){
+      .goal-list li{font-size:15px;padding:16px 18px;}
+    }
+
+    /* GOLD FULLWIDTH */
+    .sec.gold-fullwidth{padding:0 !important;background:transparent !important;}
+    .gold-fullwidth-inner{width:100vw;margin-left:calc(50% - 50vw);padding:96px 0;background-color:#1a1410;background-image:radial-gradient(ellipse at center,rgba(8,11,18,.45) 0%,rgba(8,11,18,.65) 75%,rgba(8,11,18,.80) 100%),url('https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/karta.webp');background-size:cover;background-position:center;background-repeat:no-repeat;border-top:2px solid rgba(255,207,164,.45);border-bottom:2px solid rgba(255,207,164,.45);box-shadow:inset 0 2px 32px rgba(255,228,201,.18),inset 0 -2px 32px rgba(101,68,40,.35);position:relative;}
+    .gold-fullwidth-inner > *{position:relative;z-index:1;}
+    .gold-fw-title{font-family:var(--font-display);font-size:clamp(32px,4.6vw,58px);font-weight:400;line-height:1.08;letter-spacing:.02em;text-transform:uppercase;color:#FFFFFF;margin:0 0 18px;text-shadow:0 2px 6px rgba(0,0,0,.55),0 0 28px rgba(0,0,0,.45);}
+    .gold-fw-sub{font-family:var(--font-body);font-size:clamp(18px,2.2vw,24px);font-weight:800;color:#FFE4C9;letter-spacing:.04em;margin:0 0 28px;text-shadow:0 2px 6px rgba(0,0,0,.55);}
+    .gold-fw-text{font-size:clamp(15px,1.45vw,18px);line-height:1.7;color:#FFFFFF;max-width:880px;margin:0 auto 14px;font-weight:500;text-shadow:0 1px 4px rgba(0,0,0,.5);}
+    .gold-fw-text strong{color:#FFCFA4;font-weight:800;}
+    .gold-fw-text-strong{margin-bottom:0;}
+    @media(max-width:768px){
+      .gold-fullwidth-inner{padding:64px 0;}
+      .gold-fw-title{font-size:clamp(24px,6.5vw,34px);}
+      .gold-fw-sub{font-size:15px;}
+      .gold-fw-text{font-size:14px;}
+    }
+
+    /* GROW SCHEMA */
+    .grow-schema{display:grid;grid-template-columns:minmax(260px,0.9fr) 1.1fr;gap:64px;align-items:center;max-width:1100px;margin:56px auto 0;}
+    .grow-title{display:flex;flex-direction:column;gap:0;font-family:var(--font-display);font-weight:400;font-size:clamp(58px,7.7vw,112px);line-height:.92;text-transform:uppercase;color:var(--brand-peach);letter-spacing:.012em;text-shadow:0 0 40px rgba(255,207,164,.22);}
+    .grow-title span{display:block;}
+    .grow-cards{display:flex;flex-direction:column;gap:14px;}
+    .grow-card{position:relative;border-radius:20px;padding:1.6px;background:linear-gradient(135deg,rgba(255,207,164,.42) 0%,rgba(255,207,164,.14) 50%,rgba(255,207,164,.32) 100%);transition:transform .8s cubic-bezier(.4,0,.2,1),box-shadow .8s ease,background .8s ease;}
+    .grow-card-inner{border-radius:18.5px;background:linear-gradient(135deg,rgba(20,28,45,.94) 0%,rgba(8,11,18,.96) 100%);display:flex;align-items:center;gap:22px;padding:22px 28px;transition:background .8s ease;backdrop-filter:blur(6px);}
+    .grow-num{font-family:var(--font-body);font-size:48px;font-weight:900;background:linear-gradient(180deg,#FFF1DD 0%,#FFCFA4 38%,#E0A371 70%,#B8896A 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:.02em;line-height:1;flex-shrink:0;width:74px;text-align:center;filter:drop-shadow(0 1px 1px rgba(0,0,0,.45));transition:transform .8s ease;}
+    .grow-text{font-family:var(--font-body);font-size:16px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.04em;line-height:1.32;flex:1;}
+    .grow-card.is-active{transform:translateX(8px) scale(1.02);background:linear-gradient(135deg,#FFCFA4 0%,#FFE9D4 50%,#FFCFA4 100%);box-shadow:0 0 0 1px rgba(255,207,164,.55),0 0 28px rgba(255,207,164,.55),0 0 70px rgba(255,207,164,.35),0 0 140px rgba(255,207,164,.2);}
+    .grow-card.is-active .grow-card-inner{background:radial-gradient(circle at 0% 50%,rgba(255,207,164,.16) 0%,rgba(13,17,26,.92) 70%);}
+    .grow-card.is-active .grow-num{transform:scale(1.06);}
+    @media(max-width:900px){
+      .grow-schema{grid-template-columns:1fr;gap:32px;max-width:560px;}
+      .grow-title{text-align:center;align-items:center;font-size:clamp(50px,11.7vw,80px);text-shadow:0 0 30px rgba(255,207,164,.22);}
+    }
+    @media(max-width:768px){
+      .grow-schema{margin-top:36px;gap:28px;}
+      .grow-card-inner{padding:18px 22px;gap:18px;}
+      .grow-num{font-size:38px;width:60px;}
+      .grow-text{font-size:14px;letter-spacing:.03em;}
+      .grow-card.is-active{transform:translateX(0) scale(1.03);}
+    }
+
+    /* AUDIENCE */
+    .audience-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:64px;align-items:stretch;}
+    @media(max-width:1200px){.audience-grid{grid-template-columns:repeat(2,1fr);gap:28px;}}
+    .audience-card{padding:36px 28px 32px;background:linear-gradient(135deg,rgba(255,207,164,.06),rgba(192,132,252,.04));border:2px solid rgba(255,207,164,.2);border-radius:24px;transition:transform 0.3s ease,border-color 0.3s ease;display:flex;flex-direction:column;align-items:center;text-align:center;}
+    .audience-card:hover{transform:translateY(-6px);border-color:rgba(255,207,164,.5);}
+    .audience-portrait-wrap{position:relative;width:160px;height:160px;margin-bottom:24px;}
+    .audience-portrait{width:100%;height:100%;border-radius:50%;overflow:hidden;border:2px solid rgba(255,207,164,.35);background:linear-gradient(135deg,rgba(255,207,164,.12),rgba(192,132,252,.08));position:relative;z-index:2;}
+    .audience-portrait img{width:100%;height:100%;display:block;}
+    .audience-deco{position:absolute;border-radius:50%;pointer-events:none;}
+    .audience-deco-1{width:40px;height:40px;border:1.5px solid rgba(255,207,164,.4);top:-6px;right:-6px;}
+    .audience-deco-2{width:30px;height:30px;background:rgba(200,75,158,.25);bottom:6px;left:-8px;}
+    .audience-card-title{font-size:16px;font-weight:700;color:var(--brand-peach);margin-bottom:10px;line-height:1.35;}
+    .audience-card-desc{font-size:13px;color:var(--text-muted);line-height:1.6;}
+    @media(max-width:600px){.audience-grid{grid-template-columns:1fr;}}
+
+    /* ALIVE */
+    #alive .alive-grid{display:grid;grid-template-columns:1fr 1.15fr;grid-template-areas:"video title" "video content";grid-template-rows:auto 1fr;gap:24px 64px;align-items:start;}
+    #alive .alive-title-wrap{grid-area:title;}
+    #alive .alive-title-wrap .section-label{margin-bottom:14px;}
+    #alive .alive-title{font-family:var(--font-display);font-size:clamp(34px,4.6vw,60px);font-weight:400;color:var(--brand-peach);line-height:1.06;letter-spacing:.02em;text-transform:uppercase;margin:0;}
+    #alive .market-ovals{display:grid;grid-template-columns:1fr;gap:12px;margin:0 0 4px;}
+    #alive .market-oval{position:relative;border-radius:100px;padding:1.6px;background:linear-gradient(135deg,rgba(255,207,164,.55) 0%,rgba(255,207,164,.14) 50%,rgba(255,207,164,.55) 100%);transition:transform .3s ease,box-shadow .3s ease;}
+    #alive .market-oval-inner{border-radius:100px;background:linear-gradient(135deg,rgba(20,28,45,.94) 0%,rgba(8,11,18,.96) 100%);padding:16px 22px;text-align:left;color:#FFFFFF;font-size:15px;font-weight:600;line-height:1.5;letter-spacing:.01em;}
+    #alive .market-oval-inner .ovl-letter{display:inline-block;font-family:var(--font-display);font-size:1.8em;font-weight:400;line-height:1;background:linear-gradient(180deg,#FFF1DD 0%,#FFCFA4 38%,#E0A371 70%,#B8896A 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-right:6px;vertical-align:-0.05em;letter-spacing:.02em;filter:drop-shadow(0 1px 1px rgba(0,0,0,.45));}
+    #alive .market-oval:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(255,207,164,.18);}
+    #alive .alive-video{grid-area:video;position:sticky;top:100px;align-self:start;}
+    #alive .alive-gif-wrap{border-radius:18px;overflow:hidden;border:1.5px solid rgba(255,207,164,.28);box-shadow:0 0 40px rgba(255,207,164,.18);background:rgba(13,17,26,.6);}
+    #alive .alive-gif-wrap img,#alive .alive-gif-wrap video{display:block;width:100%;height:auto;}
+    #alive .alive-content{grid-area:content;display:flex;flex-direction:column;gap:0;text-align:left;}
+    #alive .alive-p{color:#FFFFFF;font-size:17px;line-height:1.7;margin:0 0 14px;text-align:left;}
+    #alive .alive-p strong{color:var(--brand-peach);font-weight:700;}
+    #alive .alive-p:last-of-type{margin-bottom:36px;}
+    #alive .alive-cta{margin:48px auto 0;max-width:900px;text-align:center;font-size:18px;line-height:1.7;color:#FFFFFF;font-weight:500;padding:22px 26px;background:linear-gradient(135deg,rgba(255,207,164,.45) 0%,rgba(184,137,106,.30) 60%,rgba(255,207,164,.40) 100%);border:1.5px solid rgba(255,207,164,.55);border-radius:14px;box-shadow:0 0 24px rgba(255,207,164,.22);}
+    #alive .alive-cta span{color:var(--brand-peach);font-weight:800;}
+    @media(max-width:900px){
+      #alive .alive-grid{grid-template-columns:1fr;grid-template-areas:"title" "video" "content";grid-template-rows:auto;gap:24px;}
+      #alive .alive-video{position:static;top:auto;max-width:480px;margin:0 auto;width:100%;}
+      #alive .alive-title-wrap{text-align:center;}
+      #alive .alive-title{text-align:center;}
+      #alive .market-oval-inner{padding:18px 24px;font-size:15px;}
+    }
+
+    /* ORGANIZERS */
+    .org-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin-top:48px;max-width:1100px;margin-left:auto;margin-right:auto;}
+    .org-card{background:linear-gradient(160deg,rgba(255,207,164,.08),rgba(184,137,106,.04));border:1px solid rgba(255,207,164,.22);border-radius:24px;padding:32px 28px;display:flex;flex-direction:column;}
+    .org-photo-wrap{display:flex;justify-content:center;margin-bottom:24px;}
+    .org-photo{width:200px;height:240px;object-fit:cover;object-position:center;border-radius:50% 50% 50% 50% / 55% 55% 45% 45%;border:2px solid rgba(255,207,164,.3);box-shadow:0 12px 40px rgba(0,0,0,.35);}
+    .org-name{font-family:var(--font-body);font-size:24px;font-weight:800;color:var(--brand-peach);text-align:center;margin-bottom:8px;letter-spacing:.02em;}
+    .org-role{font-size:14px;color:var(--text-muted);text-align:center;margin-bottom:24px;font-style:italic;}
+    .org-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
+    .org-list li{font-size:14.5px;color:var(--text-light);line-height:1.55;padding-left:18px;position:relative;}
+    .org-list li::before{content:"•";color:var(--brand-peach);position:absolute;left:0;top:0;font-size:18px;line-height:1;font-weight:700;}
+    @media(max-width:900px){.org-grid{grid-template-columns:1fr;gap:24px;}.org-card{padding:24px 22px;}.org-name{font-size:20px;}.org-photo{width:170px;height:210px;}}
+
+    /* PARTNERS */
+    .partners-grid{display:flex;flex-wrap:wrap;gap:40px 32px;justify-content:center;align-items:flex-start;margin-top:48px;}
+    .partner-card{display:flex;flex-direction:column;align-items:center;text-align:center;}
+    .partner-card.partner-card-circle{max-width:200px;}
+    .partner-card.partner-card-pill{max-width:280px;}
+    .partner-logo-slot{height:148px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+    .partner-circle{width:148px;height:148px;border-radius:50%;padding:3px;background:linear-gradient(135deg,#FFCFA4 0%,#D4A574 50%,#FFCFA4 100%);transition:transform .3s ease,box-shadow .3s ease;}
+    .partner-circle:hover{transform:translateY(-4px);box-shadow:0 0 32px rgba(255,207,164,.35);}
+    .partner-circle-inner{width:100%;height:100%;border-radius:50%;background:linear-gradient(160deg,#25455D 0%,#080B12 75%);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+    .partner-circle-inner img{width:88%;height:88%;object-fit:contain;}
+    .partner-pill{width:260px;height:148px;border-radius:80px;padding:3px;background:linear-gradient(135deg,#FFCFA4 0%,#D4A574 50%,#FFCFA4 100%);transition:transform .3s ease,box-shadow .3s ease;}
+    .partner-pill:hover{transform:translateY(-4px);box-shadow:0 0 32px rgba(255,207,164,.35);}
+    .partner-pill-inner{width:100%;height:100%;border-radius:80px;background:linear-gradient(160deg,#25455D 0%,#080B12 75%);display:flex;align-items:center;justify-content:center;padding:18px 28px;overflow:hidden;}
+    .partner-pill-inner img{max-width:100%;max-height:100%;object-fit:contain;}
+    .partner-name{font-size:14px;font-weight:700;color:var(--text-light);margin-bottom:6px;letter-spacing:.02em;}
+    .partner-desc{font-size:12px;color:var(--text-muted);line-height:1.5;max-width:200px;}
+    @media(max-width:768px){
+      .partners-grid{gap:28px 20px;}
+      .partner-logo-slot{height:120px;margin-bottom:14px;}
+      .partner-circle{width:120px;height:120px;}
+      .partner-pill{width:220px;height:120px;}
+      .partner-pill-inner{padding:12px 20px;border-radius:70px;}
+      .partner-card.partner-card-circle{max-width:160px;}
+      .partner-card.partner-card-pill{max-width:240px;}
+    }
+
+    /* HISTORY — YT cases + speaker cases */
+    .yt-cases-track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x proximity;padding:8px 4px 16px;margin:0 -4px;scrollbar-width:thin;scrollbar-color:var(--brand-peach) rgba(255,207,164,.15);}
+    .yt-cases-track::-webkit-scrollbar{height:6px;}
+    .yt-cases-track::-webkit-scrollbar-track{background:rgba(255,207,164,.1);border-radius:3px;}
+    .yt-cases-track::-webkit-scrollbar-thumb{background:var(--brand-peach);border-radius:3px;}
+    .yt-case{position:relative;flex:0 0 280px;aspect-ratio:16/9;border-radius:12px;overflow:hidden;scroll-snap-align:start;background:#0D111A;transition:transform .25s ease,box-shadow .25s ease;cursor:pointer;}
+    .yt-case:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(255,207,164,.18);}
+    .yt-case img{width:100%;height:100%;object-fit:cover;display:block;}
+    .yt-case .yt-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;border-radius:50%;background:var(--brand-peach);color:#080B12;display:flex;align-items:center;justify-content:center;font-size:20px;padding-left:4px;}
+    @media(max-width:768px){.yt-case{flex-basis:240px;}}
+    .speaker-cases-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x proximity;padding:8px 4px 16px;margin:0 -4px;scrollbar-width:thin;scrollbar-color:var(--brand-peach) rgba(255,207,164,.15);}
+    .speaker-cases-track::-webkit-scrollbar{height:6px;}
+    .speaker-cases-track::-webkit-scrollbar-track{background:rgba(255,207,164,.1);border-radius:3px;}
+    .speaker-cases-track::-webkit-scrollbar-thumb{background:var(--brand-peach);border-radius:3px;}
+    .speaker-case{flex:0 0 460px;aspect-ratio:16/9;border-radius:14px;overflow:hidden;scroll-snap-align:start;background:#0D111A;border:1.5px solid rgba(255,207,164,.18);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;}
+    .speaker-case:hover{transform:translateY(-3px);border-color:rgba(255,207,164,.5);box-shadow:0 12px 32px rgba(255,207,164,.18);}
+    .speaker-case img{width:100%;height:100%;object-fit:cover;display:block;}
+    @media(max-width:900px){.speaker-case{flex-basis:380px;}}
+    @media(max-width:600px){.speaker-case{flex-basis:300px;}}
+
+    /* QUESTIONS */
     .q-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;max-width:1080px;margin:0 auto;}
     .q-text-col{display:flex;flex-direction:column;align-items:flex-start;}
     .q-title{font-family:var(--font-body);font-size:clamp(28px,4.5vw,42px);font-weight:800;color:var(--brand-peach);line-height:1.15;letter-spacing:.02em;margin-bottom:24px;text-transform:uppercase;}
@@ -122,7 +308,7 @@
     .footer-links a:hover{color:var(--brand-peach);}
     .footer-legal{font-size:12px;color:var(--text-dim);line-height:1.7;}
 
-    /* MOBILE базовые правки */
+    /* MOBILE общие */
     @media(max-width:768px){
       .container{padding:0 20px;}
       .sec{padding:60px 0;}
@@ -135,7 +321,7 @@
       .ptariff{padding:28px 22px;}
     }
   </style>
-  <!-- Подключаем общий стиль чемпионата: hero3.jpg фон, металлический персик, шрифты заголовков -->
+  <!-- Общий стиль чемпионата (hero3.jpg фон, металлический персик) -->
   <link rel="stylesheet" href="/css/kreativ_chempionat_new.css?v=17">
 </head>
 <body>
@@ -154,20 +340,13 @@
         <p class="hero-sub"><span style="color:var(--brand-peach);">Ж</span>ивые <span style="color:var(--brand-peach);">·</span> <span style="color:var(--brand-peach);">И</span>стинные <span style="color:var(--brand-peach);">·</span> <span style="color:var(--brand-peach);">В</span>лияющие <span style="color:var(--brand-peach);">·</span> <span style="color:var(--brand-peach);">У</span>спешные</p>
 
         <h1 class="hero-title-big">
-          МЕЖДУНАРОДНЫЙ<br>
-          ЧЕМПИОНАТ<br class="br-desktop">
-          СПИКЕРОВ
+          МЕЖДУНАРОДНАЯ<br>
+          МЕДИА-РЕЗИДЕНЦИЯ<br class="br-desktop">
+          iViSiON
         </h1>
 
-        <p style="font-family:var(--font-body);font-weight:800;font-size:clamp(13px,1.25vw,17px);letter-spacing:.06em;color:#FFFFFF;text-transform:uppercase;margin:14px 0 4px;line-height:1.3;">
-          для <span style="color:var(--brand-peach);">узнаваемости</span> русских <br>созидателей по всему миру:
-        </p>
-        <p style="font-family:var(--font-body);font-weight:500;font-size:clamp(13px,1.1vw,16px);color:#FFFFFF;margin:0;line-height:1.4;">
-          экспертов, предпринимателей, владельцев бизнесов и брендов
-        </p>
-
-        <p style="margin:24px 0 12px;font-family:var(--font-body);font-weight:800;font-size:clamp(12px,1.1vw,15px);letter-spacing:.08em;color:#FFFFFF;text-transform:uppercase;line-height:1.4;text-decoration:underline;text-decoration-color:var(--brand-peach);text-decoration-thickness:2px;text-underline-offset:6px;">
-          ФИНАЛ — <span style="color:var(--brand-peach);">ВЬЕТНАМ</span>
+        <p style="margin:24px 0 12px;font-family:var(--font-body);font-weight:800;font-size:clamp(13px,1.25vw,17px);letter-spacing:.06em;color:#FFFFFF;text-transform:uppercase;line-height:1.4;text-decoration:underline;text-decoration-color:var(--brand-peach);text-decoration-thickness:2px;text-underline-offset:6px;">
+          <span style="color:var(--brand-peach);">17–21 августа</span> · Нячанг · Вьетнам
         </p>
 
         <div class="hero-btns" style="margin-top:12px;">
@@ -180,6 +359,205 @@
   </div>
 </section>
 
+<!-- HEADING: ВЫЙДИ НА НОВЫЙ УРОВЕНЬ -->
+<section class="sec dark" style="padding:80px 24px;">
+  <div class="container">
+    <h2 style="font-family:var(--font-display);font-size:clamp(36px,5.4vw,60px);font-weight:400;color:var(--brand-peach);text-align:center;line-height:1.05;letter-spacing:.02em;text-transform:uppercase;">
+      Выйди в свет... да на новый уровень!
+    </h2>
+    <p style="margin:28px auto 18px;max-width:980px;text-align:center;color:#FFFFFF;font-family:var(--font-body);font-weight:800;font-size:clamp(20px,2.4vw,30px);line-height:1.25;letter-spacing:.02em;text-transform:uppercase;text-decoration:underline;text-decoration-color:var(--brand-peach);text-decoration-thickness:2px;text-underline-offset:10px;">
+      Неважно, была ли у вас сцена раньше. Важно, что она будет теперь
+    </p>
+    <p style="margin:28px auto 14px;max-width:840px;text-align:center;color:#FFFFFF;font-size:17px;line-height:1.65;">
+      <strong style="color:var(--brand-peach);">iViSiON: Ж.И.В.У.</strong> <em style="color:var(--brand-peach);font-style:normal;">(Живые, Истинные, Влияющие, Успешные)</em> — это чемпионат проявленности, медийности и лидерства через аутентичность, спикерство, креативную подачу и силу личности.
+    </p>
+    <p style="margin:0 auto 56px;max-width:840px;text-align:center;color:#FFFFFF;font-size:17px;line-height:1.65;">
+      Для экспертов, предпринимателей и спикеров, которым есть что сказать и кто хочет перейти
+    </p>
+
+    <div class="transition-grid" style="display:grid;grid-template-columns:1fr 90px 1fr;align-items:center;gap:24px;max-width:920px;margin:0 auto;">
+      <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+        <div style="font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:#C0C0C0;font-weight:800;margin-bottom:18px;">Из категории</div>
+        <div class="transition-circle" style="width:280px;height:280px;max-width:100%;border-radius:50%;overflow:hidden;border:2px solid rgba(192,192,192,.4);box-shadow:0 12px 36px rgba(0,0,0,.5);background:#FFFFFF;display:flex;align-items:center;justify-content:center;">
+          <img src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/tozhe_kouch3.webp" alt="Один из многих" loading="lazy" decoding="async" style="width:200%;height:200%;object-fit:contain;display:block;">
+        </div>
+        <div style="margin-top:22px;font-size:18px;font-weight:700;color:#FFFFFF;line-height:1.4;text-transform:uppercase;letter-spacing:0.04em;">Один из многих</div>
+      </div>
+      <div class="transition-arrow" style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+        <svg width="80" height="20" viewBox="0 0 80 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M2 10 L70 10 M62 4 L70 10 L62 16" stroke="#FFCFA4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div style="margin-top:10px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--brand-peach);font-weight:700;">Чемпионат</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+        <div style="font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--brand-peach);font-weight:800;margin-bottom:18px;">В категорию</div>
+        <div class="transition-circle" style="width:280px;height:280px;max-width:100%;border-radius:50%;overflow:hidden;border:2px solid rgba(255,207,164,.55);box-shadow:0 12px 36px rgba(255,207,164,.22);background:#0D111A;">
+          <img src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/ivision_margo_forbs.webp" alt="Лидер влияющий" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" decoding="async">
+        </div>
+        <div style="margin-top:22px;font-size:18px;font-weight:700;color:var(--brand-peach);line-height:1.4;text-transform:uppercase;letter-spacing:0.04em;">Я лидер и я влияю</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Почему сегодня недостаточно просто быть профессионалом -->
+<section class="sec dark" id="why-not-enough" style="padding:80px 24px;">
+  <div class="container">
+    <div class="why-top-grid">
+      <div class="why-meme">
+        <div class="why-meme-frame">
+          <img src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/stat_i_poroda.webp" alt="Стать и порода" loading="lazy">
+        </div>
+      </div>
+      <div class="why-content">
+        <h2 class="why-title">Почему сегодня недостаточно просто быть профессионалом</h2>
+        <div class="why-grid">
+          <img class="why-stamp" src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/pechat.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <div class="why-card">
+            <h3 style="font-size:18px;font-weight:700;color:var(--brand-peach);margin-bottom:14px;line-height:1.35;">Рынок переполнен:</h3>
+            <ul style="list-style:none;padding:0;margin:0;color:#FFFFFF;font-size:15px;line-height:1.8;">
+              <li style="position:relative;padding-left:18px;"><span style="position:absolute;left:0;color:var(--brand-peach);">·</span>одинаковыми постами,</li>
+              <li style="position:relative;padding-left:18px;"><span style="position:absolute;left:0;color:var(--brand-peach);">·</span>одинаковыми эфирами,</li>
+              <li style="position:relative;padding-left:18px;"><span style="position:absolute;left:0;color:var(--brand-peach);">·</span>одинаковыми экспертами.</li>
+            </ul>
+          </div>
+          <div class="why-card">
+            <h3 style="font-size:18px;font-weight:700;color:var(--brand-peach);margin-bottom:14px;line-height:1.35;">Люди перестали реагировать на:</h3>
+            <ul style="list-style:none;padding:0;margin:0;color:#FFFFFF;font-size:15px;line-height:1.8;">
+              <li style="position:relative;padding-left:18px;"><span style="position:absolute;left:0;color:var(--brand-peach);">·</span>пользу ради пользы,</li>
+              <li style="position:relative;padding-left:18px;"><span style="position:absolute;left:0;color:var(--brand-peach);">·</span>шаблонные самопрезентации,</li>
+              <li style="position:relative;padding-left:18px;"><span style="position:absolute;left:0;color:var(--brand-peach);">·</span>ИИ-шный контент.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GOAL -->
+<section class="sec dark" id="goal-sec">
+  <div class="container" style="text-align:center;">
+    <div class="section-label">Цель чемпионата</div>
+    <h2 class="h2">Цель Чемпионата</h2>
+    <ul class="goal-list">
+      <li><span class="goal-arrow">→</span><span>Содействовать русским созидателям (экспертам, предпринимателям, владельцам B2C-бизнесов и брендам) становиться узнаваемыми по всему миру и пробивать баннерную слепоту</span></li>
+      <li><span class="goal-arrow">→</span><span>Формировать новую медийную элиту рынка и стандартов публичности, влияния и живого лидерства</span></li>
+      <li><span class="goal-arrow">→</span><span>Выявить профессионалов, чья ценность — не в сгенерированном ИИ-тексте и фото, а в живом опыте, результатах и реальном стиле жизни</span></li>
+      <li><span class="goal-arrow">→</span><span>Создать пространство, где продажи идут из удовольствия и творчества — и каждый участник уже в процессе привлекает клиентов</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- GOLD FULL-WIDTH: Русскоязычные предприниматели -->
+<section class="sec gold-fullwidth">
+  <div class="gold-fullwidth-inner">
+    <div class="container" style="text-align:center;">
+      <h2 class="gold-fw-title">Русскоязычные предприниматели и эксперты сегодня — везде</h2>
+      <p class="gold-fw-sub">Во Вьетнаме. В Дубае. В Европе. В Латинской Америке.</p>
+      <p class="gold-fw-text">Но русскоязычная медийная сцена всё ещё воспринимается как локальная.</p>
+      <p class="gold-fw-text gold-fw-text-strong">
+        <strong>iViSiON</strong> меняет это — создавая <strong>международный формат</strong>, где сильные русскоязычные эксперты становятся узнаваемыми там, где живут и работают их аудитории. <strong>По всему миру.</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- GROW + AUDIENCE -->
+<section class="sec dark" id="grow-section" style="padding:80px 24px;">
+  <div class="container">
+    <div class="grow-schema">
+      <div class="grow-title">
+        <span>Сегодня</span>
+        <span>растут</span>
+        <span>те, кто</span>
+      </div>
+      <div class="grow-cards">
+        <div class="grow-card"><div class="grow-card-inner"><div class="grow-num">01</div><div class="grow-text">пробивает баннерную слепоту</div></div></div>
+        <div class="grow-card"><div class="grow-card-inner"><div class="grow-num">02</div><div class="grow-text">воспринимается как лидер и авторитет</div></div></div>
+        <div class="grow-card"><div class="grow-card-inner"><div class="grow-num">03</div><div class="grow-text">вызывает эмоциональный отклик</div></div></div>
+        <div class="grow-card"><div class="grow-card-inner"><div class="grow-num">04</div><div class="grow-text">запоминается и удерживает внимание</div></div></div>
+        <div class="grow-card"><div class="grow-card-inner"><div class="grow-num">05</div><div class="grow-text">собирает вокруг себя людей</div></div></div>
+      </div>
+    </div>
+
+    <div id="audience-sec" style="margin-top:80px;">
+      <div class="section-label">Для кого</div>
+      <h2 class="h2">Чемпионат для вас, если</h2>
+      <div class="audience-grid">
+        <div class="audience-card">
+          <div class="audience-portrait-wrap">
+            <span class="audience-deco audience-deco-1"></span>
+            <span class="audience-deco audience-deco-2"></span>
+            <div class="audience-portrait" style="border-radius:50% 50% 50% 50% / 55% 55% 45% 45%"><img src="/img/Slon.jpg" alt="Эксперт с опытом" loading="lazy" style="object-fit:contain;object-position:center 55%;transform:translate(0px,-30px) scale(2);"></div>
+          </div>
+          <h3 class="audience-card-title">Эксперт с опытом, которого не знают</h3>
+          <p class="audience-card-desc">Работаете давно, результаты есть — но не удаётся быть магнитом аудитории и рынок не считывает вашего авторитета.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-portrait-wrap">
+            <span class="audience-deco audience-deco-1"></span>
+            <span class="audience-deco audience-deco-2"></span>
+            <div class="audience-portrait" style="border-radius:60% 40% 60% 40% / 50% 60% 40% 50%"><img src="/img/nha_trang/getsbi.jpg" alt="Бренд" loading="lazy" style="object-fit:cover;object-position:center;"></div>
+          </div>
+          <h3 class="audience-card-title">Бренд или B2C-бизнес с хорошим продуктом</h3>
+          <p class="audience-card-desc">У вас твёрдый бизнес и классный продукт — не хватает лишь медийности, чтобы рынок о вас узнал и покупал охотнее.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-portrait-wrap">
+            <span class="audience-deco audience-deco-1"></span>
+            <span class="audience-deco audience-deco-2"></span>
+            <div class="audience-portrait" style="border-radius:55% 100% 45% 45% / 100% 50% 100% 50%"><img src="/img/freken-bok.JPG" alt="Творческая личность" loading="lazy" style="object-fit:contain;object-position:center;transform:translate(15px,-30px) scale(1.2);"></div>
+          </div>
+          <h3 class="audience-card-title">Творческая личность, загнанная в рамки</h3>
+          <p class="audience-card-desc">У вас есть таланты, аутентичность и «капелька безумия» — но всё потерялось под слоями «надо быть серьёзным», «надо демонстрировать кейсы».</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-portrait-wrap">
+            <span class="audience-deco audience-deco-1"></span>
+            <span class="audience-deco audience-deco-2"></span>
+            <div class="audience-portrait" style="border-radius:120% 100% 100% 100% / 120% 100% 100% 100%"><img src="/img/ya_v_potoke_momente_resurse.jpeg" alt="Системщик" loading="lazy" style="object-fit:contain;object-position:center;transform:translate(0px,-30px) scale(1.1);"></div>
+          </div>
+          <h3 class="audience-card-title">Системщик, которому надоело быть душным</h3>
+          <p class="audience-card-desc">Вся энергия уходит на выстраивание процессов, систем и воронок — а до лёгкости, творчества и кайфа от продаж руки так и не доходят.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALIVE — медийная элита -->
+<section class="sec dark" id="alive" style="padding:60px 24px 80px;">
+  <div class="container" style="max-width:1200px;">
+    <div class="alive-grid">
+      <div class="alive-title-wrap">
+        <div class="section-label">Что мы меняем</div>
+        <h2 class="alive-title">Мы формируем новую медийную элиту рынка и живого лидерства</h2>
+      </div>
+      <div class="alive-video">
+        <div class="alive-gif-wrap">
+          <video src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/smeh.mp4" autoplay loop muted playsinline preload="none" aria-label="Живой смех"></video>
+        </div>
+      </div>
+      <div class="alive-content">
+        <div class="market-ovals">
+          <div class="market-oval"><div class="market-oval-inner"><span class="ovl-letter">Ж</span> — живой и аутентичный</div></div>
+          <div class="market-oval"><div class="market-oval-inner"><span class="ovl-letter">И</span> — искренний и вызывает доверие</div></div>
+          <div class="market-oval"><div class="market-oval-inner"><span class="ovl-letter">В</span> — влияет и владеет вниманием</div></div>
+          <div class="market-oval"><div class="market-oval-inner"><span class="ovl-letter">У</span> — успешен и профессионален</div></div>
+        </div>
+        <div style="margin-top:28px;">
+          <p class="alive-p">ИИ может создать текст. Но не может создать <strong>аутентичность, энергетику, харизму</strong>.</p>
+          <p class="alive-p">ИИ может собрать картинку. Но не может передать <strong>масштаб личности, внутреннюю силу и контекст жизни</strong>.</p>
+        </div>
+      </div>
+    </div>
+    <p class="alive-cta">
+      Именно это мы выводим на международный уровень — с живой сценой <span>онлайн</span> и <span>офлайн во Вьетнаме</span>
+    </p>
+  </div>
+</section>
+
 <!-- VIETNAM — Международная медиа-резиденция -->
 <section class="sec dark" id="vietnam-sec">
   <div class="container">
@@ -188,7 +566,6 @@
         <div class="section-label">Международный уровень</div>
         <h2 class="h2" style="margin-top:8px;">Вьетнам — международная медиа-резиденция iViSiON</h2>
         <p class="desc" style="color:var(--brand-peach);font-weight:600;margin:0 0 22px;font-style:italic;">Не просто выезд. Новый уровень статуса, медийности и окружения</p>
-        <p style="font-size:16px;line-height:1.7;color:var(--text-light);margin:0 0 18px;">Финальный этап iViSiON проходит во Вьетнаме в формате <strong style="color:var(--brand-peach);">международной медиа-резиденции</strong> для предпринимателей, экспертов и спикеров новой эпохи.</p>
         <p style="font-size:16px;line-height:1.7;color:var(--text-light);margin:0;">Это пространство, где соединяются: <strong style="color:var(--brand-peach);">международная конференция, выступления, медийность, сильное окружение, контент, эстетика и создание личного бренда нового уровня</strong>.</p>
       </div>
       <div class="vietnam-hero-img" style="display:flex;justify-content:center;align-items:center;">
@@ -205,7 +582,6 @@
 
     <h3 class="h2" style="text-align:center;font-size:clamp(28px,3.6vw,42px);margin-top:64px;">В программе выезда во Вьетнам</h3>
 
-    <!-- NHA TRANG SUB-BLOCKS -->
     <style>
       .nt-block{max-width:980px;margin:64px auto 0;padding:32px;background:linear-gradient(160deg,rgba(255,207,164,.06),rgba(192,132,252,.04));border:1px solid rgba(255,207,164,.2);border-radius:24px;}
       .nt-block-title{font-family:var(--font-body);font-size:22px;font-weight:800;color:var(--text-light);letter-spacing:.02em;line-height:1.3;}
@@ -213,45 +589,14 @@
       .nt-block-text strong{color:var(--brand-peach);font-weight:700;}
       .nt-block-img{width:100%;border-radius:18px;overflow:hidden;margin-top:18px;}
       .nt-block-img img{width:100%;display:block;}
-
-      .nt-block-img.shape-stage{
-        border-radius: 32% 68% 41% 59% / 56% 38% 62% 44%;
-        transform: rotate(-1.2deg);
-        box-shadow: 0 24px 60px rgba(255,207,164,.18), 0 8px 24px rgba(0,0,0,.4);
-        outline: 2px solid rgba(255,207,164,.35);
-        outline-offset: -2px;
-      }
-      .nt-block-img.shape-stilyagi{
-        border-radius: 71% 29% 56% 44% / 30% 70% 30% 70%;
-        transform: rotate(-3.5deg);
-        box-shadow: 0 24px 60px rgba(200,75,158,.22), 0 8px 24px rgba(0,0,0,.4);
-        outline: 2px solid rgba(200,75,158,.4);
-        outline-offset: -2px;
-      }
+      .nt-block-img.shape-stage{border-radius:32% 68% 41% 59% / 56% 38% 62% 44%;transform:rotate(-1.2deg);box-shadow:0 24px 60px rgba(255,207,164,.18),0 8px 24px rgba(0,0,0,.4);outline:2px solid rgba(255,207,164,.35);outline-offset:-2px;}
+      .nt-block-img.shape-stilyagi{border-radius:71% 29% 56% 44% / 30% 70% 30% 70%;transform:rotate(-3.5deg);box-shadow:0 24px 60px rgba(200,75,158,.22),0 8px 24px rgba(0,0,0,.4);outline:2px solid rgba(200,75,158,.4);outline-offset:-2px;}
       .nt-block-img.shape-stilyagi:hover{transform:rotate(-3.5deg) scale(1.02);}
       .nt-block-img.shape-stage:hover{transform:rotate(-1.2deg) scale(1.02);}
       .nt-block-img.shape-stage,.nt-block-img.shape-stilyagi{transition:transform .35s ease;}
-
-      .nt-block-img.shape-egg{
-        border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
-        aspect-ratio: 3/4;
-        overflow: hidden;
-        outline: 2px solid rgba(255,207,164,.32);
-        outline-offset: -2px;
-        box-shadow: 0 18px 50px rgba(0,0,0,.45);
-      }
-      .nt-block-img.shape-egg img{
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-        display: block;
-      }
-      .nt-block-img.shape-egg.shape-egg-solo{
-        max-width: 380px;
-        margin-left: auto;
-        margin-right: auto;
-      }
+      .nt-block-img.shape-egg{border-radius:50% 50% 50% 50% / 40% 40% 60% 60%;aspect-ratio:3/4;overflow:hidden;outline:2px solid rgba(255,207,164,.32);outline-offset:-2px;box-shadow:0 18px 50px rgba(0,0,0,.45);}
+      .nt-block-img.shape-egg img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+      .nt-block-img.shape-egg.shape-egg-solo{max-width:380px;margin-left:auto;margin-right:auto;}
       .nt-photos-grid .nt-block-img.shape-egg:nth-child(1){transform:rotate(-2deg);}
       .nt-photos-grid .nt-block-img.shape-egg:nth-child(2){transform:rotate(1.5deg);}
       .nt-photos-grid .nt-block-img.shape-egg:nth-child(3){transform:rotate(-1deg);}
@@ -272,13 +617,14 @@
       }
     </style>
 
-    <!-- Sub-block 1: Международная конференция -->
+    <!-- 01: Международная конференция коллабораций -->
     <div class="nt-block">
       <div class="stage-num-large">01</div>
-      <h3 class="nt-block-title" style="margin-bottom:18px;">Международная конференция</h3>
+      <h3 class="nt-block-title" style="margin-bottom:18px;">Международная конференция коллабораций «Русские бизнес-созидатели»</h3>
       <p class="nt-block-text">Каждый участник или победитель выезда:</p>
       <ul class="stage-list-mini" style="margin-bottom:18px;">
         <li>выступит на международной площадке на аудиторию русскоязычных экспатов и предпринимателей</li>
+        <li>привлечёт клиентов, аудиторию или партнёров</li>
         <li>получит профессиональные записи выступления</li>
         <li>обретёт <strong>статус международного спикера и эксперта</strong> в своём продвижении, медиаките и продажах</li>
       </ul>
@@ -296,7 +642,7 @@
       </div>
     </div>
 
-    <!-- Sub-block 2: Медиа-батл с ИИ -->
+    <!-- 02: Медиа-батл с ИИ -->
     <div class="nt-block">
       <div class="stage-num-large">02</div>
       <h3 class="nt-block-title" style="margin-bottom:18px;">Медиа-батл с ИИ и визуальный брендинг личности</h3>
@@ -305,36 +651,16 @@
 
       <div class="collage-wrap">
         <div class="collage-row collage-row-top">
-          <div class="collage-col">
-            <div class="collage-item slot-straus">
-              <img src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/2straus.jpg" alt="Страус" loading="lazy" decoding="async">
-            </div>
-          </div>
-          <div class="collage-col">
-            <div class="collage-item slot-yacht">
-              <img src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/2yahta.webp" alt="Яхта" loading="lazy" decoding="async">
-            </div>
-          </div>
+          <div class="collage-col"><div class="collage-item"><img src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/2straus.jpg" alt="Страус" loading="lazy"></div></div>
+          <div class="collage-col"><div class="collage-item"><img src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/2yahta.webp" alt="Яхта" loading="lazy"></div></div>
         </div>
         <div class="collage-row collage-row-bottom">
-          <div class="collage-col">
-            <div class="collage-item slot-dver">
-              <img src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/2dver.webp" alt="Дверь" loading="lazy" decoding="async">
-            </div>
-          </div>
+          <div class="collage-col"><div class="collage-item"><img src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/2dver.webp" alt="Дверь" loading="lazy"></div></div>
           <div class="collage-col collage-col-stack">
-            <div class="collage-item slot-kokos">
-              <img src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/2gamak.webp" alt="Кокос" loading="lazy" decoding="async">
-            </div>
-            <div class="collage-item slot-bike">
-              <img src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/2bike.webp" alt="Байк" loading="lazy" decoding="async">
-            </div>
+            <div class="collage-item"><img src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/2gamak.webp" alt="Кокос" loading="lazy"></div>
+            <div class="collage-item"><img src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/2bike.webp" alt="Байк" loading="lazy"></div>
           </div>
-          <div class="collage-col">
-            <div class="collage-item slot-lest">
-              <img src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/2lestmitsa.jpg" alt="Лестница" loading="lazy" decoding="async">
-            </div>
-          </div>
+          <div class="collage-col"><div class="collage-item"><img src="https://pub-519fc43b54e1489384397c9cea0c0ded.r2.dev/ivision_landing_optimized/2lestmitsa.jpg" alt="Лестница" loading="lazy"></div></div>
         </div>
       </div>
 
@@ -348,10 +674,10 @@
       </div>
     </div>
 
-    <!-- Sub-block 3: Русский код -->
+    <!-- 03: Русский код -->
     <div class="nt-block">
       <div class="stage-num-large">03</div>
-      <h3 class="nt-block-title" style="margin-bottom:18px;">Съёмка сценического видео-клипа о вашем продукте в стиле «Русский код»</h3>
+      <h3 class="nt-block-title" style="margin-bottom:18px;">Съёмка брендированного видео-клипа о вашем продукте в стиле «Русский код»</h3>
       <p class="nt-block-text">Отдельная идея финального этапа — показать <strong>новый образ русскоязычных предпринимателей и экспертов на международной сцене</strong>.</p>
       <p class="nt-block-text">Не через пафос. А через: <strong>масштаб личности, эстетику, культуру созидания и уважение к своим корням</strong>.</p>
       <p class="nt-block-text">Наша цель — показать русских созидателей по всему миру, которые создают, развиваются и влияют — сохраняя свой культурный код, мышление и внутреннюю опору.</p>
@@ -369,7 +695,6 @@
       </div>
     </div>
 
-    <!-- Sub-block 4: Что ещё -->
     <h2 class="h2" style="text-align:center;margin-top:80px;margin-bottom:32px;">Что ещё?</h2>
 
     <div class="nt-extras-grid">
@@ -415,7 +740,6 @@
       <p style="margin:0;font-style:italic;">Самые сильные идеи, связи и коллаборации часто рождаются <strong>не на сцене, а в атмосфере свободы и живого общения</strong>.</p>
     </div>
 
-    <!-- Sub-block 5: Бонус Мальдивы -->
     <h2 class="h2" style="text-align:center;margin-top:80px;margin-bottom:24px;">И бонус после Вьетнама</h2>
     <div style="max-width:780px;margin:0 auto;text-align:center;">
       <p class="nt-block-text"><strong style="color:var(--brand-peach);">3 дня на Мальдивах</strong> от соорганизатора iViSiON — для каждого участника выезда.</p>
@@ -424,61 +748,37 @@
       </div>
     </div>
 
-    <!-- Финальная мысль -->
-    <h2 class="h2" style="text-align:center;margin-top:96px;max-width:1080px;margin-left:auto;margin-right:auto;">Финальный этап iViSiON во Вьетнаме — это переход</h2>
+    <h2 class="h2" style="text-align:center;margin-top:96px;max-width:1080px;margin-left:auto;margin-right:auto;">Медиа-резиденция iViSiON в Нячанге</h2>
     <p style="max-width:980px;margin:8px auto 0;text-align:center;font-family:var(--font-body);font-size:clamp(22px,2.6vw,32px);font-weight:700;color:#FFFFFF;line-height:1.3;letter-spacing:.01em;">
       не просто в «более известного»,<br>а в человека, которого начинают воспринимать как<br><span style="color:var(--brand-peach);">лидера и фигуру влияния</span>
     </p>
   </div>
 </section>
 
-<!-- TARIFF — Вьетнам, без цены -->
+<!-- TARIFF -->
 <section class="sec dark" id="tariff-sec">
   <div class="container">
     <div class="section-label" style="text-align:center;">Условия участия</div>
-    <h2 class="h2" style="text-align:center;margin-bottom:48px;">Тариф «Выезд во Вьетнам»</h2>
+    <h2 class="h2" style="text-align:center;margin-bottom:48px;">Тариф «Медиа-резиденция в Нячанге»</h2>
 
     <div class="ptariff">
-      <div class="ptariff-stage">онлайн-этапы 0 + 1 + спикер онлайн-конференции + Выезд</div>
-      <div class="ptariff-title">Тариф: «Онлайн + с выездом во Вьетнам»</div>
       <div class="ptariff-places">Всего 10 мест</div>
 
-      <div style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-peach);margin-top:6px;margin-bottom:-4px;">Этап 0 · Живой Автор</div>
+      <div style="font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-peach);margin-top:6px;margin-bottom:-2px;">Выезд в Нячанг</div>
       <ul class="ptariff-list">
-        <li>6 способов пробивать баннерную слепоту как лидер</li>
-        <li>7 заданий с материалами и примерами для подготовки блога и контента как основы для выступлений в этапе 1</li>
-        <li>Распаковка аутентичного рычага узнаваемости</li>
-        <li>Практика йоги смеха для запуска творческой энергии</li>
-        <li>Доступ к сообществу из 900+ экспертов и предпринимателей</li>
-        <li>Участие в финальном онлайн-нетворкинге</li>
-      </ul>
-
-      <div style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-peach);margin-top:8px;margin-bottom:-4px;">Этап 1 · Живой Спикер</div>
-      <ul class="ptariff-list">
-        <li>От 1 до 3 выступлений на площадке ВИДЕНИЕ / iViSiON</li>
-        <li>Персональная реклама по базе 2 500+ человек</li>
-        <li>Запись выступления как лид-магнит</li>
-        <li>Шанс на денежный приз этапа 1</li>
-        <li>Шанс на выигрыш титула «Лидер Влияния»</li>
-        <li>Шанс выиграть главный приз — выступление на живой сцене во Вьетнаме с суммарным охватом 8 000 человек</li>
-      </ul>
-
-      <div style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-peach);margin-top:8px;margin-bottom:-4px;">Спикерство на масштабной онлайн-конференции iViSiON</div>
-      <ul class="ptariff-list">
-        <li>30 мин выступления на одной сцене с лидерами рынка</li>
-        <li>Размещение на одной афише с лидерами рынка</li>
-        <li>5 рекламных касаний с аудиторией</li>
+        <li>Выступление на живой сцене во Вьетнаме — Нячанг</li>
+        <li>Съёмка брендированного клипа-визитки в стиле «Русский код»</li>
+        <li>Размещение рекламы по базе iViSiON (3000+ чел)</li>
+        <li>Индивидуальная подготовка выступления с нелинейным стратегом, основателем iViSiON Марго Форбс</li>
         <li>Благодарственное письмо от Опоры России за вклад в развитие предпринимателей</li>
+        <li>4 дня во Вьетнаме — проживание в золотом дворце у моря</li>
+        <li>Круиз на яхте и экскурсии</li>
       </ul>
 
-      <div style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-peach);margin-top:8px;margin-bottom:-4px;">Выезд · Вьетнам + Мальдивы</div>
+      <div class="ptariff-bonus-title">Бонусы:</div>
       <ul class="ptariff-list">
-        <li>Гарантированное выступление 30 минут на конференции iViSiON-8</li>
-        <li>Гарантированное выступление на живой сцене во Вьетнаме — Нячанг</li>
-        <li>Съёмка брендированного клипа-визитки в стиле стиляг</li>
-        <li>Размещение рекламы в открытой базе чемпионата</li>
-        <li>7 дней во Вьетнаме — проживание в золотом дворце у моря</li>
-        <li>Круиз на яхте и экскурсии</li>
+        <li>Участие в Международном онлайн-чемпионате спикеров «iViSiON: ЖИВУ» (<a href="/kreativ-chempionat" target="_blank" rel="noopener">подробнее</a>)</li>
+        <li>Выступление на онлайн-конференции «iViSiON-8: Русские бизнес-созидатели» (на одной сцене с лидерами рынка)</li>
         <li>3 дня на Мальдивах</li>
       </ul>
 
@@ -522,13 +822,144 @@
   </div>
 </section>
 
-<!-- QUESTIONS / TELEGRAM CTA -->
+<!-- ORGANIZERS -->
+<section class="sec dark" id="organizers-sec">
+  <div class="container">
+    <div class="section-label">Организаторы</div>
+    <h2 class="h2">Кто стоит за резиденцией</h2>
+
+    <div class="org-grid">
+      <div class="org-card">
+        <div class="org-photo-wrap">
+          <img class="org-photo" src="/img/forbs_margo.jpg" alt="Марго Форбс" loading="lazy" decoding="async">
+        </div>
+        <div class="org-name">Марго Форбс</div>
+        <div class="org-role">Основатель и креатор чемпионата</div>
+        <ul class="org-list">
+          <li>Нелинейный стратег в маркетинге и продажах</li>
+          <li>Создатель ВИДЕНИЕ / iViSiON · 7 конференций · 50+ лидеров рынка · 3 600+ участников</li>
+          <li>Несёт культуру аутентичности: пишет и поёт музыкальные портреты лидерам рынка</li>
+          <li>Чемпион смеха Приволжского округа 2025</li>
+          <li>Зам. председателя комитета по личному бренду БРО «Опора России»</li>
+          <li>Спикер Сколково, ЭКСПО · Кандидат физ-мат наук</li>
+        </ul>
+      </div>
+
+      <div class="org-card">
+        <div class="org-photo-wrap">
+          <img class="org-photo" src="/img/nha_trang/romanovskaya_ebg.JPG" alt="Евгения Романовская" loading="lazy" decoding="async">
+        </div>
+        <div class="org-name">Евгения Романовская</div>
+        <div class="org-role">Предприниматель со стажем 20 лет</div>
+        <ul class="org-list">
+          <li>Продюсер проектов и сильных коллабораций</li>
+          <li>Личный бренд • PR • Конференции • Медиа • Авторские туры</li>
+          <li>Председатель комитета по личному бренду в ОПОРА РОССИИ</li>
+          <li>Член клуба продюсеров и Женщины бизнеса</li>
+          <li>Соединяю нужных людей в нужной точке мира</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="sec mid" id="partners-sec">
+  <div class="container">
+    <div class="section-label">Партнёры</div>
+    <h2 class="h2">Партнёры iViSiON</h2>
+    <p class="desc">Сообщества, премии и организации, поддерживающие чемпионат и формирующие новое направление развития рынка.</p>
+
+    <div class="partners-grid">
+      <div class="partner-card partner-card-circle">
+        <div class="partner-logo-slot">
+          <div class="partner-circle">
+            <div class="partner-circle-inner"><img src="/img/jury/kos.JPG" alt="КОС" loading="lazy" style="width:88%;height:88%;"></div>
+          </div>
+        </div>
+        <div class="partner-name">КОС</div>
+        <div class="partner-desc">Сообщество из 6000+ предпринимателей</div>
+      </div>
+      <div class="partner-card partner-card-circle">
+        <div class="partner-logo-slot">
+          <div class="partner-circle">
+            <div class="partner-circle-inner"><img src="/img/jury/freedom.JPG" alt="FREEDOM" loading="lazy" style="width:88%;height:88%;"></div>
+          </div>
+        </div>
+        <div class="partner-name">FREEDOM</div>
+        <div class="partner-desc">Федеральная премия и онлайн-конференция</div>
+      </div>
+      <div class="partner-card partner-card-pill">
+        <div class="partner-logo-slot">
+          <div class="partner-pill">
+            <div class="partner-pill-inner"><img src="/img/jury/opora.png" alt="Опора России" loading="lazy" style="max-width:100%;max-height:100%;"></div>
+          </div>
+        </div>
+        <div class="partner-name">БРО «Опора России»</div>
+        <div class="partner-desc">Башкирское региональное отделение «Опоры России»</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ИСТОРИЯ iViSiON -->
+<section class="sec dark" id="history-sec">
+  <div class="container">
+    <div class="section-label" style="text-align:center;">Опыт</div>
+    <h2 class="h2" style="text-align:center;">История iViSiON</h2>
+
+    <h3 class="h2" style="text-align:center;font-size:clamp(24px,3vw,36px);margin-top:80px;color:var(--brand-peach);">Как мы провели 7 конференций — и что говорят спикеры iViSiON</h3>
+
+    <p style="text-align:center;font-size:12px;color:var(--text-muted);margin:24px 0 16px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;">Видео-отзывы спикеров</p>
+    <div class="yt-cases-track">
+      <a class="yt-case" href="https://www.youtube.com/watch?v=RJ7Q4jah64Y" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/RJ7Q4jah64Y/hqdefault.jpg" alt="" loading="lazy"><span class="yt-play">▶</span></a>
+      <a class="yt-case" href="https://www.youtube.com/watch?v=DxEVBfY7a6k" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/DxEVBfY7a6k/hqdefault.jpg" alt="" loading="lazy"><span class="yt-play">▶</span></a>
+      <a class="yt-case" href="https://www.youtube.com/watch?v=aSpwJq7ZNgg" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/aSpwJq7ZNgg/hqdefault.jpg" alt="" loading="lazy"><span class="yt-play">▶</span></a>
+      <a class="yt-case" href="https://www.youtube.com/watch?v=C1az6qxbKKk" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/C1az6qxbKKk/hqdefault.jpg" alt="" loading="lazy"><span class="yt-play">▶</span></a>
+      <a class="yt-case" href="https://www.youtube.com/watch?v=hHCdlq2gv1E" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/hHCdlq2gv1E/hqdefault.jpg" alt="" loading="lazy"><span class="yt-play">▶</span></a>
+      <a class="yt-case" href="https://www.youtube.com/watch?v=nI0PECScDQI" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/nI0PECScDQI/hqdefault.jpg" alt="" loading="lazy"><span class="yt-play">▶</span></a>
+      <a class="yt-case" href="https://www.youtube.com/watch?v=a8pCcJtE6xg" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/a8pCcJtE6xg/hqdefault.jpg" alt="" loading="lazy"><span class="yt-play">▶</span></a>
+      <a class="yt-case" href="https://www.youtube.com/watch?v=SO7IuWKVNEs" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/SO7IuWKVNEs/hqdefault.jpg" alt="" loading="lazy"><span class="yt-play">▶</span></a>
+      <a class="yt-case" href="https://www.youtube.com/watch?v=AQuXx2kW2v8" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/AQuXx2kW2v8/hqdefault.jpg" alt="" loading="lazy"><span class="yt-play">▶</span></a>
+      <a class="yt-case" href="https://www.youtube.com/watch?v=YX96-43hJ0k" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/YX96-43hJ0k/hqdefault.jpg" alt="" loading="lazy"><span class="yt-play">▶</span></a>
+      <a class="yt-case" href="https://www.youtube.com/watch?v=GpR5DiUVPGc" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/GpR5DiUVPGc/hqdefault.jpg" alt="" loading="lazy"><span class="yt-play">▶</span></a>
+      <a class="yt-case" href="https://www.youtube.com/watch?v=m3gq20EEJ9g" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/m3gq20EEJ9g/hqdefault.jpg" alt="" loading="lazy"><span class="yt-play">▶</span></a>
+    </div>
+
+    <p style="text-align:center;font-size:12px;color:var(--text-muted);margin:48px 0 16px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;">Кейсы спикеров и клиентов</p>
+    <div class="speaker-cases-track">
+      <div class="speaker-case"><img src="/img/speakers/speaker_01.png" alt="" loading="lazy"></div>
+      <div class="speaker-case"><img src="/img/speakers/speaker_02.png" alt="" loading="lazy"></div>
+      <div class="speaker-case"><img src="/img/speakers/speaker_03.png" alt="" loading="lazy"></div>
+      <div class="speaker-case"><img src="/img/speakers/speaker_04.png" alt="" loading="lazy"></div>
+      <div class="speaker-case"><img src="/img/speakers/speaker_05.png" alt="" loading="lazy"></div>
+      <div class="speaker-case"><img src="/img/speakers/speaker_06.png" alt="" loading="lazy"></div>
+      <div class="speaker-case"><img src="/img/speakers/speaker_07.png" alt="" loading="lazy"></div>
+      <div class="speaker-case"><img src="/img/speakers/speaker_08.png" alt="" loading="lazy"></div>
+      <div class="speaker-case"><img src="/img/speakers/speaker_09.png" alt="" loading="lazy"></div>
+      <div class="speaker-case"><img src="/img/speakers/speaker_10.png" alt="" loading="lazy"></div>
+      <div class="speaker-case"><img src="/img/speakers/speaker_11.png" alt="" loading="lazy"></div>
+      <div class="speaker-case"><img src="/img/speakers/speaker_12.png" alt="" loading="lazy"></div>
+    </div>
+
+    <div class="gold-plate" style="max-width:880px;margin:80px auto 0;text-align:center;">
+      <p style="margin:0;font-family:var(--font-display);font-weight:400;font-size:clamp(24px,3vw,38px);text-transform:uppercase;letter-spacing:.02em;line-height:1.1;">
+        Сегодня мы способны влиять ещё больше<br>и ещё масштабнее
+      </p>
+    </div>
+    <p style="max-width:1080px;margin:24px auto 0;text-align:center;font-family:var(--font-body);font-weight:800;font-size:clamp(22px,2.6vw,34px);text-transform:uppercase;letter-spacing:.02em;color:#FFFFFF;line-height:1.2;">
+      И содействовать <span style="color:var(--brand-peach);">русским созидателям</span> становиться узнаваемыми по всему миру
+    </p>
+  </div>
+</section>
+
+<!-- QUESTIONS -->
 <section class="sec dark" id="questions-sec">
   <div class="container">
     <div class="q-grid">
       <div class="q-text-col">
         <h2 class="q-title">Остались вопросы?</h2>
-        <p class="q-desc">Напишите Марго напрямую — расскажет про выезд во Вьетнам, поможет с бронированием и ответит на любые вопросы.</p>
+        <p class="q-desc">Напишите Марго напрямую — расскажет про медиа-резиденцию в Нячанге, поможет с бронированием и ответит на любые вопросы.</p>
         <a class="q-tg-btn" href="https://t.me/margoforbs" target="_blank" rel="noopener">
           <span class="q-tg-btn-i">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
@@ -555,6 +986,28 @@
     <div class="footer-legal">ИП САХИБГАРЕЕВА МАРГАРИТА ВЛАДИМИРОВНА · ИНН 890306512862</div>
   </div>
 </footer>
+
+<script>
+// GROW SCHEMA — циклическая персиковая подсветка карточек
+(function startGrowSchemaCycle(){
+  function init(){
+    const cards = document.querySelectorAll('.grow-card');
+    if (!cards.length) return;
+    let i = 0;
+    function tick(){
+      cards.forEach((el, idx) => el.classList.toggle('is-active', idx === i));
+      i = (i + 1) % cards.length;
+    }
+    tick();
+    setInterval(tick, 1700);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
 
 </body>
 </html>
