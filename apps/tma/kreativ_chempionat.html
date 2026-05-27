@@ -1305,6 +1305,11 @@
     <style>
       @media(max-width:900px){
         section .container > div[style*="grid-template-columns:repeat(4"]{grid-template-columns:repeat(2,1fr)!important;gap:20px!important;}
+        /* Чтобы длинные цифры (240.000) не наезжали на соседний столбик */
+        section .container > div[style*="grid-template-columns:repeat(4"] > div > div > div[style*="top:-40px"]{font-size:18px!important;}
+      }
+      @media(max-width:480px){
+        section .container > div[style*="grid-template-columns:repeat(4"] > div > div > div[style*="top:-40px"]{font-size:15px!important;}
       }
     </style>
   </div>
