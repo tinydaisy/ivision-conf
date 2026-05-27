@@ -1304,12 +1304,23 @@
 
     <style>
       @media(max-width:900px){
-        section .container > div[style*="grid-template-columns:repeat(4"]{grid-template-columns:repeat(2,1fr)!important;gap:20px!important;}
-        /* Чтобы длинные цифры (240.000) не наезжали на соседний столбик */
-        section .container > div[style*="grid-template-columns:repeat(4"] > div > div > div[style*="top:-40px"]{font-size:18px!important;}
+        /* Сетка 2×2 + большой вертикальный gap, чтобы цифра «-40px» над столбиком
+           из 2-го ряда не наезжала на подпись 1-го ряда */
+        section .container > div[style*="grid-template-columns:repeat(4"]{
+          grid-template-columns:repeat(2,1fr)!important;
+          column-gap:20px!important;
+          row-gap:80px!important;
+        }
+        /* Уменьшаем цифры — селектор глубже на 1 уровень, потому что число
+           живёт внутри bar внутри bar-wrapper, а не сразу под ним */
+        section .container > div[style*="grid-template-columns:repeat(4"] > div > div > div > div[style*="top:-40px"]{
+          font-size:20px!important;
+        }
       }
       @media(max-width:480px){
-        section .container > div[style*="grid-template-columns:repeat(4"] > div > div > div[style*="top:-40px"]{font-size:15px!important;}
+        section .container > div[style*="grid-template-columns:repeat(4"] > div > div > div > div[style*="top:-40px"]{
+          font-size:16px!important;
+        }
       }
     </style>
   </div>
