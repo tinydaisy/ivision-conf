@@ -2081,10 +2081,23 @@
 
     <div style="text-align:center;">
       <button class="btn-red-cta" data-nav="jury-sec">
-        <span class="btn-red-cta-i">Записаться на предстарт бесплатно</span>
+        <span class="btn-red-cta-i btn-red-cta-i--wrap">Записаться на предстарт бесплатно</span>
       </button>
       <p style="margin:14px 0 0;color:var(--text-muted);font-size:14px;">и узнайте все условия</p>
     </div>
+
+    <style>
+      /* На мобиле длинный текст кнопки переносится и не вылазит за экран */
+      @media(max-width:480px){
+        .btn-red-cta-i--wrap{
+          white-space:normal !important;
+          padding:14px 22px !important;
+          font-size:14px !important;
+          line-height:1.25;
+          max-width:calc(100vw - 56px);
+        }
+      }
+    </style>
 
   </div>
 </section>
