@@ -3313,14 +3313,21 @@ async function loadData() {
   }
 
   // NAV CTA — кнопка в липкой навигации (роль-специфично)
-  // При ?shwt — заменяем «Вступить в чат» на «Выбрать формат»
+  // При ?shwt — заменяем «Вступить в чат» на «Выбрать формат» и переключаем
+  // действие с openModal на скролл к секции тарифов (gc-форма тут неуместна)
   if (data.nav_cta) {
     const navLabel = document.getElementById('nav-cta-label');
-    const navText = params.has('shwt') ? 'Выбрать формат' : (data.nav_cta.label || '');
+    const isShwt = params.has('shwt');
+    const navText = isShwt ? 'Выбрать формат' : (data.nav_cta.label || '');
     if (navLabel) navLabel.textContent = navText;
     const navBtn = document.getElementById('nav-cta-btn');
     if (navBtn) {
-      if (data.nav_cta.openModal) {
+      if (isShwt) {
+        navBtn.onclick = () => {
+          const el = document.getElementById('jury-sec');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        };
+      } else if (data.nav_cta.openModal) {
         navBtn.onclick = () => openGC(data.nav_cta.openModal);
       } else if (data.nav_cta.scrollTo) {
         navBtn.onclick = () => {
