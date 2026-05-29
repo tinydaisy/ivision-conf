@@ -87,14 +87,24 @@
      items:    Array          — массив карточек из API (поле data.jury)
      opts:     {prevBtn, nextBtn} — кнопки навигации (необязательно)
   */
+  // Инициалы из имени для плейсхолдера, когда нет photo_url.
+  function getInitials(name) {
+    if (!name) return '';
+    var parts = String(name).trim().split(/\s+/).filter(Boolean);
+    var first = parts[0] ? parts[0][0] : '';
+    var second = parts[1] ? parts[1][0] : '';
+    return (first + second).toUpperCase();
+  }
+
   function renderJury(track, progress, items, opts) {
     if (!track || !Array.isArray(items)) return;
     opts = opts || {};
     track.innerHTML = '';
     if (progress) progress.innerHTML = '';
 
-    // Фильтр + сортировка по убыванию топ-актива; без активов — не показываем.
-    var ranked = rankByAssets(items).filter(function (x) { return x.collaborator.photo_url; });
+    // Сортируем по убыванию топ-актива; показываем ВСЕХ жюри (даже без photo_url —
+    // у них будет egg-плейсхолдер с инициалами).
+    var ranked = rankByAssets(items);
 
     ranked.forEach(function (x, i) {
       var c = x.collaborator;
@@ -102,11 +112,14 @@
       card.className = 'jury-team-card';
       var ach = (c.achievements || []).map(function (a) { return '<li>' + escapeHtml(a) + '</li>'; }).join('');
       var titleText = c.title || c.position || '';
+      var eggInner = c.photo_url
+        ? '<img src="' + escapeHtml(c.photo_url) + '" alt="' + escapeHtml(c.name) + '" loading="lazy">'
+        : '<div class="jury-team-egg-initials">' + escapeHtml(getInitials(c.name)) + '</div>';
       card.innerHTML =
         '<div class="jury-team-egg-wrap">' +
           '<span class="jury-team-egg-deco jury-team-egg-deco-1"></span>' +
           '<span class="jury-team-egg-deco jury-team-egg-deco-2"></span>' +
-          '<div class="jury-team-egg"><img src="' + escapeHtml(c.photo_url) + '" alt="' + escapeHtml(c.name) + '" loading="lazy"></div>' +
+          '<div class="jury-team-egg">' + eggInner + '</div>' +
         '</div>' +
         '<div class="jury-team-name">' + escapeHtml(c.name) + '</div>' +
         '<div class="jury-team-title">' + escapeHtml(titleText) + '</div>' +
