@@ -510,6 +510,7 @@
   <div class="nav-links">
     <a href="#" data-nav="format-section">Этапы</a>
     <a href="#" data-nav="prizes-sec">Призы</a>
+    <a href="#" data-nav="faq-sec">FAQ</a>
   </div>
   <button class="nav-btn" id="nav-cta-btn">
     <span class="nav-btn-i" id="nav-cta-label">Вступить в чат</span>
@@ -3184,6 +3185,179 @@ function renderBlock(b, isLast) {
 }
 </script>
 
+
+<!-- FAQ — частые вопросы -->
+<section class="sec dark" id="faq-sec">
+  <style>
+    .faq-wrap{max-width:880px;margin:48px auto 0;display:flex;flex-direction:column;gap:14px;}
+    .faq-item{
+      background:linear-gradient(160deg,rgba(255,207,164,.05),rgba(255,255,255,.02));
+      border:1px solid rgba(255,207,164,.18);
+      border-radius:16px;
+      overflow:hidden;
+      transition:border-color .25s ease, background .25s ease;
+    }
+    .faq-item[open]{
+      border-color:rgba(255,207,164,.4);
+      background:linear-gradient(160deg,rgba(255,207,164,.09),rgba(192,132,252,.04));
+    }
+    .faq-q{
+      list-style:none;
+      cursor:pointer;
+      padding:18px 22px;
+      display:flex;
+      align-items:flex-start;
+      gap:14px;
+      font-family:var(--font-body);
+      font-size:16px;
+      font-weight:700;
+      color:var(--text-light);
+      line-height:1.4;
+      user-select:none;
+    }
+    .faq-q::-webkit-details-marker{display:none;}
+    .faq-q::after{
+      content:"+";
+      flex-shrink:0;
+      width:28px;
+      height:28px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--brand-peach);
+      font-size:22px;
+      font-weight:300;
+      line-height:1;
+      margin-left:auto;
+      transition:transform .3s ease;
+    }
+    .faq-item[open] .faq-q{color:var(--brand-peach);}
+    .faq-item[open] .faq-q::after{content:"−";transform:rotate(0deg);}
+    .faq-a{
+      padding:0 22px 22px;
+      color:var(--text-light);
+      font-size:15px;
+      line-height:1.65;
+    }
+    @media(max-width:600px){
+      .faq-q{font-size:15px;padding:16px 18px;gap:10px;}
+      .faq-a{padding:0 18px 18px;font-size:14px;}
+    }
+  </style>
+  <div class="container">
+    <div class="section-label" style="text-align:center;">FAQ</div>
+    <h2 class="h2" style="text-align:center;">Частые вопросы</h2>
+
+    <div class="faq-wrap">
+      <details class="faq-item">
+        <summary class="faq-q">Какая аудитория будет на чемпионате/конференции?</summary>
+        <div class="faq-a">
+          Это срез аудитории по анкетированию на ноябрь 2025 года.<br><br>
+          <strong style="color:var(--brand-peach);">По профессиональному статусу:</strong> эксперты/консультанты — 34,9%, предприниматели/бизнесмены — 24,7%, фрилансеры — 15,0%, в найме — 13,5%, в поиске себя — 10,7%, инвесторы — 1,2%.<br><br>
+          <strong style="color:var(--brand-peach);">По нишам:</strong> деньги/бизнес/заработок — 32,9%, здоровье/красота/тело — 16,3%, финансы/капитал/инвестиции — 14,2%, отношения/семья — 12,9%, духовность — 12,1%, творчество — 11,6%.<br><br>
+          <strong style="color:var(--brand-peach);">По доходу в месяц:</strong> 100–200 т.р. — 53,2%, 200–300 т.р. — 22,6%, 300–500 т.р. — 14,3%, 500 т.р.–1 млн — 5,6%, более 1 млн — 4,3%.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">Сколько ожидается участников?</summary>
+        <div class="faq-a">
+          Участников, кто будет именно соревноваться, — порядка 50 человек. База iViSiON для приглашения зрителями на чемпионат — 3 000+ человек в боте и 900+ человек в чате iViSiON.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">По каким критериям оценивают участников?</summary>
+        <div class="faq-a">
+          Цель — чтобы у участников был прирост аудитории и лидов (заявок/входов в воронки). Оцениваем: сколько людей заинтересовались вашими материалами, количество людей на эфире, оценки жюри, отклик аудитории.<br><br>
+          В концепции iViSiON лидер — это тот, кто может вести за собой и влиять.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">Какой главный приз?</summary>
+        <div class="faq-a">
+          Стратегия медийности на полгода вперёд — 5 выступлений на 5 крупных спикерских площадках. Общая ценность приза более <strong style="color:var(--brand-peach);">150 000 ₽</strong>.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">Чемпионат проходит онлайн или офлайн?</summary>
+        <div class="faq-a">
+          Весь чемпионат проходит онлайн. Выезд во Вьетнам — для желающих.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">Когда старт чемпионата?</summary>
+        <div class="faq-a">
+          <strong style="color:var(--brand-peach);">С 15 июня</strong> — предстарт (подготовительный этап).<br>
+          <strong style="color:var(--brand-peach);">С 1 июля</strong> — основной старт.<br>
+          <strong style="color:var(--brand-peach);">29–30 июля</strong> — соревновательная часть.<br>
+          <strong style="color:var(--brand-peach);">Финал</strong> — на Большой онлайн-конференции iViSiON-8.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">Можно участвовать не спикером, а в жюри?</summary>
+        <div class="faq-a">
+          Да. Напишите основателю Чемпионата Марго Форбс в <a href="https://t.me/margo_forbs" target="_blank" rel="noopener" style="color:var(--brand-peach);text-decoration:underline;">@margo_forbs</a>.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">Если не пройду во 2-й или 3-й тур — вылетаю из чата?</summary>
+        <div class="faq-a">
+          Нет. Вы остаётесь в чате и переходите в формат зрителя.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">Зачем мне чемпионат, если у меня уже есть аудитория, которая меня любит?</summary>
+        <div class="faq-a">
+          Задача — перевести любовь аудитории в деньги.<br><br>
+          Для холодной аудитории это инструмент привлечения и продаж (задания стимулируют к этому).<br><br>
+          Для своей лояльной аудитории — дополнительные касания и возможность увидеть ваше лидерство в деле. Общие смыслы доносите сразу на группу людей, а в личке решаете уже только вопрос оплаты.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">Если у меня нет опыта выступлений — могу ли я участвовать?</summary>
+        <div class="faq-a">
+          Да. Чемпионат — это отличный способ начать привлекать клиентов через сцену и усиливать свой личный бренд.<br><br>
+          Помимо слотов для выступлений будут вспомогательные материалы, а сами задания выстроены намеренно так, чтобы обеспечить взаимодействие между участниками и зрителями — и вы не просто выступили, а именно привлекли своими выступлениями новую аудиторию, заявки и продажи.<br><br>
+          Даже если вы не пройдёте дальше, вы в любом случае выступите 1–3 раза, а все материалы тех туров, куда вы не прошли, останутся у вас в доступе — сможете ознакомиться и внедрить в практику.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">Что значит 1–3 выступления? От чего зависит — 1 или 3?</summary>
+        <div class="faq-a">
+          Чемпионат устроен по системе на выбывание (убывание): всего 3 тура. Каждый участник гарантированно выступает минимум 1 раз. Если вы проходите в следующий тур — у вас будет ещё одно выступление, и так далее. Поэтому максимум — 3 выступления, в зависимости от того, как далеко вы пройдёте.<br><br>
+          Но в любом случае минимум 1 раз вы выступаете гарантированно — и получаете рекламу вашего выступления по базе iViSiON, рассылку вашего материала, размещение в приложении чемпионата со ссылками на ваш Telegram-канал и серию полезных материалов для подготовки выступлений, усиления личного бренда и выстраивания воронки продаж.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">Как будут проходить выступления?</summary>
+        <div class="faq-a">
+          Каждому участнику на каждом этапе чемпионата будут выделены временные слоты по 20 минут. Выступать вы будете в вебинарной комнате через ZOOM — мы вам поможем.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">Что такое конференция iViSiON и чем она отличается от чемпионата?</summary>
+        <div class="faq-a">
+          <strong style="color:var(--brand-peach);">iViSiON</strong> — это регулярная масштабная онлайн-конференция с крупными лидерами рынка. Мы уже провели 7 конференций, объединили 50+ лидеров рынка и 3 600+ участников.<br><br>
+          <strong style="color:var(--brand-peach);">Чемпионат</strong> — это соревнование участников/спикеров и возможность выступить на живую аудиторию, которая собрана от других лидеров рынка, привыкла платить и развивается.<br><br>
+          А <strong style="color:var(--brand-peach);">конференция</strong> — это та самая большая сцена, на которую попадает победитель: он выступает на одной онлайн-сцене вместе с лидерами рынка, его фото и фамилия размещаются на афише рядом с остальными лидерами, и все лидеры рынка публикуют его у себя в каналах. Это даёт вам имя, репутацию и авторитет в глазах аудитории.<br><br>
+          А главное — вы выступаете и через серию рекламных упоминаний организатором конференции и само выступление привлекаете к себе клиентов и получаете заявки.
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
 
 <!-- QUESTIONS / TELEGRAM CTA — Марго на гиталеле -->
 <section class="sec dark" id="questions-sec">
