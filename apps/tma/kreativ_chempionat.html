@@ -475,7 +475,7 @@
   <!-- НОВЫЙ СТИЛЬ: единый градиент + персиковый металлик. Старые стили выше не удалены — этот файл их перекрывает. -->
   <link rel="stylesheet" href="/css/kreativ_chempionat_new.css?v=17">
   <script>
-    // Переключатель тарифов: при ?shwt в URL — показываем 4 платных, скрываем «Чат». Без shwt — наоборот.
+    // Переключатель тарифов: при ?shwt в URL — показываем 5 платных, скрываем «Чат». Без shwt — наоборот.
     if (new URLSearchParams(location.search).has('shwt')) {
       document.documentElement.classList.add('shwt');
     }
@@ -3565,7 +3565,7 @@ async function loadData() {
     if (tsLabel) tsLabel.textContent = data.tariffs_section.label || '';
     // При ?shwt — режим показа платных тарифов: меняем заголовок секции
     if (tsTitle) tsTitle.textContent = params.has('shwt')
-      ? 'ВЫБЕРИТЕ 1 из 4 ФОРМАТОВ УЧАСТИЯ'
+      ? 'ВЫБЕРИТЕ 1 из 5 ФОРМАТОВ УЧАСТИЯ'
       : (data.tariffs_section.title || '');
     if (tsIntro) tsIntro.textContent = data.tariffs_section.intro || '';
 
