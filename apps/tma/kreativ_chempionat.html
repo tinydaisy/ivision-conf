@@ -492,6 +492,12 @@
     <script id="a38d8c35673ef642094fdd31403d8b8d602ea620" src="https://medialift.margoforbs.ru/pl/lite/widget/script?id=1599505"></script>
   </div>
 </div>
+<div class="gc-modal" id="gc-modal-tfreedom" onclick="if(event.target===this)closeGC('gc-modal-tfreedom')">
+  <div class="gc-box">
+    <button class="gc-close" onclick="closeGC('gc-modal-tfreedom')">&#215;</button>
+    <script id="dfbd4ad865c84bb54049bb427e353ab750110ce5" src="https://medialift.margoforbs.ru/pl/lite/widget/script?id=1612997"></script>
+  </div>
+</div>
 <div class="gc-modal" id="gc-modal-t3" onclick="if(event.target===this)closeGC('gc-modal-t3')">
   <div class="gc-box">
     <button class="gc-close" onclick="closeGC('gc-modal-t3')">&#215;</button>
@@ -2762,10 +2768,36 @@
         </button>
       </div>
 
+      <!-- Тариф Freedom — Спикер чемпионата + Номинант премии Freedom -->
+      <div class="ptariff ptariff-paid">
+        <div class="ptariff-stage">онлайн-этапы 0 + 1 + премия Freedom</div>
+        <div class="ptariff-title">Тариф: "СПИКЕР ЧЕМПИОНАТА iVISION и НОМИНАНТ ПРЕМИИ FREEDOM"</div>
+        <div class="ptariff-prices">
+          <span class="ptariff-new">12 900 ₽</span>
+        </div>
+
+        <ul class="ptariff-list" style="margin-top:6px;">
+          <li>Всё, что в Этапе 0 (подготовительный предстарт)</li>
+          <li>Всё, что в Этапе 1 (соревновательная часть)</li>
+        </ul>
+
+        <div style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-peach);margin-top:8px;margin-bottom:-4px;">Номинация на премию экспертов ФРИДОМ ЭКСПЕРТ ЭВОРДС</div>
+        <ul class="ptariff-list">
+          <li>Статус номинанта премии в любой номинации на выбор</li>
+          <li>Билет на церемонию награждения</li>
+          <li>Участие в презентационных эфирах</li>
+          <li>Нетворкинг с участниками</li>
+        </ul>
+
+        <button class="ptariff-btn" onclick="openGC('gc-modal-tfreedom')">
+          <span class="ptariff-btn-i">Оплатить</span>
+        </button>
+      </div>
+
       <!-- Тариф 3 — Живой Спикер на сцене (онлайн + спикер онлайн-конференции) -->
       <div class="ptariff ptariff-paid">
-        <div class="ptariff-stage">онлайн-этапы 0 + 1 + спикер онлайн-конференции</div>
-        <div class="ptariff-title">Тариф: "ЖИВОЙ СПИКЕР ЧЕМПИОНАТА и ФИНАЛА"</div>
+        <div class="ptariff-stage">онлайн-этапы 0 + 1 + спикер конференции iViSiON + Премия Фридом</div>
+        <div class="ptariff-title">Тариф: "СПИКЕР ЧЕМПИОНАТА и ФИНАЛА iViSiON + НОМИНАНТ ПРЕМИИ FREEDOM"</div>
         <div class="ptariff-prices">
           <span class="ptariff-new">49 000 ₽</span>
         </div>
@@ -2773,6 +2805,7 @@
         <ul class="ptariff-list" style="margin-top:6px;">
           <li>Всё, что в Этапе 0 (подготовительный предстарт)</li>
           <li>Всё, что в Этапе 1 (соревновательная часть)</li>
+          <li>Номинация на премию Фридом Эксперт Эвордс</li>
         </ul>
 
         <div style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-peach);margin-top:8px;margin-bottom:-4px;">Спикерство на масштабной онлайн-конференции iViSiON</div>
