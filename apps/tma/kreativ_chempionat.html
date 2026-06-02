@@ -451,6 +451,10 @@
     /* Переключатель видимости: по умолчанию — виден чат, скрыты платные. При ?shwt — наоборот. */
     html:not(.shwt) .ptariff-paid{display:none!important;}
     html.shwt .ptariff-chat{display:none!important;}
+    /* Раскладка платных тарифов: тариф 0 (предстарт) — на всю ширину, остальные парами по 2 */
+    @media(min-width:768px){
+      .ptariffs.ptariffs-2col #ptariff-1{grid-column:1/-1;}
+    }
 
     /* PRICE COUNTDOWN TIMER (над тарифами) */
     .price-timer{display:none;max-width:720px;margin:0 auto 48px;padding:24px 20px;background:linear-gradient(135deg,rgba(200,75,158,.45),rgba(192,132,252,.30) 60%,rgba(200,75,158,.40));border:1.5px solid rgba(200,75,158,.75);border-radius:20px;text-align:center;box-shadow:0 0 32px rgba(200,75,158,.35),inset 0 0 24px rgba(200,75,158,.12);}
