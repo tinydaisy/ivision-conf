@@ -1747,6 +1747,48 @@
     max-width:1100px;
     margin:0 auto;
   }
+  /* Карусель партнёров (горизонтальный скролл) */
+  .final-partners-carousel{
+    max-width:1100px;
+    margin:0 auto;
+    position:relative;
+    overflow:hidden;
+  }
+  .final-partners-track{
+    display:flex;
+    gap:18px;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;
+    padding:4px 4px 16px;
+  }
+  .final-partners-track::-webkit-scrollbar{height:6px;}
+  .final-partners-track::-webkit-scrollbar-thumb{background:rgba(255,207,164,.4);border-radius:3px;}
+  .final-partners-track .final-partner-card{
+    flex:0 0 calc((100% - 36px) / 3);
+    scroll-snap-align:start;
+    min-width:240px;
+  }
+  .final-carousel-arrow{
+    position:absolute;
+    top:50%;transform:translateY(-50%);
+    width:40px;height:40px;border-radius:50%;
+    background:linear-gradient(135deg,var(--brand-peach),#E0A371);
+    color:#080B12;border:none;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    font-size:20px;font-weight:700;line-height:1;
+    box-shadow:0 6px 18px rgba(255,207,164,.5);
+    z-index:3;
+    transition:opacity .2s;
+  }
+  .final-carousel-arrow:hover{opacity:.85;}
+  .final-carousel-arrow.prev{left:-6px;}
+  .final-carousel-arrow.next{right:-6px;}
+  @media(max-width:768px){
+    .final-partners-track .final-partner-card{flex-basis:calc(85% - 12px);min-width:0;}
+    .final-carousel-arrow{display:none;}
+  }
   /* Карточка-«мост» к секции Вьетнам — на ширину всех 3 колонок */
   .final-bridge{
     grid-column:1 / -1;
@@ -2276,7 +2318,7 @@
           <div style="margin-top:32px;padding:20px;background:rgba(212,212,212,.08);border-left:3px solid #D4D4D4;border-radius:8px;">
             <ul class="benefits" style="margin:0;font-size:14px;">
               <li><strong>Титул:</strong> «Лидер Влияния»</li>
-              <li>30 мин выступления на конференции "iViSiON-8: Бизнес-Создатели" (июль 2026)</li>
+              <li>5 выступлений на 5 площадках (iViSiON, Freedom, KOS, Грани, Love.Media)</li>
               <li>Реклама по базе iViSiON</li>
               <li>Денежный приз из фонда (распределение по местам 50%/30%/20%)</li>
             </ul>
@@ -2321,38 +2363,52 @@
     <!-- А ДАЛЬШЕ -->
     <h2 class="final-partners-title">А дальше — медийность продолжается</h2>
     <p class="final-partners-lead">После финала лучшие участники получают пакет выступлений на площадках партнёров:</p>
-    <div class="final-partners-grid">
-      <div class="final-partner-card">
-        <div class="final-num final-num-sm">2</div>
-        <span class="final-mode">онлайн</span>
-        <div class="final-partner-img"><img src="/img/jury/freedom.JPG" alt="FREEDOM" loading="lazy" decoding="async"></div>
-        <div class="final-partner-text">Выступление на площадке Федеральной премии и онлайн-конференции <strong>Freedom Genius Expert Awards</strong></div>
-      </div>
-      <div class="final-partner-card tone-bronze">
-        <div class="final-num final-num-sm">3</div>
-        <span class="final-mode">онлайн</span>
-        <div class="final-partner-img"><img src="/img/jury/kos.JPG" alt="КОС" loading="lazy" decoding="async"></div>
-        <div class="final-partner-text">Бизнес-сообщество из 6000+ предпринимателей <strong>КОС</strong></div>
-      </div>
-      <div class="final-partner-card">
-        <div class="final-num final-num-sm">4</div>
-        <span class="final-mode">онлайн</span>
-        <div class="final-partner-img"><img src="/img/grani.jpg" alt="ГРАНИ" loading="lazy" decoding="async"></div>
-        <div class="final-partner-text">Медиа-платформа для экспертов и предпринимателей <strong>ГРАНИ</strong></div>
-      </div>
-      <div class="final-partner-card">
-        <div class="final-num final-num-sm">5</div>
-        <span class="final-mode">офлайн</span>
-        <div class="final-partner-img"><img src="/img/LoveMedia.png" alt="Love.Media" loading="lazy" decoding="async"></div>
-        <div class="final-partner-text">Федеральное агентство <strong>Love.Media</strong> — конференции в Москве, Санкт-Петербурге или Ростове-на-Дону</div>
-      </div>
-      <div class="final-bridge">
-        <div class="final-num final-num-sm">6</div>
-        <span class="final-mode">офлайн</span>
-        <div class="final-bridge-icon"><img src="/img/logo_ivision.png" alt="iViSiON" loading="lazy" decoding="async"></div>
-        <div class="final-bridge-text">МЕДИА-РЕЗИДЕНЦИЯ iViSiON ВО ВЬЕТНАМЕ</div>
+    <!-- Карусель партнёров финала -->
+    <div class="final-partners-carousel">
+      <button class="final-carousel-arrow prev" type="button" aria-label="Назад" onclick="finalCarouselScroll(-1)">‹</button>
+      <button class="final-carousel-arrow next" type="button" aria-label="Вперёд" onclick="finalCarouselScroll(1)">›</button>
+      <div class="final-partners-track" id="finalPartnersTrack">
+        <div class="final-partner-card">
+          <div class="final-num final-num-sm">2</div>
+          <span class="final-mode">онлайн</span>
+          <div class="final-partner-img"><img src="/img/jury/freedom.JPG" alt="FREEDOM" loading="lazy" decoding="async"></div>
+          <div class="final-partner-text">Выступление на площадке Федеральной премии и онлайн-конференции <strong>Freedom Genius Expert Awards</strong></div>
+        </div>
+        <div class="final-partner-card tone-bronze">
+          <div class="final-num final-num-sm">3</div>
+          <span class="final-mode">онлайн</span>
+          <div class="final-partner-img"><img src="/img/jury/kos.JPG" alt="КОС" loading="lazy" decoding="async"></div>
+          <div class="final-partner-text">Бизнес-сообщество из 6000+ предпринимателей <strong>КОС</strong></div>
+        </div>
+        <div class="final-partner-card">
+          <div class="final-num final-num-sm">4</div>
+          <span class="final-mode">онлайн</span>
+          <div class="final-partner-img"><img src="/img/grani.jpg" alt="ГРАНИ" loading="lazy" decoding="async"></div>
+          <div class="final-partner-text">Медиа-платформа для экспертов и предпринимателей <strong>ГРАНИ</strong></div>
+        </div>
+        <div class="final-partner-card">
+          <div class="final-num final-num-sm">5</div>
+          <span class="final-mode">офлайн</span>
+          <div class="final-partner-img"><img src="/img/LoveMedia.png" alt="Love.Media" loading="lazy" decoding="async"></div>
+          <div class="final-partner-text">Федеральное агентство <strong>Love.Media</strong> — конференции в Москве, Санкт-Петербурге или Ростове-на-Дону</div>
+        </div>
+        <div class="final-partner-card">
+          <div class="final-num final-num-sm">6</div>
+          <span class="final-mode">офлайн</span>
+          <div class="final-bridge-icon" style="width:96px;height:96px;margin-bottom:14px;"><img src="/img/logo_ivision.png" alt="iViSiON" loading="lazy" decoding="async"></div>
+          <div class="final-partner-text"><strong>Медиа-резиденция iViSiON во Вьетнаме</strong></div>
+        </div>
       </div>
     </div>
+    <script>
+      function finalCarouselScroll(dir){
+        var t=document.getElementById('finalPartnersTrack');
+        if(!t) return;
+        var card=t.querySelector('.final-partner-card');
+        var step=card?card.getBoundingClientRect().width+18:300;
+        t.scrollBy({left:dir*step,behavior:'smooth'});
+      }
+    </script>
   </div>
 </section>
 
