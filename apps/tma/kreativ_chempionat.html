@@ -1727,6 +1727,19 @@
     margin:0 0 10px;
   }
   .final-num-sm{font-size:clamp(38px,4.5vw,56px);}
+  /* Подпись «онлайн/офлайн» прямо под цифрой */
+  .final-mode{
+    display:block;
+    font-family:var(--font-body);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--brand-peach);
+    opacity:.85;
+    text-align:center;
+    margin:-6px 0 12px;
+  }
   .final-partners-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -2313,21 +2326,31 @@
     <div class="final-partners-grid">
       <div class="final-partner-card">
         <div class="final-num final-num-sm">2</div>
+        <span class="final-mode">онлайн</span>
         <div class="final-partner-img"><img src="/img/jury/freedom.JPG" alt="FREEDOM" loading="lazy" decoding="async"></div>
         <div class="final-partner-text">Выступление на площадке Федеральной премии и онлайн-конференции <strong>Freedom Genius Expert Awards</strong></div>
       </div>
       <div class="final-partner-card tone-bronze">
         <div class="final-num final-num-sm">3</div>
+        <span class="final-mode">онлайн</span>
         <div class="final-partner-img"><img src="/img/jury/kos.JPG" alt="КОС" loading="lazy" decoding="async"></div>
         <div class="final-partner-text">Бизнес-сообщество из 6000+ предпринимателей <strong>КОС</strong></div>
       </div>
       <div class="final-partner-card">
         <div class="final-num final-num-sm">4</div>
+        <span class="final-mode">онлайн</span>
         <div class="final-partner-img"><img src="/img/grani.jpg" alt="ГРАНИ" loading="lazy" decoding="async"></div>
         <div class="final-partner-text">Медиа-платформа для экспертов и предпринимателей <strong>ГРАНИ</strong></div>
       </div>
-      <div class="final-bridge">
+      <div class="final-partner-card">
         <div class="final-num final-num-sm">5</div>
+        <span class="final-mode">офлайн</span>
+        <div class="final-partner-img"><img src="/img/LoveMedia.png" alt="Love.Media" loading="lazy" decoding="async"></div>
+        <div class="final-partner-text">Федеральное агентство <strong>Love.Media</strong> — конференции в Москве, Санкт-Петербурге или Ростове-на-Дону</div>
+      </div>
+      <div class="final-bridge">
+        <div class="final-num final-num-sm">6</div>
+        <span class="final-mode">офлайн</span>
         <div class="final-bridge-icon"><img src="/img/logo_ivision.png" alt="iViSiON" loading="lazy" decoding="async"></div>
         <div class="final-bridge-text">МЕДИА-РЕЗИДЕНЦИЯ iViSiON ВО ВЬЕТНАМЕ</div>
       </div>
