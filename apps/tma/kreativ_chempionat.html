@@ -4022,6 +4022,25 @@ document.addEventListener('click',function(ev){
 document.getElementById('nav-cta-btn').addEventListener('click',function(){
   var el=document.getElementById('jury-sec');if(el)el.scrollIntoView({behavior:'smooth'});
 });
+
+// Прямой заход по ссылке с якорем (#faq-sec и т.п.):
+// картинки и анимации меняют высоту страницы уже после первого прыжка,
+// поэтому доскролливаем к нужному блоку повторно, после полной загрузки.
+(function(){
+  var hash=window.location.hash;
+  if(!hash||hash.length<2)return;
+  function jump(){
+    var el=document.getElementById(hash.slice(1));
+    if(el)el.scrollIntoView();
+  }
+  // несколько повторов — пока подгружаются изображения и срабатывают анимации
+  window.addEventListener('load',function(){
+    jump();
+    setTimeout(jump,300);
+    setTimeout(jump,900);
+    setTimeout(jump,1800);
+  });
+})();
 </script>
 <!-- VERSION: 2026-04-16-updated -->
 </body>
