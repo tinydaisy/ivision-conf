@@ -20,6 +20,7 @@
   "tariffs": [
     {
       "id": "winwin",
+      "hide_on": ["shwk"],
       "title": "WIN-WIN Жюри",
       "subtitle": "(БЕЗ ОПЛАТНОЕ ПРЕДЛОЖЕНИЕ ДЛЯ ЛИДЕРОВ <span style=\"color:var(--brand-peach);\">С АУДИТОРИЯМИ ОТ 5000 ПОДПИСЧИКОВ В ТЕЛЕГРАМ</span>)",
       "color": "peach",
