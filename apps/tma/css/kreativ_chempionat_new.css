@@ -365,9 +365,9 @@ body, p, li, span, div, .desc, .hero-desc, .hero-sub,
   box-shadow: 0 6px 20px rgba(255, 207, 164, 0.18) !important;
 }
 
-/* Внутренняя плашка — тёмный фон, белый текст */
-.btn-grad-inner,
-.ptariff-btn-i {
+/* Внутренняя плашка — тёмный фон, белый текст.
+   .ptariff-btn-i ИСКЛЮЧЁН: тарифные CTA должны быть красными (заливка задаётся инлайн-стилем лендинга). */
+.btn-grad-inner {
   background: rgba(8, 11, 18, 0.92) !important;
   color: #FFFFFF !important;
 }
