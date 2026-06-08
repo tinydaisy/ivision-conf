@@ -49,24 +49,31 @@ html, body {
 }
 
 /* ===== ФИКС МОБИЛЬНОГО СКРОЛЛА =====
-   На мобиле палец «залипал» внутри горизонтальных каруселей и не мог
-   прокручивать страницу. touch-action:pan-y на body отдаёт вертикальные
-   жесты странице; на самих каруселях явно разрешаем pan-x.
-   Также убираем магнитный scroll-snap (он усиливал залипание). */
-body { touch-action: pan-y !important; }
+   На мобиле палец «залипал» внутри горизонтальных каруселей: страница
+   не листалась там, где под пальцем оказывалась карусель.
+   Причина была в touch-action:pan-x — он разрешал каруселям ТОЛЬКО
+   горизонталь и съедал вертикальный свайп.
+   Решение: каруселям даём pan-x И pan-y (горизонталь крутит карусель,
+   вертикаль уходит странице), а body оставляем дефолтным.
+   scroll-snap полностью убираем — магнитное прилипание усиливало эффект. */
 .jury-team-track,
 .carousel-track,
 .yt-cases-track,
 .speaker-cases-track,
+.partners-grid,
 [class*="-track"] {
-  touch-action: pan-x !important;
+  touch-action: pan-x pan-y !important;
   overscroll-behavior-x: contain;
   scroll-snap-type: none !important;
 }
 .video-card,
 .jury-team-card,
 .speaker-case,
-.yt-case {
+.yt-case,
+.partner-circle,
+.partner-pill,
+[class*="-track"] > *,
+.partners-grid > * {
   scroll-snap-align: none !important;
 }
 
