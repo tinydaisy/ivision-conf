@@ -2785,8 +2785,7 @@
           <li><span class="ptariff-chat-arrow">→</span> Подробности о формате, главных призах и условиях участия</li>
           <li><span class="ptariff-chat-arrow">→</span> Знакомство и нетворкинг с сообществом 900+ экспертов и предпринимателей</li>
           <li><span class="ptariff-chat-arrow">→</span> Ранний доступ к платформе iViSiON:ПЛЮСОН для роста и автоматизации набора аудитории</li>
-          <li><span class="ptariff-chat-arrow">→</span> Эфиры и материалы по спикерству, медийности и продажам через личный бренд и сцену</li>
-          <li><span class="ptariff-chat-arrow">→</span> Мастермайнды с разборами проектов и рычагов узнаваемости</li>
+          <li><span class="ptariff-chat-arrow">→</span> Ранние эфиры и практикумы по автоматизации и спикерству</li>
           <li><span class="ptariff-chat-arrow">→</span> И капелька творческого безумия по версии Марго Форбс</li>
         </ul>
       </div>
@@ -4017,10 +4016,9 @@ document.addEventListener('click',function(ev){
   if(a){ev.preventDefault();var el=document.getElementById(a.dataset.nav);if(el)el.scrollIntoView({behavior:'smooth'});}
 });
 
-// Клик на кнопку "Стать жюри"
-document.getElementById('nav-cta-btn').addEventListener('click',function(){
-  var el=document.getElementById('jury-sec');if(el)el.scrollIntoView({behavior:'smooth'});
-});
+// Поведение кнопки nav-cta («Вступить в чат» / при ?shwt «Выбрать формат»)
+// задаётся выше в логике data.nav_cta (scrollTo: jury-sec — секция тарифов
+// с блоком-чатом наверху). Отдельный обработчик тут больше не нужен.
 
 // Прямой заход по ссылке с якорем (#faq-sec и т.п.):
 // картинки и анимации меняют высоту страницы уже после первого прыжка,
