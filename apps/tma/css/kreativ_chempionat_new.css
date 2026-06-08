@@ -88,17 +88,19 @@ html, body {
   scroll-snap-align: none !important;
 }
 
-body::before {
-  content: '' !important;
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  background: var(--new-bg-grad) !important;
-  z-index: -1 !important;
-  pointer-events: none !important;
+/* Фон страницы — единый градиент прямо на body, скроллится ВМЕСТЕ с контентом.
+   Раньше тут был position:fixed псевдоэлемент: фон стоял на месте, а контент
+   ехал поверх — на мобильных это выглядело как «блоки наложены, фон плывёт»
+   и мешало тач-скроллу. Фиксацию убрали. */
+body {
+  background-color: #080B12 !important;
+  background-image: var(--new-bg-grad) !important;
+  background-attachment: scroll !important;
+  background-repeat: no-repeat !important;
+  background-size: 100% 100vh !important;
+  background-position: top center !important;
 }
+body::before { content: none !important; display: none !important; }
 
 /* Все секции делаем прозрачными — пусть просвечивает body */
 .sec,
