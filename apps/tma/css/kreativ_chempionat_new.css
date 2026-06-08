@@ -6,6 +6,17 @@
    и переопределяет всё необходимое.
    ============================================================ */
 
+/* ===== ФИКС ВЕРТИКАЛЬНОГО СКРОЛЛА НА iOS (КРИТИЧНО) =====
+   overflow-x:hidden одновременно на html + body + section ломает
+   тач-скролл в Safari/Telegram на iPhone: палец «проваливается»,
+   страница листается только по краям. Лечение — обрезку по горизонтали
+   держим ТОЛЬКО на html, body и секции освобождаем (overflow-x:clip
+   обрезает, но НЕ создаёт scroll-контейнер, поэтому тач не залипает). */
+html { overflow-x: hidden !important; overflow-y: auto !important; }
+body { overflow-x: clip !important; overflow-y: visible !important; }
+section,
+.sec { overflow-x: clip !important; overflow-y: visible !important; }
+
 :root {
   --new-bg-grad: linear-gradient(135deg, #25455D 0%, #080B12 70%);
 
