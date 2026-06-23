@@ -488,9 +488,9 @@
     /* Переключатель видимости: по умолчанию — виден чат, скрыты платные. При ?shwt — наоборот. */
     html:not(.shwt) .ptariff-paid{display:none!important;}
     html.shwt .ptariff-chat{display:none!important;}
-    /* Раскладка платных тарифов: тариф 0 (предстарт) — на всю ширину, остальные парами по 2 */
+    /* Раскладка платных тарифов: тарифы парами по 2, выезд во Вьетнам — на всю ширину */
     @media(min-width:768px){
-      .ptariffs.ptariffs-2col #ptariff-1{grid-column:1/-1;}
+      .ptariffs.ptariffs-2col #ptariff-vietnam{grid-column:1/-1;}
     }
 
     /* PRICE COUNTDOWN TIMER (над тарифами) */
@@ -2906,7 +2906,7 @@
       </div>
 
       <!-- Тариф 4 — Онлайн + с выездом в Нячанг -->
-      <div class="ptariff ptariff-paid">
+      <div class="ptariff ptariff-paid" id="ptariff-vietnam">
         <div class="ptariff-stage">онлайн-этапы 0 + 1 + Онлайн-конференция + Выезд в Нячанг</div>
         <div class="ptariff-title">Формат: "Онлайн + с выездом во Вьетнам"</div>
         <div class="ptariff-places">Всего 10 мест</div>
