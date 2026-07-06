@@ -740,10 +740,8 @@
         <p class="nt-block-text">Мы создаём не просто деловую поездку, а <strong>пространство энергии, вдохновения и красивой жизни</strong>.</p>
         <p class="nt-block-text">Участников ждут:</p>
         <ul class="stage-list-mini" style="margin-bottom:18px;">
-          <li>конференция, коллаборации и выступления</li>
+          <li>коллаборации и выступления</li>
           <li>красивые локации Вьетнама</li>
-          <li>совместный отдых</li>
-          <li>прогулки и выезды</li>
           <li>съёмки в необычных местах</li>
           <li>живое общение вне рамок «нетворкинга ради пользы»</li>
         </ul>
@@ -751,7 +749,7 @@
     </div>
 
     <div class="gold-plate" style="max-width:880px;margin:32px auto 0;text-align:center;">
-      <p style="margin:0;font-style:italic;">Самые сильные идеи, связи и коллаборации часто рождаются <strong>не на сцене, а в атмосфере свободы и живого общения</strong>.</p>
+      <p style="margin:0;font-style:italic;">Самые сильные идеи, связи и коллаборации часто рождаются <strong>в атмосфере свободы и живого общения</strong>.</p>
     </div>
 
     <h2 class="h2" style="text-align:center;margin-top:80px;margin-bottom:24px;display:none;">И бонус после Вьетнама</h2>
@@ -785,9 +783,6 @@
         <li>Съёмка брендированного клипа-визитки в стиле «Русский код» (итоговое видео до 40 сек)</li>
         <li>Размещение рекламы по базе iViSiON (3000+ чел)</li>
         <li>Индивидуальная подготовка выступления с нелинейным стратегом, основателем iViSiON Марго Форбс (1 консультация)</li>
-        <li>Благодарственное письмо от Опоры России за вклад в развитие предпринимателей</li>
-        <li>5 ночей во Вьетнаме (17–22 августа)</li>
-        <li>Прогулка на яхте</li>
       </ul>
 
       <div class="ptariff-bonus-title">Бонусы:</div>
@@ -813,17 +808,6 @@
     <h2 class="h2">Организаторы</h2>
 
     <div class="org-grid" id="organizers-grid"></div>
-  </div>
-</section>
-
-<!-- PARTNERS -->
-<section class="sec mid" id="partners-sec">
-  <div class="container">
-    <div class="section-label">Партнёры</div>
-    <h2 class="h2">Партнёры iViSiON</h2>
-    <p class="desc">Сообщества, премии и организации, поддерживающие чемпионат и формирующие новое направление развития рынка.</p>
-
-    <div class="partners-grid" id="partners-grid"></div>
   </div>
 </section>
 
@@ -925,7 +909,6 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!window.PlussonCollaborators) return;
   window.PlussonCollaborators.fetch(24).then(function (api) {
     window.PlussonCollaborators.renderOrganizers(document.getElementById('organizers-grid'), api.organizers);
-    window.PlussonCollaborators.renderPartners(document.getElementById('partners-grid'), api.partners);
   }).catch(function (err) { console.warn('PLUSSON API error:', err); });
 });
 </script>
