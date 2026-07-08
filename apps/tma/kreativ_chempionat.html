@@ -2926,6 +2926,21 @@
     </div>
   </div>
 </section>
+<!-- SPEAKERS — карусель спикеров чемпионата (API PLUSSON, event_id=24) -->
+<section class="sec dark" id="speakers-team-sec">
+  <div class="container">
+    <div class="section-label" id="speakers-team-label">Участники</div>
+    <h2 class="h2" id="speakers-team-title">Спикеры чемпионата</h2>
+    <p class="desc" id="speakers-team-intro"></p>
+
+    <div class="jury-team-track" id="speakers-team-track"></div>
+    <div class="jury-team-nav">
+      <button id="speakers-team-prev" aria-label="Назад">◀</button>
+      <div class="jury-team-progress" id="speakers-team-progress"></div>
+      <button id="speakers-team-next" aria-label="Вперёд">▶</button>
+    </div>
+  </div>
+</section>
 <!-- ORGANIZERS — Марго Форбс + Евгения Романовская -->
 <section class="sec dark" id="organizers-sec">
   <style>
@@ -3727,6 +3742,12 @@ async function loadData() {
         document.getElementById('jury-team-progress'),
         api.jury,
         { prevBtn: document.getElementById('jury-team-prev'), nextBtn: document.getElementById('jury-team-next') }
+      );
+      window.PlussonCollaborators.renderJury(
+        document.getElementById('speakers-team-track'),
+        document.getElementById('speakers-team-progress'),
+        api.speakers,
+        { prevBtn: document.getElementById('speakers-team-prev'), nextBtn: document.getElementById('speakers-team-next') }
       );
       window.PlussonCollaborators.renderPartners(document.getElementById('partners-grid'), api.partners);
       window.PlussonCollaborators.renderOrganizers(document.getElementById('organizers-grid'), api.organizers);
