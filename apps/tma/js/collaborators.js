@@ -20,7 +20,7 @@
   }
 
   function fetchCollaborators(eventId) {
-    return fetch(API_BASE + '/' + eventId + '/collaborators')
+    return fetch(API_BASE + '/' + eventId + '/collaborators?sort_jury=referrals&sort_speakers=referrals&sort_partners=referrals')
       .then(function (r) {
         if (!r.ok) throw new Error('PLUSSON API ' + r.status);
         return r.json();
@@ -60,18 +60,13 @@
     };
   }
 
-  // Сортирует список: с топ-активом — по убыванию value, без актива — в конец
-  // в исходном порядке. Никого не фильтрует.
+  // СОХРАНЯЕТ порядок API (сервер уже сортирует по нужному критерию —
+  // sort_*=referrals в URL). Клиент НЕ пересортировывает, только прикрепляет
+  // топ-актив (медийный вес) к каждому элементу. Никого не фильтрует.
   // Возвращает массив { collaborator, top|null, index }.
   function rankByAssets(items) {
     return (items || [])
-      .map(function (c, i) { return { collaborator: c, top: getTopAsset(c.media_assets), index: i }; })
-      .sort(function (a, b) {
-        if (a.top && b.top) return b.top.value - a.top.value;
-        if (a.top && !b.top) return -1;
-        if (!a.top && b.top) return 1;
-        return a.index - b.index;
-      });
+      .map(function (c, i) { return { collaborator: c, top: getTopAsset(c.media_assets), index: i }; });
   }
 
   // HTML строчки «Общий медийный вес: X тыс. подписчиков» под ролью карточки.
